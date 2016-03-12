@@ -19,7 +19,11 @@
 <body>
 <div c-widget="Pager; bind:employees">
 	<a class="item" page-code="pages"></a>
-
+	<div c-widget="controlItem;">
+		<div c-widget="Input; placeholder:Name; bind:contain">
+			<div c-widget="button; caption:查询; click:flush"></div>
+		</div>
+	</div>
 	<div class="right menu">
 		<div c-widget="controlItem;">
 			<div c-widget="Button; caption:Add; click:add; class:teal"></div>
@@ -184,12 +188,18 @@
 		model.describe("employees", {
 			provider: {
 				url: "./service/employee/",
+				beforeSend:function(self,arg){
+					arg.options.data.contain=model.get("contain")
+				},
 				pageSize: 5
 			},
 			dataType: "Employee"
 		});
 
 		model.action({
+			flush: function(){
+				model.get("employees").flush();
+			},
 			edit: function (employee) {
 				model.set("employee", employee.toJSON());
 				model.get("employee").validate();

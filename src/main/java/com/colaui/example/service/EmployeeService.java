@@ -10,5 +10,5 @@ public interface EmployeeService {
 	void update(Employee employee);
 	void delete(long id);
 	List<Employee> find(int from,int limit);
-	Page<Employee> getPage(int pageSize,int pageNo);
+	Page<Employee> getPage(int pageSize,int pageNo,String contain);
 }

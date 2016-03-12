@@ -22,8 +22,8 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public Page<Employee> paging(@RequestParam int pageSize,
-			@RequestParam int pageNo) {
-		return employeeService.getPage(pageSize, pageNo);
+			@RequestParam int pageNo, @RequestParam(required=false) String contain) {
+		return employeeService.getPage(pageSize, pageNo, contain);
 	}
 
 	@RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)

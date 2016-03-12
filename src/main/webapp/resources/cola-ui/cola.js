@@ -8,7 +8,7 @@
  * at http://www.bstek.com/contact.
  */
 (function() {
-  var ALIAS_REGEXP, IGNORE_NODES, LinkedList, ON_NODE_REMOVED_KEY, Page, TYPE_SEVERITY, USER_DATA_KEY, VALIDATION_ERROR, VALIDATION_INFO, VALIDATION_NONE, VALIDATION_WARN, _$, _DOMNodeRemovedListener, _Entity, _EntityList, _RESERVE_NAMES, _compileResourceUrl, _cssCache, _destroyDomBinding, _doRenderDomTemplate, _evalDataPath, _findRouter, _getData, _getEntityPath, _getHashPath, _jsCache, _loadCss, _loadHtml, _loadJs, _matchValue, _onHashChange, _onStateChange, _removeNodeData, _setValue, _switchRouter, _toJSON, _unloadCss, alertException, appendChild, browser, buildAliasFeature, buildAttrFeature, buildBindFeature, buildClassFeature, buildContent, buildEvent, buildRepeatFeature, buildResourceFeature, buildStyleFeature, buildWatchFeature, cola, colaEventRegistry, createContentPart, createNodeForAppend, currentRoutePath, currentRouter, defaultDataTypes, definedSetting, digestExpression, doMergeDefinitions, doms, exceptionStack, key, oldIE, originalAjax, os, preprocessClass, resourceStore, routerRegistry, setAttrs, setting, splitExpression, sprintf, tagSplitter, trimPath, typeRegistry, uniqueIdSeed, value, xCreate,
+  var ALIAS_REGEXP, IGNORE_NODES, LinkedList, ON_NODE_REMOVED_KEY, Page, TYPE_SEVERITY, USER_DATA_KEY, VALIDATION_ERROR, VALIDATION_INFO, VALIDATION_NONE, VALIDATION_WARN, _$, _DOMNodeRemovedListener, _Entity, _EntityList, _RESERVE_NAMES, _compileResourceUrl, _cssCache, _destroyDomBinding, _doRenderDomTemplate, _evalDataPath, _findRouter, _getData, _getEntityPath, _getHashPath, _jsCache, _loadCss, _loadHtml, _loadJs, _matchValue, _onHashChange, _onStateChange, _removeNodeData, _setValue, _switchRouter, _toJSON, _unloadCss, alertException, appendChild, browser, buildAliasFeature, buildAttrFeature, buildBindFeature, buildClassFeature, buildContent, buildEvent, buildRepeatFeature, buildResourceFeature, buildStyleFeature, buildWatchFeature, cola, colaEventRegistry, createContentPart, createNodeForAppend, currentRoutePath, currentRouter, defaultActionTimestamp, defaultDataTypes, definedSetting, digestExpression, doMergeDefinitions, doms, exceptionStack, key, oldIE, originalAjax, os, preprocessClass, resourceStore, routerRegistry, setAttrs, setting, splitExpression, sprintf, tagSplitter, trimPath, typeRegistry, uniqueIdSeed, value, xCreate,
     slice = [].slice,
     extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
     hasProp = {}.hasOwnProperty;
@@ -27,6 +27,7 @@
     IGNORE_DIRECTIVE: "c-ignore",
     COLLECTION_CURRENT_CLASS: "current",
     DEFAULT_PATH: "$root",
+    REPEAT_INDEX: "$index",
     DOM_USER_DATA_KEY: "_d",
     DOM_BINDING_KEY: "_binding",
     DOM_INITIALIZER_KEY: "_initialize",
@@ -803,7 +804,7 @@
     }
 
     Exception.processException = function(ex) {
-      var error1, ex2, scope;
+      var ex2, scope;
       if (cola.Exception.ignoreAll) {
         return;
       }
@@ -840,8 +841,8 @@
               cola.Exception.safeShowException(ex);
             }
           }
-        } catch (error1) {
-          ex2 = error1;
+        } catch (_error) {
+          ex2 = _error;
           cola.Exception.removeException(ex2);
           if (ex2.safeShowException) {
             ex2.safeShowException();
@@ -922,7 +923,7 @@
           return templ;
         }
       } else {
-        return key;
+        return (params != null ? params[0] : void 0) || key;
       }
     } else {
       bundle = key;
@@ -2118,42 +2119,41 @@
     }
 
     Expression.prototype.compile = function(exprStr) {
-      var parts, stringify, stringifyMemberExpression, tree;
-      stringifyMemberExpression = function(node, parts, context) {
-        var type;
-        type = node.type;
-        if (type === "Identifier") {
-          parts.push(node.name);
-        } else {
-          stringifyMemberExpression(node.object, parts, context);
-          parts.push(node.property.name);
-        }
-      };
-      stringify = function(node, parts, context) {
-        var argument, element, i, l, len1, len2, o, path, pathPart, ref, ref1, ref2, type;
+      var parts, pathParts, stringify, tree;
+      stringify = function(node, parts, pathParts, close, context) {
+        var argument, callee, element, i, l, len1, len2, o, path, ref, ref1, ref2, type;
         type = node.type;
         switch (type) {
           case "MemberExpression":
           case "Identifier":
-            pathPart = [];
-            stringifyMemberExpression(node, pathPart, context);
-            path = pathPart.join(".");
-            if (!context.path) {
-              context.path = path;
-            } else if (typeof context.path === "string") {
-              context.path = [context.path, path];
-            } else {
-              context.path.push(path);
+          case "ThisExpression":
+            if (type === "Identifier" || type === "ThisExpression") {
+              pathParts.push(node.name);
+            } else if (type === "MemberExpression") {
+              stringify(node.object, parts, pathParts, false, context);
+              if (pathParts.length) {
+                pathParts.push(node.property.name);
+              } else {
+                parts.push(".");
+                parts.push(node.property.name);
+              }
             }
-            parts.push("_getData(scope,'");
-            parts.push(path);
-            parts.push("',loadMode,dataCtx)");
             break;
           case "CallExpression":
             context.hasCallStatement = true;
-            parts.push("scope.action(\"");
-            stringifyMemberExpression(node.callee, parts, context);
-            parts.push("\")(");
+            callee = node.callee;
+            if (callee.type === "Identifier") {
+              parts.push("scope.action(\"");
+              parts.push(node.callee.name);
+              parts.push("\")(");
+            } else if (callee.type === "MemberExpression") {
+              stringify(callee.object, parts, pathParts, true, context);
+              parts.push(".");
+              parts.push(callee.property.name);
+              parts.push("(");
+            } else {
+              throw new cola.Exception("\"" + exprStr + "\" invalid callee.");
+            }
             if ((ref = node["arguments"]) != null ? ref.length : void 0) {
               ref1 = node["arguments"];
               for (i = l = 0, len1 = ref1.length; l < len1; i = ++l) {
@@ -2161,7 +2161,7 @@
                 if (i > 0) {
                   parts.push(",");
                 }
-                stringify(argument, parts, context);
+                stringify(argument, parts, pathParts, true, context);
               }
             }
             parts.push(")");
@@ -2172,25 +2172,22 @@
           case "BinaryExpression":
           case "LogicalExpression":
             parts.push("(");
-            stringify(node.left, parts, context);
+            stringify(node.left, parts, pathParts, true, context);
             parts.push(node.operator);
-            stringify(node.right, parts, context);
+            stringify(node.right, parts, pathParts, true, context);
             parts.push(")");
-            break;
-          case "ThisExpression":
-            parts.push("scope");
             break;
           case "UnaryExpression":
             parts.push(node.operator);
-            stringify(node.argument, parts, context);
+            stringify(node.argument, parts, pathParts, true, context);
             break;
           case "ConditionalExpression":
             parts.push("(");
-            stringify(node.test, parts, context);
+            stringify(node.test, parts, pathParts, true, context);
             parts.push("?");
-            stringify(node.consequent, parts, context);
+            stringify(node.consequent, parts, pathParts, true, context);
             parts.push(":");
-            stringify(node.alternate, parts, context);
+            stringify(node.alternate, parts, pathParts, true, context);
             parts.push(")");
             break;
           case "ArrayExpression":
@@ -2201,21 +2198,39 @@
               if (i > 0) {
                 parts.push(",");
               }
-              stringify(element, parts, context);
+              stringify(element, parts, pathParts, true, context);
             }
             parts.push("]");
+        }
+        if (close && pathParts.length) {
+          path = pathParts.join(".");
+          if (!context.path) {
+            context.path = path;
+          } else if (typeof context.path === "string") {
+            context.path = [context.path, path];
+          } else {
+            context.path.push(path);
+          }
+          parts.push("_getData(scope,'");
+          parts.push(path);
+          parts.push("',loadMode,dataCtx)");
+          pathParts.splice(0, pathParts.length);
         }
       };
       tree = jsep(exprStr);
       this.type = tree.type;
       parts = [];
-      stringify(tree, parts, this);
-      return this.expression = parts.join("");
+      pathParts = [];
+      stringify(tree, parts, pathParts, true, this);
+      this.expression = parts.join("");
     };
 
     Expression.prototype.evaluate = function(scope, loadMode, dataCtx) {
       var retValue;
       retValue = eval(this.expression);
+      if (retValue instanceof cola.Chain) {
+        retValue = retValue._data;
+      }
       if (retValue instanceof cola.Entity || retValue instanceof cola.EntityList) {
         if (dataCtx != null) {
           dataCtx.path = retValue.getPath();
@@ -3309,7 +3324,6 @@
         }
       },
       defaultValue: null,
-      required: null,
       aggregated: {
         readOnlyAfterCreate: true
       },
@@ -3322,9 +3336,6 @@
                 validator = cola.create("validator", validator, cola.Validator);
               }
               _this._validators.push(validator);
-              if (validator instanceof cola.RequiredValidator && !_this._required) {
-                _this._required = true;
-              }
             };
           })(this);
           delete this._validators;
@@ -5996,7 +6007,7 @@
     function ItemScope(parent1, alias) {
       var ref;
       this.parent = parent1;
-      this.data = new cola.AliasDataModel(this, alias, (ref = this.parent) != null ? ref.dataType : void 0);
+      this.data = new cola.ItemDataModel(this, alias, (ref = this.parent) != null ? ref.dataType : void 0);
       this.action = this.parent.action;
     }
 
@@ -7060,6 +7071,48 @@
 
   })(cola.AbstractDataModel);
 
+  cola.ItemDataModel = (function(superClass) {
+    extend(ItemDataModel, superClass);
+
+    function ItemDataModel() {
+      return ItemDataModel.__super__.constructor.apply(this, arguments);
+    }
+
+    ItemDataModel.prototype.getIndex = function() {
+      return this._index;
+    };
+
+    ItemDataModel.prototype.setIndex = function(index, silence) {
+      this._index = index;
+      if (!silence) {
+        this._onDataMessage([cola.constants.REPEAT_INDEX], cola.constants.MESSAGE_PROPERTY_CHANGE, {
+          entity: null,
+          property: cola.constants.REPEAT_INDEX,
+          value: index
+        });
+      }
+    };
+
+    ItemDataModel.prototype.get = function(path, loadMode, context) {
+      if (path === cola.constants.REPEAT_INDEX) {
+        return this.getIndex();
+      } else {
+        return ItemDataModel.__super__.get.call(this, path, loadMode, context);
+      }
+    };
+
+    ItemDataModel.prototype.set = function(path, data, context) {
+      if (path === cola.constants.REPEAT_INDEX) {
+        this.setIndex(data);
+      } else {
+        ItemDataModel.__super__.set.call(this, path, data, context);
+      }
+    };
+
+    return ItemDataModel;
+
+  })(cola.AliasDataModel);
+
 
   /*
   Root Model
@@ -7254,7 +7307,53 @@
     }
   };
 
-  cola.defaultAction = {};
+  defaultActionTimestamp = 0;
+
+  cola.defaultAction = function(name, fn) {
+    var n;
+    if (!name) {
+      return;
+    }
+    if (typeof name === "string" && typeof fn === "function") {
+      cola.defaultAction[name] = fn;
+    } else if (typeof name === "object") {
+      for (n in name) {
+        if (name.hasOwnProperty(n)) {
+          cola.defaultAction[n] = name[n];
+        }
+      }
+    }
+    defaultActionTimestamp = cola.uniqueId();
+  };
+
+  cola.Chain = (function() {
+    function Chain(data) {
+      var name;
+      this._data = data;
+      if (cola.Chain.prototype.timestamp !== defaultActionTimestamp) {
+        cola.Chain.prototype.timestamp = defaultActionTimestamp;
+        for (name in cola.defaultAction) {
+          if (!cola.Chain.prototype[name] && cola.defaultAction.hasOwnProperty(name) && name !== "chain") {
+            (function(name) {
+              return cola.Chain.prototype[name] = function() {
+                var args, ref;
+                args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+                this._data = (ref = cola.defaultAction)[name].apply(ref, [this._data].concat(slice.call(args)));
+                return this;
+              };
+            })(name);
+          }
+        }
+      }
+    }
+
+    return Chain;
+
+  })();
+
+  cola.defaultAction.chain = function(data) {
+    return new cola.Chain(data);
+  };
 
   cola.defaultAction["default"] = function(value, defaultValue) {
     if (defaultValue == null) {
@@ -7316,6 +7415,10 @@
 
   cola.defaultAction["lowerCase"] = function(value) {
     return value != null ? value.toLowerCase() : void 0;
+  };
+
+  cola.defaultAction["capitalize"] = function(value) {
+    return cola.util.capitalize(value);
   };
 
   cola.defaultAction.resource = function() {
@@ -7823,7 +7926,7 @@
         dataType: "text",
         cache: true
       }).done(function(script) {
-        var e, error1, head, scriptElement;
+        var e, head, scriptElement;
         scriptElement = $.xCreate({
           tagName: "script",
           language: "javascript",
@@ -7841,8 +7944,8 @@
             _jsCache[url] = context.suspendedInitFuncs;
           }
           cola.callback(callback, true);
-        } catch (error1) {
-          e = error1;
+        } catch (_error) {
+          e = _error;
           cola.callback(callback, false, e);
         }
       }).fail(function(xhr) {
@@ -7966,7 +8069,7 @@
       router.hasVariable = hasVariable;
     }
     routerRegistry.add(path, router);
-    return this;
+    return router;
   };
 
   cola.getCurrentRoutePath = function() {
@@ -8427,41 +8530,80 @@
       };
       scope.onItemInsert = (function(_this) {
         return function(arg) {
-          var headDom, insertMode, itemDom, refDom, refEntityId, tailDom, templateDom;
+          var entity, headDom, i, iScope, id, index, insertMode, itemDom, itemsScope, ref, refDom, refEntityId, refItemScope, tailDom, templateDom;
           headDom = domBinding.dom;
           tailDom = cola.util.userData(headDom, cola.constants.REPEAT_TAIL_KEY);
           templateDom = cola.util.userData(headDom, cola.constants.REPEAT_TEMPLATE_KEY);
-          itemDom = _this.createNewItem(domBinding, templateDom, domBinding.scope, arg.entity);
+          entity = arg.entity;
+          itemsScope = arg.itemsScope;
           insertMode = arg.insertMode;
           if (!insertMode || insertMode === "end") {
-            $fly(tailDom).before(itemDom);
+            index = arg.entityList.entityCount;
           } else if (insertMode === "begin") {
-            $fly(headDom).after(itemDom);
-          } else if (domBinding.itemDomBindingMap) {
-            refEntityId = cola.Entity._getEntityId(arg.refEntity);
-            if (refEntityId) {
-              refDom = domBinding.itemDomBindingMap[refEntityId] != null;
-              if (refDom) {
-                if (insertMode === "before") {
-                  $fly(refDom).before(itemDom);
-                } else {
-                  $fly(refDom).after(itemDom);
+            index = 1;
+          } else if (insertMode === "before") {
+            refItemScope = itemsScope.getItemScope(arg.refEntity);
+            index = refItemScope != null ? refItemScope.data.getIndex() : void 0;
+          } else if (insertMode === "after") {
+            refItemScope = itemsScope.getItemScope(arg.refEntity);
+            index = (refItemScope != null ? refItemScope.data.getIndex() : void 0) + 1;
+          }
+          itemDom = _this.createNewItem(domBinding, templateDom, domBinding.scope, entity, index);
+          if (!insertMode || insertMode === "end") {
+            $fly(tailDom).before(itemDom);
+          } else {
+            if (insertMode === "begin") {
+              $fly(headDom).after(itemDom);
+            } else if (domBinding.itemDomBindingMap) {
+              refEntityId = cola.Entity._getEntityId(arg.refEntity);
+              if (refEntityId) {
+                refDom = domBinding.itemDomBindingMap[refEntityId] != null;
+                if (refDom) {
+                  if (insertMode === "before") {
+                    $fly(refDom).before(itemDom);
+                  } else {
+                    $fly(refDom).after(itemDom);
+                  }
                 }
+              }
+            }
+            ref = itemsScope.itemScopeMap;
+            for (id in ref) {
+              iScope = ref[id];
+              i = iScope.data.getIndex();
+              if (i >= index && iScope.data.getTargetData() !== entity) {
+                iScope.data.setIndex(i + 1);
               }
             }
           }
         };
       })(this);
       scope.onItemRemove = function(arg) {
-        var itemDomBinding, itemId;
-        itemId = cola.Entity._getEntityId(arg.entity);
+        var entity, i, iScope, id, index, itemDomBinding, itemId, itemScope, itemsScope, ref;
+        entity = arg.entity;
+        itemsScope = arg.itemsScope;
+        itemId = cola.Entity._getEntityId(entity);
         if (itemId) {
+          itemScope = itemsScope.getItemScope(entity);
           itemDomBinding = domBinding.itemDomBindingMap[itemId];
           if (itemDomBinding) {
-            arg.itemsScope.unregItemScope(itemId);
+            itemsScope.unregItemScope(itemId);
             itemDomBinding.remove();
             if (itemDomBinding.dom === domBinding.currentItemDom) {
               delete domBinding.currentItemDom;
+            }
+          }
+          if (itemScope) {
+            index = itemScope.data.getIndex();
+            if (index < arg.entityList.entityCount) {
+              ref = itemsScope.itemScopeMap;
+              for (id in ref) {
+                iScope = ref[id];
+                i = iScope.data.getIndex();
+                if (i > index) {
+                  iScope.data.setIndex(i - 1);
+                }
+              }
             }
           }
         }
@@ -8501,7 +8643,7 @@
             $fly(domBinding.currentItemDom).removeClass(cola.constants.COLLECTION_CURRENT_CLASS);
           }
           cola.each(items, (function(_this) {
-            return function(item) {
+            return function(item, i) {
               var itemDom, itemDomBinding, itemId, itemScope;
               if (item == null) {
                 return;
@@ -8522,8 +8664,9 @@
                 itemDomBinding.itemId = itemId;
                 domBinding.itemDomBindingMap[itemId] = itemDomBinding;
                 itemScope.data.setTargetData(item);
+                itemScope.data.setIndex(i + 1);
               } else {
-                itemDom = _this.createNewItem(domBinding, templateDom, scope, item);
+                itemDom = _this.createNewItem(domBinding, templateDom, scope, item, i + 1);
                 if (documentFragment == null) {
                   documentFragment = document.createDocumentFragment();
                 }
@@ -8551,10 +8694,11 @@
       }
     };
 
-    _RepeatFeature.prototype.createNewItem = function(repeatDomBinding, templateDom, scope, item) {
+    _RepeatFeature.prototype.createNewItem = function(repeatDomBinding, templateDom, scope, item, index) {
       var domBinding, itemDom, itemId, itemScope, templateDomBinding;
       itemScope = new cola.ItemScope(scope, this.alias);
       itemScope.data.setTargetData(item, true);
+      itemScope.data.setIndex(index, true);
       itemDom = templateDom.cloneNode(true);
       this.deepCloneNodeData(itemDom, itemScope, false);
       templateDomBinding = cola.util.userData(templateDom, cola.constants.DOM_BINDING_KEY);
@@ -13845,7 +13989,6 @@
         var allWeeks, cal, dom, picker, weeks;
         allWeeks = cola.resource("cola.date.dayNamesShort");
         weeks = allWeeks.split(",");
-        console.log(allWeeks);
         cal = this;
         if (this._doms == null) {
           this._doms = {};
@@ -14153,7 +14296,7 @@
     };
 
     IFrame.prototype.getContentWindow = function() {
-      var contentWindow, e, error;
+      var contentWindow, e;
       if (this._doms == null) {
         this._doms = {};
       }
@@ -14161,8 +14304,8 @@
         if (this._doms.iframe) {
           contentWindow = this._doms.iframe.contentWindow;
         }
-      } catch (error) {
-        e = error;
+      } catch (_error) {
+        e = _error;
       }
       return contentWindow;
     };
@@ -20396,7 +20539,7 @@
     };
 
     Carousel.prototype.setCurrentIndex = function(index) {
-      var activeSpan, e, error, pos;
+      var activeSpan, e, pos;
       this.fire("change", this, {
         index: index
       });
@@ -20409,8 +20552,8 @@
             if (activeSpan != null) {
               activeSpan.className = "active";
             }
-          } catch (error) {
-            e = error;
+          } catch (_error) {
+            e = _error;
           }
         }
         if (this._scroller) {
@@ -27853,29 +27996,29 @@
       var data, gotoInput, hasNext, hasPrev, infoItem, infoItemDom, pageCount, pageNo, pager, ref, ref1, ref2, ref3, ref4, ref5;
       pager = this;
       data = pager._getBindItems();
-      hasPrev = true;
-      hasNext = true;
+      hasPrev = false;
+      hasNext = false;
       pageNo = 0;
       pageCount = 0;
       if (data) {
         pageCount = parseInt((data.totalEntityCount + data.pageSize - 1) / data.pageSize);
-        hasPrev = data.pageNo === 1;
-        hasNext = pageCount === data.pageNo;
+        hasPrev = data.pageNo > 1;
+        hasNext = pageCount > data.pageNo;
         pageNo = data.pageNo;
         pageCount = data.pageCount;
       }
       this._pageNo = pageNo;
       if ((ref = pager._pagerItemMap["firstPage"]) != null) {
-        ref.get$Dom().toggleClass("disabled", hasPrev);
+        ref.get$Dom().toggleClass("disabled", !hasPrev);
       }
       if ((ref1 = pager._pagerItemMap["prevPage"]) != null) {
-        ref1.get$Dom().toggleClass("disabled", hasPrev);
+        ref1.get$Dom().toggleClass("disabled", !hasPrev);
       }
       if ((ref2 = pager._pagerItemMap["nextPage"]) != null) {
-        ref2.get$Dom().toggleClass("disabled", hasNext);
+        ref2.get$Dom().toggleClass("disabled", !hasNext);
       }
       if ((ref3 = pager._pagerItemMap["lastPage"]) != null) {
-        ref3.get$Dom().toggleClass("disabled", hasNext);
+        ref3.get$Dom().toggleClass("disabled", !hasNext);
       }
       infoItem = pager._pagerItemMap["info"];
       if (infoItem) {
