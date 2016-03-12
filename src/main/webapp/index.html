@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="renderer" content="webkit">
+	<title>员工信息维护</title>
+	<link rel="stylesheet" type="text/css"
+		  href="./resources/cola-ui/semantic.css">
+	<link rel="stylesheet" type="text/css"
+		  href="./resources/cola-ui/cola.css">
+	<style>
+		body {
+			padding: 1em;
+		}
+	</style>
+</head>
+<body>
+<div c-widget="Pager; bind:employees">
+	<a class="item" page-code="pages"></a>
+
+	<div class="right menu">
+		<div c-widget="controlItem;">
+			<div c-widget="Button; caption:Add; click:add; class:teal"></div>
+		</div>
+
+	</div>
+</div>
+<div id="employeeTable">
+	<template name="operations">
+		<div>
+			<div c-widget="button;icon:edit;class:teal basic;size:mini;click:{{edit(employee)}}"></div>
+			<div c-widget="button;icon:trash outline;class:red basic;size:mini;click:{{del(employee)}}"></div>
+		</div>
+	</template>
+</div>
+<div id="editDialog" c-widget="Dialog; width:70%;height:60%; closeable:false">
+	<div class="header"><i class="edit icon"></i><span>员工信息维护</span></div>
+	<div c-widget="Form" class="content" style="height: 100%; overflow: auto">
+		<h4 class="ui dividing header">基本信息</h4>
+
+		<div class="two fields">
+			<div class="field">
+				<label>LastName</label>
+
+				<div c-widget="input; bind:employee.lastName"></div>
+			</div>
+			<div class="field">
+				<label>FirstName</label>
+
+				<div c-widget="input; bind:employee.firstName"></div>
+			</div>
+		</div>
+		<div class="two fields">
+			<div class="field">
+				<label>Sex</label>
+
+				<div id="radioGroup" c-widget="RadioGroup; name:brand; bind:employee.sex"></div>
+			</div>
+		</div>
+		<div class="two fields">
+			<div class="field">
+				<label>Birthday</label>
+
+				<div c-widget="input; bind:employee.birthDate; inputType:date"></div>
+			</div>
+			<div class="field">
+				<label>Phone</label>
+
+				<div c-widget="input; bind:employee.phone"></div>
+			</div>
+		</div>
+		<h4 class="ui dividing header">工作信息</h4>
+
+		<div class="two fields">
+			<div class="field">
+				<label>Title</label>
+
+				<div c-widget="input; bind:employee.title"></div>
+			</div>
+			<div class="field">
+				<label>Title Of Courtesy</label>
+
+				<div c-widget="input; bind:employee.titleOfCourtesy"></div>
+			</div>
+		</div>
+
+		<div class="two fields">
+
+			<div class="field">
+				<label>HireDate</label>
+
+				<div c-widget="input; bind:employee.hireDate;inputType:date"></div>
+			</div>
+		</div>
+		<h4 class="ui dividing header">家庭住址</h4>
+
+		<div class="two fields">
+			<div class="field">
+				<label>Country</label>
+
+				<div c-widget="input; bind:employee.country"></div>
+			</div>
+			<div class="field">
+				<label>Region</label>
+
+				<div c-widget="input; bind:employee.region"></div>
+			</div>
+
+		</div>
+		<div class="two fields">
+			<div class="field">
+				<label>City</label>
+
+				<div c-widget="input; bind:employee.city"></div>
+			</div>
+			<div class="field">
+				<label>PostalCode</label>
+
+				<div c-widget="input; bind:employee.postalCode"></div>
+			</div>
+
+
+		</div>
+
+		<div class="field">
+			<label>Address</label>
+			<textarea rows="2" c-bind="employee.address"></textarea>
+		</div>
+
+	</div>
+	<div class="actions">
+		<div c-widget="button; caption:取消; click:cancel"></div>
+		<div c-widget="button; class:primary; caption:确定; click:ok"></div>
+	</div>
+</div>
+<!-- javascript引入区域 -->
+<script src="./resources/jquery-2.1.3.js"></script>
+<script src="./resources/cola-ui/3rd.js"></script>
+<script src="./resources/cola-ui/semantic.js"></script>
+<script src="./resources/cola-ui/cola.js"></script>
+<script src="./resources/cola-ui/i18n/zh-Hans/cola.js"></script>
+<!-- document 内部样式定义区域-->
+<script type="text/javascript">
+	cola(function (model) {
+		model.dataType({
+			name: "Employee",
+			properties: {
+				lastName: {
+					validators: ["required", {$type: "length", min: 4, max: 20}]
+				},
+				firstName: {
+					validators: ["required", {$type: "length", min: 4, max: 20}]
+				},
+				title: {
+					validators: [{$type: "length", max: 30}]
+				},
+				titleOfCourtesy: {
+					validators: [{$type: "length", max: 25}]
+				},
+				sex: {dataType: "boolean", defaultValue: true, validators: ["required"]},
+				birthDate: {dataType: "date", validators: ["required"]},
+				hireDate: {dataType: "date"},
+				address: {
+					validators: [{$type: "length", max: 60}]
+				},
+				city: {
+					validators: [{$type: "length", max: 15}]
+				},
+				region: {
+					validators: [{$type: "length", max: 15}]
+				},
+				postalCode: {
+					validators: [{$type: "length", max: 10}]
+				},
+				country: {
+					validators: [{$type: "length", max: 15}]
+				},
+				phone: {validators: ["required"]}
+			}
+		});
+		model.describe("employee", "Employee");
+		model.describe("employees", {
+			provider: {
+				url: "./service/employee/",
+				pageSize: 5
+			},
+			dataType: "Employee"
+		});
+
+		model.action({
+			edit: function (employee) {
+				model.set("employee", employee.toJSON());
+				model.get("employee").validate();
+				cola.widget("editDialog").show();
+			},
+			add: function () {
+				model.set("employee", {sex: true});
+				cola.widget("editDialog").show();
+			},
+			del: function (employee) {
+				$.ajax("./service/employee/" + employee.get("id") + "/", {
+					type: "DELETE",
+					complete: function () {
+						model.get("employees").flush();
+					}
+				})
+			},
+			cancel: function () {
+				cola.widget("editDialog").hide()
+			},
+			ok: function () {
+				var entity = model.get("employee");
+				if (entity.validate()) {
+					var data = entity.toJSON();
+					$.ajax("./service/employee/", {
+						data: JSON.stringify(data),
+						type: data.id ? "PUT" : "POST",
+						contentType: "application/json",
+						complete: function () {
+							model.get("employees").flush();
+							cola.widget("editDialog").hide();
+						}
+					})
+				}
+			}
+		});
+
+		model.widgetConfig({
+			radioGroup: {
+				items: [{
+					value: true,
+					label: "male"
+				}, {
+					value: false,
+					label: "female"
+				}]
+			},
+			employeeTable: {
+				$type: "table",
+				showHeader: true,
+				bind: "employee in employees",
+				highlightCurrentItem: true,
+				currentPageOnly: true,
+				columns: [{
+					bind: ".id", caption: "ID"
+				}, {
+					bind: ".lastName", caption: "Last Name"
+				}, {
+					bind: ".firstName", caption: "First Name"
+				}, {
+					bind: ".title", caption: "Title"
+				}, {
+					bind: ".titleOfCourtesy", caption: "Title Of Courtesy"
+				}, {
+					bind: ".sex", caption: "Sex"
+				}, {
+					bind: "formatDate(employee.birthDate, 'yyyy-MM-dd')", caption: "Birthday"
+				}, {
+					bind: ".phone", caption: "phone"
+				}, {
+					caption: "Operation", align: "center", template: "operations"
+				}],
+				renderRow: function (self, arg) {
+					/* 鼠标单击切换当前行 */
+					$(arg.dom).click(function () {
+						model.get("employees").setCurrent(arg.item)
+					})
+				}
+			}
+		});
+	});
+</script>
+</body>
+</html>
