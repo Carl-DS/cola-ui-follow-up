@@ -15,3 +15,26 @@
 2、前端
 
 * UI框架：Cola-UI + jQuery 2.1.3。
+
+3、数据库
+
+* MySQL
+
+
+## 如何启动
+
+1、修改 src/main/resources/configure.properties
+
+```
+jdbc.username = username
+jdbc.password = password
+jdbc.url = jdbc:mysql://localhost:3306/dbname?useUnicode=true&characterEncoding=UTF-8
+jdbc.driver = com.mysql.jdbc.Driver
+```
+
+2、启动服务
+
+3、初始化数据
+
+* 初始化文件在/src/main/resources/init-data.sql
+	
