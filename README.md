@@ -37,4 +37,8 @@ jdbc.driver = com.mysql.jdbc.Driver
 3、初始化数据
 
 * 初始化文件在/src/main/resources/init-data.sql
+
+4、浏览器访问
+
+http://localhost:port/context
 	
