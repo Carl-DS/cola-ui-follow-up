@@ -36,6 +36,7 @@ jdbc.driver = com.mysql.jdbc.Driver
 
 3、初始化数据
 
+* `此文件为初始化数据，表结构将服务启动时自动创建`
 * 初始化文件在/src/main/resources/init-data.sql
 
 4、浏览器访问
