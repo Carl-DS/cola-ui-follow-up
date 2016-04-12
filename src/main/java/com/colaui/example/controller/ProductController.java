@@ -1,8 +1,6 @@
 package com.colaui.example.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,52 +10,46 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.colaui.example.model.Employee;
-import com.colaui.example.service.EmployeeService;
+import com.colaui.example.model.Product;
+import com.colaui.example.service.ProductService;
 import com.colaui.provider.Page;
 
 @RestController
-@RequestMapping("employee")
-public class EmployeeController {
+@RequestMapping("product")
+public class ProductController {
 	@Autowired
-	EmployeeService employeeService;
-	@RequestMapping(value = "/ss", method = RequestMethod.GET)
-	public Map<String, String> paging() {
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("ia", "dorado");
-		return map;
-	}
+	ProductService productService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public Page<Employee> paging(@RequestParam int pageSize,
-			@RequestParam int pageNo, @RequestParam(required=false) String contain) {
-		return employeeService.getPage(pageSize, pageNo, contain);
+	public Page<Product> queryOfCategoryId(@RequestParam int pageSize,
+			@RequestParam int pageNo, @RequestParam Long categoryId) {
+		return productService.queryOfCategoryId(pageSize, pageNo, categoryId);
 	}
 
 	@RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)
 	public void delete(@PathVariable("id") long id) {
 		System.out.println("Fetching & Deleting Employee with id " + id);
-		// employeeService.delete(id);
+		// productService.delete(id);
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-	public void save(@RequestBody Employee employee) {
-		employeeService.save(employee);
+	public void save(@RequestBody Product product) {
+		productService.save(product);
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
-	public void update(@RequestBody Employee employee) {
-		employeeService.update(employee);
+	public void update(@RequestBody Product product) {
+		productService.update(product);
 	}
 
 	@RequestMapping(value = "/{id}/", method = RequestMethod.GET)
-	public Employee find(long id) {
-		return employeeService.find(id);
+	public Product find(long id) {
+		return productService.find(id);
 	}
 
 	@RequestMapping(value = "/{from}/{limit}", method = RequestMethod.GET)
-	public List<Employee> find(@PathVariable("from") int from,
+	public List<Product> find(@PathVariable("from") int from,
 			@PathVariable("limit") int limit) {
-		return employeeService.find(from, limit);
+		return productService.find(from, limit);
 	}
 }
