@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta charset="UTF-8">
+    <title>Cola-UI 客户端框架</title>
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="./resources/nprogress/nprogress.css">
+    <script src="./resources/nprogress/nprogress.js"></script>
+    <link rel="stylesheet" type="text/css" href="./resources/cola-ui/semantic.css">
+    <link rel="stylesheet" type="text/css" href="./resources/cola-ui/cola.css">
+    <link rel="stylesheet" type="text/css" href="./common/common.css">
+    <link rel="stylesheet" type="text/css" href="./frame/security/parser.css">
+  </head>
+  <body>
+    <script type="text/javascript">
+      NProgress.configure({showSpinner: false, minimum: 0.3})
+      NProgress.start();
+    </script>
+    <div class="html-parser v-box">
+      <div c-widget="menu" class="box secondary">
+        <div c-widget="controlItem;">
+          <div c-widget="buttonGroup;">
+            <div c-widget="button; icon:sitemap; click:switchView; states:active; userData:0"></div>
+            <div c-widget="button; icon:sidebar; click:switchView; userData:1"></div>
+          </div>
+        </div>
+        <div class="right menu">
+          <div c-widget="controlItem;">
+            <div c-widget="button; caption:保存; click:save" class="primary"></div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-box">
+        <div id="cardBookDataView" c-widget="cardBook;">
+          <div class="item active">
+            <div id="domTree" class="dom-tree">
+              <template name="node-default">
+                <div><span c-bind="getNodeName(node)"></span>
+                  <div c-display="node.id" class="operation">
+                    <div c-widget="checkbox; bind:node.visible; label:可读"></div>
+                    <div c-widget="checkbox; bind:node.editable; label:可操作"></div>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+          <div class="item">
+            <div id="domList">
+              <template>
+                <div><span c-bind="getNodeName(node)"></span>
+                  <div c-display="node.id" class="operation">
+                    <div c-widget="checkbox; bind:node.visible; label:可见"></div>
+                    <div c-widget="checkbox; bind:node.editable; label:可操作"></div>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./resources/jquery/jquery-2.1.3.js"></script>
+  <script src="./resources/jquery/jquery.cookie.js"></script>
+  <script src="./resources/cola-ui/3rd.js"></script>
+  <script src="./resources/cola-ui/semantic.js"></script>
+  <script src="./resources/cola-ui/cola.js" charset="UTF-8"></script>
+  <script src="./common/common.js"></script>
+  <script src="./frame/security/parser.js"></script>
+</html>

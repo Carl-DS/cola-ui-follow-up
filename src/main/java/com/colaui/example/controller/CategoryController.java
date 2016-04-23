@@ -34,11 +34,13 @@ public class CategoryController {
 
 	@RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	public void save(@RequestBody Category category) {
+		System.out.println(category.getCategoryName());
 		categoryService.save(category);
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
 	public void update(@RequestBody Category category) {
+		System.out.println(category.getCategoryName());
 		categoryService.update(category);
 	}
 

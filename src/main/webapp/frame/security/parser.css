@@ -1,0 +1,113 @@
+/* 主色调定义 */
+/* 文字内容色调定义 */
+/* 背景色调定义 */
+/* 边框色调定义 */
+/* 主题色定义 */
+/* Input */
+/* main page */
+.html-parser {
+  height: 100%;
+}
+.html-parser .ui.card-book > .item {
+  height: 100%;
+  width: 100%;
+}
+.html-parser .ui.checkbox label {
+  font-size: 10px;
+}
+.html-parser .ui.checkbox label:before,
+.html-parser .ui.checkbox label:after {
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
+  font-size: 10px;
+}
+.html-parser .operation {
+  position: absolute;
+  right: 0.8em;
+  top: -1px;
+}
+.html-parser .operation > :not(:first-child) {
+  margin-left: 1em;
+}
+.html-parser > .box.ui.menu {
+  overflow: hidden;
+}
+.html-parser > .h-box {
+  height: 100%;
+}
+.html-parser .ui.tree.dom-tree {
+  font-size: 12px;
+  background-color: #ffffff;
+  color: rgba(0, 0, 0, 0.7);
+}
+.html-parser .ui.tree.dom-tree > .items > .item,
+.html-parser .ui.tree.dom-tree .tree.item {
+  position: relative;
+}
+.html-parser .ui.tree.dom-tree > .items > .item:before,
+.html-parser .ui.tree.dom-tree .tree.item:before {
+  position: absolute;
+  left: 1.25em;
+  top: 2em;
+  bottom: 0;
+  border-left: 1px dotted rgba(0, 0, 0, 0.2);
+  content: "";
+}
+.html-parser .ui.tree.dom-tree > .items > .item:after,
+.html-parser .ui.tree.dom-tree .tree.item:after {
+  position: absolute;
+  left: 1.25em;
+  top: 0;
+  height: 0.6em;
+  border-left: 1px dotted rgba(0, 0, 0, 0.2);
+  content: "";
+}
+.html-parser .ui.tree.dom-tree .item {
+  color: rgba(0, 0, 0, 0.7);
+  background-color: transparent;
+}
+.html-parser .ui.tree.dom-tree .tree.node.leaf > .expand-button {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.html-parser .ui.tree.dom-tree .tree.node > .expand-button {
+  background-color: transparent;
+  border-radius: 50%;
+  position: relative;
+}
+.html-parser .ui.tree.dom-tree .tree.node > .expand-button:before {
+  color: rgba(0, 0, 0, 0.7);
+}
+.html-parser .ui.tree.dom-tree .current-node {
+  overflow-y: hidden;
+}
+.html-parser .ui.tree.dom-tree .current-node > .tree.node {
+  position: relative;
+  background: rgba(0, 0, 0, 0.1);
+}
+.html-parser .ui.tree.dom-tree .current-node > .tree.node:after {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 0.25em;
+  background-color: #f17000;
+  content: "";
+}
+.html-parser #domList {
+  font-size: 12px;
+}
+.html-parser #domList > .items > .item {
+  position: relative;
+  padding-left: 1em;
+}
+.html-parser #domList > .items > .item .operation {
+  top: 12px;
+}
+.html-parser #domList > .items > .item:nth-of-type(even) {
+  background-color: rgba(227, 227, 227, 0.5);
+}

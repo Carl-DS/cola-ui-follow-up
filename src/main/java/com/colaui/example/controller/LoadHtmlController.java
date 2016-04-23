@@ -2,16 +2,16 @@ package com.colaui.example.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+
+import javax.servlet.ServletContext;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,13 +20,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoadHtmlController {
 
 	private static String[] removeTagNames = "script,link".split(",");
+	@Autowired
+	private ServletContext context;
 
-	@RequestMapping(value = "/load-body", method = RequestMethod.GET, produces = "text/plain; charset=utf-8")
+	public void setContext(ServletContext context) {
+		this.context = context;
+	}
+
+	@RequestMapping(value = "/load/html/body", method = RequestMethod.GET, produces = "text/plain; charset=utf-8")
 	public @ResponseBody
 	String loadBody() {
-		// if (filePath == null) {
-		String filePath = "/Users/alex/Git/cola-frame/public/case1.html";
-		// }
+		String filePath = context.getRealPath("cases" + File.separator
+				+ "case1.html");
+
 		File file = new File(filePath);
 		Document document;
 		try {
@@ -38,22 +44,12 @@ public class LoadHtmlController {
 					script.remove();
 				}
 			}
-			String html = document.body().html();
-			System.out.println(html);
-			return html;
+			return document.body().html();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 
 	}
 
-	@RequestMapping(value = "/load", method = RequestMethod.GET)
-	public Map<String, String> load(
-			@RequestParam(required = false) String filePath) throws IOException {
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("ia", "dorado");
-		return map;
-	}
 }

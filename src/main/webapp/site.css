@@ -1,0 +1,64 @@
+/* 主色调定义 */
+/* 文字内容色调定义 */
+/* 背景色调定义 */
+/* 边框色调定义 */
+/* 主题色定义 */
+/* Input */
+/* main page */
+ul.colors {
+  display: inline-block;
+  list-style: none;
+}
+ul.colors > li {
+  margin-left: 1em;
+  float: left;
+}
+ul.colors > li div {
+  display: inline-block;
+  height: 3em;
+  width: 2em;
+}
+.link-color > * {
+  display: block;
+}
+body {
+  padding: 2em;
+}
+body .header.item,
+body .header.ui {
+  font-weight: inherit !important;
+}
+ul.background-colors {
+  display: inline-block;
+  list-style: none;
+}
+ul.background-colors > li {
+  float: left;
+  padding: 0.5em;
+}
+ul.background-colors > li div {
+  display: inline-block;
+  width: 20em;
+  height: 10em;
+}
+ul.background-colors > li div.default {
+  background-color: #f3f3f4;
+}
+ul.background-colors > li div.light {
+  background-color: #fbfbfb;
+}
+ul.background-colors > li div.dark {
+  background-color: #ebebed;
+}
+ul.background-colors > li div.content {
+  background-color: #fff;
+}
+.description {
+  color: rgba(103, 106, 108, 0.7);
+}
+.secondary-description {
+  color: rgba(64, 191, 151, 0.6);
+}
+.tertiary-description {
+  color: rgba(217, 62, 80, 0.6);
+}

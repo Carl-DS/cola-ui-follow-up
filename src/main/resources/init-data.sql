@@ -20,7 +20,12 @@ VALUES
 	(6,'肉类/家禽',NULL,'猪肉、进口牛肉、草原羊肉、腊肉、香肠'),
 	(7,'豆制品',NULL,'干果和豆腐'),
 	(8,'海鲜',NULL,'Seaweed and fish');
-	
+INSERT INTO `menus` (`ID`, `icon`, `label`, `path`,`PARENT_ID`)
+VALUES
+	(1,NULL,'示例中心',NULL,NULL),
+	(2,NULL,'主从表',NULL,1),
+	(3,NULL,'产品维护',NULL,1),
+	(4,NULL,'时间线',NULL,1);	
 INSERT INTO `products` (`ID`, `PRODUCT_NAME`,  `CATEGORY_ID`, `QUANTITY_PER_UNIT`, `UNIT_PRICE`, `UNITS_IN_STOCK`, `UNITS_ON_ORDER`, `REORDER_LEVEL`, `DISCONTINUED`)
 VALUES
 	(1,'Chai',1,'10 boxes x 20 bags',18.00,39,0,12,1),
