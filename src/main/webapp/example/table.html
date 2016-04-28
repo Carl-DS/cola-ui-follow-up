@@ -21,9 +21,6 @@
     </script>
     <div style="height: 100%; " class="ui fragment">
       <div id="productTable">
-        <template name="productName">
-          <div class="product-name"><span c-bind="item.name"></span></div>
-        </template>
         <template name="price">
           <div>
             <div c-widget="input; bind:item.unitPrice; blur:blur" class="mini"></div><span class="btn"><i class="edit icon"></i></span><span c-bind="formatNumber(item.unitPrice, '¥#,##0.00')"></span>
