@@ -1,8 +1,6 @@
 package com.colaui.example.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,14 +19,6 @@ import com.colaui.provider.Page;
 public class EmployeeController {
 	@Autowired
 	EmployeeService employeeService;
-	@RequestMapping(value = "/ss", method = RequestMethod.GET)
-	public Map<String, String> paging() {
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("ia", "dorado");
-		
-		
-		return map;
-	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public Page<Employee> paging(@RequestParam int pageSize,

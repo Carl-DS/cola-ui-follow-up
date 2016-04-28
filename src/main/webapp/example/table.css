@@ -1,0 +1,100 @@
+/* 主色调定义 */
+/* 文字内容色调定义 */
+/* 背景色调定义 */
+/* 边框色调定义 */
+/* 主题色定义 */
+/* Input */
+/* main page */
+body {
+  background-color: #f3f3f4;
+  padding: 0.8em;
+}
+.ui.menu {
+  border-radius: 0px;
+}
+.ui.items-view.widget-table {
+  font-size: 12px;
+}
+#productTable tr.product-item {
+  -webkit-transition: height 0.2s ease-out;
+  -moz-transition: height 0.2s ease-out;
+  -o-transition: height 0.2s ease-out;
+  transition: height 0.2s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+#productTable tr.product-item .product-price {
+  position: relative;
+  border: 1px dashed transparent;
+}
+#productTable tr.product-item .product-price > div {
+  height: 34px;
+}
+#productTable tr.product-item .product-price .btn {
+  display: none;
+}
+#productTable tr.product-item .product-price span:not(.btn) {
+  line-height: 34px;
+}
+#productTable tr.product-item .product-price .ui.input {
+  display: none;
+}
+#productTable tr.product-item .product-price.focus {
+  border: 1px dashed transparent !important;
+}
+#productTable tr.product-item .product-price.focus .ui.input {
+  display: inline-block;
+}
+#productTable tr.product-item .product-price.focus .ui.input input {
+  text-align: center;
+  border-radius: 0px;
+}
+#productTable tr.product-item .product-price.focus span {
+  display: none !important;
+}
+#productTable tr.product-item:hover .product-price {
+  position: relative;
+  border: 1px dashed rgba(0, 0, 0, 0.3);
+}
+#productTable tr.product-item:hover .product-price .btn {
+  display: inline-block;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  padding: 2px 2px 0 2px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+#productTable tr.product-item:hover .product-price .btn i {
+  color: #fff;
+  margin: 0px;
+}
+#productTable tr.row-detail {
+  background-color: #f6ddc1;
+  vertical-align: top;
+}
+#productTable tr.row-detail > td {
+  overflow: hidden;
+}
+#productTable .product-name {
+  position: relative;
+  text-decoration: underline;
+}
+#productTable .product-name:hover {
+  color: #e59f52;
+}
+#productTable .product-name:hover i {
+  visibility: visible;
+}
+#productTable .product-name.expanded:before {
+  position: absolute;
+  content: "";
+  width: 1em;
+  left: 1em;
+  bottom: -1px;
+  border-left: 0.75em solid transparent;
+  border-right: 0.75em solid transparent;
+  border-bottom: 0.75em solid #f6ddc1;
+}
+.h-box .box {
+  overflow: hidden;
+}
