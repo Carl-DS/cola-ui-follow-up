@@ -1,4 +1,4 @@
-/*! Cola UI - 0.8.5
+/*! Cola UI - 0.9.1
  * Copyright (c) 2002-2016 BSTEK Corp. All rights reserved.
  *
  * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html)
@@ -352,10 +352,10 @@
   cola.util.isSimpleValue = function(value) {
     var type;
     if (value === null || value === void 0) {
-      return false;
+      return true;
     }
     type = typeof value;
-    return type !== "object" && type !== "function" || type instanceof Date;
+    return type !== "object" && type !== "function" || value instanceof Date || value instanceof Array;
   };
 
   cola.util.each = function(array, fn) {
@@ -2141,10 +2141,10 @@
       this.raw = exprStr;
       i = exprStr.indexOf(" on ");
       if ((0 < i && i < (exprStr.length - 1))) {
-        exprStr = exprStr.substring(0, i);
         watchPathStr = exprStr.substring(i + 4);
+        exprStr = exprStr.substring(0, i);
         watchPaths = [];
-        ref = watchPathStr.split(",");
+        ref = watchPathStr.split(/[,;]/);
         for (l = 0, len1 = ref.length; l < len1; l++) {
           path = ref[l];
           path = cola.util.trim(path);
@@ -5689,6 +5689,9 @@
         this.parent = parent;
       }
       this.data = new cola.DataModel(this);
+      if (parent) {
+        parent.data.bind("**", this);
+      }
       this.action = function(name, action) {
         var a, config, fn, n, scope, store;
         store = this.action;
@@ -5734,6 +5737,17 @@
       if (typeof (base = this.data).destroy === "function") {
         base.destroy();
       }
+    };
+
+    Model.prototype._processMessage = function(bindingPath, path, type, arg) {
+      return this.data._onDataMessage(path, type, arg);
+    };
+
+    Model.prototype.$ = function(selector) {
+      if (this._$dom == null) {
+        this._$dom = $(this._dom);
+      }
+      return this._$dom.find(selector);
     };
 
     return Model;
@@ -5921,15 +5935,17 @@
     };
 
     ItemsScope.prototype.setExpression = function(expression) {
-      var l, len1, path, paths, ref;
+      var l, len1, path, paths, ref, ref1;
       this.expression = expression;
       if (expression) {
         this.alias = expression.alias;
         paths = [];
-        ref = expression.paths;
-        for (l = 0, len1 = ref.length; l < len1; l++) {
-          path = ref[l];
-          paths.push(path.split("."));
+        if (expression.paths) {
+          ref = expression.paths;
+          for (l = 0, len1 = ref.length; l < len1; l++) {
+            path = ref[l];
+            paths.push(path.split("."));
+          }
         }
         this.expressionPath = paths;
         if (!expression.paths && expression.hasCallStatement) {
@@ -5941,7 +5957,7 @@
         this.alias = "item";
         this.expressionPath = [];
       }
-      if (expression && typeof expression.paths.length === 1 && !expression.hasCallStatement) {
+      if (expression && typeof ((ref1 = expression.paths) != null ? ref1.length : void 0) === 1 && !expression.hasCallStatement) {
         this.dataType = this.parent.data.getDataType(expression.paths[0]);
       }
     };
@@ -6665,8 +6681,31 @@
     };
 
     DataModel.prototype.getProperty = function(path) {
-      var ref;
-      return (ref = this._rootDataType) != null ? ref.getProperty(path) : void 0;
+      var dataModel, dataType, i, path1, path2, ref, ref1, rootDataType;
+      i = path.indexOf(".");
+      if (i > 0) {
+        path1 = path.substring(0, i);
+        path2 = path.substring(i + 1);
+      } else {
+        path1 = null;
+        path2 = path;
+      }
+      dataModel = this;
+      while (dataModel) {
+        rootDataType = dataModel._rootDataType;
+        if (rootDataType) {
+          if (path1) {
+            dataType = (ref = rootDataType.getProperty(path1)) != null ? ref.get("dataType") : void 0;
+          } else {
+            dataType = rootDataType;
+          }
+          if (dataType) {
+            break;
+          }
+        }
+        dataModel = (ref1 = dataModel.model.parent) != null ? ref1.data : void 0;
+      }
+      return dataType != null ? dataType.getProperty(path2) : void 0;
     };
 
     DataModel.prototype.getDataType = function(path) {
@@ -8277,8 +8316,9 @@
   _cssCache = {};
 
   _loadCss = function(url, callback) {
-    var head, linkElement;
-    if (!_cssCache[url]) {
+    var head, linkElement, refNum;
+    linkElement = _cssCache[url];
+    if (!linkElement) {
       linkElement = $.xCreate({
         tagName: "link",
         rel: "stylesheet",
@@ -8300,20 +8340,32 @@
         });
       }
       head = document.querySelector("head") || document.documentElement;
+      linkElement.setAttribute("_refNum", "1");
       head.appendChild(linkElement);
       _cssCache[url] = linkElement;
       if (cola.os.android && cola.os.version < 4.4) {
         cola.callback(callback, true);
       }
+      return true;
     } else {
+      refNum = parseInt(linkElement.getAttribute("_refNum")) || 1;
+      linkElement.setAttribute("_refNum", (refNum + 1) + "");
       cola.callback(callback, true);
+      return false;
     }
   };
 
   _unloadCss = function(url) {
-    if (_cssCache[url]) {
-      $fly(_cssCache[url]).remove();
-      delete _cssCache[url];
+    var linkElement, refNum;
+    linkElement = _cssCache[url];
+    if (linkElement) {
+      refNum = parseInt(linkElement.getAttribute("_refNum")) || 1;
+      if (refNum > 1) {
+        linkElement.setAttribute("_refNum", (refNum - 1) + "");
+      } else {
+        delete _cssCache[url];
+        $fly(linkElement).remove();
+      }
     }
   };
 
@@ -9547,6 +9599,7 @@
       for (i = l = 0, len1 = holder.length; l < len1; i = ++l) {
         p = holder[i];
         if (p.path === path) {
+          this.scope.data.unbind(path, holder[i]);
           holder.splice(i, 1);
           break;
         }
@@ -9554,7 +9607,6 @@
       if (!holder.length) {
         delete this[feature.id];
       }
-      this.scope.data.unbind(path, pipe);
     };
 
     _DomBinding.prototype.refresh = function(force) {
@@ -9737,6 +9789,12 @@
       oldScope = cola.currentScope;
       cola.currentScope = model;
       try {
+        if (!model._dom) {
+          model._dom = dom;
+        } else {
+          model._dom = model._dom.concat(dom);
+        }
+        delete model._$dom;
         if (typeof fn === "function") {
           fn(model, param);
         }
@@ -10257,7 +10315,7 @@
 
 }).call(this);
 
-/*! Cola UI - 0.8.5
+/*! Cola UI - 0.9.1
  * Copyright (c) 2002-2016 BSTEK Corp. All rights reserved.
  *
  * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html)
@@ -10667,7 +10725,7 @@
       attrName = attr.name;
       if (attrName.indexOf("c-") === 0) {
         prop = attrName.slice(2);
-        if (widgetType.attributes.$has(prop) || widgetType.events.$has(prop)) {
+        if ((widgetType.attributes.$has(prop) || widgetType.events.$has(prop)) && prop !== "class") {
           config[prop] = cola._compileExpression(attr.value);
           if (removeAttrs == null) {
             removeAttrs = [];
@@ -10752,14 +10810,15 @@
       dom.removeAttribute("c-widget-config");
       config = (ref = context.widgetConfigs) != null ? ref[configKey] : void 0;
     } else {
-      widgetType = parentWidget != null ? (ref1 = parentWidget.childTagNames) != null ? ref1[tagName] : void 0 : void 0;
-      if (widgetType == null) {
-        widgetType = WIDGET_TAGS_REGISTRY[tagName];
-      }
-      if (widgetType) {
-        config = _compileWidgetDom(dom, widgetType);
-      } else {
-        config = _compileWidgetAttribute(scope, dom, context);
+      config = _compileWidgetAttribute(scope, dom, context);
+      if (!config) {
+        widgetType = parentWidget != null ? (ref1 = parentWidget.childTagNames) != null ? ref1[tagName] : void 0 : void 0;
+        if (widgetType == null) {
+          widgetType = WIDGET_TAGS_REGISTRY[tagName];
+        }
+        if (widgetType) {
+          config = _compileWidgetDom(dom, widgetType);
+        }
       }
     }
     if (!(config || jsonConfig)) {
@@ -10819,7 +10878,7 @@
 
   cola.registerType("widget", "_default", cola.Widget);
 
-  cola.widget = function(config, namespace) {
+  cola.widget = function(config, namespace, model) {
     var c, constr, e, ele, group, l, len1, len2, n, widget;
     if (!config) {
       return null;
@@ -10831,6 +10890,9 @@
       }
       if (ele.nodeType) {
         widget = cola.util.userData(ele, cola.constants.DOM_ELEMENT_KEY);
+        if (model && widget._scope !== model) {
+          widget = null;
+        }
         if (widget instanceof cola.Widget) {
           return widget;
         } else {
@@ -10841,14 +10903,16 @@
         for (l = 0, len1 = ele.length; l < len1; l++) {
           e = ele[l];
           widget = cola.util.userData(e, cola.constants.DOM_ELEMENT_KEY);
-          if (widget instanceof cola.Widget) {
+          if (widget instanceof cola.Widget && (!model || widget._scope === model)) {
             group.push(widget);
           }
         }
-        if (group.length) {
-          return cola.Element.createGroup(group);
-        } else {
+        if (!group.length) {
           return null;
+        } else if (group.length === 1) {
+          return group[0];
+        } else {
+          return cola.Element.createGroup(group);
         }
       }
     } else {
@@ -10856,11 +10920,14 @@
         group = [];
         for (n = 0, len2 = config.length; n < len2; n++) {
           c = config[n];
-          group.push(cola.widget(c));
+          group.push(cola.widget(c, namespace, model));
         }
         return cola.Element.createGroup(group);
       } else if (config.nodeType === 1) {
         widget = cola.util.userData(config, cola.constants.DOM_ELEMENT_KEY);
+        if (model && widget._scope !== model) {
+          widget = null;
+        }
         if (widget instanceof cola.Widget) {
           return widget;
         } else {
@@ -10868,6 +10935,9 @@
         }
       } else {
         constr = config.$constr || cola.resolveType(namespace || "widget", config, cola.Widget);
+        if (model && !config.scope) {
+          config.scope = model;
+        }
         return new constr(config);
       }
     }
@@ -10893,6 +10963,10 @@
       dom = dom.parentNode;
     }
     return null;
+  };
+
+  cola.Model.prototype.widget = function(config) {
+    return cola.widget(config, null, this);
   };
 
 
@@ -10977,8 +11051,16 @@
     cls.prototype._initDom = function(dom) {
       var attr, attrName, cssName, l, len1, ref1, templateDom;
       superCls.prototype._initDom.call(this, dom);
-      if (this._template && !this._domCreated) {
-        templateDom = this.xRender(this._template);
+      template = this._template;
+      if (template && !this._domCreated) {
+        if (typeof template === "string" && template.match(/^\#[\w\-\$]*$/)) {
+          this._template = document.getElementById(template.substring(1));
+          if (this._template) {
+            template = this._template.innerHTML;
+            $fly(this._template).remove();
+          }
+        }
+        templateDom = this.xRender(template);
         if (templateDom) {
           ref1 = dom.attributes;
           for (l = 0, len1 = ref1.length; l < len1; l++) {
@@ -12648,26 +12730,14 @@
     };
 
     Button.prototype._refreshIcon = function() {
-      var $dom, base, caption, icon, iconDom, iconPosition;
+      var base, caption, icon, iconDom, iconPosition;
       if (!this._dom) {
         return;
       }
-      $dom = this.get$Dom();
-      this._classNamePool.remove("right");
-      this._classNamePool.remove("left");
-      this._classNamePool.remove("labeled");
-      this._classNamePool.remove("icon");
       icon = this.get("icon");
       iconPosition = this.get("iconPosition");
       caption = this.get("caption");
       if (icon) {
-        if (caption) {
-          if (iconPosition === "right") {
-            this._classNamePool.add("right");
-          } else {
-
-          }
-        }
         this._classNamePool.add("icon");
         if ((base = this._doms).iconDom == null) {
           base.iconDom = document.createElement("i");
@@ -12675,9 +12745,18 @@
         iconDom = this._doms.iconDom;
         $fly(iconDom).addClass(icon + " icon");
         if (iconDom.parentNode !== this._dom) {
-          $dom.append(iconDom);
+          if (!this._doms.captionDom) {
+            this._dom.appendChild(iconDom);
+            return;
+          }
+          if (iconPosition === "right") {
+            $fly(this._doms.captionDom).after(iconDom);
+          } else {
+            $fly(this._doms.captionDom).before(iconDom);
+          }
         }
       } else if (this._doms.iconDom) {
+        this._classNamePool.remove("icon");
         $fly(this._doms.iconDom).remove();
       }
     };
@@ -28941,13 +29020,14 @@
     };
 
     Table.prototype._doRefreshItems = function() {
-      var col, colInfo, colgroup, column, columnConfigs, i, l, len1, len2, n, nextCol, propertyDef, ref, ref1, tbody, tfoot, thead;
+      var col, colInfo, colgroup, column, columnConfigs, dataType, i, l, len1, len2, n, nextCol, propertyDef, ref, ref1, tbody, tfoot, thead;
       if (!this._columnsInfo) {
         return;
       }
-      if (!this._columnsInfo.dataColumns.length && this._dataType && this._dataType instanceof cola.EntityDataType) {
+      dataType = this._getBindDataType();
+      if (!this._columnsInfo.dataColumns.length && dataType && dataType instanceof cola.EntityDataType) {
         columnConfigs = [];
-        ref = this._dataType.getProperties().elements;
+        ref = dataType.getProperties().elements;
         for (l = 0, len1 = ref.length; l < len1; l++) {
           propertyDef = ref[l];
           columnConfigs.push({
@@ -29320,7 +29400,7 @@
       if (this.getListeners("renderCell")) {
         if (this.fire("renderCell", this, {
           item: item,
-          column: colInfo.column,
+          column: column,
           dom: dom,
           scope: itemScope
         }) === false) {
