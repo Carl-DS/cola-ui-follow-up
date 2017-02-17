@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta charset="UTF-8">
+    <title>Cola-UI 客户端框架</title>
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="./resources/nprogress/nprogress.css">
+    <script src="./resources/nprogress/nprogress.js"></script>
+    <link rel="stylesheet" type="text/css" href="./resources/cola-ui/semantic.css">
+    <link rel="stylesheet" type="text/css" href="./resources/cola-ui/cola.css">
+    <link rel="stylesheet" type="text/css" href="./common/common.css">
+    <link rel="stylesheet" type="text/css" href="./example/table.css">
+  </head>
+  <body>
+    <script type="text/javascript">
+      NProgress.configure({showSpinner: false, minimum: 0.3})
+      NProgress.start();
+    </script>
+    <!--<div id="customizeDropdown"></div>-->
+    <div style="height: 100%; " class="ui fragment">
+      <div class="secondary ui menu">
+        <div class="control item" style="margin: 0; padding-right: 0;">
+          <div style="width: 15px; height: 20px; background-color: #00ACED;margin: 0;"></div>
+        </div>
+        <div class="header item ui">表格单元格编辑</div>
+      </div>
+      <div id="productTable">
+        <template name="price">
+          <div>
+            <!--<div c-widget="input; bind:item.unitPrice; blur:blur" class="mini"></div>-->
+            <div id="customizeDropdown" class="mini"></div>
+            <span class="btn"><i class="edit icon"></i></span>
+            <span c-bind="formatNumber(item.unitPrice, '¥#,##0.00')"></span>
+          </div>
+        </template>
+      </div>
+    </div>
+  </body>
+  <script src="./resources/jquery/jquery-2.1.3.js"></script>
+  <script src="./resources/jquery/jquery.cookie.js"></script>
+  <script src="./resources/cola-ui/3rd.js"></script>
+  <script src="./resources/cola-ui/semantic.js"></script>
+  <script src="./resources/cola-ui/cola.js" charset="UTF-8"></script>
+  <script src="./common/common.js"></script>
+  <script src="./table/edit-table.js"></script>
+</html>
