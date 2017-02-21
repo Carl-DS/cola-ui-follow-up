@@ -1,9 +1,9 @@
 package com.colaui.example.controller;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
+import com.colaui.example.dao.MenuDao;
+import com.colaui.example.model.Menu;
+import com.colaui.example.model.Message;
+import com.colaui.example.model.User;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
@@ -12,10 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.colaui.example.dao.MenuDao;
-import com.colaui.example.model.Menu;
-import com.colaui.example.model.Message;
-import com.colaui.example.model.User;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @RestController
 public class FrameController {
@@ -36,7 +35,7 @@ public class FrameController {
 
 	@RequestMapping("message/pull")
 	public List<Message> pull() {
-		List<Message> messages = new ArrayList<>();
+		List<Message> messages = new ArrayList<Message>();
 		Message message = new Message();
 		message.setContent("20");
 		message.setType("message");
