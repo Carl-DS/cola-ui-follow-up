@@ -19,12 +19,9 @@
       NProgress.configure({showSpinner: false, minimum: 0.3})
       NProgress.start();
     </script>
-    <div style="height: 100%; " class="ui fragment">
-      <div c-widget="button;click:renderTable">生成表格</div>
+    <div style="height: 100%; " class="ui segment">
       <div c-widget="button;click:renderTable">添加列数据</div>
-      <div id="dynamicTable">
-
-      </div>
+      <div id="dynamicTable"></div>
       <div id="productTable">
         <template name="price">
           <div>

@@ -20,13 +20,16 @@
       NProgress.start();
     </script>
 
-    <div class="ui fragment">
-      <div c-widget="Pager; bind:products" class="secondary">
+    <div class="ui segment">
+      <c-pager bind="products" class="secondary">
+        <div class="control item" style="margin: 0; padding-right: 0;">
+          <div style="width: 15px; height: 20px; background-color: #00ACED;margin: 0;"></div>
+        </div>
         <div class="header item">表格表头排序</div>
         <div class="right menu">
           <div page-code="pages" class="item"></div>
         </div>
-      </div>
+      </c-pager>
       <div id="productTable">
         <template name="unitPriceTemp">
           <div>

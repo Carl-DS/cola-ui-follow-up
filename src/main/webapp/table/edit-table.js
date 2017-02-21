@@ -13,22 +13,21 @@
         }
       },
       provider: {
-        name: "provider1",
         url: "/service/product/?categoryId=1",
         pageSize: 5
       }
     });
     model.set("origPrices", [
       {
-        price: "10"
+        price: "第一种产品"
       }, {
-        price: "20"
+        price: "第二种产品"
       }, {
-        price: "30"
+        price: "第三种产品"
       }, {
-        price: "40"
+        price: "第四种产品"
       }, {
-        price: "50"
+        price: "第五种产品"
       }
     ]);
 
@@ -48,40 +47,55 @@
         height: "300px",
         columns: [
           {
-            bind: ".id",
-            caption: "产品编号"
+            caption: "产品编号",
+            bind: ".id"
           }, {
             caption: "产品",
-            bind: ".productName"
+            template: "productName"
           }, {
-            bind: ".reorderLevel",
             caption: "订货量",
-            align: "right"
+            template: "reorderLevel"
           }, {
-            template: "price",
             caption: "价格",
-            align: "center",
-            "class": "sss"
+            template: "price"
           }, {
-            bind: ".quantityPerUnit",
-            caption: "经营商"
+            caption: "经营商",
+            bind: ".quantityPerUnit"
           }
         ],
         renderCell: function(self, arg) {
           var caption;
           caption = arg.column.get("caption");
-          if (arg.column.get("caption") === "价格") {
+          if (arg.column.get("caption") === "产品") {
             $(arg.dom).addClass("product-price");
             return $(arg.dom).on("click", function() {
-              /*debugger;*/
+              debugger;
               var $input;
               $fly(arg.dom).addClass("focus");
               $input = $fly(arg.dom).find(".ui.input");
-              cola.widget($input[0]).set("value",arg.item.get("unitPrice"))
+              cola.widget($input[0]).set("value",arg.item.get("productName"))
               return cola.widget($input[0]).focus();
             });
-          } else if (caption === "产品名称") {
-            return $(arg.dom).parent().addClass("product-name");
+          } else if (caption === "价格") {
+            $(arg.dom).addClass("product-price");
+            return $(arg.dom).on("click", function() {
+              debugger;
+              var $input;
+              $fly(arg.dom).addClass("focus");
+              $input = $fly(arg.dom).find(".ui.input");
+              cola.widget($input[0]).set("value", arg.item.get("unitPrice"))
+              return cola.widget($input[0]).focus();
+            });
+          } else if (caption === "订货量") {
+            $(arg.dom).addClass("product-price");
+            return $(arg.dom).on("click", function() {
+              debugger;
+              var $input;
+              $fly(arg.dom).addClass("focus");
+              $input = $fly(arg.dom).find(".ui.input");
+              cola.widget($input[0]).set("value", arg.item.get("reorderLevel"))
+              return cola.widget($input[0]).focus();
+            });
           }
         },
         renderRow: function(self, arg) {
@@ -131,9 +145,14 @@
         items: "{{origPrice in origPrices}}",
         valueProperty: "price",
         textProperty: "price",
-        bind: "item.unitPrice",
+        bind: "item.productName",
         post: function (self) {
-            return self.get$Dom().closest(".product-price").removeClass("focus");
+          debugger;
+          var productTableDom = cola.widget("productTable").getDom();
+          $fly(productTableDom).find(".table.item.default.current .product-price").addClass("focus");
+          cola.widget("productTable").get("currentItem").set("unitPrice", 20);
+          cola.widget("productTable").get("currentItem").set("reorderLevel", 10);
+          return self.get$Dom().closest(".product-price").removeClass("focus");
         }
       }
     });

@@ -19,6 +19,7 @@
       }
     });
 
+    // 事件区域
     model.action({
 
     });
@@ -40,7 +41,7 @@
           }, {
             caption: "产品名称",
             bind: ".productName",
-            sortable: true,
+            sortable: true
           }, {
             caption: "订货量",
             bind: ".reorderLevel",

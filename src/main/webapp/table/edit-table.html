@@ -19,21 +19,31 @@
       NProgress.configure({showSpinner: false, minimum: 0.3})
       NProgress.start();
     </script>
-    <!--<div id="customizeDropdown"></div>-->
-    <div style="height: 100%; " class="ui fragment">
+    <div class="ui segment">
       <div class="secondary ui menu">
         <div class="control item" style="margin: 0; padding-right: 0;">
           <div style="width: 15px; height: 20px; background-color: #00ACED;margin: 0;"></div>
         </div>
-        <div class="header item ui">表格单元格编辑</div>
+        <div class="header item ui">表格单元格下拉框级联编辑</div>
       </div>
       <div id="productTable">
+        <template name="productName">
+          <div>
+            <div id="customizeDropdown" class="mini" c-onblur="blur()"></div>
+            <span class="btn"><i class="edit icon"></i></span>
+            <span c-bind="item.productName"></span>
+          </div>
+        </template>
         <template name="price">
           <div>
-            <!--<div c-widget="input; bind:item.unitPrice; blur:blur" class="mini"></div>-->
-            <div id="customizeDropdown" class="mini"></div>
-            <span class="btn"><i class="edit icon"></i></span>
+            <c-input c-bind="item.unitPrice" class="mini" blur="blur"></c-input>
             <span c-bind="formatNumber(item.unitPrice, '¥#,##0.00')"></span>
+          </div>
+        </template>
+        <template name="reorderLevel">
+          <div>
+            <c-input c-bind="item.reorderLevel" class="mini" blur="blur"></c-input>
+            <span c-bind="item.reorderLevel"></span>
           </div>
         </template>
       </div>
