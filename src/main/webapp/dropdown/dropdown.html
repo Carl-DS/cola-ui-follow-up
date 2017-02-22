@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta charset="UTF-8">
+    <title>Cola-UI 客户端框架</title>
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="./resources/nprogress/nprogress.css">
+    <script src="./resources/nprogress/nprogress.js"></script>
+    <link rel="stylesheet" type="text/css" href="./resources/cola-ui/semantic.css">
+    <link rel="stylesheet" type="text/css" href="./resources/cola-ui/cola.css">
+    <link rel="stylesheet" type="text/css" href="./resources/cola-ui/color-listdropdown.css">
+    <link rel="stylesheet" type="text/css" href="./common/common.css">
+	<style>
+	</style>
+
+</head>
+<body style="padding:20px;">
+
+<div class="ui segment">
+    <p>标准下拉框</p>
+    <div id="standardDropdown"></div>
+</div>
+
+<div class="ui segment">
+    <p>自定义下拉框</p>
+    <div id="customDropdown"></div>
+</div>
+
+<div class="ui segment">
+    <p>级联下拉框</p>
+    <label>请选择商品:</label>
+    <div id="categoryDropdown"></div>
+    <div id="productDropdown"></div>
+</div>
+
+<div class="ui segment">
+    <p>日历下拉框</p>
+    <lable>日期:</lable><c-datePicker></c-datePicker>
+    <lable>时间:</lable><c-datePicker inputType="dateTime" displayFormat="HH:mm:ss"></c-datePicker>
+    <lable>年月:</lable><c-datePicker displayFormat="yyyy-MM"></c-datePicker>
+</div>
+
+<div class="ui segment">
+    <p>地区三级联动</p>
+    <div id="provinceDropdown"></div>
+    <div id="cityDropdown"></div>
+    <div id="areaDropdown"></div>
+</div>
+
+
+
+  <script src="./resources/jquery/jquery-2.1.3.js"></script>
+  <script src="./resources/jquery/jquery.cookie.js"></script>
+  <script src="./resources/cola-ui/3rd.js"></script>
+  <script src="./resources/cola-ui/semantic.js"></script>
+  <script src="./resources/cola-ui/cola.js"></script>
+  <script src="./resources/cola-ui/color-listdropdown.js"></script>
+  <script src="./common/common.js"></script>
+  <script src="./dropdown/dropdown.js"></script>
+</body>
+</html>
