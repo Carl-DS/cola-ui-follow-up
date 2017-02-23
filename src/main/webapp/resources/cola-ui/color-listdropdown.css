@@ -1,0 +1,39 @@
+.ui.app-color.input.drop > .value-content {
+    left: 1px;
+    right: 1px;
+    top: 1px;
+    bottom: 1px;
+    border-radius: 4px;
+    color: rgba(0, 0, 0, 0.6);
+}
+.ui.app-color.input.drop > i.icon {
+    opacity: 1;
+}
+.ui.items-view.list-view.color-list > .items {
+    list-style: none;
+    padding: 0;
+}
+.ui.items-view.list-view.color-list > .items > .item {
+    text-align: center;
+    padding: 0.6em 0.2em;
+    cursor: pointer;
+}
+.ui.items-view.list-view.color-list > .items > .item > .color {
+    border: solid 1px #d7d7d7;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+}
+.ui.items-view.list-view.color-list > .items > .item:hover > .color,
+.ui.items-view.list-view.color-list > .items > .item.current > .color {
+    border-color: #353535;
+}
+.ui.items-view.list-view.color-list > .items > .item:hover > .label,
+.ui.items-view.list-view.color-list > .items > .item.current > .label {
+    color: rgba(0, 0, 0, 0.8);
+}
+.ui.items-view.list-view.color-list > .items > .item > .label {
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 0.85em;
+    white-space: nowrap;
+}
