@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
  
 	<context:component-scan base-package="com.colaui.example.controller" />
-	<mvc:annotation-driven />	
+	<mvc:annotation-driven />
 	
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 	<property name="messageConverters">

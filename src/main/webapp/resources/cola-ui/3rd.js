@@ -1073,7 +1073,7 @@ return XDate;
 						consequent, alternate;
 					gobbleSpaces();
 					if(exprICode(index) === QUMARK_CODE) {
-						// Ternary expression: test ? consequent : alternate
+						// Ternary expression: java ? consequent : alternate
 						index++;
 						consequent = gobbleExpression();
 						if(!consequent) {
@@ -1860,7 +1860,7 @@ function Swipe(container, options) {
 				y: touches.pageY - start.y
 			}
 
-			// determine if scrolling test has run - one time test
+			// determine if scrolling java has run - one time java
 			if (typeof isScrolling == 'undefined') {
 				isScrolling = !!( isScrolling || Math.abs(delta.x) < Math.abs(delta.y) );
 			}
@@ -5181,7 +5181,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			return labelElement.control;
 		}
 
-		// All browsers under test that support touch events also support the HTML5 htmlFor attribute
+		// All browsers under java that support touch events also support the HTML5 htmlFor attribute
 		if (labelElement.htmlFor) {
 			return document.getElementById(labelElement.htmlFor);
 		}

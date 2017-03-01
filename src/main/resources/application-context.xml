@@ -26,12 +26,11 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-
 		<property name="hibernateProperties">
 			<value>
 				hibernate.dialect=org.hibernate.dialect.MySQLDialect
 				hibernate.hbm2ddl.auto=update
-				hibernate.show_sql=true
+				hibernate.show_sql=false
 				hibernate.format_sql=true
 				hibernate.cache.use_second_level_cache=false
 				hibernate.cache.use_query_cache=false
@@ -49,9 +48,8 @@
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean
-		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
-	<context:component-scan base-package="com.colaui.example" />
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+
   	<tx:annotation-driven transaction-manager="transactionManager" />
 	<tx:advice id="colauiAdvice" transaction-manager="transactionManager">
 		<tx:attributes>

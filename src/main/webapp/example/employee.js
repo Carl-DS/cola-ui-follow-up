@@ -179,7 +179,8 @@
         columns: [
           {
             bind: ".id",
-            caption: "ID"
+            caption: "ID",
+            visible: false
           }, {
             bind: ".lastName",
             caption: "Last Name"

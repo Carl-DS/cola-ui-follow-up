@@ -1,18 +1,12 @@
 package com.colaui.example.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.colaui.example.model.Product;
 import com.colaui.example.service.ProductService;
 import com.colaui.provider.Page;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("product")
@@ -20,10 +14,12 @@ public class ProductController {
 	@Autowired
 	ProductService productService;
 
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public Page<Product> queryOfCategoryId(@RequestParam int pageSize,
-			@RequestParam int pageNo, @RequestParam Long categoryId) {
-		return productService.queryOfCategoryId(pageSize, pageNo, categoryId);
+	public Page<Product> queryOfCategoryId(@RequestParam int pageSize, @RequestParam int pageNo,
+										   @RequestParam(required = false) Long categoryId,
+										   @RequestParam(required = false) String sort) {
+		return productService.queryOfCategoryId(pageSize, pageNo, categoryId, sort);
 	}
 
 	@RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)

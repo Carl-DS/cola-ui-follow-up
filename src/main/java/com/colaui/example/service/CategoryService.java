@@ -1,9 +1,9 @@
 package com.colaui.example.service;
 
-import java.util.List;
-
 import com.colaui.example.model.Category;
 import com.colaui.provider.Page;
+
+import java.util.List;
 public interface CategoryService {
 	Category find(long id);
 	void save(Category category);

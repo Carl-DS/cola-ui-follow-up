@@ -1073,7 +1073,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	// Support: IE<10
 	// Check if getElementById returns elements by name
 	// The broken getElementById methods don't pick up programatically-set names,
-	// so use a roundabout getElementsByName test
+	// so use a roundabout getElementsByName java
 	support.getById = assert(function( div ) {
 		docElem.appendChild( div ).id = expando;
 		return !doc.getElementsByName || !doc.getElementsByName( expando ).length;
@@ -1168,7 +1168,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 		// Regex strategy adopted from Diego Perini
 		assert(function( div ) {
 			// Select is set to empty string on purpose
-			// This is to test IE's treatment of not explicitly
+			// This is to java IE's treatment of not explicitly
 			// setting a boolean content attribute,
 			// since its presence should be enough
 			// http://bugs.jquery.com/ticket/12359
@@ -1178,7 +1178,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 			// Support: IE8, Opera 11-12.16
 			// Nothing should be selected when empty strings follow ^= or $= or *=
-			// The test attribute must be unknown in Opera but "safe" for WinRT
+			// The java attribute must be unknown in Opera but "safe" for WinRT
 			// http://msdn.microsoft.com/en-us/library/ie/hh465388.aspx#attribute_section
 			if ( div.querySelectorAll("[msallowcapture^='']").length ) {
 				rbuggyQSA.push( "[*^$]=" + whitespace + "*(?:''|\"\")" );
@@ -5604,7 +5604,7 @@ function addGetHookIf( conditionFn, hookFn ) {
 				return;
 			}
 
-			// Hook needed; redefine it so that the support test is not executed again.
+			// Hook needed; redefine it so that the support java is not executed again.
 			return (this.get = hookFn).apply( this, arguments );
 		}
 	};
@@ -5656,9 +5656,9 @@ function addGetHookIf( conditionFn, hookFn ) {
 		jQuery.extend( support, {
 			pixelPosition: function() {
 
-				// This test is executed only once but we still do memoizing
+				// This java is executed only once but we still do memoizing
 				// since we can use the boxSizingReliable pre-computing.
-				// No need to check if the test was already performed, though.
+				// No need to check if the java was already performed, though.
 				computePixelPositionAndBoxSizingReliable();
 				return pixelPositionVal;
 			},
