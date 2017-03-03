@@ -28,7 +28,7 @@ public class LoadHtmlController implements ServletContextAware {
 
     @RequestMapping(value = "/load/html/body", method = RequestMethod.GET, produces = "text/plain; charset=utf-8")
     public @ResponseBody String loadBody() {
-        String filePath = context.getRealPath("cases" + File.separator + "case1.html");
+        String filePath = context.getRealPath("cases" + File.separator + "case.html");
 
         File file = new File(filePath);
         Document document;
