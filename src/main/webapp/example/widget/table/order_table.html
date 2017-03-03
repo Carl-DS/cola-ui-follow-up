@@ -12,18 +12,32 @@
     <link rel="stylesheet" type="text/css" href="./resources/cola-ui/semantic.css">
     <link rel="stylesheet" type="text/css" href="./resources/cola-ui/cola.css">
     <link rel="stylesheet" type="text/css" href="./common/common.css">
+    <link rel="stylesheet" type="text/css" href="./example/widget/table/table.css">
   </head>
-  <body style="padding: 10px;">
+  <body>
     <script type="text/javascript">
-      NProgress.configure({showSpinner: false, minimum: 0.3});
+      NProgress.configure({showSpinner: false, minimum: 0.3})
       NProgress.start();
     </script>
-    <c-panel caption="递归树">
-      <template name="tools">
-        <i c-onclick="getNodes()" class="ui icon check circle"></i>
-      </template>
-      <div id="recursiveTree"></div>
-    </c-panel>
+
+    <div class="ui segment">
+      <c-pager bind="products" class="secondary">
+        <div class="control item" style="margin: 0; padding-right: 0;">
+          <div style="width: 15px; height: 20px; background-color: #00ACED;margin: 0;"></div>
+        </div>
+        <div class="header item">表格表头排序</div>
+        <div class="right menu">
+          <div page-code="pages" class="item"></div>
+        </div>
+      </c-pager>
+      <div id="productTable">
+        <template name="unitPriceTemp">
+          <div>
+            <span c-bind="formatNumber(product.unitPrice, '¥#,##0.00')"></span>
+          </div>
+        </template>
+      </div>
+    </div>
 
   </body>
   <script src="./resources/jquery/jquery-2.1.3.js"></script>
@@ -32,5 +46,5 @@
   <script src="./resources/cola-ui/semantic.js"></script>
   <script src="./resources/cola-ui/cola.js" charset="UTF-8"></script>
   <script src="./common/common.js"></script>
-  <script src="./tree/recursive-tree.js"></script>
+  <script src="./example/widget/table/order_table.js"></script>
 </html>

@@ -21,7 +21,7 @@
 
   if (!rootApp) {
     properties = {
-      mainView: "./frame/main",
+      mainView: "./frame/main.html",
       loginPath: "./login",
       longPollingTimeout: 0,
       longPollingInterval: 2000,
