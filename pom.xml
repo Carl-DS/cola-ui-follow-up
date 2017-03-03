@@ -4,13 +4,14 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.colaui</groupId>
-	<artifactId>cola-ui-spring-rest-example</artifactId>
+	<artifactId>cola-ui-follow-up</artifactId>
 	<packaging>war</packaging>
 	<version>1.0.0</version>
-	<name>Cola UI Spring Rest Maven Webapp</name>
+	<name>Cola UI Follow Up Maven Webapp</name>
 	<properties>
 		<springframework.version>4.2.0.RELEASE</springframework.version>
 		<jackson.version>2.5.3</jackson.version>
+        <fastjson.version>1.2.24</fastjson.version>
 		<hibernate.version>4.3.6.Final</hibernate.version>
 		<mysql.connector.version>5.1.31</mysql.connector.version>
 	</properties>
@@ -65,13 +66,13 @@
 			<version>${hibernate.version}</version>
 		</dependency>
 
-
 		<!-- MySQL -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.connector.version}</version>
 		</dependency>
+
 		<!-- Servlet+JSP -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -83,11 +84,18 @@
 			<artifactId>javax.servlet.jsp-api</artifactId>
 			<version>2.3.1</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.8.3</version>
+        </dependency>
+
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
@@ -99,11 +107,6 @@
 			<version>1.4</version>
 		</dependency>
 		
-		<dependency>
-			<groupId>org.jsoup</groupId>
-			<artifactId>jsoup</artifactId>
-			<version>1.8.3</version>
-		</dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -122,13 +125,13 @@
 					<version>2.5</version>
 					<configuration>
 						<warSourceDirectory>src/main/webapp</warSourceDirectory>
-						<warName>cola-ui-spring-rest-example</warName>
+						<warName>cola-ui-follow-up</warName>
 						<failOnMissingWebXml>false</failOnMissingWebXml>
 					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
 
-		<finalName>cola-ui-spring-rest-example</finalName>
+		<finalName>cola-ui-follow-up</finalName>
 	</build>
 </project>
