@@ -9,14 +9,15 @@ import javax.persistence.Table;
  * Created by carl.li on 2017/2/14.
  */
 @Entity
-@Table(name="COLA_AREA")
+@Table(name = "COLA_AREA")
 public class ColaArea {
     private String id;
     private String areaName;
-    private  String level;
+    private String level;
     private String parentId;
 
-    public ColaArea(){}
+    public ColaArea() {
+    }
 
     public ColaArea(String id, String areaName, String level, String parentId) {
         this.id = id;

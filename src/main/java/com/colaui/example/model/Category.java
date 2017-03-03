@@ -1,25 +1,14 @@
 package com.colaui.example.model;
 
-import java.io.Serializable;
-import java.util.Collection;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Collection;
+
 @Entity
-@Table(name = "CATEGORIES")
+@Table(name = "CATEGORY")
 @JsonIgnoreProperties(value = { "handler", "hibernateLazyInitializer" })
 public class Category implements Serializable {
 	private static final long serialVersionUID = 6076304611179489256L;
