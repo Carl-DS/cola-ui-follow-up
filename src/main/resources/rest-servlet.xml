@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
  
-	<context:component-scan base-package="com.colaui.example.controller" />
+	<context:component-scan base-package="com.colaui.example.controller,com.colaui.system.controller" />
 	<mvc:annotation-driven />
 	
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
@@ -26,6 +26,6 @@
 			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
 		</list>
 	</property>
-</bean>
+    </bean>
 
 </beans>

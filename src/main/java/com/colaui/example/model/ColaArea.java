@@ -1,15 +1,12 @@
 package com.colaui.example.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by carl.li on 2017/2/14.
  */
 @Entity
-@Table(name = "COLA_AREA")
+@Table(name = "cola_area")
 public class ColaArea {
     private String id;
     private String areaName;
@@ -62,4 +59,6 @@ public class ColaArea {
     public void setParentId(String parentId) {
         this.parentId = parentId;
     }
+
+
 }

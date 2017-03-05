@@ -47,7 +47,7 @@ public class FrameController {
     @RequestMapping("user/detail")
     public User userDetail() {
         User user = new User();
-        user.setAvatar("./resources/images/avatars/alex.png");
+        user.setAvatar("./resources/images/avatars/logo.png");
         return user;
     }
 }
