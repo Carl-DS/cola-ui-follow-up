@@ -38,7 +38,7 @@ public class FrameController {
         messages.add(message);
 
         message = new Message();
-        message.setContent("26");
+        message.setContent("22");
         message.setType("task");
         messages.add(message);
         return messages;
@@ -47,7 +47,7 @@ public class FrameController {
     @RequestMapping("user/detail")
     public User userDetail() {
         User user = new User();
-        user.setAvatar("./resources/images/avatars/logo.png");
+        user.setAvatar("./resources/images/avatars/alex.png");
         return user;
     }
 }
