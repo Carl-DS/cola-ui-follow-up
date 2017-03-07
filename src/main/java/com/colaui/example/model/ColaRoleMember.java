@@ -7,7 +7,7 @@ import java.sql.Timestamp;
  * Created by carl.li on 2017/3/3.
  */
 @Entity
-@Table(name = "cola_role_member")
+@Table(name = "COLA_ROLE_MEMBER")
 public class ColaRoleMember {
     private String id;
     private Timestamp createDate;

@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by carl.li on 2017/3/3.
  */
 @Entity
-@Table(name = "cola_user_position")
+@Table(name = "COLA_USER_POSITION")
 public class ColaUserPosition {
     private String id;
     private String positionId;

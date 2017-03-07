@@ -7,7 +7,7 @@ import java.sql.Timestamp;
  * Created by carl.li on 2017/3/3.
  */
 @Entity
-@Table(name = "cola_job")
+@Table(name = "COLA_JOB")
 public class ColaJob {
     private String id;
     private String beanId;

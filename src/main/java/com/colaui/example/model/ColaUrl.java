@@ -1,23 +1,30 @@
 package com.colaui.example.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Created by carl.li on 2017/3/3.
  */
 @Entity
-@Table(name = "cola_url")
+@Table(name = "COLA_URL")
 public class ColaUrl {
     private String id;
     private String companyId;
     private String desc;
     private boolean forNavigation;
     private String icon;
-    private String name;
+    private String label;
     private Integer order;
     private String parentId;
     private String systemId;
-    private String url;
+    private String path;
+    private boolean closeable;
+
+    private ColaUrl parent;
+    private Collection<ColaUrl> menus;
 
     @Id
     @Column(name = "ID_")
@@ -65,13 +72,13 @@ public class ColaUrl {
         this.icon = icon;
     }
 
-    @Column(name = "NAME_")
-    public String getName() {
-        return name;
+    @Column(name = "LABEL_")
+    public String getLabel() {
+        return label;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     @Column(name = "ORDER_")
@@ -101,13 +108,42 @@ public class ColaUrl {
         this.systemId = systemId;
     }
 
-    @Column(name = "URL_")
-    public String getUrl() {
-        return url;
+    @Column(name = "PATH_")
+    public String getPath() {
+        return path;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setPath(String path) {
+        this.path = path;
     }
 
+    @Column(name = "CLOSEABLE_")
+    public boolean isCloseable() {
+        return closeable;
+    }
+
+    public void setCloseable(boolean closeable) {
+        this.closeable = closeable;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PARENT_ID_", updatable = false, insertable = false)
+    @JsonIgnore
+    public ColaUrl getParent() {
+        return parent;
+    }
+
+    public void setParent(ColaUrl parent) {
+        this.parent = parent;
+    }
+
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JoinColumn(name = "PARENT_ID_", insertable = false, updatable = false)
+    public Collection<ColaUrl> getMenus() {
+        return menus;
+    }
+
+    public void setMenus(Collection<ColaUrl> menus) {
+        this.menus = menus;
+    }
 }

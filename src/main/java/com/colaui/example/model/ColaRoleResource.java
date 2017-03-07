@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by carl.li on 2017/3/3.
  */
 @Entity
-@Table(name = "cola_role_resource")
+@Table(name = "COLA_ROLE_RESOURCE")
 public class ColaRoleResource {
     private String id;
     private String packageId;

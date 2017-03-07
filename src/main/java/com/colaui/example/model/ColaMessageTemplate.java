@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by carl.li on 2017/3/3.
  */
 @Entity
-@Table(name = "cola_message_template")
+@Table(name = "COLA_MESSAGE_TEMPLATE")
 public class ColaMessageTemplate {
     private String id;
     private String companyId;

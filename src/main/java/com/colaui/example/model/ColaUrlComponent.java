@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by carl.li on 2017/3/3.
  */
 @Entity
-@Table(name = "cola_url_component")
+@Table(name = "COLA_URL_COMPONENT")
 public class ColaUrlComponent {
     private String id;
     private String authorityType;

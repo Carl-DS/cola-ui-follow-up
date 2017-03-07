@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by carl.li on 2017/3/3.
  */
 @Entity
-@Table(name = "cola_job_calendar_relation")
+@Table(name = "COLA_JOB_CALENDAR_RELATION")
 public class ColaJobCalendarRelation {
     private String id;
     private String calendarId;
