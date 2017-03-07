@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface ColaUrlService {
 
-    List<ColaUrl> getUrl(String id);
+    List<ColaUrl> geturls();
 }

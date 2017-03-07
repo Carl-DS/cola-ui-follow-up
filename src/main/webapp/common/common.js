@@ -28,7 +28,7 @@
       "service.messagePull": "./service/message/pull",
       "service.login": "./service/account/login",
       "service.logout": "./service/account/logout",
-      "service.menus": "./service/menus",
+      "service.menus": "./service/frame/url/menus",
       "service.user.detail": "./service/user/detail",
       title: "Cola-Frame"
     };
