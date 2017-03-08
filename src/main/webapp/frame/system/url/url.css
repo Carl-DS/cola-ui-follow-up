@@ -6,6 +6,25 @@
 /* Input */
 /* main page */
 body {
-  background-color: #f3f3f4;
-  padding: 0 0.8em;
+  padding: 0.8em;
+}
+
+div.field .label {
+    width: 68px;
+    height: 35.5px;
+    padding-top: 0.99em;
+}
+
+.current>.tree.node .node-operation {
+    display: inline-block;
+}
+
+.node-operation {
+    display: none;
+    float: right;
+    padding-right: 0.5em;
+}
+
+.node-operation i {
+    margin-right: 0.5em;
 }
