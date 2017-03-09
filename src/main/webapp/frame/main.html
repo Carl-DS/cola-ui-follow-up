@@ -46,11 +46,13 @@
             <div id="rightContainer">
               <div class="layer-dimmer"></div>
               <div id="subMenuLayer" c-widget="Layer; animation:slide right">
-                <div class="title"><span c-bind="currentMenu.label"></span></div>
-                <div id="subMenuTree">
-                  <template name="node-default">
-                    <div><i c-classname="menu.hasChild ? 'icon folder outline' : 'icon file'"></i><span c-bind="menu.label"></span></div>
-                  </template>
+                <div class="v-box">
+                  <div class="title box"><span c-bind="currentMenu.label"></span></div>
+                  <div id="subMenuTree" class="flex-box">
+                    <template name="node-default">
+                      <div><i c-classname="menu.hasChild ? 'icon folder outline' : 'icon file'"></i><span c-bind="menu.label"></span></div>
+                    </template>
+                  </div>
                 </div>
                 <div id="subMenuNavbar" c-onclick="hideSubMenuLayer()">
                   <div><i class="iconfont icon-weibiaoti26"></i></div>
