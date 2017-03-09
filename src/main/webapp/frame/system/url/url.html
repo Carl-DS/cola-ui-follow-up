@@ -23,6 +23,7 @@
 <div class="h-box" style="height: inherit;">
 	<div class="box" style="width: 50%;height: inherit;">
 		<c-panel caption="菜单维护" collapsible="false" icon="power" height="inherit">
+			<div style="height: 95%;overflow: auto;">
 			<div id="urlTree">
 				<template name="node-default">
 					<div>
@@ -35,9 +36,10 @@
 					</div>
 				</template>
 			</div>
+			</div>
 		</c-panel>
 	</div>
-	<c-form style="width:100%; margin-left: 10px;" class="box">
+	<div style="width:100%; margin-left: 10px;" class="box">
 		<c-panel caption="节点维护" collapsible="false" icon="sitemap" height="inherit">
 			<c-form style="max-width:400px">
 				<div class="field">
@@ -45,7 +47,7 @@
 				</div>
 				<div class="field">
 					<c-label>是否导航</c-label>
-					<c-radiogroup id="forNavigationRadioGroup" bind="currentEditItem.forNavigation" type="toggle" name="forNavigation"></c-radiogroup>
+					<c-radiogroup bind="currentEditItem.forNavigation" id="forNavigationRadioGroup" type="toggle" name="forNavigation"></c-radiogroup>
 				</div>
 				<div class="field">
 					<c-input bind="currentEditItem.path" placeholder="URL"><c-label>URL</c-label></c-input>
