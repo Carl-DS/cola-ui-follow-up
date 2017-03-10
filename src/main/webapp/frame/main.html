@@ -47,10 +47,10 @@
               <div class="layer-dimmer"></div>
               <div id="subMenuLayer" c-widget="Layer; animation:slide right">
                 <div class="v-box">
-                  <div class="title box"><span c-bind="currentMenu.label"></span></div>
+                  <div class="title box"><i c-class="currentMenu.icon"></i><span c-bind="currentMenu.label"></span></div>
                   <div id="subMenuTree" class="flex-box">
                     <template name="node-default">
-                      <div><i c-classname="menu.hasChild ? 'icon folder outline' : 'icon file'"></i><span c-bind="menu.label"></span></div>
+                      <div><i c-classname="menu.icon"></i><span c-bind="menu.label"></span></div>
                     </template>
                   </div>
                 </div>

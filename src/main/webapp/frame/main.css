@@ -74,7 +74,7 @@ html body {
 }
 
 #viewTab > .tab-bar {
-    height: 36px
+    height: 28px
 }
 
 #viewTab > .tab-bar > .tabs > .tab-button {
@@ -382,7 +382,7 @@ html body {
 }
 
 #subMenuLayer > .v-box > .title {
-    height: 65px;
+    height: 64px;
     padding: 1em;
     background-color: #D9DEE4;
     line-height: 2.7em;

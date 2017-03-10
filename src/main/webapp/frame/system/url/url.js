@@ -43,6 +43,35 @@
         model.describe("currentEditItem", "Url");
         model.set("currentEditItem", {});
         model.action({
+            guid:function () {
+                return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                    var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+                    return v.toString(16);
+                });
+            },
+            addRootNode: function () {
+                debugger;
+                var nodes, order, entity;
+                nodes = model.get("urls");
+                if (!nodes) {
+                    order = 1;
+                } else {
+                    order = nodes.last().get("order") + 1;
+                }
+                entity = nodes.insert({
+                    id: model.action.guid(),
+                    label : "<新菜单>",
+                    order : order,
+                    icon : "icon edit",
+                    forNavigation : true,
+                    companyId : "bstek"
+                });
+                var tree = cola.widget("urlTree");
+                var currentNode = tree.findNode(entity);
+                tree.expand(currentNode);
+                tree.set("currentItem", entity);
+                event && event.stopPropagation();
+            },
             add: function () {
                 debugger;
                 var tree, currentEditItem, currentNode, nodeEntity, nodes, order;
@@ -69,12 +98,13 @@
                     }
 
                     var entity=nodes.insert({
+                        id: model.action.guid(),
                         label : "<新菜单>",
                         parentId : nodeEntity.get("id"),
                         order : order,
                         icon : "icon edit",
                         forNavigation : true,
-                        companyId : ""
+                        companyId : "bstek"
                     });
 
                     tree.expand(currentNode);
@@ -83,6 +113,7 @@
                 }
             },
             remove : function(url) {
+                debugger;
                 var currentEditItem = model.get("currentEditItem");
                 var nodes = currentEditItem.get("menus", "sync");
                 cola.confirm("您确定要删除当前记录吗？", {
@@ -90,31 +121,47 @@
                         if (nodes && nodes.entityCount > 0) {
                             cola.alert("存在子菜单，无法删除！");
                         } else {
-                            cola.NotifyTipManager.success({
-                                message : "删除成功",
-                                description : "后台任务执行成功！",
-                                showDuration : 1000
+                            if (url.state === "new")
+                                return url.remove();
+                            $.ajax("./service/frame/url/delete/"+ url.get("id"), {
+                                type : "DELETE",
+                                success : function() {
+                                    url.remove();
+                                    cola.NotifyTipManager.success({
+                                        message : "删除成功",
+                                        description : "后台任务执行成功！",
+                                        showDuration : 3000
+                                    });
+                                }
                             });
-                            url.remove();
-                            // $.ajax("./service/frame/url/"
-                            //     + model.get("currentEditItem").get(
-                            //         "id") + "/", {
-                            //     type : "DELETE",
-                            //     success : function(arg, self) {
-                            //         node.remove();
-                            //         cola.NotifyTipManager.success({
-                            //             message : "删除成功",
-                            //             description : "后台任务执行成功！",
-                            //             showDuration : 1000
-                            //         });
-                            //     }
-                            // });
                         }
                     }
                 });
             },
             saveUrl: function () {
                 debugger;
+                var url;
+                url = model.get("currentEditItem").toJSON();
+                delete url.menus;
+                if (url.forNavigation==="是")
+                    url.forNavigation = true;
+                else if (url.forNavigation==="否")
+                    url.forNavigation = false;
+
+                $.ajax("./service/frame/url/save", {
+                    type: "POST",
+                    data: JSON.stringify(url),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (self, arg) {
+                        debugger;
+                        cola.NotifyTipManager.success({
+                            message: "消息提示",
+                            description: "保存成功!",
+                            showDuration: 3000
+                        });
+                        model.get("currentEditItem").setState("none");
+                    }
+                });
             },
             copyNodeDataToEdit: function (currentData) {
                 var forNavigationValue, tempValue;

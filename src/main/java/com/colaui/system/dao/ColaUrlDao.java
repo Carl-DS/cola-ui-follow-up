@@ -15,32 +15,6 @@ import java.util.Map;
  * Created by carl.li on 2017/3/3.
  */
 @Repository
-public class ColaUrlDao extends HibernateDao<ColaUrl, Long>{
+public class ColaUrlDao extends HibernateDao<ColaUrl, String>{
 
-    public List<ColaUrl> getUrls(Map<String, Object> params) {
-        List<ColaUrl> uList=null;
-        if(params!=null){
-            String companyId=(String) params.get("companyId");
-            String parentId=(String) params.get("parentId");
-            Criteria c=this.getSession().createCriteria(ColaUrl.class);
-            if(StringUtils.hasText(companyId)){
-                c.add(Restrictions.eq("companyId", companyId));
-            }
-            if(StringUtils.hasText(parentId)&&!"null".equals(parentId)){
-                c.add(Restrictions.eq("parentId", parentId));
-            }else{
-                c.add(Restrictions.isNull("parentId"));
-                if(!StringUtils.hasText(companyId)){
-                    c.add(Restrictions.eq("companyId", null));
-                }
-            }
-            Object obj= params.get("forNavigation");
-            if(obj!=null){
-                c.add(Restrictions.eq("forNavigation", (Boolean) obj));
-            }
-            c.addOrder(Order.asc("order"));
-            uList=c.list();
-        }
-        return uList;
-    }
 }

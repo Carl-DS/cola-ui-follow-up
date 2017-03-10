@@ -23,6 +23,9 @@
 <div class="h-box" style="height: inherit;">
 	<div class="box" style="width: 50%;height: inherit;">
 		<c-panel caption="菜单维护" collapsible="false" icon="power" height="inherit">
+			<template name="tools">
+				<c-button class="mini" click="addRootNode">添加根节点</c-button>
+			</template>
 			<div style="height: 95%;overflow: auto;">
 			<div id="urlTree">
 				<template name="node-default">
