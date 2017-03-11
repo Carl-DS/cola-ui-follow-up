@@ -185,7 +185,7 @@ html body {
     transform: rotate(90deg)
 }
 
-.main-menu.ui.segment.inverted.collapsed #frameworkSidebar > .item > .title .dropdown-icon {
+.main-menu.ui.segment.inverted.collapsed #frameworkSidebar > .item > .title .dropdown-icon,.main-menu.ui.segment.inverted.collapsed #frameworkSidebar > .item > .content .dropdown-icon {
     display: none
 }
 
@@ -201,7 +201,7 @@ html body {
 }
 
 .main-menu.ui.segment.inverted #frameworkSidebar > .item > .title {
-    background-color: #1a232c
+    background-color: #b03f4a
 }
 
 .main-menu.ui.segment.inverted #frameworkSidebar > .item > .content {

@@ -43,7 +43,7 @@
         model.describe("currentEditItem", "Url");
         model.set("currentEditItem", {});
         model.action({
-            guid:function () {
+            uuid:function () {
                 return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
                     var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
                     return v.toString(16);
@@ -59,7 +59,7 @@
                     order = nodes.last().get("order") + 1;
                 }
                 entity = nodes.insert({
-                    id: model.action.guid(),
+                    id: model.action.uuid(),
                     label : "<新菜单>",
                     order : order,
                     icon : "icon edit",
@@ -123,7 +123,7 @@
                         } else {
                             if (url.state === "new")
                                 return url.remove();
-                            $.ajax("./service/frame/url/delete/"+ url.get("id"), {
+                            $.ajax("./service/frame/url/"+ url.get("id"), {
                                 type : "DELETE",
                                 success : function() {
                                     url.remove();
@@ -147,8 +147,8 @@
                     url.forNavigation = true;
                 else if (url.forNavigation==="否")
                     url.forNavigation = false;
-
-                $.ajax("./service/frame/url/save", {
+                if (!model.get("currentEditItem").validate()) return;
+                $.ajax("./service/frame/url/", {
                     type: "POST",
                     data: JSON.stringify(url),
                     contentType: "application/json; charset=utf-8",

@@ -23,12 +23,12 @@ public class ColaUrlController {
         return colaUrlService.getUrls(params);
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     public void saveUrl(@RequestBody ColaUrl url) {
         colaUrlService.saveUrl(url);
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteUrl(@PathVariable String id) {
         colaUrlService.deleteUrl(id);
     }

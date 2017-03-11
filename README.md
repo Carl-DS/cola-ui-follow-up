@@ -42,3 +42,10 @@ jdbc.driver = com.mysql.jdbc.Driver
 4、浏览器访问
 
 http://localhost:port/context
+
+
+## 菜单维护
+* 接口定义
+    - GET ./service/frame/url/menus    查询所有菜单
+    - POST ./service/frame/url/        保存菜单
+    - DELETE ./service/frame/url/{id}      删除菜单
