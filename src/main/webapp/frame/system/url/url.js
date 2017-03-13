@@ -98,7 +98,7 @@
                     }
 
                     var entity=nodes.insert({
-                        id: model.action.guid(),
+                        id: model.action.uuid(),
                         label : "<新菜单>",
                         parentId : nodeEntity.get("id"),
                         order : order,
