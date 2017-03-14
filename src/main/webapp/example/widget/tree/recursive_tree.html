@@ -13,16 +13,18 @@
     <link rel="stylesheet" type="text/css" href="./resources/cola-ui/cola.css">
     <link rel="stylesheet" type="text/css" href="./common/common.css">
   </head>
-  <body style="padding: 10px;">
+  <body style="padding: 0.8em;">
     <script type="text/javascript">
       NProgress.configure({showSpinner: false, minimum: 0.3});
       NProgress.start();
     </script>
-    <c-panel caption="递归树">
+    <c-panel caption="递归树" height="inherit">
       <template name="tools">
-        <i c-onclick="getNodes()" class="ui icon check circle"></i>
+        <i c-onclick="getNodes()" class="ui icon check circle blue"></i>
       </template>
+      <div style="height: inherit; overflow: auto">
       <div id="recursiveTree"></div>
+      </div>
     </c-panel>
 
   </body>

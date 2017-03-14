@@ -15,6 +15,7 @@
 				textProperty: "name",
 				bind: "provinceValue",
 				post: function (self) {
+					debugger;
 					var city = model.get("cityValue");
 					if (city)
 						cola.widget("cityDropdown").set("value", "");

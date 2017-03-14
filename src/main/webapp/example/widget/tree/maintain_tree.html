@@ -27,7 +27,7 @@
       
     </style>
   </head>
-  <body>
+  <body style="padding: 0.8em">
     <script type="text/javascript">
       NProgress.configure({showSpinner: false, minimum: 0.3});
       NProgress.start();
@@ -40,6 +40,7 @@
               <div id="tree">
                 <template name="node-default">
                   <div>
+                    <i class="link icon map"></i>
                     <span c-bind="node.name"></span>
                     <div class="node-operation"><i c-onclick="add()" class="link icon plus"></i><i c-onclick="remove(node)" class="link icon trash outline"></i></div>
                   </div>
@@ -105,14 +106,17 @@
     			$type: "tree",
     			autoCollapse: false,
     			autoExpand: true,
+                autoCheckChildren: true,
     			highlightCurrentItem: true,
-    			bind: {
-    				recursive: true,
+                checkedProperty: "__check", // 写在bind外则不可用,checkedProperty和显示图标只能用一个
+                bind: {
+                    recursive: true,
     				expandedProperty: "expanded",
     				textProperty: "name",
     				expression: "node in node.nodes"
     			},
     			currentNodeChange: function (self, arg) {
+    			    debugger;
     				var current = self.get("currentNode");
     				model.set("currentEditItem", current ? current.get("data") : null);
     			}

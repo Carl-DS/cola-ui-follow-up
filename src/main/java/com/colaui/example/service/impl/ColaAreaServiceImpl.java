@@ -17,7 +17,6 @@ import java.util.List;
  * Created by carl.li on 2017/2/14.
  */
 @Service
-@Transactional
 public class ColaAreaServiceImpl implements ColaAreaService {
 
     @Autowired

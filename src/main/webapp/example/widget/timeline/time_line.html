@@ -13,12 +13,14 @@
     <link rel="stylesheet" type="text/css" href="./resources/cola-ui/cola.css">
     <link rel="stylesheet" type="text/css" href="./common/common.css">
   </head>
-  <body>
+  <body style="padding: 0.8em">
     <script type="text/javascript">
-      NProgress.configure({showSpinner: false, minimum: 0.3})
+      NProgress.configure({showSpinner: false, minimum: 0.3});
       NProgress.start();
     </script>
-    <div c-widget="timeLine; bind:item in items; width:400" class="circular log">
+
+    <c-panel caption="时间线" height="inherit">
+    <div id="timeLine" class="circular log" style="overflow: auto;width: 400px;height: 90%;">
       <template name="content"><strong c-bind="item.content.title"></strong>
         <p c-bind="item.content.description"></p>
       </template>
@@ -28,6 +30,7 @@
         <div c-bind="item.time.time" class="date-time"></div>
       </template>
     </div>
+    </c-panel>
   </body>
   <script src="./resources/jquery/jquery-2.1.3.js"></script>
   <script src="./resources/jquery/jquery.cookie.js"></script>
@@ -72,6 +75,16 @@
     			time: {date: "2015-03-01", time: "06:36"}
     		}
     	]);
+
+
+        model.widgetConfig({
+            timeLine: {
+                $type: "timeLine",
+                bind: "item in items",
+                width: 400,
+                pullDown: true
+            }
+        });
     });
   </script>
 </html>

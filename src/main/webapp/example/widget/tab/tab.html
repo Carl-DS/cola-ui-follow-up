@@ -14,17 +14,21 @@
     <link rel="stylesheet" type="text/css" href="./common/common.css">
 
 </head>
-<body style="padding: 20px" c-onkeyup="closeTab()">
+<body style="padding: 0.8em" c-onkeyup="closeTab()">
 
 <c-panel caption="标签页" collapsible="true" class="crowded">
     <template name="tools">
         <i c-onclick="addTab()" class="ui icon add"></i>
     </template>
     <div class="content">
-        <c-tab height="250" direction="left">
+        <c-tab height="220" direction="left">
             <nav class="tab-bar" style="width: 100px;">
                 <ul class="tabs" style="width: 100px;">
-                    <!--<c-tabButton name="tabOne" caption="饮料" icon="call" closeable="true"></c-tabButton>-->
+                    <!--<c-tabButton name="tabOne" caption="饮料" icon="call" closeable="true"></c-tabButton>
+                    <c-tabButton name="tabTwo" caption="饮料" icon="call" closeable="true"></c-tabButton>
+                    <c-tabButton name="tabThree" caption="饮料" icon="call" closeable="true"></c-tabButton>
+                    <c-tabButton name="tabFour" caption="饮料" icon="call" closeable="true"></c-tabButton>
+                    <c-tabButton name="tabFive" caption="饮料" icon="call" closeable="true"></c-tabButton>-->
                     <li name="tabOne" c-widget="TabButton;caption:饮料;icon:call;closeable:true"></li>
                     <li name="tabTwo" c-widget="TabButton;caption:调味品;icon:marker;closeable:true"></li>
                     <li name="tabThree" c-widget="TabButton;caption:零食;icon:dollar;closeable:true"></li>

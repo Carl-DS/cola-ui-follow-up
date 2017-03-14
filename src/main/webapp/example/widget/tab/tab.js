@@ -25,7 +25,7 @@
                 closeable: model.get("category.closeable"),
                 caption: model.get("category.value")
             });
-            viewTab = cola.widget("viewTab")
+            viewTab = cola.widget("viewTab");
             viewTab.addTab(tab);
             return viewTab.setCurrentTab(tab)
         },

@@ -5,12 +5,8 @@
 
 	<display-name>ColaUIFollowUp-SSH</display-name>
 	<welcome-file-list>
+		<welcome-file>/frame/main.html</welcome-file>
 		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 	<!-- 启用spring监听 -->
 	<listener>

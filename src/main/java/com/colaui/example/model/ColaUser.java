@@ -23,6 +23,7 @@ public class ColaUser {
     private String mobile;
     private String password;
     private String salt;
+    private String avatar;
 
     @Id
     @Column(name = "USERNAME_")
@@ -149,6 +150,15 @@ public class ColaUser {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    @Column(name = "AVATAR_")
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
 }

@@ -22360,7 +22360,6 @@ Template
       }
       $fly(dom).delegate(">.icon", "click", (function(_this) {
         return function() {
-          debugger;
           if (_this._finalReadOnly && !_this._disabled && !_this._opened) {
             _this.open();
             return;

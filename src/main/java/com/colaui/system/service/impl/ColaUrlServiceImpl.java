@@ -18,7 +18,6 @@ import java.util.Map;
  * Created by carl.li on 2017/3/3.
  */
 @Service
-@Transactional
 public class ColaUrlServiceImpl implements ColaUrlService{
 
     @Autowired

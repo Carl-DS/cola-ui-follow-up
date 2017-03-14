@@ -18,6 +18,8 @@ public class ColaMessage {
     private String sender;
     private String tags;
     private String title;
+    private String type;
+
 
     @Id
     @Column(name = "ID_")
@@ -99,6 +101,15 @@ public class ColaMessage {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Column(name = "TYPE_")
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
 }

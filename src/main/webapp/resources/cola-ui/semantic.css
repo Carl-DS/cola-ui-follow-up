@@ -29538,14 +29538,14 @@ select.ui.dropdown {
 }
 
 /*--------------
-    Category
+    ColaCategory
 ---------------*/
 
 .ui.category.search .results {
   width: 28em;
 }
 
-/* Category */
+/* ColaCategory */
 
 .ui.category.search > .results .category {
   background: #F3F4F5;
@@ -29555,7 +29555,7 @@ select.ui.dropdown {
   transition: background 0.1s ease, border-color 0.1s ease;
 }
 
-/* Last Category */
+/* Last ColaCategory */
 
 .ui.category.search > .results .category:last-child {
   border-bottom: none;
@@ -29571,7 +29571,7 @@ select.ui.dropdown {
   border-radius: 0em 0em 4px 0em;
 }
 
-/* Category Result */
+/* ColaCategory Result */
 
 .ui.category.search > .results .category .result {
   background: #FFFFFF;
@@ -29587,7 +29587,7 @@ select.ui.dropdown {
   border-bottom: none;
 }
 
-/* Category Result Name */
+/* ColaCategory Result Name */
 
 .ui.category.search > .results .category > .name {
   width: 100px;
