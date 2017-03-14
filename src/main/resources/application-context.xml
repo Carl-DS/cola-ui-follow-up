@@ -13,14 +13,31 @@
        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.0.xsd  http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
 	<context:property-placeholder location="classpath*:/configure.properties" />
-	
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
-		<property name="driverClassName" value="${jdbc.driver}" />
-		<property name="url" value="${jdbc.url}" />
-		<property name="username" value="${jdbc.username}" />
-		<property name="password" value="${jdbc.password}" />
+
+	<!-- 自动扫描(需要自动注入的类，对于那些类上有注解：@Repository、@Service、@Controller、@Component都进行注入) -->
+	<!--因为 Spring MVC 是 Spring 的子容器，所以我们在 Spring MVC 的配置中再指定扫描 Controller 的注解，这里是父容器的配置地方-->
+	<!--注解注入的相关材料可以看：-->
+	<!--http://blog.csdn.net/u012763117/article/details/17253849-->
+	<!--http://casheen.iteye.com/blog/295348-->
+	<!--http://blog.csdn.net/zhang854429783/article/details/6785574-->
+	<context:component-scan base-package="com.colaui.example,com.colaui.system" />
+	<mvc:annotation-driven />
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driver}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<property name="minIdle" value="${jdbc.minIdle}"/>
+		<property name="maxActive" value="${jdbc.maxActive}"/>
+		<property name="testWhileIdle" value="${jdbc.testWhileIdle}"/>
+		<property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}"/>
+		<property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis}"/>
+		<property name="removeAbandonedTimeout" value="${jdbc.removeAbandonedTimeout}"/>
+		<property name="removeAbandoned" value="${jdbc.removeAbandoned}"/>
+		<property name="logAbandoned" value="${jdbc.logAbandoned}"/>
 	</bean>
 
 	<bean id="sessionFactory"
@@ -28,46 +45,86 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="hibernateProperties">
 			<value>
-				hibernate.dialect=org.hibernate.dialect.MySQLDialect
-				hibernate.hbm2ddl.auto=update
-				hibernate.show_sql=false
-				hibernate.format_sql=true
-				hibernate.cache.use_second_level_cache=false
-				hibernate.cache.use_query_cache=false
-				hibernate.jdbc.fetch_size=50
-				hibernate.jdbc.batch_size=50
-				hibernate.connection.autocommit=true
-				hibernate.connection.release_mode=auto
-				hibernate.current_session_context_class=org.springframework.orm.hibernate4.SpringSessionContext
-				javax.persistence.validation.mode=none
+				hibernate.dialect=${jdbc.dialect}
+				hibernate.hbm2ddl.auto=${hibernate.hbm2ddl.auto}
+				hibernate.show_sql=${hibernate.show_sql}
+				hibernate.format_sql=${hibernate.format_sql}
+				hibernate.cache.use_second_level_cache=${hibernate.cache.use_second_level_cache}
+				hibernate.cache.use_query_cache=${hibernate.cache.use_query_cache}
+				hibernate.jdbc.fetch_size=${hibernate.jdbc.fetch_size}
+				hibernate.jdbc.batch_size=${hibernate.jdbc.batch_size}
+				hibernate.connection.autocommit=${hibernate.connection.autocommit}
+				hibernate.connection.release_mode=${hibernate.connection.release_mode}
+				hibernate.current_session_context_class=${hibernate.current_session_context_class}
+				javax.persistence.validation.mode=${javax.persistence.validation.mode}
 			</value>
 		</property>
 		<property name="packagesToScan" value="com.colaui.example.model" />
 	</bean>
+
+	<!-- (事务管理器)transaction manager, use JtaTransactionManager for global tx -->
+	<!--http://www.mybatis.org/spring/zh/transactions.html-->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
 
-  	<tx:annotation-driven transaction-manager="transactionManager" />
-	<tx:advice id="colauiAdvice" transaction-manager="transactionManager">
+	<!-- 一种方式:注解方式配置事物,扫描@Transactional注解的类定义事务，配置上service实现类(下面还有一个方法名拦截方式,两个同时配置也是可以使用的，但是不建议两者一起使用) -->
+	<!--<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>-->
+
+	<!-- 一种方式:拦截器方式配置事物start 配置了该方式之后,在方法里面使用注解方式配置事务也是没有作用的 -->
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
-			<tx:method name="create*" propagation="REQUIRED" />
-			<tx:method name="save*" propagation="REQUIRED" />
-			<tx:method name="add*" propagation="REQUIRED" />
-			<tx:method name="update*" propagation="REQUIRED" />
-			<tx:method name="remove*" propagation="REQUIRED" />
-			<tx:method name="del*" propagation="REQUIRED" />
-			<tx:method name="*" propagation="NOT_SUPPORTED" read-only="true" />
+			<!--以这些单词开头的方法自动加入事务-->
+			<!--更多参数和使用方法可以参考:-->
+			<!--http://wuhenjia.blog.163.com/blog/static/93469449201123010594395-->
+			<!--http://baobao707.iteye.com/blog/415446-->
+			<!--http://jinnianshilongnian.iteye.com/blog/1442376-->
+			<!--http://winters1224.blog.51cto.com/3021203/807500-->
+			<!--如果是方法中直接抛顶层Exception异常的话,propagation="REQUIRED"是不顶用的,还需要配置rollback-for属性-->
+
+			<!--<tx:method name="delete*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" no-rollback-for="java.lang.RuntimeException"/>-->
+			<!--<tx:method name="insert*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.RuntimeException" />-->
+			<!--<tx:method name="update*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" /> -->
+
+			<tx:method name="add*" propagation="REQUIRED"/>
+			<tx:method name="save*" propagation="REQUIRED"/>
+			<tx:method name="insert*" propagation="REQUIRED"/>
+			<tx:method name="register*" propagation="REQUIRED"/>
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="modify*" propagation="REQUIRED"/>
+			<tx:method name="edit*" propagation="REQUIRED"/>
+			<tx:method name="batch*"  propagation="REQUIRED"/>
+			<tx:method name="delete*" propagation="REQUIRED"/>
+			<tx:method name="del*" propagation="REQUIRED"/>
+			<tx:method name="remove*" propagation="REQUIRED"/>
+			<tx:method name="time*" propagation="REQUIRED"/><!--定时器方法-->
+			<tx:method name="repair" propagation="REQUIRED"/>
+			<tx:method name="deleteAndRepair" propagation="REQUIRED"/>
+
+			<!--以这些单词开头的方法不加入事务-->
+			<tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
+			<tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+			<tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
+			<tx:method name="load*" propagation="SUPPORTS" read-only="true"/>
+			<tx:method name="search*" propagation="SUPPORTS" read-only="true"/>
+			<tx:method name="datagrid*" propagation="SUPPORTS" read-only="true"/>
+
+			<tx:method name="*" propagation="SUPPORTS"/>
+			<!--<tx:method name="*" propagation="NOT_SUPPORTED" read-only="true" />-->
 		</tx:attributes>
 	</tx:advice>
 
 	<aop:config>
-		<aop:pointcut id="serviceOperation"
-			expression="execution(* colaui.*.service.*Service.*(..))" />
-		<aop:advisor advice-ref="colauiAdvice" pointcut-ref="serviceOperation" />
+		<!--把这个拦截器配置到com.colaui.包下.service下(包括子包)下的以impl目录下类名带ServiceImpl的,任意方法-->
+		<!--
+        execution的语法表示:在impl包中定义的任意方法的执行，更多方式可以参考：
+        http://lavasoft.blog.51cto.com/62575/172292/
+        http://blog.csdn.net/partner4java/article/details/7015946
+        -->
+		<aop:pointcut id="transactionPointcut"
+			expression="execution(* com.colaui.*.service.impl.*ServiceImpl.*(..))" />
+		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="transactionPointcut" />
 	</aop:config>
-	<context:component-scan base-package="com.colaui" />
-	<mvc:annotation-driven />
 </beans>
