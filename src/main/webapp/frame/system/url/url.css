@@ -14,7 +14,9 @@ div.field .label {
     height: 35.5px;
     padding-top: 0.99em;
 }
-
+div.field .ui.input input {
+    width: 532px;
+}
 .current>.tree.node .node-operation {
     display: inline-block;
 }

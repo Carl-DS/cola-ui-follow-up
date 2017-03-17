@@ -31,7 +31,7 @@
       "service.menus": "./service/frame/url/menus",
       "service.user.detail": "./service/user/detail",
       "workbench": {
-          path: "/example/echarts/china.html",
+          path: "/example/echarts/website_visit.html",
           type: "subWindow",
           label: "我的工作台",
           closeable: false,

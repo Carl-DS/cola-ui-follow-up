@@ -143,10 +143,6 @@
                 var url;
                 url = model.get("currentEditItem").toJSON();
                 delete url.menus;
-                if (url.forNavigation==="是")
-                    url.forNavigation = true;
-                else if (url.forNavigation==="否")
-                    url.forNavigation = false;
                 if (!model.get("currentEditItem").validate()) return;
                 $.ajax("./service/frame/url/", {
                     type: "POST",
@@ -162,28 +158,13 @@
                         model.get("currentEditItem").setState("none");
                     }
                 });
-            },
-            copyNodeDataToEdit: function (currentData) {
-                var forNavigationValue, tempValue;
-                model.set("currentEditItem", currentData);
-                tempValue = currentData.get("forNavigation");
-                if (tempValue) {
-                    if (typeof tempValue === "string")
-                        forNavigationValue = tempValue;
-                    else
-                        forNavigationValue="是";
-                } else {
-                    forNavigationValue="否";
-                }
-                cola.widget("forNavigationRadioGroup").set("value", forNavigationValue);
-                model.set("currentEditItem.forNavigation", forNavigationValue);
             }
 
         });
 
         model.widgetConfig({
             forNavigationRadioGroup: {
-                items: ["是", "否"]
+                items: [{label:"是", value: true}, {label:"否", value: false}]
             },
             urlTree: {
                 $type: "tree",
@@ -206,7 +187,7 @@
                     var current;
                     current = self.get("currentNode");
                     if (cola.defaultAction.isNotEmpty(current)) {
-                        model.action.copyNodeDataToEdit(current.get("data"));
+                        model.set("currentEditItem", current.get("data"));
                     }
                 }
             }
