@@ -12,7 +12,7 @@
         // 指定图表的配置项和数据
         var option = {
             title: {
-                text: 'ECharts 入门示例'
+                text: '我的工作台'
             },
             tooltip: {},
             legend: {

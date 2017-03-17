@@ -233,4 +233,12 @@
     });
   });
 
+  cola.ready(function() {
+      var workbench;
+      workbench = App.prop("workbench");
+      if (workbench) {
+          return App.open(workbench.path, workbench);
+      }
+  });
+
 }).call(this);

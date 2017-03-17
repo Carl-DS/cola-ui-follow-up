@@ -30,6 +30,13 @@
       "service.logout": "./service/account/logout",
       "service.menus": "./service/frame/url/menus",
       "service.user.detail": "./service/user/detail",
+      "workbench": {
+          path: "/example/echarts/china.html",
+          type: "subWindow",
+          label: "我的工作台",
+          closeable: false,
+          icon: "icon dashboard"
+      },
       title: "Cola-Frame"
     };
   }

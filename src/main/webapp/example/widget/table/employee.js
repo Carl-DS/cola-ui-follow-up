@@ -107,14 +107,12 @@
                 if (validate) {
                     id = editItem.get("id");
                     data = editItem.toJSON();
-                    NProgress.start();
                     return $.ajax("./service/employee/", {
                         data: JSON.stringify(data),
                         type: data.id ? "PUT" : "POST",
                         contentType: "application/json",
                         complete: function () {
                             cola.widget("editLayer").hide();
-                            return NProgress.done();
                         }
                     });
                 }
