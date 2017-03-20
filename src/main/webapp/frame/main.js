@@ -234,6 +234,13 @@
           if (action && typeof action === "object") {
               App.open(action.path, action);
           }
+      },
+      closeTab: function () {
+          var keycode = event.keyCode==null?event.which:event.keyCode;
+          var viewTab = cola.widget("viewTab");
+          if (keycode==87) { // 快捷键w,关闭当前标签页
+              viewTab.removeTab(viewTab.get("currentTab"));
+          }
       }
     });
     $("#frameworkSidebar").accordion({

@@ -42,7 +42,7 @@
           type: "subWindow",
           label: "我的任务",
           closeable: true,
-          icon: "icon alarm outline"
+          icon: "icon alarm"
       },
       "workbench": {
           path: "/example/echarts/website_visit.html",
