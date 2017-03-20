@@ -22,8 +22,9 @@
     <div class="v-box">
       <div class="box ui menu secondary attached page-header">
         <div class="item logo header"><img src="./resources/images/logo.png" class="ui mini image"><span>Cola-UI Client Framework</span></div>
-        <div class="right menu"><a class="item msg icon mail">
-          <i class="icon mail"></i><span class="badge">5</span></a><a class="item msg icon"><i class="icon alarm icon-animated-bell"></i><span class="badge">22</span></a>
+        <div class="right menu">
+          <a class="item msg icon mail" title="消息" c-onclick="messageBtnClick()"><i class="icon mail"></i><span c-bind="messages.message" class="badge"></span></a>
+          <a class="item msg icon" title="任务" c-onclick="taskBtnClick()"><i class="icon alarm icon-animated-bell"></i><span c-bind="messages.task" class="badge"></span></a>
           <a c-onclick="showUserSidebar()" class="item icon user"><img src="./resources/images/avatars/alex.png" class="ui image avatar"><i class="icon dropdown"></i></a>
         </div>
       </div>
@@ -79,7 +80,7 @@
         </div>
         <div class="flex-box">
           <div>
-            <div class="ui segment text-center basic"><a class="msg"><i class="icon mail"></i><span>消息</span><span c-bind="messages.message+'条'" class="detail"></span></a><a class="msg"><i class="icon alarm"></i><span>任务</span><span c-bind="messages.task+'条'" class="detail"></span></a></div>
+            <div class="ui segment text-center basic"><a class="msg" c-onclick="messageBtnClick()"><i class="icon mail"></i><span>消息</span><span c-bind="messages.message+'条'" class="detail"></span></a><a class="msg" c-onclick="taskBtnClick()"><i class="icon alarm"></i><span>任务</span><span c-bind="messages.task+'条'" class="detail"></span></a></div>
           </div>
         </div>
         <div class="box text-center">

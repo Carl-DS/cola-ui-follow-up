@@ -220,6 +220,20 @@
         className = "collapsed";
         $dom = $("#frameworkSidebarBox");
         return $dom.toggleClass(className, !$dom.hasClass(className));
+      },
+      messageBtnClick: function() {
+          var action;
+          action = App.prop("message.action");
+          if (action && typeof action === "object") {
+              App.open(action.path, action);
+          }
+      },
+      taskBtnClick: function() {
+          var action;
+          action = App.prop("task.action");
+          if (action && typeof action === "object") {
+              App.open(action.path, action);
+          }
       }
     });
     $("#frameworkSidebar").accordion({

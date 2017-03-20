@@ -15,7 +15,7 @@ public class ColaFrameController {
     public List<ColaMessage> pull() {
         List<ColaMessage> messages = new ArrayList<ColaMessage>();
         ColaMessage message = new ColaMessage();
-        message.setContent("20");
+        message.setContent("6");
         message.setType("message");
         messages.add(message);
 

@@ -30,6 +30,20 @@
       "service.logout": "./service/account/logout",
       "service.menus": "./service/frame/url/menus",
       "service.user.detail": "./service/user/detail",
+      "message.action": {
+          path: "http://cola-ui.com",
+          type: "subWindow",
+          label: "我的消息",
+          closeable: true,
+          icon: "icon mail"
+      },
+      "task.action": {
+          path: "http://cola-ui.com/docs",
+          type: "subWindow",
+          label: "我的任务",
+          closeable: true,
+          icon: "icon alarm outline"
+      },
       "workbench": {
           path: "/example/echarts/website_visit.html",
           type: "subWindow",
@@ -73,7 +87,7 @@
               },
               icon: config.icon,
               name: path,
-              closeable: config.closeable || true,
+              closeable: config.closeable,
               caption: config.label
             });
             viewTab = cola.widget("viewTab");
