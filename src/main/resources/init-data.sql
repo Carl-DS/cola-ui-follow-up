@@ -1,3629 +1,4251 @@
-INSERT INTO `COLA_EMPLOYEE` (`ID`, `LAST_NAME`, `FIRST_NAME`, `TITLE`, `TITLE_OF_COURTESY`, `SEX`, `BIRTH_DATE`, `HIRE_DATE`, `ADDRESS`, `CITY`, `REGION`, `POSTAL_CODE`, `COUNTRY`, `PHONE`, `EXTENSION`, `REPORTS_TO`, `NOTES`, `PHOTO_PATH`)
-VALUES
-	(1,'Davolio','Nancy','Sales Representative','Ms.',1,'1973-04-21','1992-05-01','507 - 20th Ave. E. Apt. 2A','Seattle','WA','98122','USA','(206) 555-9857','sdfs',2,'Education includes a BA in psychology from Colorado State University in 1970.  She also completed \"The Art of the Cold Call.\"  Nancy is a member of Toastmasters International.','2'),
-	(2,'Fuller','Andrew','Vice President, Sales','Dr.',1,'1976-07-02','1992-08-14','908 W. Capital Way','Tacoma','WA','98401','USA','(206) 555-9482','345',NULL,'Andrew received his BTS commercial in 1974 and a Ph.D. in international marketing from the University of Dallas in 1981.  He is fluent in French and Italian and reads German.  He joined the company as a sales representative, was promoted to sales manager in January 1992 and to vice president of sales in March 1993.  Andrew is a member of the Sales Management Roundtable, the Seattle Chamber of Commerce, and the Pacific Rim Importers Association.',NULL),
-	(3,'Leverling','Janet','Sales Representative','Ms.',1,'1988-01-11','1992-04-01','722 Moss Bay Blvd.','Kirkland','WA','98033','USA','(206) 555-3412','3355',2,'Janet has a BS degree in chemistry from Boston College (1984).  She has also completed a certificate program in food retailing management.  Janet was hired as a sales associate in 1991 and promoted to sales representative in February 1992.','2'),
-	(4,'Peacock','Margaret','Sales Representative','Mrs.',0,'1962-01-30','1993-05-03','4110 Old Redmond Rd.','Redmond','WA','98052','USA','(206) 555-8122','5176',2,'Margaret holds a BA in English literature from Concordia College (1958) and an MA from the American Institute of Culinary Arts (1966).  She was assigned to the London office temporarily from July through November 1992.','2'),
-	(5,'Buchanan','Steven','Sales Manager','Mr.',1,'1979-07-16','1993-10-17','14 Garrett Hill','London',NULL,'SW1 8JR','UK','(71) 555-4848','3453',2,'Steven Buchanan graduated from St. Andrews University, Scotland, with a BSC degree in 1976.  Upon joining the company as a sales representative in 1992, he spent 6 months in an orientation program at the Seattle office and then returned to his permanent post in London.  He was promoted to sales manager in March 1993.  Mr. Buchanan has completed the courses \"Successful Telemarketing\" and \"International Sales Management.\"  He is fluent in French.','2'),
-	(6,'Suyama','Michael','Sales Representative','Mr.',1,'1987-11-13','1993-10-17','Coventry House Miner Rd.','London',NULL,'EC2 7JR','UK','(71) 555-7773','428',5,'Michael is a graduate of Sussex University (MA, economics, 1983) and the University of California at Los Angeles (MBA, marketing, 1986).  He has also taken the courses \"Multi-Cultural Selling\" and \"Time Management for the Sales Professional.\"  He is fluent in Japanese and can read and write French, Portuguese, and Spanish.','5'),
-	(7,'King','Robert','Sales Representative','Mr.',1,'1984-10-10','1994-01-02','Edgeham Hollow Winchester Way','London',NULL,'RG1 9SP','UK','(71) 555-5598','465',5,'Robert King served in the Peace Corps and traveled extensively before completing his degree in English at the University of Michigan in 1992, the year he joined the company.  After completing a course entitled \"Selling in Europe,\" he was transferred to the London office in March 1993.','5'),
-	(8,'Callahan','Laura','Inside Sales Coordinator','Ms.',0,'1982-05-23','1994-03-05','4726 - 11th Ave. N.E.','Seattle','WA','98105','USA','(206) 555-1189','2344',2,'Laura received a BA in psychology from the University of Washington.  She has also completed a course in business French.  She reads and writes French.','2'),
-	(9,'Dodsworth','Anne','Sales Representative','Ms.',0,'1990-06-10','1994-11-15','7 Houndstooth Rd.','London',NULL,'WG2 7LT','UK','(71) 555-4444','452',5,'Anne has a BA degree in English from St. Lawrence College.  She is fluent in French and German.','5');
+# ************************************************************
+# Sequel Pro SQL dump
+# Version 4541
+#
+# http://www.sequelpro.com/
+# https://github.com/sequelpro/sequelpro
+#
+# Host: 127.0.0.1 (MySQL 5.7.10)
+# Database: cola-ui
+# Generation Time: 2017-03-20 02:52:58 +0000
+# ************************************************************
 
-INSERT INTO `COLA_CATEGORY` (`ID`, `CATEGORY_NAME`, `PARENT_ID`, `DESCRIPTION`)
-VALUES
-	(1,'饮料',NULL,'软饮料、咖啡、茶、啤酒和啤酒'),
-	(2,'调味品',NULL,'酱汁、酱油、醋、咸盐、蚝油、胡椒粉、芝麻粉'),
-	(3,'零食',NULL,'甜点、糖果、甜面包'),
-	(4,'奶制品',NULL,'奶酪、奶粉、奶油等奶制品'),
-	(5,'粮油',NULL,'面包、饼干、面条、粥'),
-	(6,'肉类/家禽',NULL,'猪肉、进口牛肉、草原羊肉、腊肉、香肠'),
-	(7,'豆制品',NULL,'干果和豆腐'),
-	(8,'海鲜',NULL,'Seaweed and fish');
 
-INSERT INTO `COLA_PRODUCT` (`ID`, `PRODUCT_NAME`,  `CATEGORY_ID`, `QUANTITY_PER_UNIT`, `UNIT_PRICE`, `UNITS_IN_STOCK`, `UNITS_ON_ORDER`, `REORDER_LEVEL`, `DISCONTINUED`)
-VALUES
-	(1,'Chai',1,'10 boxes x 20 bags',18.00,39,0,12,1),
-	(2,'Chang',1,'24 - 12 oz bottles',19.00,17,40,25,1),
-	(3,'Aniseed Syrup',2,'12 - 550 ml bottles',10.00,13,70,66,0),
-	(4,'Chef Anton\'s Cajun Seasoning',2,'48 - 6 oz jars',22.00,53,0,0,0),
-	(5,'Chef Anton\'s Gumbo Mix',2,'36 boxes',21.35,0,0,0,1),
-	(6,'Grandma\'s Boysenberry Spread',2,'12 - 8 oz jars',25.00,120,0,25,1),
-	(7,'Uncle Bob\'s Organic Dried Pears',7,'12 - 1 lb pkgs.',30.00,15,0,10,0),
-	(8,'Northwoods Cranberry Sauce',2,'12 - 12 oz jars',40.00,6,0,0,0),
-	(9,'Mishi Kobe Niku',6,'18 - 500 g pkgs.',97.00,29,0,0,1),
-	(10,'Ikura',8,'12 - 200 ml jars',31.00,31,0,0,0),
-	(11,'Queso Cabrales',4,'1 kg pkg.',21.00,22,30,30,0),
-	(12,'Queso Manchego La Pastora',4,'10 - 500 g pkgs.',38.00,86,0,0,0),
-	(13,'Konbu',8,'2 kg box',6.00,24,0,5,0),
-	(14,'Tofu',7,'40 - 100 g pkgs.',23.25,35,0,0,0),
-	(15,'Genen Shouyu',2,'24 - 250 ml bottles',15.50,39,0,5,0),
-	(16,'Pavlova',3,'32 - 500 g boxes',17.45,29,0,10,0),
-	(17,'Alice Mutton',6,'20 - 1 kg tins',39.00,0,0,0,1),
-	(18,'Carnarvon Tigers',8,'16 kg pkg.',62.50,42,0,0,0),
-	(19,'Teatime Chocolate Biscuits',3,'10 boxes x 12 pieces',9.20,25,0,5,0),
-	(20,'Sir Rodney\'s Marmalade',3,'30 gift boxes',81.00,40,0,0,0),
-	(21,'Sir Rodney\'s Scones',3,'24 pkgs. x 4 pieces',10.00,3,40,5,0),
-	(22,'Gustaf\'s Knäckebröd',5,'24 - 500 g pkgs.',21.00,104,0,25,0),
-	(23,'Tunnbröd',5,'12 - 250 g pkgs.',9.00,61,0,25,0),
-	(24,'Guaran?Fantástica',1,'12 - 355 ml cans',4.50,20,0,0,1),
-	(25,'NuNuCa Nu?Nougat-Creme',3,'20 - 450 g glasses',14.00,76,0,30,0),
-	(26,'Gumbär Gummibärchen',3,'100 - 250 g bags',31.23,15,0,0,0),
-	(27,'Schoggi Schokolade',3,'100 - 100 g pieces',43.90,49,0,30,0),
-	(28,'Rössle Sauerkraut',7,'25 - 825 g cans',45.60,26,0,0,1),
-	(29,'Thüringer Rostbratwurst',6,'50 bags x 30 sausgs.',123.79,0,0,0,1),
-	(30,'Nord-Ost Matjeshering',8,'10 - 200 g glasses',25.89,10,0,15,0),
-	(31,'Gorgonzola Telino',4,'12 - 100 g pkgs',12.50,0,70,20,1),
-	(32,'Mascarpone Fabioli',4,'24 - 200 g pkgs.',32.00,9,40,25,1),
-	(33,'Geitost',4,'500 g',2.50,112,0,20,1),
-	(34,'Sasquatch Ale',1,'24 - 12 oz bottles',14.00,111,0,15,1),
-	(35,'Steeleye Stout',1,'24 - 12 oz bottles',18.00,20,0,15,0),
-	(36,'Inlagd Sill',8,'24 - 250 g  jars',19.00,112,0,20,0),
-	(37,'Gravad lax',8,'12 - 500 g pkgs.',26.00,11,50,25,0),
-	(38,'Côte de Blaye',1,'12 - 75 cl bottles',263.50,17,0,15,0),
-	(39,'Chartreuse verte',1,'750 cc per bottle',18.00,69,0,5,0),
-	(40,'Boston Crab Meat',8,'24 - 4 oz tins',18.40,123,0,30,0),
-	(41,'Jack\'s New England Clam Chowder',8,'12 - 12 oz cans',9.65,85,0,10,0),
-	(42,'Singaporean Hokkien Fried Mee',5,'32 - 1 kg pkgs.',14.00,26,0,0,1),
-	(43,'Ipoh Coffee',1,'16 - 500 g tins',46.00,17,10,25,0),
-	(44,'Gula Malacca',2,'20 - 2 kg bags',19.45,27,0,15,0),
-	(45,'Røgede sild',8,'1k pkg.',9.50,5,70,15,0),
-	(46,'Spegesild',8,'4 - 450 g glasses',12.00,95,0,0,0),
-	(47,'Zaanse koeken',3,'10 - 4 oz boxes',9.50,36,0,0,0),
-	(48,'Chocolade',3,'10 pkgs.',12.75,15,70,25,0),
-	(49,'Maxilaku',3,'24 - 50 g pkgs.',20.00,10,60,15,0),
-	(50,'Valkoinen suklaa',3,'12 - 100 g bars',16.25,65,0,30,0),
-	(51,'Manjimup Dried Apples',7,'50 - 300 g pkgs.',53.00,20,0,10,0),
-	(52,'Filo Mix',5,'16 - 2 kg boxes',7.00,38,0,25,0),
-	(53,'Perth Pasties',6,'48 pieces',32.80,0,0,0,1),
-	(54,'Tourtière',6,'16 pies',7.45,21,0,10,0),
-	(55,'Pât?chinois',6,'24 boxes x 2 pies',24.00,115,0,20,0),
-	(56,'Gnocchi di nonna Alice',5,'24 - 250 g pkgs.',38.00,21,10,30,0),
-	(57,'Ravioli Angelo',5,'24 - 250 g pkgs.',19.50,36,0,20,0),
-	(58,'Escargots de Bourgogne',8,'24 pieces',13.25,62,0,20,0),
-	(59,'Raclette Courdavault',4,'5 kg pkg.',55.00,79,0,0,0),
-	(60,'Camembert Pierrot',4,'15 - 300 g rounds',34.00,19,0,0,0),
-	(61,'Sirop d\'érable',2,'24 - 500 ml bottles',28.50,113,0,25,0),
-	(62,'Tarte au sucre',3,'48 pies',49.30,17,0,0,0),
-	(63,'Vegie-spread',2,'15 - 625 g jars',43.90,24,0,5,0),
-	(64,'Wimmers gute Semmelknödel',5,'20 bags x 4 pieces',33.25,22,80,30,0),
-	(65,'Louisiana Fiery Hot Pepper Sauce',2,'32 - 8 oz bottles',21.05,76,0,0,0),
-	(66,'Louisiana Hot Spiced Okra',2,'24 - 8 oz jars',17.00,4,100,20,0),
-	(67,'Laughing Lumberjack Lager',1,'24 - 12 oz bottles',14.00,52,0,10,0),
-	(68,'Scottish Longbreads',3,'10 boxes x 8 pieces',12.50,6,10,15,0),
-	(69,'Gudbrandsdalsost',4,'10 kg pkg.',36.00,26,0,15,0),
-	(70,'Outback Lager',1,'24 - 355 ml bottles',15.00,15,10,30,0),
-	(71,'Fløtemysost',4,'10 - 500 g pkgs.',21.50,26,0,0,0),
-	(72,'Mozzarella di Giovanni',4,'24 - 200 g pkgs.',34.80,14,0,0,0),
-	(73,'Röd Kaviar',8,'24 - 150 g jars',15.00,101,0,5,0),
-	(74,'Longlife Tofu',7,'5 kg pkg.',10.00,4,20,5,0),
-	(75,'Rhönbräu Klosterbier',1,'24 - 0.5 l bottles',7.75,125,0,25,0),
-	(76,'Lakkalikööri',1,'500 ml',18.00,57,0,20,0),
-	(77,'Original Frankfurter grüne Soße',2,'12 boxes',13.00,32,0,15,0),
-	(85250,'Steeleye Stout',1,'24 - 12 oz bottles',18.00,20,0,15,0);
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1', '全国', 1, '-1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('11', '北京市', 11, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1101', '市辖区', 1101, '11');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('110101', '东城区', 110101, '1101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('110102', '西城区', 110102, '1101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('110103', '崇文区', 110103, '1101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('110104', '宣武区', 110104, '1101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('110105', '朝阳区', 110105, '1101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('110106', '丰台区', 110106, '1101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('110107', '石景山区', 110107, '1101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('110108', '海淀区', 110108, '1101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('110109', '门头沟区', 110109, '1101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('110111', '房山区', 110111, '1101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('110112', '通州区', 110112, '1101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('110113', '顺义区', 110113, '1101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('110114', '昌平区', 110114, '1101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('110115', '大兴区', 110115, '1101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('110116', '怀柔区', 110116, '1101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('110117', '平谷区', 110117, '1101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1102', '县', 1102, '11');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('110228', '密云县', 110228, '1102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('110229', '延庆县', 110229, '1102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('12', '天津市', 12, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1201', '市辖区', 1201, '12');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('120101', '和平区', 120101, '1201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('120102', '河东区', 120102, '1201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('120103', '河西区', 120103, '1201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('120104', '南开区', 120104, '1201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('120105', '河北区', 120105, '1201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('120106', '红桥区', 120106, '1201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('120107', '塘沽区', 120107, '1201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('120108', '汉沽区', 120108, '1201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('120109', '大港区', 120109, '1201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('120110', '东丽区', 120110, '1201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('120111', '西青区', 120111, '1201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('120112', '津南区', 120112, '1201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('120113', '北辰区', 120113, '1201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('120114', '武清区', 120114, '1201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('120115', '宝坻区', 120115, '1201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1202', '市辖县', 1202, '12');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('120221', '宁河县', 120221, '1202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('120223', '静海县', 120223, '1202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('120225', '蓟县', 120225, '1202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('13', '河北省', 13, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1301', '石家庄市', 1301, '13');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130101', '市辖区', 130101, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130102', '长安区', 130102, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130103', '桥东区', 130103, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130104', '桥西区', 130104, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130105', '新华区', 130105, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130107', '井陉矿区', 130107, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130108', '裕华区', 130108, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130121', '井陉县', 130121, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130123', '正定县', 130123, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130124', '栾城县', 130124, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130125', '行唐县', 130125, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130126', '灵寿县', 130126, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130127', '高邑县', 130127, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130128', '深泽县', 130128, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130129', '赞皇县', 130129, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130130', '无极县', 130130, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130131', '平山县', 130131, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130132', '元氏县', 130132, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130133', '赵县', 130133, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130181', '辛集市', 130181, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130182', '藁城市', 130182, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130183', '晋州市', 130183, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130184', '新乐市', 130184, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130185', '鹿泉市', 130185, '1301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1302', '唐山市', 1302, '13');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130201', '市辖区', 130201, '1302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130202', '路南区', 130202, '1302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130203', '路北区', 130203, '1302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130204', '古冶区', 130204, '1302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130205', '开平区', 130205, '1302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130207', '丰南区', 130207, '1302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130208', '丰润区', 130208, '1302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130223', '滦县', 130223, '1302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130224', '滦南县', 130224, '1302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130225', '乐亭县', 130225, '1302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130227', '迁西县', 130227, '1302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130229', '玉田县', 130229, '1302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130230', '唐海县', 130230, '1302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130281', '遵化市', 130281, '1302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130283', '迁安市', 130283, '1302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1303', '秦皇岛市', 1303, '13');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130301', '市辖区', 130301, '1303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130302', '海港区', 130302, '1303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130303', '山海关区', 130303, '1303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130304', '北戴河区', 130304, '1303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130321', '青龙满族自治县', 130321, '1303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130322', '昌黎县', 130322, '1303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130323', '抚宁县', 130323, '1303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130324', '卢龙县', 130324, '1303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1304', '邯郸市', 1304, '13');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130401', '市辖区', 130401, '1304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130402', '邯山区', 130402, '1304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130403', '丛台区', 130403, '1304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130404', '复兴区', 130404, '1304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130406', '峰峰矿区', 130406, '1304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130421', '邯郸县', 130421, '1304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130423', '临漳县', 130423, '1304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130424', '成安县', 130424, '1304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130425', '大名县', 130425, '1304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130426', '涉县', 130426, '1304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130427', '磁县', 130427, '1304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130428', '肥乡县', 130428, '1304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130429', '永年县', 130429, '1304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130430', '邱县', 130430, '1304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130431', '鸡泽县', 130431, '1304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130432', '广平县', 130432, '1304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130433', '馆陶县', 130433, '1304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130434', '魏县', 130434, '1304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130435', '曲周县', 130435, '1304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130481', '武安市', 130481, '1304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1305', '邢台市', 1305, '13');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130501', '市辖区', 130501, '1305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130502', '桥东区', 130502, '1305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130503', '桥西区', 130503, '1305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130521', '邢台县', 130521, '1305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130522', '临城县', 130522, '1305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130523', '内邱县', 130523, '1305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130524', '柏乡县', 130524, '1305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130525', '隆尧县', 130525, '1305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130526', '任县', 130526, '1305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130527', '南和县', 130527, '1305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130528', '宁晋县', 130528, '1305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130529', '巨鹿县', 130529, '1305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130530', '新河县', 130530, '1305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130531', '广宗县', 130531, '1305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130532', '平乡县', 130532, '1305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130533', '威县', 130533, '1305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130534', '清河县', 130534, '1305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130535', '临西县', 130535, '1305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130581', '南宫市', 130581, '1305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130582', '沙河市', 130582, '1305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1306', '保定市', 1306, '13');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130601', '市辖区', 130601, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130602', '新市区', 130602, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130603', '北市区', 130603, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130604', '南市区', 130604, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130621', '满城县', 130621, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130622', '清苑县', 130622, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130623', '涞水县', 130623, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130624', '阜平县', 130624, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130625', '徐水县', 130625, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130626', '定兴县', 130626, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130627', '唐县', 130627, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130628', '高阳县', 130628, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130629', '容城县', 130629, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130630', '涞源县', 130630, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130631', '望都县', 130631, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130632', '安新县', 130632, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130633', '易县', 130633, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130634', '曲阳县', 130634, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130635', '蠡县', 130635, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130636', '顺平县', 130636, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130637', '博野县', 130637, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130638', '雄县', 130638, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130681', '涿州市', 130681, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130682', '定州市', 130682, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130683', '安国市', 130683, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130684', '高碑店市', 130684, '1306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1307', '张家口市', 1307, '13');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130701', '市辖区', 130701, '1307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130702', '桥东区', 130702, '1307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130703', '桥西区', 130703, '1307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130705', '宣化区', 130705, '1307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130706', '下花园区', 130706, '1307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130721', '宣化县', 130721, '1307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130722', '张北县', 130722, '1307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130723', '康保县', 130723, '1307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130724', '沽源县', 130724, '1307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130725', '尚义县', 130725, '1307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130726', '蔚县', 130726, '1307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130727', '阳原县', 130727, '1307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130728', '怀安县', 130728, '1307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130729', '万全县', 130729, '1307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130730', '怀来县', 130730, '1307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130731', '涿鹿县', 130731, '1307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130732', '赤城县', 130732, '1307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130733', '崇礼县', 130733, '1307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1308', '承德市', 1308, '13');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130801', '市辖区', 130801, '1308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130802', '双桥区', 130802, '1308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130803', '双滦区', 130803, '1308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130804', '鹰手营子矿区', 130804, '1308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130821', '承德县', 130821, '1308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130822', '兴隆县', 130822, '1308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130823', '平泉县', 130823, '1308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130824', '滦平县', 130824, '1308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130825', '隆化县', 130825, '1308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130826', '丰宁满族自治县', 130826, '1308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130827', '宽城满族自治县', 130827, '1308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130828', '围场满族蒙古族自治县', 130828, '1308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1309', '沧州市', 1309, '13');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130901', '市辖区', 130901, '1309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130902', '新华区', 130902, '1309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130903', '运河区', 130903, '1309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130921', '沧县', 130921, '1309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130922', '青县', 130922, '1309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130923', '东光县', 130923, '1309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130924', '海兴县', 130924, '1309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130925', '盐山县', 130925, '1309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130926', '肃宁县', 130926, '1309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130927', '南皮县', 130927, '1309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130928', '吴桥县', 130928, '1309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130929', '献县', 130929, '1309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130930', '孟村回族自治县', 130930, '1309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130981', '泊头市', 130981, '1309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130982', '任邱市', 130982, '1309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130983', '黄骅市', 130983, '1309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('130984', '河间市', 130984, '1309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1310', '廊坊市', 1310, '13');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131001', '市辖区', 131001, '1310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131002', '安次区', 131002, '1310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131003', '广阳区', 131003, '1310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131022', '固安县', 131022, '1310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131023', '永清县', 131023, '1310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131024', '香河县', 131024, '1310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131025', '大城县', 131025, '1310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131026', '文安县', 131026, '1310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131028', '大厂回族自治县', 131028, '1310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131081', '霸州市', 131081, '1310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131082', '三河市', 131082, '1310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1311', '衡水市', 1311, '13');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131101', '市辖区', 131101, '1311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131102', '桃城区', 131102, '1311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131121', '枣强县', 131121, '1311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131122', '武邑县', 131122, '1311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131123', '武强县', 131123, '1311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131124', '饶阳县', 131124, '1311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131125', '安平县', 131125, '1311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131126', '故城县', 131126, '1311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131127', '景县', 131127, '1311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131128', '阜城县', 131128, '1311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131181', '冀州市', 131181, '1311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('131182', '深州市', 131182, '1311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('14', '山西', 14, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1401', '太原市', 1401, '14');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140101', '市辖区', 140101, '1401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140105', '小店区(人口含高新经济区)', 140105, '1401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140106', '迎泽区', 140106, '1401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140107', '杏花岭区', 140107, '1401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140108', '尖草坪区', 140108, '1401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140109', '万柏林区', 140109, '1401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140110', '晋源区', 140110, '1401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140121', '清徐县', 140121, '1401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140122', '阳曲县', 140122, '1401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140123', '娄烦县', 140123, '1401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140181', '古交市', 140181, '1401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1402', '大同市', 1402, '14');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140201', '市辖区', 140201, '1402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140202', '大同市城区', 140202, '1402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140203', '矿区', 140203, '1402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140211', '南郊区', 140211, '1402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140212', '新荣区', 140212, '1402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140221', '阳高县', 140221, '1402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140222', '天镇县', 140222, '1402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140223', '广灵县', 140223, '1402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140224', '灵丘县', 140224, '1402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140225', '浑源县', 140225, '1402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140226', '左云县', 140226, '1402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140227', '大同县', 140227, '1402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1403', '阳泉市', 1403, '14');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140301', '市辖区', 140301, '1403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140302', '城区', 140302, '1403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140303', '矿区', 140303, '1403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140311', '郊区', 140311, '1403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140321', '平定县', 140321, '1403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140322', '盂县', 140322, '1403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1404', '长治市', 1404, '14');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140401', '市辖区', 140401, '1404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140402', '长治市城区', 140402, '1404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140411', '长治市郊区', 140411, '1404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140421', '长治县', 140421, '1404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140423', '襄垣县', 140423, '1404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140424', '屯留县', 140424, '1404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140425', '平顺县', 140425, '1404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140426', '黎城县', 140426, '1404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140427', '壶关县', 140427, '1404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140428', '长子县', 140428, '1404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140429', '武乡县', 140429, '1404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140430', '沁县', 140430, '1404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140431', '沁源县', 140431, '1404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140481', '潞城市', 140481, '1404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1405', '晋城市', 1405, '14');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140501', '市辖区', 140501, '1405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140502', '晋城市城区', 140502, '1405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140521', '沁水县', 140521, '1405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140522', '阳城县', 140522, '1405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140524', '陵川县', 140524, '1405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140525', '泽州县', 140525, '1405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140581', '高平市', 140581, '1405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1406', '朔州市', 1406, '14');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140601', '市辖区', 140601, '1406');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140602', '朔城区', 140602, '1406');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140603', '平鲁区', 140603, '1406');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140621', '山阴县', 140621, '1406');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140622', '应县', 140622, '1406');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140623', '右玉县', 140623, '1406');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140624', '怀仁县', 140624, '1406');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1407', '晋中市', 1407, '14');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140701', '市辖区', 140701, '1407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140702', '榆次区', 140702, '1407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140721', '榆社县', 140721, '1407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140722', '左权县', 140722, '1407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140723', '和顺县', 140723, '1407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140724', '昔阳县', 140724, '1407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140725', '寿阳县', 140725, '1407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140726', '太谷县', 140726, '1407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140727', '祁县', 140727, '1407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140728', '平遥县', 140728, '1407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140729', '灵石县', 140729, '1407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140781', '介休市', 140781, '1407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1408', '运城市', 1408, '14');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140801', '市辖区', 140801, '1408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140802', '盐湖区', 140802, '1408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140821', '临猗县', 140821, '1408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140822', '万荣县', 140822, '1408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140823', '闻喜县', 140823, '1408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140824', '稷山县', 140824, '1408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140825', '新绛县', 140825, '1408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140826', '绛县', 140826, '1408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140827', '垣曲县', 140827, '1408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140828', '夏县', 140828, '1408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140829', '平陆县', 140829, '1408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140830', '芮城县', 140830, '1408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140881', '永济市', 140881, '1408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140882', '河津市', 140882, '1408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1409', '忻州市', 1409, '14');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140901', '市辖区', 140901, '1409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140902', '忻府区', 140902, '1409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140921', '定襄县', 140921, '1409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140922', '五台县', 140922, '1409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140923', '代县', 140923, '1409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140924', '繁峙县', 140924, '1409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140925', '宁武县', 140925, '1409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140926', '静乐县', 140926, '1409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140927', '神池县', 140927, '1409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140928', '五寨县', 140928, '1409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140929', '岢岚县', 140929, '1409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140930', '河曲县', 140930, '1409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140931', '保德县', 140931, '1409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140932', '偏关县', 140932, '1409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('140981', '原平市', 140981, '1409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1410', '临汾市', 1410, '14');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141001', '市辖区', 141001, '1410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141002', '尧都区', 141002, '1410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141021', '曲沃县', 141021, '1410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141022', '翼城县', 141022, '1410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141023', '襄汾县', 141023, '1410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141024', '洪洞县', 141024, '1410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141025', '古县', 141025, '1410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141026', '安泽县', 141026, '1410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141027', '浮山县', 141027, '1410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141028', '吉县', 141028, '1410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141029', '乡宁县', 141029, '1410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141030', '大宁县', 141030, '1410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141031', '隰县', 141031, '1410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141032', '永和县', 141032, '1410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141033', '蒲县', 141033, '1410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141034', '汾西县', 141034, '1410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141081', '侯马市', 141081, '1410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141082', '霍州市', 141082, '1410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1411', '吕梁市', 1411, '14');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141101', '市辖区', 141101, '1411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141102', '离石区', 141102, '1411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141121', '文水县', 141121, '1411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141122', '交城县', 141122, '1411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141123', '兴县', 141123, '1411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141124', '临县', 141124, '1411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141125', '柳林县', 141125, '1411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141126', '石楼县', 141126, '1411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141127', '岚县', 141127, '1411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141128', '方山县', 141128, '1411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141129', '中阳县', 141129, '1411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141130', '交口县', 141130, '1411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141181', '孝义市', 141181, '1411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('141182', '汾阳市', 141182, '1411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('15', '内蒙古自治区', 15, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1501', '呼和浩特市', 1501, '15');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150101', '市辖区', 150101, '1501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150102', '新城区', 150102, '1501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150103', '回民区', 150103, '1501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150104', '玉泉区', 150104, '1501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150105', '赛罕区', 150105, '1501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150121', '土左旗', 150121, '1501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150122', '托克托县', 150122, '1501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150123', '和林格尔县', 150123, '1501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150124', '清水河县', 150124, '1501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150125', '武川县', 150125, '1501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1502', '包头市', 1502, '15');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150201', '市辖区', 150201, '1502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150202', '东河区', 150202, '1502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150203', '昆都仑区', 150203, '1502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150204', '青山区', 150204, '1502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150205', '石拐区', 150205, '1502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150206', '白云鄂博矿区', 150206, '1502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150207', '九原区', 150207, '1502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150221', '土默特右旗', 150221, '1502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150222', '固阳县', 150222, '1502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150223', '达茂联合旗', 150223, '1502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1503', '乌海市', 1503, '15');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150301', '乌海市辖区', 150301, '1503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150302', '海勃湾区', 150302, '1503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150303', '海南区', 150303, '1503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150304', '乌达区', 150304, '1503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1504', '赤峰市', 1504, '15');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150401', '市辖区', 150401, '1504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150402', '红山区', 150402, '1504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150403', '元宝山区', 150403, '1504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150404', '松山区', 150404, '1504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150421', '阿鲁科尔沁旗', 150421, '1504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150422', '巴林左旗', 150422, '1504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150423', '巴林右旗', 150423, '1504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150424', '林西县', 150424, '1504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150425', '克什克腾旗', 150425, '1504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150426', '翁牛特旗', 150426, '1504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150428', '喀喇沁旗', 150428, '1504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150429', '宁城县', 150429, '1504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150430', '敖汉旗', 150430, '1504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1505', '通辽市', 1505, '15');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150501', '市辖区', 150501, '1505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150502', '科尔沁区', 150502, '1505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150521', '科尔沁左翼中旗', 150521, '1505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150522', '科左后旗', 150522, '1505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150523', '开鲁县', 150523, '1505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150524', '库伦旗', 150524, '1505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150525', '奈曼旗', 150525, '1505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150526', '扎鲁特旗', 150526, '1505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150581', '霍林郭勒市', 150581, '1505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1506', '鄂尔多斯市', 1506, '15');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150602', '东胜区', 150602, '1506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150621', '达拉特旗', 150621, '1506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150622', '准格尔旗', 150622, '1506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150623', '鄂托克前旗', 150623, '1506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150624', '鄂托克旗', 150624, '1506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150625', '杭锦旗', 150625, '1506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150626', '乌审旗', 150626, '1506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150627', '伊金霍洛旗', 150627, '1506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1507', '呼伦贝尔市', 1507, '15');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150701', '市辖区', 150701, '1507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150702', '海拉尔区', 150702, '1507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150721', '阿荣旗', 150721, '1507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150722', '莫力达瓦达斡尔族自治旗', 150722, '1507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150723', '鄂伦春自治旗', 150723, '1507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150724', '鄂温克族自治旗', 150724, '1507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150725', '陈巴尔虎旗镇', 150725, '1507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150726', '新巴尔虎左旗', 150726, '1507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150727', '新巴尔虎右旗', 150727, '1507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150781', '满洲里市', 150781, '1507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150782', '牙克石市', 150782, '1507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150783', '扎兰屯市', 150783, '1507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150784', '额尔古纳市', 150784, '1507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150785', '根河市', 150785, '1507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1508', '巴彦淖尔市', 1508, '15');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150801', '市辖区', 150801, '1508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150802', '临河区', 150802, '1508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150821', '五原县', 150821, '1508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150822', '磴口县', 150822, '1508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150823', '乌拉特前旗', 150823, '1508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150824', '乌拉特中旗', 150824, '1508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150825', '乌拉特后旗', 150825, '1508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150826', '杭锦后旗', 150826, '1508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1509', '乌兰察布市', 1509, '15');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150901', '市辖区', 150901, '1509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150902', '集宁区', 150902, '1509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150921', '卓资县', 150921, '1509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150922', '化德县', 150922, '1509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150923', '商都县', 150923, '1509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150924', '兴和县', 150924, '1509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150925', '凉城县', 150925, '1509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150926', '察哈尔右翼前旗', 150926, '1509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150927', '察右中旗', 150927, '1509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150928', '察哈尔右翼后旗', 150928, '1509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150929', '四子王旗', 150929, '1509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('150981', '丰镇市', 150981, '1509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1522', '兴安盟', 1522, '15');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('152201', '乌兰浩特市', 152201, '1522');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('152202', '阿尔山市', 152202, '1522');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('152221', '科右前旗', 152221, '1522');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('152222', '科右中旗', 152222, '1522');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('152223', '扎赉特旗', 152223, '1522');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('152224', '突泉县', 152224, '1522');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1525', '锡林郭勒盟', 1525, '15');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('152501', '二连浩特市', 152501, '1525');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('152502', '锡林浩特市', 152502, '1525');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('152522', '阿巴嘎旗', 152522, '1525');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('152523', '苏尼特左旗', 152523, '1525');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('152524', '苏尼特右旗', 152524, '1525');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('152525', '东乌珠穆沁旗', 152525, '1525');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('152526', '西乌珠穆沁旗', 152526, '1525');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('152527', '太仆寺旗', 152527, '1525');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('152528', '镶黄旗', 152528, '1525');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('152529', '正镶白旗', 152529, '1525');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('152530', '正蓝旗', 152530, '1525');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('152531', '多伦县', 152531, '1525');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('1529', '阿拉善盟', 1529, '15');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('152921', '阿拉善左旗', 152921, '1529');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('152922', '阿拉善右旗', 152922, '1529');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('152923', '额济纳旗', 152923, '1529');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('21', '辽宁省', 21, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2101', '沈阳市', 2101, '21');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210101', '市辖区', 210101, '2101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210102', '和平区', 210102, '2101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210103', '沈河区', 210103, '2101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210104', '大东区', 210104, '2101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210105', '皇姑区', 210105, '2101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210106', '铁西区', 210106, '2101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210111', '苏家屯区', 210111, '2101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210112', '东陵区', 210112, '2101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210113', '新城子区', 210113, '2101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210114', '于洪区', 210114, '2101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210122', '辽中县', 210122, '2101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210123', '康平县', 210123, '2101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210124', '法库县', 210124, '2101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210181', '新民市', 210181, '2101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2102', '大连市', 2102, '21');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210201', '市辖区', 210201, '2102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210202', '中山区', 210202, '2102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210203', '西岗区', 210203, '2102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210204', '沙河口区', 210204, '2102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210211', '甘井子区', 210211, '2102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210212', '旅顺口区', 210212, '2102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210213', '金州区', 210213, '2102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210224', '长海县', 210224, '2102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210281', '瓦房店市', 210281, '2102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210282', '普兰店市', 210282, '2102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210283', '庄河市', 210283, '2102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2103', '鞍山市', 2103, '21');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210301', '市辖区', 210301, '2103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210302', '铁东区', 210302, '2103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210303', '铁西区', 210303, '2103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210304', '立山区', 210304, '2103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210311', '千山区', 210311, '2103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210321', '台安县', 210321, '2103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210323', '岫岩县', 210323, '2103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210381', '海城市', 210381, '2103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2104', '抚顺市', 2104, '21');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210401', '市辖区', 210401, '2104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210402', '新抚区', 210402, '2104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210403', '东洲区', 210403, '2104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210404', '望花区', 210404, '2104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210411', '顺城区', 210411, '2104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210421', '抚顺县', 210421, '2104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210422', '新宾满族自治县', 210422, '2104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210423', '清原满族自治县', 210423, '2104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2105', '本溪市', 2105, '21');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210501', '市辖区', 210501, '2105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210502', '平山区', 210502, '2105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210503', '溪湖区', 210503, '2105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210504', '明山区', 210504, '2105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210505', '南芬区', 210505, '2105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210521', '本溪满族自治县', 210521, '2105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210522', '桓仁满族自治县', 210522, '2105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2106', '丹东市', 2106, '21');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210601', '市辖区', 210601, '2106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210602', '元宝区', 210602, '2106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210603', '振兴区', 210603, '2106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210604', '振安区', 210604, '2106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210624', '宽甸满族自治县', 210624, '2106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210681', '东港市', 210681, '2106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210682', '凤城市', 210682, '2106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2107', '锦州市', 2107, '21');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210701', '市辖区', 210701, '2107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210702', '古塔区', 210702, '2107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210703', '凌河区', 210703, '2107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210711', '太和区', 210711, '2107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210726', '黑山县', 210726, '2107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210727', '义县', 210727, '2107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210781', '凌海市', 210781, '2107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210782', '北镇市', 210782, '2107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2108', '营口市', 2108, '21');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210801', '市辖区', 210801, '2108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210802', '站前区', 210802, '2108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210803', '西市区', 210803, '2108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210804', '鲅鱼圈区', 210804, '2108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210811', '老边区', 210811, '2108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210881', '盖州市', 210881, '2108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210882', '大石桥市', 210882, '2108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2109', '阜新市', 2109, '21');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210901', '市辖区', 210901, '2109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210902', '海州区', 210902, '2109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210903', '新邱区', 210903, '2109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210904', '太平区', 210904, '2109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210905', '清河门区', 210905, '2109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210911', '细河区', 210911, '2109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210921', '阜新蒙古族自治县', 210921, '2109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('210922', '彰武县', 210922, '2109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2110', '辽阳市', 2110, '21');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211001', '市辖区', 211001, '2110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211002', '白塔区', 211002, '2110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211003', '文圣区', 211003, '2110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211004', '宏伟区', 211004, '2110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211005', '弓长岭区', 211005, '2110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211011', '太子河区', 211011, '2110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211021', '辽阳县', 211021, '2110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211081', '灯塔市', 211081, '2110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2111', '盘锦市', 2111, '21');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211101', '市辖区', 211101, '2111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211102', '双台子区', 211102, '2111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211103', '兴隆台区', 211103, '2111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211121', '大洼县', 211121, '2111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211122', '盘山县', 211122, '2111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2112', '铁岭市', 2112, '21');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211201', '市辖区', 211201, '2112');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211202', '银州区', 211202, '2112');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211204', '清河区', 211204, '2112');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211221', '铁岭县', 211221, '2112');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211223', '西丰县', 211223, '2112');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211224', '昌图县', 211224, '2112');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211281', '调兵山市', 211281, '2112');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211282', '开原市', 211282, '2112');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2113', '朝阳市', 2113, '21');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211301', '市辖区', 211301, '2113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211302', '双塔区', 211302, '2113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211303', '龙城区', 211303, '2113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211321', '朝阳县', 211321, '2113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211322', '建平县', 211322, '2113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211324', '喀喇沁左翼蒙古族自治县', 211324, '2113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211381', '北票市', 211381, '2113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211382', '凌源市', 211382, '2113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2114', '葫芦岛市', 2114, '21');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211401', '市辖区', 211401, '2114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211402', '连山区', 211402, '2114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211403', '龙港区', 211403, '2114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211404', '南票区', 211404, '2114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211421', '绥中县', 211421, '2114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211422', '建昌县', 211422, '2114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('211481', '兴城市', 211481, '2114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('22', '吉林省', 22, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2201', '长春市', 2201, '22');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220101', '长春市辖区', 220101, '2201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220102', '南关区', 220102, '2201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220103', '宽城区', 220103, '2201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220104', '朝阳区', 220104, '2201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220105', '二道区', 220105, '2201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220106', '绿园区', 220106, '2201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220112', '双阳区', 220112, '2201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220122', '农安县', 220122, '2201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220181', '九台市', 220181, '2201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220182', '榆树市', 220182, '2201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220183', '德惠市', 220183, '2201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2202', '吉林市', 2202, '22');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220201', '吉林市辖区', 220201, '2202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220202', '昌邑区', 220202, '2202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220203', '龙潭区', 220203, '2202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220204', '船营区', 220204, '2202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220211', '丰满区', 220211, '2202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220221', '永吉县', 220221, '2202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220281', '蛟河市', 220281, '2202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220282', '桦甸市', 220282, '2202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220283', '舒兰市', 220283, '2202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220284', '磐石市', 220284, '2202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2203', '四平市', 2203, '22');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220301', '四平市辖区', 220301, '2203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220302', '铁西区', 220302, '2203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220303', '铁东区', 220303, '2203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220322', '梨树县', 220322, '2203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220323', '伊通满族自治县', 220323, '2203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220381', '公主岭市', 220381, '2203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220382', '双辽市', 220382, '2203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2204', '辽源市', 2204, '22');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220401', '辽源市辖区', 220401, '2204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220402', '龙山区', 220402, '2204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220403', '西安区', 220403, '2204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220421', '东丰县', 220421, '2204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220422', '东辽县', 220422, '2204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2205', '通化市', 2205, '22');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220501', '通化市辖区', 220501, '2205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220502', '东昌区', 220502, '2205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220503', '二道江区', 220503, '2205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220521', '通化县', 220521, '2205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220523', '辉南县', 220523, '2205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220524', '柳河县', 220524, '2205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220581', '梅河口市', 220581, '2205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220582', '集安市', 220582, '2205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2206', '白山市', 2206, '22');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220601', '白山市辖区', 220601, '2206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220602', '八道江区', 220602, '2206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220604', '江源区', 220604, '2206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220621', '抚松县', 220621, '2206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220622', '靖宇县', 220622, '2206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220623', '长白朝鲜族自治县', 220623, '2206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220681', '临江市', 220681, '2206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2207', '松原市', 2207, '22');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220701', '松原市辖区', 220701, '2207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220702', '宁江区', 220702, '2207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220721', '前郭尔罗斯蒙古族自治县', 220721, '2207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220722', '长岭县', 220722, '2207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220723', '乾安县', 220723, '2207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220724', '扶余县', 220724, '2207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2208', '白城市', 2208, '22');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220801', '白城市辖区', 220801, '2208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220802', '洮北区', 220802, '2208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220821', '镇赉县', 220821, '2208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220822', '通榆县', 220822, '2208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220881', '洮南市', 220881, '2208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('220882', '大安市', 220882, '2208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2224', '延边朝鲜族自治州', 2224, '22');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('222401', '延吉市', 222401, '2224');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('222402', '图们市', 222402, '2224');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('222403', '敦化市', 222403, '2224');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('222404', '珲春市', 222404, '2224');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('222405', '龙井市', 222405, '2224');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('222406', '和龙市', 222406, '2224');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('222424', '汪清县', 222424, '2224');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('222426', '安图县', 222426, '2224');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('23', '黑龙江省', 23, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2301', '哈尔滨市', 2301, '23');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230101', '市辖区', 230101, '2301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230102', '道里区', 230102, '2301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230103', '南岗区', 230103, '2301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230104', '道外区', 230104, '2301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230108', '平房区', 230108, '2301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230109', '松北区', 230109, '2301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230110', '香坊区', 230110, '2301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230111', '呼兰区', 230111, '2301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230112', '阿城区', 230112, '2301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230123', '依兰县', 230123, '2301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230124', '方正县', 230124, '2301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230125', '宾县', 230125, '2301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230126', '巴彦县', 230126, '2301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230127', '木兰县', 230127, '2301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230128', '通河县', 230128, '2301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230129', '延寿县', 230129, '2301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230182', '双城市', 230182, '2301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230183', '尚志市', 230183, '2301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230184', '五常市', 230184, '2301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2302', '齐齐哈尔市', 2302, '23');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230201', '市辖区', 230201, '2302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230202', '龙沙区', 230202, '2302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230203', '建华区', 230203, '2302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230204', '铁锋区', 230204, '2302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230205', '昂昂溪区', 230205, '2302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230206', '富拉尔基区', 230206, '2302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230207', '碾子山区', 230207, '2302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230208', '梅里斯达斡尔族区', 230208, '2302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230221', '龙江县', 230221, '2302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230223', '依安县', 230223, '2302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230224', '泰来县', 230224, '2302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230225', '甘南县', 230225, '2302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230227', '富裕县', 230227, '2302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230229', '克山县', 230229, '2302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230230', '克东县', 230230, '2302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230231', '拜泉县', 230231, '2302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230281', '讷河市', 230281, '2302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2303', '鸡西市', 2303, '23');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230301', '市辖区', 230301, '2303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230302', '鸡冠区', 230302, '2303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230303', '恒山区', 230303, '2303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230304', '滴道区', 230304, '2303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230305', '梨树区', 230305, '2303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230306', '城子河区', 230306, '2303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230307', '麻山区', 230307, '2303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230321', '鸡东县', 230321, '2303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230381', '虎林市', 230381, '2303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230382', '密山市', 230382, '2303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2304', '鹤岗市', 2304, '23');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230401', '市辖区', 230401, '2304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230402', '向阳区', 230402, '2304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230403', '工农区', 230403, '2304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230404', '南山区', 230404, '2304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230405', '兴安区', 230405, '2304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230406', '东山区', 230406, '2304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230407', '兴山区', 230407, '2304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230421', '萝北县', 230421, '2304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230422', '绥滨县', 230422, '2304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2305', '双鸭山市', 2305, '23');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230501', '市辖区', 230501, '2305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230502', '尖山区', 230502, '2305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230503', '岭东区', 230503, '2305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230505', '四方台区', 230505, '2305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230506', '宝山区', 230506, '2305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230521', '集贤县', 230521, '2305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230522', '友谊县', 230522, '2305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230523', '宝清县', 230523, '2305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230524', '饶河县', 230524, '2305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2306', '大庆市', 2306, '23');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230601', '市辖区', 230601, '2306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230602', '萨尔图区', 230602, '2306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230603', '龙凤区', 230603, '2306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230604', '让胡路区', 230604, '2306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230605', '红岗区', 230605, '2306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230606', '大同区', 230606, '2306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230621', '肇州县', 230621, '2306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230622', '肇源县', 230622, '2306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230623', '林甸县', 230623, '2306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230624', '杜尔伯特县', 230624, '2306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2307', '伊春市', 2307, '23');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230701', '市辖区', 230701, '2307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230702', '伊春区', 230702, '2307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230703', '南岔区', 230703, '2307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230704', '友好区', 230704, '2307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230705', '西林区', 230705, '2307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230706', '翠峦区', 230706, '2307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230707', '新青区', 230707, '2307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230708', '美溪区', 230708, '2307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230709', '金山屯区', 230709, '2307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230710', '五营区', 230710, '2307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230711', '乌马河区', 230711, '2307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230712', '汤旺河区', 230712, '2307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230713', '带岭区', 230713, '2307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230714', '乌伊岭区', 230714, '2307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230715', '红星区', 230715, '2307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230716', '上甘岭区', 230716, '2307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230722', '嘉荫县', 230722, '2307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230781', '铁力市', 230781, '2307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2308', '佳木斯市', 2308, '23');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230801', '市辖区', 230801, '2308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230803', '向阳区', 230803, '2308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230804', '前进区', 230804, '2308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230805', '东风区', 230805, '2308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230811', '郊区', 230811, '2308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230822', '桦南县', 230822, '2308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230826', '桦川县', 230826, '2308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230828', '汤原县', 230828, '2308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230833', '抚远县', 230833, '2308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230881', '同江市', 230881, '2308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230882', '富锦市', 230882, '2308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2309', '七台河市', 2309, '23');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230901', '市辖区', 230901, '2309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230902', '新兴区', 230902, '2309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230903', '桃山区', 230903, '2309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230904', '茄子河区', 230904, '2309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('230921', '勃利县', 230921, '2309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2310', '牡丹江市', 2310, '23');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231001', '市辖区', 231001, '2310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231002', '东安区', 231002, '2310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231003', '阳明区', 231003, '2310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231004', '爱民区', 231004, '2310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231005', '西安区', 231005, '2310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231024', '东宁县', 231024, '2310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231025', '林口县', 231025, '2310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231081', '绥芬河市', 231081, '2310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231083', '海林市', 231083, '2310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231084', '宁安市', 231084, '2310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231085', '穆棱市', 231085, '2310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2311', '黑河市', 2311, '23');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231101', '市辖区', 231101, '2311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231102', '爱辉区', 231102, '2311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231121', '嫩江县', 231121, '2311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231123', '逊克县', 231123, '2311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231124', '孙吴县', 231124, '2311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231181', '北安市', 231181, '2311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231182', '五大连池市', 231182, '2311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2312', '绥化市', 2312, '23');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231201', '市辖区', 231201, '2312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231202', '北林区', 231202, '2312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231221', '望奎县', 231221, '2312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231222', '兰西县', 231222, '2312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231223', '青冈县', 231223, '2312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231224', '庆安县', 231224, '2312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231225', '明水县', 231225, '2312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231226', '绥棱县', 231226, '2312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231281', '安达市', 231281, '2312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231282', '肇东市', 231282, '2312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('231283', '海伦市', 231283, '2312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('2327', '大兴安岭地区', 2327, '23');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('232701', '加格达奇区', 232701, '2327');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('232702', '松岭区', 232702, '2327');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('232703', '新林区', 232703, '2327');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('232704', '呼中区', 232704, '2327');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('232721', '呼玛县', 232721, '2327');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('232722', '塔河县', 232722, '2327');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('232723', '漠河县', 232723, '2327');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('31', '上海市', 31, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3101', '市辖区', 3101, '31');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('310101', '黄浦区', 310101, '3101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('310103', '卢湾区', 310103, '3101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('310104', '徐汇区', 310104, '3101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('310105', '长宁区', 310105, '3101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('310106', '静安区', 310106, '3101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('310107', '普陀区', 310107, '3101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('310108', '闸北区', 310108, '3101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('310109', '虹口区', 310109, '3101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('310110', '杨浦区', 310110, '3101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('310112', '闵行区', 310112, '3101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('310113', '宝山区', 310113, '3101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('310114', '嘉定区', 310114, '3101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('310115', '浦东新区', 310115, '3101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('310116', '金山区', 310116, '3101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('310117', '松江区', 310117, '3101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('310118', '青浦区', 310118, '3101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('310119', '南汇区', 310119, '3101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('310120', '奉贤区', 310120, '3101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3102', '县', 3102, '31');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('310230', '崇明县', 310230, '3102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('32', '江苏省', 32, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3201', '南京市', 3201, '32');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320101', '市辖区', 320101, '3201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320102', '玄武区', 320102, '3201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320103', '白下区', 320103, '3201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320104', '秦淮区', 320104, '3201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320105', '建邺区', 320105, '3201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320106', '鼓楼区', 320106, '3201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320107', '下关区', 320107, '3201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320111', '浦口区', 320111, '3201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320113', '栖霞区', 320113, '3201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320114', '雨花台区', 320114, '3201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320115', '江宁区', 320115, '3201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320116', '六合区', 320116, '3201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320124', '溧水县', 320124, '3201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320125', '高淳县', 320125, '3201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3202', '无锡市', 3202, '32');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320201', '市辖区', 320201, '3202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320202', '崇安区', 320202, '3202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320203', '南长区', 320203, '3202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320204', '北塘区', 320204, '3202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320205', '锡山区', 320205, '3202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320206', '惠山区', 320206, '3202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320211', '滨湖区', 320211, '3202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320281', '江阴市', 320281, '3202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320282', '宜兴市', 320282, '3202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3203', '徐州市', 3203, '32');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320301', '市辖区', 320301, '3203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320302', '鼓楼区', 320302, '3203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320303', '云龙区', 320303, '3203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320304', '九里区', 320304, '3203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320305', '贾汪区', 320305, '3203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320311', '泉山区', 320311, '3203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320321', '丰县', 320321, '3203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320322', '沛县', 320322, '3203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320323', '铜山县', 320323, '3203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320324', '睢宁县', 320324, '3203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320381', '新沂市', 320381, '3203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320382', '邳州市', 320382, '3203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3204', '常州市', 3204, '32');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320401', '常州市区', 320401, '3204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320402', '天宁区', 320402, '3204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320404', '钟楼区', 320404, '3204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320405', '戚墅堰区', 320405, '3204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320411', '新北区', 320411, '3204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320412', '武进区', 320412, '3204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320481', '溧阳市', 320481, '3204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320482', '金坛市', 320482, '3204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3205', '苏州市', 3205, '32');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320501', '市辖区', 320501, '3205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320502', '沧浪区', 320502, '3205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320503', '平江区', 320503, '3205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320504', '金阊区', 320504, '3205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320505', '苏州高新区虎丘区', 320505, '3205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320506', '吴中区', 320506, '3205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320507', '相城区', 320507, '3205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320581', '常熟市', 320581, '3205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320582', '张家港市', 320582, '3205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320583', '昆山市', 320583, '3205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320584', '吴江市', 320584, '3205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320585', '太仓市', 320585, '3205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3206', '南通市', 3206, '32');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320601', '市辖区', 320601, '3206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320602', '崇川区', 320602, '3206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320611', '港闸区', 320611, '3206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320621', '海安县', 320621, '3206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320623', '如东', 320623, '3206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320681', '启东市', 320681, '3206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320682', '如皋市	', 320682, '3206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320683', '通州市', 320683, '3206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320684', '海门市', 320684, '3206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3207', '连云港市', 3207, '32');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320701', '市辖区', 320701, '3207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320703', '连云区', 320703, '3207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320705', '新浦区', 320705, '3207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320706', '海州区', 320706, '3207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320721', '赣榆县', 320721, '3207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320722', '东海县', 320722, '3207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320723', '灌云县', 320723, '3207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320724', '灌南县', 320724, '3207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3208', '淮安市', 3208, '32');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320801', '市辖区', 320801, '3208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320802', '清河区', 320802, '3208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320803', '楚州区', 320803, '3208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320804', '淮阴区', 320804, '3208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320811', '清浦区', 320811, '3208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320826', '涟水县', 320826, '3208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320829', '洪泽县', 320829, '3208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320830', '盱眙县', 320830, '3208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320831', '金湖县', 320831, '3208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3209', '盐城市', 3209, '32');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320901', '市辖区', 320901, '3209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320902', '亭湖区', 320902, '3209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320903', '盐都区', 320903, '3209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320921', '响水县', 320921, '3209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320922', '滨海县', 320922, '3209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320923', '阜宁县', 320923, '3209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320924', '射阳县', 320924, '3209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320925', '建湖县', 320925, '3209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320981', '东台市', 320981, '3209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('320982', '大丰市', 320982, '3209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3210', '扬州市', 3210, '32');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321001', '', 321001, '3210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321002', '广陵区', 321002, '3210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321003', '邗江区', 321003, '3210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321011', '维扬区', 321011, '3210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321023', '宝应县', 321023, '3210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321081', '仪征市', 321081, '3210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321084', '高邮市', 321084, '3210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321088', '江都市', 321088, '3210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3211', '镇江市', 3211, '32');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321101', '市区', 321101, '3211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321102', '京口区', 321102, '3211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321111', '润州区', 321111, '3211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321112', '丹徒区', 321112, '3211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321181', '丹阳市', 321181, '3211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321182', '扬中市', 321182, '3211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321183', '句容市', 321183, '3211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3212', '泰州市', 3212, '32');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321201', '市辖区', 321201, '3212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321202', '海陵区', 321202, '3212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321203', '高港区', 321203, '3212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321281', '兴化市', 321281, '3212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321282', '靖江市', 321282, '3212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321283', '泰兴市', 321283, '3212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321284', '姜堰市', 321284, '3212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3213', '宿迁市', 3213, '32');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321301', '市辖区', 321301, '3213');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321302', '宿城区', 321302, '3213');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321311', '宿豫区', 321311, '3213');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321322', '沭阳县', 321322, '3213');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321323', '泗阳县', 321323, '3213');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('321324', '泗洪县', 321324, '3213');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('33', '浙江省', 33, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3301', '杭州市', 3301, '33');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330101', '市辖区', 330101, '3301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330102', '上城区', 330102, '3301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330103', '下城区', 330103, '3301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330104', '江干区', 330104, '3301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330105', '拱墅区', 330105, '3301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330106', '西湖区', 330106, '3301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330108', '滨江区', 330108, '3301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330109', '萧山区', 330109, '3301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330110', '余杭区', 330110, '3301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330122', '桐庐县', 330122, '3301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330127', '淳安县', 330127, '3301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330182', '建德市', 330182, '3301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330183', '富阳市', 330183, '3301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330185', '临安市', 330185, '3301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3302', '宁波市', 3302, '33');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330201', '市辖区', 330201, '3302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330203', '海曙区', 330203, '3302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330204', '江东区', 330204, '3302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330205', '江北区', 330205, '3302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330206', '北仑区', 330206, '3302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330211', '镇海区', 330211, '3302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330212', '鄞州区', 330212, '3302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330225', '象山县', 330225, '3302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330226', '宁海县', 330226, '3302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330281', '余姚市', 330281, '3302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330282', '慈溪市', 330282, '3302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330283', '奉化市', 330283, '3302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3303', '温州市', 3303, '33');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330301', '市辖区', 330301, '3303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330302', '鹿城区', 330302, '3303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330303', '龙湾区', 330303, '3303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330304', '瓯海区', 330304, '3303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330322', '洞头县', 330322, '3303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330324', '永嘉县', 330324, '3303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330326', '平阳县', 330326, '3303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330327', '苍南县', 330327, '3303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330328', '文成县', 330328, '3303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330329', '泰顺县', 330329, '3303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330381', '瑞安市', 330381, '3303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330382', '乐清市', 330382, '3303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3304', '嘉兴市', 3304, '33');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330401', '市辖区', 330401, '3304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330402', '南湖区', 330402, '3304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330411', '秀洲区', 330411, '3304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330421', '嘉善县', 330421, '3304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330424', '海盐县', 330424, '3304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330481', '海宁市', 330481, '3304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330482', '平湖市', 330482, '3304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330483', '桐乡市', 330483, '3304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3305', '湖州市', 3305, '33');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330501', '市辖区', 330501, '3305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330502', '吴兴区', 330502, '3305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330503', '南浔区', 330503, '3305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330521', '德清县', 330521, '3305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330522', '长兴县', 330522, '3305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330523', '安吉县', 330523, '3305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3306', '绍兴市', 3306, '33');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330601', '市辖区', 330601, '3306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330602', '越城区', 330602, '3306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330621', '绍兴县', 330621, '3306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330624', '新昌县', 330624, '3306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330681', '诸暨市', 330681, '3306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330682', '上虞市', 330682, '3306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330683', '嵊州市', 330683, '3306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3307', '金华市', 3307, '33');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330701', '市辖区', 330701, '3307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330702', '婺城区', 330702, '3307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330703', '金东区', 330703, '3307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330723', '武义县', 330723, '3307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330726', '浦江县', 330726, '3307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330727', '磐安县', 330727, '3307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330781', '兰溪市', 330781, '3307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330782', '义乌市', 330782, '3307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330783', '东阳市', 330783, '3307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330784', '永康市', 330784, '3307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3308', '衢州市', 3308, '33');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330801', '市辖区', 330801, '3308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330802', '柯城区', 330802, '3308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330803', '衢江区', 330803, '3308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330822', '常山县', 330822, '3308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330824', '开化县', 330824, '3308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330825', '龙游县', 330825, '3308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330881', '江山市', 330881, '3308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3309', '舟山市', 3309, '33');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330901', '市辖区', 330901, '3309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330902', '定海区', 330902, '3309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330903', '普陀区', 330903, '3309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330921', '岱山县', 330921, '3309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('330922', '嵊泗县', 330922, '3309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3310', '台州市', 3310, '33');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('331001', '市辖区', 331001, '3310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('331002', '椒江区', 331002, '3310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('331003', '黄岩区', 331003, '3310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('331004', '路桥区', 331004, '3310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('331021', '玉环县', 331021, '3310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('331022', '三门县', 331022, '3310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('331023', '天台县', 331023, '3310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('331024', '仙居县', 331024, '3310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('331081', '温岭市', 331081, '3310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('331082', '临海市', 331082, '3310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3311', '丽水市', 3311, '33');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('331101', '市辖区', 331101, '3311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('331102', '莲都区', 331102, '3311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('331121', '青田县', 331121, '3311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('331122', '缙云县', 331122, '3311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('331123', '遂昌县', 331123, '3311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('331124', '松阳县', 331124, '3311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('331125', '云和县', 331125, '3311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('331126', '庆元县', 331126, '3311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('331127', '景宁畲族自治县', 331127, '3311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('331181', '龙泉市', 331181, '3311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('34', '安徽省', 34, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3401', '合肥市', 3401, '34');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340101', '市辖区', 340101, '3401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340102', '瑶海区', 340102, '3401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340103', '庐阳区', 340103, '3401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340104', '蜀山区', 340104, '3401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340111', '包河区', 340111, '3401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340121', '长丰县', 340121, '3401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340122', '肥东县', 340122, '3401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340123', '肥西县', 340123, '3401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3402', '芜湖市', 3402, '34');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340201', '市辖区', 340201, '3402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340202', '镜湖区', 340202, '3402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340203', '弋江区', 340203, '3402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340207', '鸠江区', 340207, '3402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340208', '三山区', 340208, '3402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340221', '芜湖县', 340221, '3402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340222', '繁昌县', 340222, '3402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340223', '南陵县', 340223, '3402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3403', '蚌埠市', 3403, '34');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340301', '市辖区', 340301, '3403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340302', '龙子湖区', 340302, '3403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340303', '蚌山区', 340303, '3403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340304', '禹会区', 340304, '3403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340311', '淮上区', 340311, '3403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340321', '怀远县', 340321, '3403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340322', '五河县', 340322, '3403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340323', '固镇县', 340323, '3403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3404', '淮南市', 3404, '34');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340401', '市辖区', 340401, '3404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340402', '大通区', 340402, '3404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340403', '田家庵区', 340403, '3404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340404', '谢家集区', 340404, '3404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340405', '八公山区', 340405, '3404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340406', '潘集区', 340406, '3404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340421', '凤台县', 340421, '3404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3405', '马鞍山市', 3405, '34');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340501', '市辖区', 340501, '3405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340502', '金家庄区', 340502, '3405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340503', '花山区', 340503, '3405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340504', '雨山区', 340504, '3405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340521', '当涂县', 340521, '3405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3406', '淮北市', 3406, '34');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340601', '市辖区', 340601, '3406');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340602', '杜集区', 340602, '3406');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340603', '相山区', 340603, '3406');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340604', '烈山区', 340604, '3406');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340621', '濉溪县', 340621, '3406');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3407', '铜陵市', 3407, '34');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340701', '市辖区', 340701, '3407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340702', '铜官山区', 340702, '3407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340703', '狮子山区', 340703, '3407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340711', '铜陵市郊区', 340711, '3407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340721', '铜陵县', 340721, '3407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3408', '安庆市', 3408, '34');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340801', '市辖区', 340801, '3408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340802', '迎江区', 340802, '3408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340803', '大观区', 340803, '3408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340811', '宜秀区', 340811, '3408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340822', '怀宁县', 340822, '3408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340823', '枞阳县', 340823, '3408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340824', '潜山县', 340824, '3408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340825', '太湖县', 340825, '3408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340826', '宿松县', 340826, '3408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340827', '望江县', 340827, '3408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340828', '岳西县', 340828, '3408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('340881', '桐城市', 340881, '3408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3410', '黄山市', 3410, '34');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341001', '市辖区', 341001, '3410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341002', '屯溪区', 341002, '3410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341003', '黄山区', 341003, '3410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341004', '徽州区', 341004, '3410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341021', '歙县', 341021, '3410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341022', '休宁县', 341022, '3410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341023', '黟县', 341023, '3410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341024', '祁门县', 341024, '3410');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3411', '滁州市', 3411, '34');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341101', '市辖区', 341101, '3411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341102', '琅琊区', 341102, '3411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341103', '南谯区', 341103, '3411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341122', '来安县', 341122, '3411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341124', '全椒县', 341124, '3411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341125', '定远县', 341125, '3411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341126', '凤阳县', 341126, '3411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341181', '天长市', 341181, '3411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341182', '明光市', 341182, '3411');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3412', '阜阳市', 3412, '34');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341201', '市辖区', 341201, '3412');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341202', '颍州区', 341202, '3412');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341203', '颍东区', 341203, '3412');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341204', '颍泉区', 341204, '3412');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341221', '临泉县', 341221, '3412');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341222', '太和县', 341222, '3412');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341225', '阜南县', 341225, '3412');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341226', '颍上县', 341226, '3412');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341282', '界首市', 341282, '3412');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3413', '宿州市', 3413, '34');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341301', '市辖区', 341301, '3413');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341302', '墉桥区', 341302, '3413');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341321', '砀山县', 341321, '3413');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341322', '萧县', 341322, '3413');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341323', '灵璧县', 341323, '3413');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341324', '泗县', 341324, '3413');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3414', '巢湖市', 3414, '34');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341401', '市辖区', 341401, '3414');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341402', '居巢区', 341402, '3414');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341421', '庐江县', 341421, '3414');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341422', '无为县', 341422, '3414');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341423', '含山县', 341423, '3414');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341424', '和县', 341424, '3414');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3415', '六安市', 3415, '34');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341501', '市辖区', 341501, '3415');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341502', '金安区', 341502, '3415');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341503', '裕安区', 341503, '3415');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341521', '寿县', 341521, '3415');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341522', '霍邱县', 341522, '3415');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341523', '舒城县', 341523, '3415');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341524', '金寨县', 341524, '3415');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341525', '霍山县', 341525, '3415');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3416', '亳州市', 3416, '34');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341601', '市辖区', 341601, '3416');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341602', '谯城区', 341602, '3416');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341621', '涡阳县', 341621, '3416');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341622', '蒙城县', 341622, '3416');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341623', '利辛县', 341623, '3416');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3417', '池州市', 3417, '34');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341701', '市辖区', 341701, '3417');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341702', '贵池区', 341702, '3417');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341721', '东至县', 341721, '3417');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341722', '石台县', 341722, '3417');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341723', '青阳县', 341723, '3417');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3418', '宣城市', 3418, '34');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341801', '市辖区', 341801, '3418');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341802', '宣州区', 341802, '3418');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341821', '郎溪县', 341821, '3418');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341822', '广德县', 341822, '3418');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341823', '泾县', 341823, '3418');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341824', '绩溪县', 341824, '3418');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341825', '旌德县', 341825, '3418');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('341881', '宁国市', 341881, '3418');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('35', '福建省', 35, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3501', '福州市', 3501, '35');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350101', '市辖区', 350101, '3501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350102', '鼓楼区', 350102, '3501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350103', '台江区', 350103, '3501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350104', '仓山区', 350104, '3501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350105', '马尾区', 350105, '3501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350111', '晋安区', 350111, '3501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350121', '闽侯县', 350121, '3501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350122', '连江县', 350122, '3501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350123', '罗源县', 350123, '3501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350124', '闽清县', 350124, '3501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350125', '永泰县', 350125, '3501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350128', '平潭县', 350128, '3501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350181', '福清市', 350181, '3501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350182', '长乐市', 350182, '3501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3502', '厦门市', 3502, '35');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350201', '市辖区', 350201, '3502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350203', '思明区', 350203, '3502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350205', '海沧区', 350205, '3502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350206', '湖里区', 350206, '3502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350211', '集美区', 350211, '3502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350212', '同安区', 350212, '3502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350213', '翔安区', 350213, '3502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3503', '莆田市', 3503, '35');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350301', '市辖区', 350301, '3503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350302', '城厢区', 350302, '3503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350303', '涵江区', 350303, '3503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350304', '荔城区', 350304, '3503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350305', '秀屿区', 350305, '3503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350322', '仙游县', 350322, '3503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3504', '三明市', 3504, '35');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350401', '市辖区', 350401, '3504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350402', '梅列区', 350402, '3504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350403', '三元区', 350403, '3504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350421', '明溪县', 350421, '3504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350423', '清流县', 350423, '3504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350424', '宁化县', 350424, '3504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350425', '大田县', 350425, '3504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350426', '尤溪县', 350426, '3504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350427', '沙县', 350427, '3504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350428', '将乐县', 350428, '3504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350429', '泰宁县', 350429, '3504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350430', '建宁县', 350430, '3504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350481', '永安市', 350481, '3504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3505', '泉州市', 3505, '35');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350501', '市辖区', 350501, '3505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350502', '鲤城区', 350502, '3505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350503', '丰泽区', 350503, '3505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350504', '洛江区', 350504, '3505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350505', '泉港区', 350505, '3505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350521', '惠安县', 350521, '3505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350524', '安溪县', 350524, '3505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350525', '永春县', 350525, '3505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350526', '德化县', 350526, '3505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350527', '金门县', 350527, '3505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350581', '石狮市', 350581, '3505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350582', '晋江市', 350582, '3505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350583', '南安市', 350583, '3505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3506', '漳州市', 3506, '35');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350601', '市辖区', 350601, '3506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350602', '芗城区', 350602, '3506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350603', '龙文区', 350603, '3506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350622', '云霄县', 350622, '3506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350623', '漳浦县', 350623, '3506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350624', '诏安县', 350624, '3506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350625', '长泰县', 350625, '3506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350626', '东山县', 350626, '3506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350627', '南靖县', 350627, '3506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350628', '平和县', 350628, '3506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350629', '华安县', 350629, '3506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350681', '龙海市', 350681, '3506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3507', '南平市', 3507, '35');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350701', '市辖区', 350701, '3507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350702', '延平区', 350702, '3507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350721', '顺昌县', 350721, '3507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350722', '浦城县', 350722, '3507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350723', '光泽县', 350723, '3507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350724', '松溪县', 350724, '3507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350725', '政和县', 350725, '3507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350781', '邵武市', 350781, '3507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350782', '武夷山市', 350782, '3507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350783', '建瓯市', 350783, '3507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350784', '建阳市', 350784, '3507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3508', '龙岩市', 3508, '35');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350801', '市辖区', 350801, '3508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350802', '新罗区', 350802, '3508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350821', '长汀县', 350821, '3508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350822', '永定县', 350822, '3508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350823', '上杭县', 350823, '3508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350824', '武平县', 350824, '3508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350825', '连城县', 350825, '3508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350881', '漳平市', 350881, '3508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3509', '宁德市　', 3509, '35');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350901', '市辖区', 350901, '3509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350902', '蕉城区', 350902, '3509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350921', '霞浦县', 350921, '3509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350922', '古田县', 350922, '3509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350923', '屏南县', 350923, '3509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350924', '寿宁县', 350924, '3509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350925', '周宁县', 350925, '3509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350926', '柘荣县', 350926, '3509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350981', '福安市', 350981, '3509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('350982', '福鼎市', 350982, '3509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('36', '江西省', 36, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3601', '南昌市', 3601, '36');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360101', '市辖区', 360101, '3601');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360102', '东湖区', 360102, '3601');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360103', '西湖区', 360103, '3601');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360104', '青云谱区', 360104, '3601');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360105', '湾里区', 360105, '3601');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360111', '青山湖区', 360111, '3601');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360121', '南昌县', 360121, '3601');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360122', '新建县', 360122, '3601');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360123', '安义县', 360123, '3601');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360124', '进贤县', 360124, '3601');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3602', '景德镇市', 3602, '36');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360201', '市辖区', 360201, '3602');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360202', '昌江区', 360202, '3602');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360203', '珠山区', 360203, '3602');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360222', '浮梁县', 360222, '3602');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360281', '乐平市', 360281, '3602');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3603', '萍乡市', 3603, '36');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360301', '市辖区', 360301, '3603');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360302', '安源区', 360302, '3603');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360313', '湘东区', 360313, '3603');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360321', '莲花县', 360321, '3603');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360322', '上栗县', 360322, '3603');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360323', '芦溪县', 360323, '3603');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3604', '九江市', 3604, '36');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360401', '市辖区', 360401, '3604');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360402', '庐山区', 360402, '3604');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360403', '浔阳区', 360403, '3604');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360421', '九江县', 360421, '3604');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360423', '武宁县', 360423, '3604');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360424', '修水县', 360424, '3604');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360425', '永修县', 360425, '3604');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360426', '德安县', 360426, '3604');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360427', '星子县', 360427, '3604');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360428', '都昌县', 360428, '3604');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360429', '湖口县', 360429, '3604');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360430', '彭泽县', 360430, '3604');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360481', '瑞昌市', 360481, '3604');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3605', '新余市', 3605, '36');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360501', '市辖区', 360501, '3605');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360502', '渝水区', 360502, '3605');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360521', '分宜县', 360521, '3605');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3606', '鹰潭市', 3606, '36');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360601', '市辖区', 360601, '3606');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360602', '月湖区', 360602, '3606');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360622', '余江县', 360622, '3606');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360681', '贵溪市', 360681, '3606');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3607', '赣州市', 3607, '36');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360701', '市辖区', 360701, '3607');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360702', '章贡区', 360702, '3607');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360721', '赣县', 360721, '3607');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360722', '信丰县', 360722, '3607');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360723', '大余县', 360723, '3607');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360724', '上犹县', 360724, '3607');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360725', '崇义县', 360725, '3607');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360726', '安远县', 360726, '3607');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360727', '龙南县', 360727, '3607');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360728', '定南县', 360728, '3607');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360729', '全南县', 360729, '3607');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360730', '宁都县', 360730, '3607');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360731', '于都县', 360731, '3607');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360732', '兴国县', 360732, '3607');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360733', '会昌县', 360733, '3607');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360734', '寻乌县', 360734, '3607');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360735', '石城县', 360735, '3607');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360781', '瑞金市', 360781, '3607');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360782', '南康市', 360782, '3607');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3608', '吉安市', 3608, '36');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360801', '市辖区', 360801, '3608');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360802', '吉州区', 360802, '3608');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360803', '青原区', 360803, '3608');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360821', '吉安县', 360821, '3608');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360822', '吉水县', 360822, '3608');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360823', '峡江县', 360823, '3608');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360824', '新干县', 360824, '3608');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360825', '永丰县', 360825, '3608');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360826', '泰和县', 360826, '3608');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360827', '遂川县', 360827, '3608');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360828', '万安县', 360828, '3608');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360829', '安福县', 360829, '3608');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360830', '永新县', 360830, '3608');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360881', '井冈山市', 360881, '3608');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3609', '宜春市', 3609, '36');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360901', '市辖区', 360901, '3609');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360902', '袁州区', 360902, '3609');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360921', '奉新县', 360921, '3609');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360922', '万载县', 360922, '3609');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360923', '上高县', 360923, '3609');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360924', '宜丰县', 360924, '3609');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360925', '靖安县', 360925, '3609');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360926', '铜鼓县', 360926, '3609');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360981', '丰城市', 360981, '3609');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360982', '樟树市', 360982, '3609');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('360983', '高安市', 360983, '3609');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3610', '抚州市', 3610, '36');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361001', '市辖区', 361001, '3610');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361002', '临川区', 361002, '3610');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361021', '南城县', 361021, '3610');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361022', '黎川县', 361022, '3610');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361023', '南丰县', 361023, '3610');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361024', '崇仁县', 361024, '3610');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361025', '乐安县', 361025, '3610');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361026', '宜黄县', 361026, '3610');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361027', '金溪县', 361027, '3610');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361028', '资溪县', 361028, '3610');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361029', '东乡县', 361029, '3610');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361030', '广昌县', 361030, '3610');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3611', '上饶市', 3611, '36');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361101', '市辖区', 361101, '3611');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361102', '信州区', 361102, '3611');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361121', '上饶县', 361121, '3611');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361122', '广丰县', 361122, '3611');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361123', '玉山县', 361123, '3611');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361124', '铅山县', 361124, '3611');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361125', '横峰县', 361125, '3611');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361126', '弋阳县', 361126, '3611');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361127', '余干县', 361127, '3611');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361128', '鄱阳县', 361128, '3611');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361129', '万年县', 361129, '3611');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361130', '婺源县', 361130, '3611');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('361181', '德兴市', 361181, '3611');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('37', '山东省', 37, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3701', '济南市', 3701, '37');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370101', '市辖区', 370101, '3701');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370102', '历下区', 370102, '3701');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370103', '市中区', 370103, '3701');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370104', '槐荫区', 370104, '3701');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370105', '天桥区', 370105, '3701');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370112', '历城区', 370112, '3701');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370113', '长清区', 370113, '3701');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370124', '平阴县', 370124, '3701');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370125', '济阳县', 370125, '3701');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370126', '商河县', 370126, '3701');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370181', '章丘市', 370181, '3701');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3702', '青岛市', 3702, '37');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370201', '市辖区', 370201, '3702');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370202', '市南区', 370202, '3702');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370203', '市北区', 370203, '3702');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370205', '四方区', 370205, '3702');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370211', '黄岛区', 370211, '3702');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370212', '崂山区', 370212, '3702');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370213', '李沧区', 370213, '3702');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370214', '城阳区', 370214, '3702');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370281', '胶州市', 370281, '3702');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370282', '即墨市', 370282, '3702');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370283', '平度市', 370283, '3702');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370284', '胶南市', 370284, '3702');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370285', '莱西市', 370285, '3702');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3703', '淄博市', 3703, '37');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370301', '市辖区', 370301, '3703');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370302', '淄川区', 370302, '3703');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370303', '张店区', 370303, '3703');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370304', '博山区', 370304, '3703');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370305', '临淄区', 370305, '3703');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370306', '周村区', 370306, '3703');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370321', '桓台县', 370321, '3703');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370322', '高青县', 370322, '3703');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370323', '沂源县', 370323, '3703');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3704', '枣庄市', 3704, '37');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370401', '市辖区', 370401, '3704');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370402', '市中区', 370402, '3704');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370403', '薛城区', 370403, '3704');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370404', '峄城区', 370404, '3704');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370405', '台儿庄区', 370405, '3704');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370406', '山亭区', 370406, '3704');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370481', '滕州市', 370481, '3704');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3705', '东营市', 3705, '37');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370501', '市辖区', 370501, '3705');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370502', '东营区', 370502, '3705');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370503', '河口区', 370503, '3705');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370521', '垦利县', 370521, '3705');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370522', '利津县', 370522, '3705');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370523', '广饶县', 370523, '3705');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3706', '烟台市', 3706, '37');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370601', '市辖区', 370601, '3706');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370602', '芝罘区', 370602, '3706');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370611', '福山区', 370611, '3706');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370612', '牟平区', 370612, '3706');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370613', '莱山区', 370613, '3706');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370634', '长岛县', 370634, '3706');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370681', '龙口市', 370681, '3706');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370682', '莱阳市', 370682, '3706');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370683', '莱州市', 370683, '3706');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370684', '蓬莱市', 370684, '3706');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370685', '招远市', 370685, '3706');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370686', '栖霞市', 370686, '3706');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370687', '海阳市', 370687, '3706');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3707', '潍坊市', 3707, '37');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370701', '市辖区', 370701, '3707');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370702', '潍城区', 370702, '3707');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370703', '寒亭区', 370703, '3707');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370704', '坊子区', 370704, '3707');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370705', '奎文区', 370705, '3707');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370724', '临朐县', 370724, '3707');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370725', '昌乐县', 370725, '3707');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370781', '青州市', 370781, '3707');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370782', '诸城市', 370782, '3707');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370783', '寿光市', 370783, '3707');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370784', '安丘市', 370784, '3707');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370785', '高密市', 370785, '3707');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370786', '昌邑市', 370786, '3707');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3708', '济宁市', 3708, '37');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370801', '市辖区', 370801, '3708');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370802', '市中区', 370802, '3708');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370811', '任城区', 370811, '3708');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370826', '微山县				', 370826, '3708');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370827', '鱼台县', 370827, '3708');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370828', '金乡县', 370828, '3708');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370829', '嘉祥县', 370829, '3708');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370830', '汶上县', 370830, '3708');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370831', '泗水县', 370831, '3708');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370832', '梁山县', 370832, '3708');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370881', '曲阜市', 370881, '3708');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370882', '兖州市', 370882, '3708');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370883', '邹城市', 370883, '3708');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3709', '泰安市', 3709, '37');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370901', '市辖区', 370901, '3709');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370902', '泰山区', 370902, '3709');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370903', '岱岳区', 370903, '3709');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370921', '宁阳县', 370921, '3709');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370923', '东平县', 370923, '3709');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370982', '新泰市', 370982, '3709');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('370983', '肥城市', 370983, '3709');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3710', '威海市', 3710, '37');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371001', '市辖区', 371001, '3710');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371002', '环翠区', 371002, '3710');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371081', '文登市', 371081, '3710');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371082', '荣成市', 371082, '3710');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371083', '乳山市', 371083, '3710');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3711', '日照市', 3711, '37');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371101', '市辖区', 371101, '3711');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371102', '东港区', 371102, '3711');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371103', '岚山区', 371103, '3711');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371121', '五莲县', 371121, '3711');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371122', '莒县', 371122, '3711');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3712', '莱芜市', 3712, '37');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371201', '市辖区', 371201, '3712');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371202', '莱城区', 371202, '3712');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371203', '钢城区', 371203, '3712');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3713', '临沂市', 3713, '37');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371301', '临沂市辖区', 371301, '3713');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371302', '兰山区', 371302, '3713');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371311', '罗庄区', 371311, '3713');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371312', '河东区', 371312, '3713');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371321', '沂南县', 371321, '3713');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371322', '郯城县', 371322, '3713');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371323', '沂水县', 371323, '3713');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371324', '苍山县', 371324, '3713');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371325', '费县', 371325, '3713');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371326', '平邑县', 371326, '3713');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371327', '莒南县', 371327, '3713');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371328', '蒙阴县', 371328, '3713');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371329', '临沭县', 371329, '3713');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3714', '德州市', 3714, '37');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371401', '市辖区', 371401, '3714');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371402', '德城区', 371402, '3714');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371421', '陵县', 371421, '3714');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371422', '宁津县', 371422, '3714');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371423', '庆云县', 371423, '3714');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371424', '临邑县', 371424, '3714');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371425', '齐河县', 371425, '3714');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371426', '平原县', 371426, '3714');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371427', '夏津县', 371427, '3714');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371428', '武城县', 371428, '3714');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371481', '乐陵市', 371481, '3714');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371482', '禹城市', 371482, '3714');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3715', '聊城市', 3715, '37');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371501', '市辖区', 371501, '3715');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371502', '东昌府区', 371502, '3715');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371521', '阳谷县', 371521, '3715');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371522', '莘县', 371522, '3715');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371523', '茌平县', 371523, '3715');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371524', '东阿县', 371524, '3715');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371525', '冠县', 371525, '3715');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371526', '高唐县', 371526, '3715');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371581', '临清市', 371581, '3715');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3716', '滨州市', 3716, '37');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371601', '市辖区', 371601, '3716');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371602', '滨城区', 371602, '3716');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371621', '惠民县', 371621, '3716');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371622', '阳信县', 371622, '3716');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371623', '无棣县', 371623, '3716');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371624', '沾化县', 371624, '3716');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371625', '博兴县', 371625, '3716');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371626', '邹平县', 371626, '3716');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('3717', '菏泽市', 3717, '37');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371701', '市辖区', 371701, '3717');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371702', '牡丹区', 371702, '3717');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371721', '曹县', 371721, '3717');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371722', '单县', 371722, '3717');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371723', '成武县', 371723, '3717');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371724', '巨野县', 371724, '3717');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371725', '郓城县', 371725, '3717');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371726', '鄄城县', 371726, '3717');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371727', '定陶县', 371727, '3717');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('371728', '东明县', 371728, '3717');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('41', '河南省', 41, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4101', '郑州市', 4101, '41');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410101', '市辖区', 410101, '4101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410102', '中原区', 410102, '4101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410103', '二七区', 410103, '4101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410104', '管城回族区', 410104, '4101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410105', '金水区', 410105, '4101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410106', '上街区', 410106, '4101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410108', '惠济区', 410108, '4101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410122', '中牟县', 410122, '4101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410181', '巩义市', 410181, '4101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410182', '荥阳市', 410182, '4101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410183', '新密市', 410183, '4101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410184', '新郑市', 410184, '4101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410185', '登封市', 410185, '4101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4102', '开封市', 4102, '41');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410201', '市辖区', 410201, '4102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410202', '龙亭区', 410202, '4102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410203', '顺河区', 410203, '4102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410204', '鼓楼区', 410204, '4102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410205', '禹王台区', 410205, '4102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410211', '金明区', 410211, '4102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410221', '杞县', 410221, '4102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410222', '通许县', 410222, '4102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410223', '尉氏县', 410223, '4102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410224', '开封县', 410224, '4102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410225', '兰考县', 410225, '4102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4103', '洛阳市', 4103, '41');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410301', '市辖区', 410301, '4103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410302', '老城区', 410302, '4103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410303', '西工区', 410303, '4103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410304', '廛河回族区', 410304, '4103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410305', '涧西区', 410305, '4103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410306', '吉利区', 410306, '4103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410307', '洛龙区', 410307, '4103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410322', '孟津县', 410322, '4103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410323', '新安县', 410323, '4103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410324', '栾川县', 410324, '4103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410325', '嵩县', 410325, '4103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410326', '汝阳县', 410326, '4103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410327', '宜阳县', 410327, '4103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410328', '洛宁县', 410328, '4103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410329', '伊川县', 410329, '4103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410381', '偃师市', 410381, '4103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4104', '平顶山市', 4104, '41');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410401', '市辖区', 410401, '4104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410402', '新华区', 410402, '4104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410403', '卫东区', 410403, '4104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410404', '石龙区', 410404, '4104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410411', '湛河区', 410411, '4104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410421', '宝丰县', 410421, '4104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410422', '叶  县', 410422, '4104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410423', '鲁山县', 410423, '4104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410425', '郏  县', 410425, '4104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410481', '舞钢市', 410481, '4104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410482', '汝州市', 410482, '4104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4105', '安阳市', 4105, '41');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410501', '市辖区', 410501, '4105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410502', '文峰区', 410502, '4105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410503', '北关区', 410503, '4105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410505', '殷都区', 410505, '4105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410506', '龙安区', 410506, '4105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410522', '安阳县', 410522, '4105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410523', '汤阴县', 410523, '4105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410526', '滑县', 410526, '4105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410527', '内黄县', 410527, '4105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410581', '林州市', 410581, '4105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4106', '鹤壁市', 4106, '41');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410601', '市辖区', 410601, '4106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410602', '鹤山区', 410602, '4106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410603', '山城区', 410603, '4106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410611', '淇滨区', 410611, '4106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410621', '浚县', 410621, '4106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410622', '淇县', 410622, '4106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4107', '新乡市', 4107, '41');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410701', '市辖区', 410701, '4107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410702', '红旗区', 410702, '4107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410703', '卫滨区', 410703, '4107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410704', '凤泉区', 410704, '4107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410711', '牧野区', 410711, '4107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410721', '新乡县', 410721, '4107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410724', '获嘉县', 410724, '4107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410725', '原阳县', 410725, '4107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410726', '延津县', 410726, '4107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410727', '封丘县', 410727, '4107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410728', '长垣县', 410728, '4107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410781', '卫辉市', 410781, '4107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410782', '辉县市', 410782, '4107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4108', '焦作市', 4108, '41');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410801', '市辖区', 410801, '4108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410802', '解放区', 410802, '4108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410803', '中站区', 410803, '4108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410804', '马村区', 410804, '4108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410811', '山阳区', 410811, '4108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410821', '修武县', 410821, '4108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410822', '博爱县', 410822, '4108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410823', '武陟县', 410823, '4108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410825', '温县', 410825, '4108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410881', '济源市', 410881, '4108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410882', '沁阳市', 410882, '4108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410883', '孟州市', 410883, '4108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4109', '濮阳市', 4109, '41');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410901', '市辖区', 410901, '4109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410902', '华龙区', 410902, '4109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410922', '清丰县', 410922, '4109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410923', '南乐县', 410923, '4109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410926', '范县', 410926, '4109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410927', '台前县', 410927, '4109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('410928', '濮阳县', 410928, '4109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4110', '许昌市', 4110, '41');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411001', '市辖区', 411001, '4110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411002', '魏都区', 411002, '4110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411023', '许昌县', 411023, '4110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411024', '鄢陵县', 411024, '4110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411025', '襄城县', 411025, '4110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411081', '禹州市', 411081, '4110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411082', '长葛市', 411082, '4110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4111', '漯河市', 4111, '41');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411101', '市辖区', 411101, '4111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411102', '源汇区', 411102, '4111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411103', '郾城区', 411103, '4111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411104', '召陵区', 411104, '4111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411121', '舞阳县', 411121, '4111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411122', '临颖县', 411122, '4111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4112', '三门峡市', 4112, '41');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411201', '市辖区', 411201, '4112');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411202', '湖滨区', 411202, '4112');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411221', '渑池县', 411221, '4112');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411222', '陕县', 411222, '4112');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411224', '卢氏县', 411224, '4112');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411281', '义马市', 411281, '4112');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411282', '灵宝市', 411282, '4112');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4113', '南阳市', 4113, '41');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411301', '市辖区', 411301, '4113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411302', '宛城区', 411302, '4113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411303', '卧龙区', 411303, '4113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411321', '南召县', 411321, '4113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411322', '方城县', 411322, '4113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411323', '西峡县', 411323, '4113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411324', '镇平县', 411324, '4113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411325', '内乡县', 411325, '4113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411326', '淅川县', 411326, '4113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411327', '社旗县', 411327, '4113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411328', '唐河县', 411328, '4113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411329', '新野县', 411329, '4113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411330', '桐柏县', 411330, '4113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411381', '邓州市', 411381, '4113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4114', '商丘市', 4114, '41');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411401', '市辖区', 411401, '4114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411402', '梁园区', 411402, '4114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411403', '睢阳区', 411403, '4114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411421', '民权县', 411421, '4114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411422', '睢县', 411422, '4114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411423', '宁陵县', 411423, '4114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411424', '柘城县', 411424, '4114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411425', '虞城县', 411425, '4114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411426', '夏邑县', 411426, '4114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411481', '永城市', 411481, '4114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4115', '信阳市', 4115, '41');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411501', '市辖区', 411501, '4115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411502', '浉河区', 411502, '4115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411503', '平桥区', 411503, '4115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411521', '罗山县', 411521, '4115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411522', '光山县', 411522, '4115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411523', '新县', 411523, '4115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411524', '商城县', 411524, '4115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411525', '固始县', 411525, '4115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411526', '潢川县', 411526, '4115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411527', '淮滨县', 411527, '4115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411528', '息县', 411528, '4115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4116', '周口市', 4116, '41');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411601', '市辖区', 411601, '4116');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411602', '川汇区', 411602, '4116');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411621', '扶沟县', 411621, '4116');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411622', '西华县', 411622, '4116');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411623', '商水县', 411623, '4116');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411624', '沈丘县', 411624, '4116');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411625', '郸城县', 411625, '4116');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411626', '淮阳县', 411626, '4116');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411627', '太康县', 411627, '4116');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411628', '鹿邑县', 411628, '4116');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411681', '项城市', 411681, '4116');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4117', '驻马店市', 4117, '41');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411701', '市辖区', 411701, '4117');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411702', '驿城区', 411702, '4117');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411721', '西平县', 411721, '4117');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411722', '上蔡县', 411722, '4117');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411723', '平舆县', 411723, '4117');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411724', '正阳县', 411724, '4117');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411725', '确山县', 411725, '4117');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411726', '泌阳县', 411726, '4117');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411727', '汝南县', 411727, '4117');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411728', '遂平县', 411728, '4117');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('411729', '新蔡县', 411729, '4117');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('42', '湖北省', 42, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4201', '武汉市', 4201, '42');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420101', '市辖区', 420101, '4201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420102', '江岸区', 420102, '4201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420103', '江汉区', 420103, '4201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420104', '硚口区', 420104, '4201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420105', '汉阳区', 420105, '4201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420106', '武昌区', 420106, '4201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420107', '青山区', 420107, '4201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420111', '洪山区', 420111, '4201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420112', '东西湖区', 420112, '4201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420113', '汉南区', 420113, '4201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420114', '蔡甸区', 420114, '4201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420115', '江夏区', 420115, '4201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420116', '黄陂区', 420116, '4201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420117', '武汉市新洲区', 420117, '4201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4202', '黄石市', 4202, '42');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420201', '市辖区', 420201, '4202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420202', '黄石港区', 420202, '4202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420203', '西塞山区', 420203, '4202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420204', '下陆区', 420204, '4202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420205', '铁山区', 420205, '4202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420222', '阳新县', 420222, '4202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420281', '大冶市', 420281, '4202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4203', '十堰市', 4203, '42');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420301', '市辖区', 420301, '4203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420302', '茅箭区', 420302, '4203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420303', '张湾区', 420303, '4203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420321', '郧县', 420321, '4203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420322', '郧西县', 420322, '4203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420323', '竹山县', 420323, '4203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420324', '竹溪县', 420324, '4203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420325', '房县', 420325, '4203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420381', '丹江口市', 420381, '4203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4205', '宜昌市', 4205, '42');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420501', '市辖区', 420501, '4205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420502', '西陵区', 420502, '4205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420503', '伍家岗区', 420503, '4205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420504', '点军区', 420504, '4205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420505', '猇亭区', 420505, '4205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420506', '夷陵区', 420506, '4205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420525', '远安县', 420525, '4205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420526', '兴山县', 420526, '4205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420527', '秭归县', 420527, '4205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420528', '长阳土家族自治县', 420528, '4205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420529', '五峰土家族自治县', 420529, '4205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420581', '宜都市', 420581, '4205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420582', '当阳市', 420582, '4205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420583', '枝江市', 420583, '4205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4206', '襄樊市', 4206, '42');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420601', '市辖区', 420601, '4206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420602', '襄城区', 420602, '4206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420606', '樊城区', 420606, '4206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420607', '襄阳区', 420607, '4206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420624', '南漳县', 420624, '4206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420625', '谷城县', 420625, '4206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420626', '保康县', 420626, '4206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420682', '老河口市', 420682, '4206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420683', '枣阳市', 420683, '4206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420684', '宜城市', 420684, '4206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4207', '鄂州市', 4207, '42');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420701', '市辖区', 420701, '4207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420702', '粱子湖区', 420702, '4207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420703', '华容区', 420703, '4207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420704', '鄂城区', 420704, '4207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4208', '荆门市', 4208, '42');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420801', '市辖区', 420801, '4208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420802', '东宝区', 420802, '4208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420804', '掇刀区', 420804, '4208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420821', '京山县', 420821, '4208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420822', '沙洋县', 420822, '4208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420881', '钟祥市', 420881, '4208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4209', '孝感市', 4209, '42');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420901', '市辖区', 420901, '4209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420902', '孝南区', 420902, '4209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420921', '孝昌县', 420921, '4209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420922', '大悟县', 420922, '4209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420923', '云梦县', 420923, '4209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420981', '应城市', 420981, '4209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420982', '安陆市', 420982, '4209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('420984', '汉川市', 420984, '4209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4210', '荆州市', 4210, '42');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421001', '市辖区', 421001, '4210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421002', '沙市区', 421002, '4210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421003', '荆州区', 421003, '4210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421022', '公安县', 421022, '4210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421023', '监利县', 421023, '4210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421024', '江陵县', 421024, '4210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421081', '石首市', 421081, '4210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421083', '洪湖市', 421083, '4210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421087', '松滋市', 421087, '4210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4211', '黄冈市', 4211, '42');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421101', '市辖区', 421101, '4211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421102', '黄州区', 421102, '4211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421121', '团风县', 421121, '4211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421122', '红安县', 421122, '4211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421123', '罗田县', 421123, '4211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421124', '英山县', 421124, '4211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421125', '浠水县', 421125, '4211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421126', '蕲春县', 421126, '4211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421127', '黄梅县', 421127, '4211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421181', '麻城市', 421181, '4211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421182', '武穴市', 421182, '4211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4212', '咸宁市', 4212, '42');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421201', '市辖区', 421201, '4212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421202', '咸安区', 421202, '4212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421221', '嘉鱼县', 421221, '4212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421222', '通城县', 421222, '4212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421223', '崇阳县', 421223, '4212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421224', '通山县', 421224, '4212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421281', '赤壁市', 421281, '4212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4213', '随州市', 4213, '42');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421301', '市辖区', 421301, '4213');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421302', '曾都区', 421302, '4213');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('421381', '广水市', 421381, '4213');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4228', '恩施州', 4228, '42');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('422801', '恩施市', 422801, '4228');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('422802', '利川市', 422802, '4228');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('422822', '建始县', 422822, '4228');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('422823', '巴东县', 422823, '4228');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('422825', '宣恩县', 422825, '4228');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('422826', '咸丰县', 422826, '4228');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('422827', '来凤县', 422827, '4228');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('422828', '鹤峰县', 422828, '4228');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4290', '省直辖行政单位', 4290, '42');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('429004', '仙桃市', 429004, '4290');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('429005', '潜江市', 429005, '4290');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('429006', '天门市', 429006, '4290');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('429021', '神农架林区', 429021, '4290');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('43', '湖南省', 43, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4301', '长沙市', 4301, '43');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430101', '市辖区', 430101, '4301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430102', '芙蓉区', 430102, '4301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430103', '天心区', 430103, '4301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430104', '岳麓区', 430104, '4301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430105', '开福区', 430105, '4301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430111', '雨花区', 430111, '4301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430121', '长沙县', 430121, '4301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430122', '望城县', 430122, '4301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430124', '宁乡县', 430124, '4301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430181', '浏阳市', 430181, '4301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4302', '株洲市', 4302, '43');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430201', '市辖区', 430201, '4302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430202', '荷塘区', 430202, '4302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430203', '芦淞区', 430203, '4302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430204', '石峰区', 430204, '4302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430211', '天元区', 430211, '4302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430221', '株洲县', 430221, '4302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430223', '攸县', 430223, '4302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430224', '茶陵县', 430224, '4302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430225', '炎陵县', 430225, '4302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430281', '醴陵市', 430281, '4302');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4303', '湘潭市', 4303, '43');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430301', '市辖区', 430301, '4303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430302', '雨湖区', 430302, '4303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430304', '岳塘区', 430304, '4303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430321', '湘潭县', 430321, '4303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430381', '湘乡市', 430381, '4303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430382', '韶山市', 430382, '4303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4304', '衡阳市', 4304, '43');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430401', '市辖区', 430401, '4304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430405', '珠晖区', 430405, '4304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430406', '雁峰区', 430406, '4304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430407', '石鼓区', 430407, '4304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430408', '蒸湘区', 430408, '4304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430412', '南岳区', 430412, '4304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430421', '衡阳县', 430421, '4304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430422', '衡南县', 430422, '4304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430423', '衡山县', 430423, '4304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430424', '衡东县', 430424, '4304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430426', '祁东县', 430426, '4304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430481', '耒阳市', 430481, '4304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430482', '常宁市', 430482, '4304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4305', '邵阳市', 4305, '43');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430501', '市辖区', 430501, '4305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430502', '双清区', 430502, '4305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430503', '大祥区', 430503, '4305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430511', '北塔区', 430511, '4305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430521', '邵东县', 430521, '4305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430522', '新邵县', 430522, '4305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430523', '邵阳县', 430523, '4305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430524', '隆回县', 430524, '4305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430525', '洞口县', 430525, '4305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430527', '绥宁县', 430527, '4305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430528', '新宁县', 430528, '4305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430529', '城步苗族自治县', 430529, '4305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430581', '武冈市', 430581, '4305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4306', '岳阳市', 4306, '43');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430601', '市辖区', 430601, '4306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430602', '岳阳楼区', 430602, '4306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430603', '云溪区', 430603, '4306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430611', '君山区', 430611, '4306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430621', '岳阳县', 430621, '4306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430623', '华容县', 430623, '4306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430624', '湘阴县', 430624, '4306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430626', '平江县', 430626, '4306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430681', '汩罗市', 430681, '4306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430682', '临湘市', 430682, '4306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4307', '常德市', 4307, '43');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430701', '市辖区', 430701, '4307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430702', '武陵区', 430702, '4307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430703', '鼎城区', 430703, '4307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430721', '安乡县', 430721, '4307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430722', '汉寿县', 430722, '4307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430723', '澧县', 430723, '4307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430724', '临澧县', 430724, '4307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430725', '桃源县', 430725, '4307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430726', '石门县', 430726, '4307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430781', '津市市', 430781, '4307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4308', '张家界市', 4308, '43');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430801', '市辖区', 430801, '4308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430802', '永定区', 430802, '4308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430811', '武陵源区', 430811, '4308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430821', '慈利县', 430821, '4308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430822', '桑植县', 430822, '4308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4309', '益阳市', 4309, '43');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430901', '市辖区', 430901, '4309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430902', '资阳区', 430902, '4309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430903', '赫山区', 430903, '4309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430921', '南县', 430921, '4309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430922', '桃江县', 430922, '4309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430923', '安化县', 430923, '4309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('430981', '沅江市', 430981, '4309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4310', '郴州市', 4310, '43');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431001', '市辖区', 431001, '4310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431002', '北湖区', 431002, '4310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431003', '苏仙区', 431003, '4310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431021', '桂阳县', 431021, '4310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431022', '宜章县', 431022, '4310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431023', '永兴县', 431023, '4310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431024', '嘉禾县', 431024, '4310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431025', '临武县', 431025, '4310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431026', '汝城县', 431026, '4310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431027', '桂东县', 431027, '4310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431028', '安仁县', 431028, '4310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431081', '资兴市', 431081, '4310');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4311', '永州市', 4311, '43');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431101', '市辖区', 431101, '4311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431102', '零陵区', 431102, '4311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431103', '冷水滩区', 431103, '4311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431121', '祁阳县', 431121, '4311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431122', '东安县', 431122, '4311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431123', '双牌县', 431123, '4311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431124', '道县', 431124, '4311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431125', '江永县', 431125, '4311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431126', '宁远县', 431126, '4311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431127', '蓝山县', 431127, '4311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431128', '新田县', 431128, '4311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431129', '江华县', 431129, '4311');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4312', '怀化市', 4312, '43');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431201', '市辖区', 431201, '4312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431202', '鹤城区', 431202, '4312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431221', '中方县', 431221, '4312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431222', '沅陵县', 431222, '4312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431223', '辰溪县', 431223, '4312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431224', '溆浦县', 431224, '4312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431225', '会同县', 431225, '4312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431226', '麻阳苗族自治县', 431226, '4312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431227', '新晃侗族自治县', 431227, '4312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431228', '芷江侗族自治县', 431228, '4312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431229', '靖州苗族侗族县', 431229, '4312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431230', '通道侗族自治县', 431230, '4312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431281', '洪江市', 431281, '4312');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4313', '娄底市', 4313, '43');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431301', '市辖区', 431301, '4313');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431302', '娄星区', 431302, '4313');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431321', '双峰县', 431321, '4313');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431322', '新化县', 431322, '4313');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431381', '冷水江市', 431381, '4313');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('431382', '涟源市', 431382, '4313');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4331', '湘西土家族苗族自治州', 4331, '43');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('433101', '吉首市', 433101, '4331');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('433122', '泸溪县', 433122, '4331');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('433123', '凤凰县', 433123, '4331');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('433124', '花垣县', 433124, '4331');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('433125', '保靖县', 433125, '4331');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('433126', '古丈县', 433126, '4331');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('433127', '永顺县', 433127, '4331');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('433130', '龙山县', 433130, '4331');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('44', '广东省', 44, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4401', '广州市', 4401, '44');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440101', '市辖区', 440101, '4401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440103', '荔湾区', 440103, '4401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440104', '越秀区', 440104, '4401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440105', '海珠区', 440105, '4401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440106', '天河区', 440106, '4401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440111', '白云区', 440111, '4401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440112', '黄埔区', 440112, '4401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440113', '番禺区', 440113, '4401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440114', '花都区', 440114, '4401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440115', '南沙区', 440115, '4401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440116', '萝岗区', 440116, '4401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440183', '增城市', 440183, '4401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440184', '从化市', 440184, '4401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4402', '韶关市', 4402, '44');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440201', '市辖区', 440201, '4402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440203', '武江区', 440203, '4402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440204', '浈江区', 440204, '4402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440205', '曲江区', 440205, '4402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440222', '始兴县', 440222, '4402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440224', '仁化县', 440224, '4402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440229', '翁源县', 440229, '4402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440232', '乳源瑶族自治县', 440232, '4402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440233', '新丰县', 440233, '4402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440281', '乐昌市', 440281, '4402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440282', '南雄市', 440282, '4402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4403', '深圳市', 4403, '44');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440301', '市辖区', 440301, '4403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440303', '罗湖区', 440303, '4403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440304', '福田区', 440304, '4403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440305', '南山区', 440305, '4403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440306', '宝安区', 440306, '4403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440307', '龙岗区', 440307, '4403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440308', '盐田区', 440308, '4403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4404', '珠海市', 4404, '44');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440401', '市辖区', 440401, '4404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440402', '香洲区', 440402, '4404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440403', '斗门区', 440403, '4404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440404', '金湾区', 440404, '4404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4405', '汕头市', 4405, '44');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440501', '市辖区', 440501, '4405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440507', '龙湖区', 440507, '4405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440511', '金平区', 440511, '4405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440512', '濠江区', 440512, '4405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440513', '潮阳区', 440513, '4405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440514', '潮南区', 440514, '4405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440515', '澄海区', 440515, '4405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440523', '南澳县', 440523, '4405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4406', '佛山市', 4406, '44');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440601', '市辖区', 440601, '4406');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440604', '禅城区', 440604, '4406');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440605', '南海区', 440605, '4406');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440606', '顺德区', 440606, '4406');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440607', '三水区', 440607, '4406');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440608', '高明区', 440608, '4406');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4407', '江门市', 4407, '44');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440701', '市辖区', 440701, '4407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440703', '蓬江区', 440703, '4407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440704', '江海区', 440704, '4407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440705', '新会区', 440705, '4407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440781', '台山市', 440781, '4407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440783', '开平市', 440783, '4407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440784', '鹤山市', 440784, '4407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440785', '恩平市', 440785, '4407');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4408', '湛江市', 4408, '44');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440801', '市辖区', 440801, '4408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440802', '湛江市赤坎区', 440802, '4408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440803', '湛江市霞山区', 440803, '4408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440804', '湛江市坡头区', 440804, '4408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440811', '湛江市麻章区', 440811, '4408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440823', '遂溪县', 440823, '4408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440825', '徐闻县', 440825, '4408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440881', '廉江市', 440881, '4408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440882', '雷州市', 440882, '4408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440883', '吴川市', 440883, '4408');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4409', '茂名市', 4409, '44');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440901', '市辖区', 440901, '4409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440902', '茂南区', 440902, '4409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440903', '茂港区', 440903, '4409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440923', '电白县', 440923, '4409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440981', '高州市', 440981, '4409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440982', '化州市', 440982, '4409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('440983', '信宜市', 440983, '4409');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4412', '肇庆市', 4412, '44');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441201', '市辖区', 441201, '4412');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441202', '端州区', 441202, '4412');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441203', '鼎湖区', 441203, '4412');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441223', '广宁县', 441223, '4412');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441224', '怀集县', 441224, '4412');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441225', '封开县', 441225, '4412');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441226', '德庆县', 441226, '4412');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441283', '高要市', 441283, '4412');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441284', '四会市', 441284, '4412');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4413', '惠州市', 4413, '44');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441301', '市辖区', 441301, '4413');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441302', '惠城区', 441302, '4413');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441303', '惠阳区', 441303, '4413');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441322', '博罗县', 441322, '4413');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441323', '惠东县', 441323, '4413');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441324', '龙门县', 441324, '4413');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4414', '梅州市', 4414, '44');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441401', '市辖区', 441401, '4414');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441402', '梅江区', 441402, '4414');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441421', '梅县', 441421, '4414');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441422', '大埔县', 441422, '4414');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441423', '丰顺县', 441423, '4414');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441424', '五华县', 441424, '4414');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441426', '平远县', 441426, '4414');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441427', '蕉岭县', 441427, '4414');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441481', '兴宁市', 441481, '4414');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4415', '汕尾市', 4415, '44');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441501', '市辖区', 441501, '4415');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441502', '城区', 441502, '4415');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441521', '海丰县', 441521, '4415');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441523', '陆河县', 441523, '4415');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441581', '陆丰市', 441581, '4415');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4416', '河源市', 4416, '44');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441601', '市辖区', 441601, '4416');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441602', '源城区', 441602, '4416');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441621', '紫金县', 441621, '4416');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441622', '龙川县', 441622, '4416');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441623', '连平县', 441623, '4416');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441624', '和平县', 441624, '4416');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441625', '东源县', 441625, '4416');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4417', '阳江市', 4417, '44');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441701', '市辖区', 441701, '4417');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441702', '江城区', 441702, '4417');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441721', '阳西县', 441721, '4417');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441723', '阳东县', 441723, '4417');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441781', '阳春市', 441781, '4417');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4418', '清远市', 4418, '44');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441801', '市辖区', 441801, '4418');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441802', '清城区', 441802, '4418');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441821', '佛冈县', 441821, '4418');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441823', '阳山县', 441823, '4418');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441825', '连山县', 441825, '4418');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441826', '连南瑶族自治县', 441826, '4418');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441827', '清新县', 441827, '4418');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441881', '英德市', 441881, '4418');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('441882', '连州市', 441882, '4418');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4419', '东莞市', 4419, '44');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4420', '中山市', 4420, '44');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4451', '潮州市', 4451, '44');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('445101', '市辖区', 445101, '4451');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('445102', '潮州市湘桥区', 445102, '4451');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('445121', '潮州市潮安县', 445121, '4451');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('445122', '潮州市饶平县', 445122, '4451');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4452', '揭阳市', 4452, '44');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('445201', '市辖区', 445201, '4452');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('445202', '榕城区', 445202, '4452');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('445221', '揭东县', 445221, '4452');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('445222', '揭西县', 445222, '4452');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('445224', '惠来县', 445224, '4452');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('445281', '普宁市', 445281, '4452');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4453', '云浮市', 4453, '44');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('445301', '市辖区', 445301, '4453');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('445302', '云城区', 445302, '4453');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('445321', '新兴县', 445321, '4453');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('445322', '郁南县', 445322, '4453');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('445323', '云安县', 445323, '4453');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('445381', '罗定市', 445381, '4453');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('45', '广西壮族自治区', 45, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4501', '南宁市', 4501, '45');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450101', '市辖区', 450101, '4501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450102', '兴宁区', 450102, '4501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450103', '青秀区', 450103, '4501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450105', '江南区', 450105, '4501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450107', '西乡塘区', 450107, '4501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450108', '良庆区', 450108, '4501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450109', '邕宁区', 450109, '4501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450122', '武鸣县', 450122, '4501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450123', '隆安县', 450123, '4501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450124', '马山县', 450124, '4501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450125', '上林县', 450125, '4501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450126', '宾阳县', 450126, '4501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450127', '横县', 450127, '4501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4502', '柳州市', 4502, '45');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450201', '市辖区', 450201, '4502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450202', '城中区', 450202, '4502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450203', '鱼峰区', 450203, '4502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450204', '柳南区', 450204, '4502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450205', '柳北区', 450205, '4502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450221', '柳江县', 450221, '4502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450222', '柳城县', 450222, '4502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450223', '鹿寨县', 450223, '4502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450224', '融安县', 450224, '4502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450225', '融水苗族自治县', 450225, '4502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450226', '三江侗族自治县', 450226, '4502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4503', '桂林市', 4503, '45');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450301', '市辖区', 450301, '4503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450302', '秀峰区', 450302, '4503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450303', '叠彩区', 450303, '4503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450304', '象山区', 450304, '4503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450305', '七星区', 450305, '4503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450311', '雁山区', 450311, '4503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450321', '阳朔县', 450321, '4503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450322', '临桂县', 450322, '4503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450323', '灵川县', 450323, '4503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450324', '全州县', 450324, '4503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450325', '兴安县', 450325, '4503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450326', '永福县', 450326, '4503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450327', '灌阳县', 450327, '4503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450328', '龙胜各族自治县', 450328, '4503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450329', '资源县', 450329, '4503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450330', '平乐县', 450330, '4503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450331', '荔浦县', 450331, '4503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450332', '恭城县', 450332, '4503');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4504', '梧州市', 4504, '45');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450401', '市辖区', 450401, '4504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450403', '万秀区', 450403, '4504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450404', '蝶山区', 450404, '4504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450405', '长洲区', 450405, '4504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450421', '苍梧县', 450421, '4504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450422', '藤县', 450422, '4504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450423', '蒙山县', 450423, '4504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450481', '岑溪市', 450481, '4504');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4505', '北海市', 4505, '45');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450501', '市辖区', 450501, '4505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450502', '海城区', 450502, '4505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450503', '银海区', 450503, '4505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450512', '铁山港区', 450512, '4505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450521', '合浦县', 450521, '4505');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4506', '防城港市', 4506, '45');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450601', '市辖区', 450601, '4506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450602', '港口区', 450602, '4506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450603', '防城区', 450603, '4506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450621', '上思县', 450621, '4506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450681', '东兴市', 450681, '4506');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4507', '钦州市', 4507, '45');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450701', '市辖区', 450701, '4507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450702', '钦南区', 450702, '4507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450703', '钦北区', 450703, '4507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450721', '灵山县', 450721, '4507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450722', '浦北县', 450722, '4507');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4508', '贵港市', 4508, '45');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450801', '市辖区', 450801, '4508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450802', '港北区', 450802, '4508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450803', '港南区', 450803, '4508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450804', '覃塘区', 450804, '4508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450821', '平南县', 450821, '4508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450881', '桂平市', 450881, '4508');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4509', '玉林市', 4509, '45');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450901', '市辖区', 450901, '4509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450902', '玉州区', 450902, '4509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450921', '容县', 450921, '4509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450922', '陆川县', 450922, '4509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450923', '博白县', 450923, '4509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450924', '兴业县', 450924, '4509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('450981', '北流市', 450981, '4509');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4510', '百色市', 4510, '45');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451001', '市辖区', 451001, '4510');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451002', '右江区', 451002, '4510');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451021', '田阳县', 451021, '4510');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451022', '田东县', 451022, '4510');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451023', '平果县', 451023, '4510');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451024', '德保县', 451024, '4510');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451025', '靖西县', 451025, '4510');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451026', '那坡县', 451026, '4510');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451027', '凌云县', 451027, '4510');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451028', '乐业县', 451028, '4510');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451029', '田林县', 451029, '4510');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451030', '西林县', 451030, '4510');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451031', '隆林各族自治县', 451031, '4510');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4511', '贺州市', 4511, '45');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451101', '市辖区', 451101, '4511');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451102', '八步区', 451102, '4511');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451121', '昭平县', 451121, '4511');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451122', '钟山县', 451122, '4511');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451123', '富川瑶族自治县', 451123, '4511');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4512', '河池市', 4512, '45');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451201', '市辖区', 451201, '4512');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451202', '金城江区', 451202, '4512');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451221', '南丹县', 451221, '4512');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451222', '天峨县', 451222, '4512');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451223', '凤山县', 451223, '4512');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451224', '东兰县', 451224, '4512');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451225', '罗城仫佬族自治县', 451225, '4512');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451226', '环江毛南族自治县', 451226, '4512');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451227', '巴马瑶族自治县', 451227, '4512');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451228', '都安瑶族自治县', 451228, '4512');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451229', '大化瑶族自治县', 451229, '4512');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451281', '宜州市', 451281, '4512');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4513', '来宾市', 4513, '45');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451301', '市辖区', 451301, '4513');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451302', '兴宾区', 451302, '4513');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451321', '忻城县', 451321, '4513');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451322', '象州县', 451322, '4513');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451323', '武宣县', 451323, '4513');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451324', '金秀瑶族自治县', 451324, '4513');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451381', '合山市', 451381, '4513');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4514', '崇左市', 4514, '45');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451401', '市辖区', 451401, '4514');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451402', '江州区', 451402, '4514');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451421', '扶绥县', 451421, '4514');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451422', '宁明县', 451422, '4514');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451423', '龙州县', 451423, '4514');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451424', '大新县', 451424, '4514');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451425', '天等县', 451425, '4514');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('451481', '凭祥市', 451481, '4514');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('46', '海南省', 46, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4601', '海口市', 4601, '46');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('460101', '市辖区', 460101, '4601');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('460105', '秀英区', 460105, '4601');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('460106', '龙华区', 460106, '4601');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('460107', '琼山区', 460107, '4601');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('460108', '美兰区', 460108, '4601');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4602', '三亚市', 4602, '46');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('460201', '市辖区', 460201, '4602');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('4690', '省属虚拟市', 4690, '46');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('469001', '五指山市', 469001, '4690');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('469002', '琼海市', 469002, '4690');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('469003', '儋州市', 469003, '4690');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('469005', '文昌市', 469005, '4690');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('469006', '万宁市', 469006, '4690');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('469007', '东方市', 469007, '4690');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('469025', '定安县', 469025, '4690');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('469026', '屯昌县', 469026, '4690');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('469027', '澄迈县', 469027, '4690');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('469028', '临高县', 469028, '4690');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('469030', '白沙黎族自治县', 469030, '4690');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('469031', '昌江黎族自治县', 469031, '4690');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('469033', '乐东黎族自治县', 469033, '4690');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('469034', '陵水黎族自治县', 469034, '4690');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('469035', '保亭黎族苗族自治县', 469035, '4690');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('469036', '琼中黎族苗族自治县', 469036, '4690');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('469037', '西沙群岛', 469037, '4690');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('469038', '南沙群岛', 469038, '4690');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('469039', '中沙群岛的岛礁及其海域', 469039, '4690');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('50', '重庆市', 50, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5001', '市辖区', 5001, '50');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500101', '万州区', 500101, '5001');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500102', '涪陵区', 500102, '5001');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500103', '渝中区', 500103, '5001');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500104', '大渡口区', 500104, '5001');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500105', '江北区', 500105, '5001');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500106', '沙坪坝区', 500106, '5001');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500107', '九龙坡区', 500107, '5001');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500108', '南岸区', 500108, '5001');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500109', '北碚区', 500109, '5001');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500110', '万盛区', 500110, '5001');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500111', '双桥区', 500111, '5001');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500112', '渝北区', 500112, '5001');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500113', '巴南区', 500113, '5001');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500114', '黔江区', 500114, '5001');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500115', '长寿区', 500115, '5001');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500116', '江津区', 500116, '5001');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500117', '合川区', 500117, '5001');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500118', '永川区', 500118, '5001');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500119', '南川区', 500119, '5001');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5002', '县', 5002, '50');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500222', '綦江县', 500222, '5002');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500223', '潼南县', 500223, '5002');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500224', '铜梁县', 500224, '5002');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500225', '大足县', 500225, '5002');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500226', '荣昌县', 500226, '5002');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500227', '璧山县', 500227, '5002');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500228', '梁平县', 500228, '5002');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500229', '城口县', 500229, '5002');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500230', '丰都县', 500230, '5002');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500231', '垫江县', 500231, '5002');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500232', '武隆县', 500232, '5002');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500233', '忠县', 500233, '5002');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500234', '开县', 500234, '5002');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500235', '云阳县', 500235, '5002');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500236', '奉节县', 500236, '5002');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500237', '巫山县', 500237, '5002');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500238', '巫溪县', 500238, '5002');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500240', '石柱县', 500240, '5002');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500241', '秀山土家族苗族自治县', 500241, '5002');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500242', '酉阳土家族苗族自治县', 500242, '5002');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('500243', '彭水苗族土家族自治县', 500243, '5002');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('51', '四川省', 51, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5101', '成都市', 5101, '51');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510101', '市辖区', 510101, '5101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510104', '锦江区', 510104, '5101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510105', '青羊区', 510105, '5101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510106', '金牛区', 510106, '5101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510107', '武侯区', 510107, '5101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510108', '成华区', 510108, '5101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510112', '龙泉驿区', 510112, '5101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510113', '青白江区', 510113, '5101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510114', '新都区', 510114, '5101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510115', '温江区', 510115, '5101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510121', '金堂县', 510121, '5101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510122', '双流县', 510122, '5101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510124', '郫县', 510124, '5101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510129', '大邑县', 510129, '5101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510131', '蒲江县', 510131, '5101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510132', '新津县', 510132, '5101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510181', '都江堰市', 510181, '5101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510182', '彭州市', 510182, '5101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510183', '邛崃市', 510183, '5101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510184', '崇州市', 510184, '5101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5103', '自贡市', 5103, '51');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510301', '市辖区', 510301, '5103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510302', '自流井区', 510302, '5103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510303', '贡井区', 510303, '5103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510304', '大安区', 510304, '5103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510311', '沿滩区', 510311, '5103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510321', '荣县', 510321, '5103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510322', '富顺县', 510322, '5103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5104', '攀枝花市', 5104, '51');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510401', '市辖区', 510401, '5104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510402', '攀枝花东区', 510402, '5104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510403', '西区', 510403, '5104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510411', '仁和区', 510411, '5104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510421', '米易县', 510421, '5104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510422', '盐边县', 510422, '5104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5105', '泸州市', 5105, '51');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510501', '市辖区', 510501, '5105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510502', '江阳区', 510502, '5105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510503', '纳溪区', 510503, '5105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510504', '龙马潭区', 510504, '5105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510521', '泸县', 510521, '5105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510522', '合江县', 510522, '5105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510524', '叙永县', 510524, '5105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510525', '古蔺县', 510525, '5105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5106', '德阳市', 5106, '51');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510601', '市辖区', 510601, '5106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510603', '旌阳区', 510603, '5106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510623', '中江县', 510623, '5106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510626', '罗江县', 510626, '5106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510681', '广汉市', 510681, '5106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510682', '什邡市', 510682, '5106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510683', '绵竹市', 510683, '5106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5107', '绵阳市', 5107, '51');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510701', '市辖区', 510701, '5107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510703', '涪城区', 510703, '5107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510704', '游仙区', 510704, '5107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510722', '三台县', 510722, '5107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510723', '盐亭县', 510723, '5107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510724', '安县', 510724, '5107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510725', '梓潼县', 510725, '5107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510726', '北川羌族自治县', 510726, '5107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510727', '平武县', 510727, '5107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510781', '江油市', 510781, '5107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5108', '广元市', 5108, '51');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510801', '市辖区', 510801, '5108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510802', '市中区', 510802, '5108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510811', '元坝区', 510811, '5108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510812', '朝天区', 510812, '5108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510821', '旺苍县', 510821, '5108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510822', '青川县', 510822, '5108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510823', '剑阁县', 510823, '5108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510824', '苍溪县', 510824, '5108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5109', '遂宁市', 5109, '51');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510901', '市辖区', 510901, '5109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510903', '船山区', 510903, '5109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510904', '安居区', 510904, '5109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510921', '蓬溪县', 510921, '5109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510922', '射洪县', 510922, '5109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('510923', '大英县', 510923, '5109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5110', '内江市', 5110, '51');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511001', '市辖区', 511001, '5110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511002', '市中区', 511002, '5110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511011', '东兴区', 511011, '5110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511024', '威远县', 511024, '5110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511025', '资中县', 511025, '5110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511028', '隆昌县', 511028, '5110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5111', '乐山市', 5111, '51');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511101', '市辖区', 511101, '5111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511102', '市中区', 511102, '5111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511111', '沙湾区', 511111, '5111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511112', '五通桥区', 511112, '5111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511113', '金口河区', 511113, '5111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511123', '犍为县', 511123, '5111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511124', '井研县', 511124, '5111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511126', '夹江县', 511126, '5111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511129', '沐川县', 511129, '5111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511132', '峨边彝族自治县', 511132, '5111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511133', '马边彝族自治县', 511133, '5111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511181', '峨眉山市', 511181, '5111');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5113', '南充市', 5113, '51');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511301', '市辖区', 511301, '5113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511302', '顺庆区', 511302, '5113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511303', '高坪区', 511303, '5113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511304', '嘉陵区', 511304, '5113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511321', '南部县', 511321, '5113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511322', '营山县', 511322, '5113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511323', '蓬安县', 511323, '5113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511324', '仪陇县', 511324, '5113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511325', '西充县', 511325, '5113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511381', '阆中市', 511381, '5113');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5114', '眉山市', 5114, '51');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511401', '市辖区', 511401, '5114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511402', '东坡区', 511402, '5114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511421', '仁寿县', 511421, '5114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511422', '彭山县', 511422, '5114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511423', '洪雅县', 511423, '5114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511424', '丹棱县', 511424, '5114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511425', '青神县', 511425, '5114');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5115', '宜宾市', 5115, '51');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511501', '市辖区', 511501, '5115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511502', '翠屏区', 511502, '5115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511521', '宜宾县', 511521, '5115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511522', '南溪县', 511522, '5115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511523', '江安县', 511523, '5115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511524', '长宁县', 511524, '5115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511525', '高县', 511525, '5115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511526', '珙县', 511526, '5115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511527', '筠连县', 511527, '5115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511528', '兴文县', 511528, '5115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511529', '屏山县', 511529, '5115');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5116', '广安市', 5116, '51');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511601', '市辖区', 511601, '5116');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511602', '广安区', 511602, '5116');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511621', '岳池县', 511621, '5116');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511622', '武胜县', 511622, '5116');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511623', '邻水县', 511623, '5116');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511681', '华蓥市', 511681, '5116');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5117', '达州市', 5117, '51');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511701', '市辖区', 511701, '5117');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511702', '通川区', 511702, '5117');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511721', '达县', 511721, '5117');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511722', '宣汉县', 511722, '5117');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511723', '开江县', 511723, '5117');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511724', '大竹县', 511724, '5117');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511725', '渠县', 511725, '5117');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511781', '万源市', 511781, '5117');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5118', '雅安市', 5118, '51');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511801', '市辖区', 511801, '5118');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511802', '雨城区', 511802, '5118');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511821', '名山县', 511821, '5118');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511822', '荥经县', 511822, '5118');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511823', '汉源县', 511823, '5118');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511824', '石棉县', 511824, '5118');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511825', '天全县', 511825, '5118');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511826', '芦山县', 511826, '5118');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511827', '宝兴县', 511827, '5118');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5119', '巴中市', 5119, '51');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511901', '市辖区', 511901, '5119');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511902', '巴州区', 511902, '5119');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511921', '通江县', 511921, '5119');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511922', '南江县', 511922, '5119');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('511923', '平昌县', 511923, '5119');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5120', '资阳市', 5120, '51');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('512001', '市辖区', 512001, '5120');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('512002', '雁江区', 512002, '5120');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('512021', '安岳县', 512021, '5120');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('512022', '乐至县', 512022, '5120');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('512081', '简阳市', 512081, '5120');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5132', '阿坝州', 5132, '51');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513221', '汶川县', 513221, '5132');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513222', '理县', 513222, '5132');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513223', '茂县', 513223, '5132');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513224', '松潘县', 513224, '5132');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513225', '九寨沟县', 513225, '5132');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513226', '金川县', 513226, '5132');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513227', '小金县', 513227, '5132');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513228', '黑水县', 513228, '5132');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513229', '马尔康县', 513229, '5132');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513230', '壤塘县', 513230, '5132');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513231', '阿坝县', 513231, '5132');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513232', '若尔盖县', 513232, '5132');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513233', '红原县', 513233, '5132');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5133', '甘孜藏族自治州', 5133, '51');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513321', '康定县', 513321, '5133');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513322', '泸定县', 513322, '5133');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513323', '丹巴县', 513323, '5133');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513324', '九龙县', 513324, '5133');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513325', '雅江县', 513325, '5133');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513326', '道孚县', 513326, '5133');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513327', '炉霍县', 513327, '5133');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513328', '甘孜县', 513328, '5133');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513329', '新龙县', 513329, '5133');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513330', '德格县', 513330, '5133');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513331', '白玉县', 513331, '5133');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513332', '石渠县', 513332, '5133');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513333', '色达县', 513333, '5133');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513334', '理塘县', 513334, '5133');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513335', '巴塘县', 513335, '5133');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513336', '乡城县', 513336, '5133');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513337', '稻城县', 513337, '5133');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513338', '得荣县', 513338, '5133');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5134', '凉山州', 5134, '51');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513401', '西昌市', 513401, '5134');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513422', '木里藏族自治县', 513422, '5134');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513423', '盐源县', 513423, '5134');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513424', '德昌', 513424, '5134');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513425', '会理县', 513425, '5134');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513426', '会东县', 513426, '5134');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513427', '宁南县', 513427, '5134');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513428', '普格县', 513428, '5134');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513429', '布拖县', 513429, '5134');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513430', '金阳县', 513430, '5134');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513431', '昭觉县', 513431, '5134');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513432', '喜德县', 513432, '5134');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513433', '冕宁县', 513433, '5134');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513434', '越西县', 513434, '5134');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513435', '甘洛县', 513435, '5134');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513436', '美姑县', 513436, '5134');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('513437', '雷波县', 513437, '5134');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('52', '贵州省', 52, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5201', '贵阳市', 5201, '52');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520101', '市辖区', 520101, '5201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520102', '南明区', 520102, '5201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520103', '云岩区', 520103, '5201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520111', '花溪区', 520111, '5201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520112', '乌当区', 520112, '5201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520113', '白云区', 520113, '5201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520114', '小河区', 520114, '5201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520121', '开阳县', 520121, '5201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520122', '息烽县', 520122, '5201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520123', '修文县', 520123, '5201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520181', '清镇市', 520181, '5201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5202', '六盘水市', 5202, '52');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520201', '钟山区', 520201, '5202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520203', '六枝特区', 520203, '5202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520221', '水城县', 520221, '5202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520222', '盘县', 520222, '5202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5203', '遵义市', 5203, '52');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520301', '市辖区', 520301, '5203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520302', '红花岗区', 520302, '5203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520303', '汇川区', 520303, '5203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520321', '遵义县', 520321, '5203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520322', '桐梓县', 520322, '5203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520323', '绥阳县', 520323, '5203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520324', '正安县', 520324, '5203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520325', '道真仡佬族苗族自治县', 520325, '5203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520326', '务川仡佬族苗族自治县', 520326, '5203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520327', '凤冈县', 520327, '5203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520328', '湄潭县', 520328, '5203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520329', '余庆县', 520329, '5203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520330', '习水县', 520330, '5203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520381', '赤水市', 520381, '5203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520382', '仁怀市', 520382, '5203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5204', '安顺市', 5204, '52');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520401', '市辖区', 520401, '5204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520402', '西秀区', 520402, '5204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520421', '平坝县', 520421, '5204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520422', '普定县', 520422, '5204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520423', '镇宁布依族苗族自治县', 520423, '5204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520424', '关岭自治县', 520424, '5204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('520425', '紫云苗族布依族自治县', 520425, '5204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5222', '铜仁地区', 5222, '52');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522201', '铜仁市', 522201, '5222');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522222', '江口县', 522222, '5222');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522223', '玉屏侗族自治县', 522223, '5222');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522224', '石阡县', 522224, '5222');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522225', '思南县　', 522225, '5222');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522226', '印江土家族苗族自治县', 522226, '5222');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522227', '德江县', 522227, '5222');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522228', '沿河土家族自治县', 522228, '5222');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522229', '松桃苗族自治县', 522229, '5222');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522230', '万山特区', 522230, '5222');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5223', '黔西南州', 5223, '52');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522301', '兴义市', 522301, '5223');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522322', '兴仁县', 522322, '5223');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522323', '普安县', 522323, '5223');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522324', '晴隆县', 522324, '5223');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522325', '贞丰县', 522325, '5223');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522326', '望谟县', 522326, '5223');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522327', '册亨县', 522327, '5223');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522328', '安龙县', 522328, '5223');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5224', '毕节地区', 5224, '52');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522401', '毕节市', 522401, '5224');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522422', '大方县', 522422, '5224');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522423', '黔西县', 522423, '5224');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522424', '金沙县', 522424, '5224');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522425', '织金县', 522425, '5224');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522426', '纳雍县', 522426, '5224');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522427', '威宁彝族回族苗族自治县', 522427, '5224');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522428', '赫章县', 522428, '5224');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5226', '黔东南苗族侗族自治州', 5226, '52');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522601', '凯里市', 522601, '5226');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522622', '黄平县', 522622, '5226');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522623', '施秉县', 522623, '5226');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522624', '三穗县', 522624, '5226');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522625', '镇远县', 522625, '5226');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522626', '岑巩县', 522626, '5226');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522627', '天柱县', 522627, '5226');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522628', '锦屏县', 522628, '5226');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522629', '剑河县', 522629, '5226');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522630', '台江县', 522630, '5226');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522631', '黎平县', 522631, '5226');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522632', '榕江县', 522632, '5226');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522633', '从江县', 522633, '5226');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522634', '雷山县', 522634, '5226');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522635', '麻江县', 522635, '5226');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522636', '丹寨县', 522636, '5226');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5227', '黔南布依族苗族自治州', 5227, '52');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522701', '都匀市', 522701, '5227');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522702', '福泉市', 522702, '5227');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522722', '荔波县', 522722, '5227');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522723', '贵定县', 522723, '5227');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522725', '瓮安县', 522725, '5227');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522726', '独山县', 522726, '5227');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522727', '平塘县', 522727, '5227');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522728', '罗甸县', 522728, '5227');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522729', '长顺县', 522729, '5227');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522730', '龙里县', 522730, '5227');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522731', '惠水县', 522731, '5227');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('522732', '三都水族自治县', 522732, '5227');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('53', '云南省', 53, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5301', '昆明市', 5301, '53');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530101', '市辖区', 530101, '5301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530102', '五华区', 530102, '5301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530103', '盘龙区', 530103, '5301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530111', '官渡区', 530111, '5301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530112', '西山区', 530112, '5301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530113', '东川区', 530113, '5301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530121', '呈贡县', 530121, '5301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530122', '晋宁县', 530122, '5301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530124', '富民县', 530124, '5301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530125', '宜良县', 530125, '5301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530126', '石林县', 530126, '5301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530127', '嵩明县', 530127, '5301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530128', '禄劝县', 530128, '5301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530129', '寻甸县', 530129, '5301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530181', '安宁市', 530181, '5301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5303', '曲靖市', 5303, '53');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530301', '市辖区', 530301, '5303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530302', '麒麟区', 530302, '5303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530321', '马龙县', 530321, '5303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530322', '陆良县', 530322, '5303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530323', '师宗县', 530323, '5303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530324', '罗平县', 530324, '5303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530325', '富源县', 530325, '5303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530326', '会泽县', 530326, '5303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530328', '沾益县', 530328, '5303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530381', '宣威市', 530381, '5303');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5304', '玉溪市', 5304, '53');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530401', '市辖区', 530401, '5304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530402', '红塔区', 530402, '5304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530421', '江川县', 530421, '5304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530422', '澄江县', 530422, '5304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530423', '通海县', 530423, '5304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530424', '华宁县', 530424, '5304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530425', '易门县', 530425, '5304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530426', '峨山县', 530426, '5304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530427', '新平县', 530427, '5304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530428', '元江县', 530428, '5304');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5305', '保山市', 5305, '53');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530501', '市辖区', 530501, '5305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530502', '隆阳区', 530502, '5305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530521', '施甸县', 530521, '5305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530522', '腾冲县', 530522, '5305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530523', '龙陵县', 530523, '5305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530524', '昌宁县', 530524, '5305');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5306', '昭通市', 5306, '53');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530601', '市辖区', 530601, '5306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530602', '昭阳区', 530602, '5306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530621', '鲁甸县', 530621, '5306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530622', '巧家县', 530622, '5306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530623', '盐津县', 530623, '5306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530624', '大关县', 530624, '5306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530625', '永善县', 530625, '5306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530626', '绥江县', 530626, '5306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530627', '镇雄县', 530627, '5306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530628', '彝良县', 530628, '5306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530629', '威信县', 530629, '5306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530630', '水富县', 530630, '5306');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5307', '丽江市', 5307, '53');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530701', '市辖区', 530701, '5307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530702', '古城区', 530702, '5307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530721', '玉龙县', 530721, '5307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530722', '永胜县', 530722, '5307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530723', '华坪县', 530723, '5307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530724', '宁蒗县', 530724, '5307');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5308', '思茅市', 5308, '53');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530801', '市辖区', 530801, '5308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530802', '翠云区', 530802, '5308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530821', '普洱县', 530821, '5308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530822', '墨江县', 530822, '5308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530823', '景东县', 530823, '5308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530824', '景谷县', 530824, '5308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530825', '镇沅县', 530825, '5308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530826', '江城县', 530826, '5308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530827', '孟连县', 530827, '5308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530828', '澜沧县', 530828, '5308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530829', '西盟县', 530829, '5308');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5309', '临沧市', 5309, '53');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530901', '市辖区', 530901, '5309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530902', '临翔区', 530902, '5309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530921', '凤庆县', 530921, '5309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530922', '云县', 530922, '5309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530923', '永德县', 530923, '5309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530924', '镇康县', 530924, '5309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530925', '双江县', 530925, '5309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530926', '耿马县', 530926, '5309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('530927', '沧源县', 530927, '5309');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5323', '楚雄州', 5323, '53');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532301', '楚雄市', 532301, '5323');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532322', '双柏县', 532322, '5323');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532323', '牟定县', 532323, '5323');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532324', '南华县', 532324, '5323');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532325', '姚安县', 532325, '5323');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532326', '大姚县', 532326, '5323');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532327', '永仁县', 532327, '5323');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532328', '元谋县', 532328, '5323');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532329', '武定县', 532329, '5323');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532331', '禄丰县', 532331, '5323');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5325', '红河州', 5325, '53');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532501', '个旧市', 532501, '5325');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532502', '开远市', 532502, '5325');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532522', '蒙自县', 532522, '5325');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532523', '屏边县', 532523, '5325');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532524', '建水县', 532524, '5325');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532525', '石屏县', 532525, '5325');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532526', '弥勒县', 532526, '5325');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532527', '泸西县', 532527, '5325');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532528', '元阳县', 532528, '5325');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532529', '红河县', 532529, '5325');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532530', '金平县', 532530, '5325');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532531', '绿春县', 532531, '5325');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532532', '河口县', 532532, '5325');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5326', '文山州', 5326, '53');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532621', '文山县', 532621, '5326');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532622', '砚山县', 532622, '5326');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532623', '西畴县', 532623, '5326');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532624', '麻栗坡县', 532624, '5326');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532625', '马关县', 532625, '5326');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532626', '丘北县', 532626, '5326');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532627', '广南县', 532627, '5326');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532628', '富宁县', 532628, '5326');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5328', '西双版纳州', 5328, '53');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532801', '景洪市', 532801, '5328');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532822', '勐海县', 532822, '5328');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532823', '勐腊县', 532823, '5328');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5329', '大理州', 5329, '53');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532901', '大理市', 532901, '5329');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532922', '漾濞县', 532922, '5329');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532923', '祥云县', 532923, '5329');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532924', '宾川县', 532924, '5329');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532925', '弥渡县', 532925, '5329');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532926', '南涧县', 532926, '5329');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532927', '巍山县', 532927, '5329');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532928', '永平县', 532928, '5329');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532929', '云龙县', 532929, '5329');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532930', '洱源县', 532930, '5329');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532931', '剑川县', 532931, '5329');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('532932', '鹤庆县', 532932, '5329');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5331', '德宏州', 5331, '53');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('533102', '瑞丽市', 533102, '5331');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('533103', '潞西市', 533103, '5331');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('533122', '梁河县', 533122, '5331');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('533123', '盈江县', 533123, '5331');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('533124', '陇川县', 533124, '5331');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5333', '怒江州', 5333, '53');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('533321', '泸水县', 533321, '5333');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('533323', '福贡县', 533323, '5333');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('533324', '贡山县', 533324, '5333');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('533325', '兰坪县', 533325, '5333');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5334', '迪庆州', 5334, '53');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('533421', '香格里拉县', 533421, '5334');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('533422', '德钦县', 533422, '5334');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('533423', '维西县', 533423, '5334');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('54', '西藏自治区', 54, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5401', '拉萨市', 5401, '54');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('540101', '市辖区', 540101, '5401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('540102', '城关区', 540102, '5401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('540121', '林周县', 540121, '5401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('540122', '当雄县', 540122, '5401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('540123', '尼木县', 540123, '5401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('540124', '曲水县', 540124, '5401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('540125', '堆龙德庆', 540125, '5401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('540126', '达孜县', 540126, '5401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('540127', '墨竹工卡县', 540127, '5401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5421', '昌都地区', 5421, '54');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542121', '昌都县', 542121, '5421');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542122', '江达县', 542122, '5421');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542123', '贡觉县', 542123, '5421');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542124', '类乌齐县', 542124, '5421');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542125', '丁青县', 542125, '5421');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542126', '察亚县', 542126, '5421');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542127', '八宿县', 542127, '5421');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542128', '左贡县', 542128, '5421');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542129', '芒康县', 542129, '5421');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542132', '洛隆县', 542132, '5421');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542133', '边坝县', 542133, '5421');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5422', '山南地区', 5422, '54');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542221', '乃东县', 542221, '5422');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542222', '扎囊县', 542222, '5422');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542223', '贡嘎县', 542223, '5422');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542224', '桑日县', 542224, '5422');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542225', '琼结县', 542225, '5422');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542226', '曲松县', 542226, '5422');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542227', '措美县', 542227, '5422');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542228', '洛扎县', 542228, '5422');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542229', '加查县', 542229, '5422');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542231', '隆子县', 542231, '5422');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542232', '错那县', 542232, '5422');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542233', '浪卡子县', 542233, '5422');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5423', '日喀则地区', 5423, '54');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542301', '日喀则市', 542301, '5423');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542322', '南木林县', 542322, '5423');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542323', '江孜县', 542323, '5423');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542324', '定日县', 542324, '5423');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542325', '萨迦县', 542325, '5423');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542326', '拉孜县', 542326, '5423');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542327', '昂仁县', 542327, '5423');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542328', '谢通门县', 542328, '5423');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542329', '白朗县', 542329, '5423');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542330', '仁布县', 542330, '5423');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542331', '康马县', 542331, '5423');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542332', '定结县', 542332, '5423');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542333', '仲巴县', 542333, '5423');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542334', '亚东县', 542334, '5423');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542335', '吉隆县', 542335, '5423');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542336', '聂拉木县', 542336, '5423');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542337', '萨嘎县', 542337, '5423');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542338', '岗巴县', 542338, '5423');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5424', '那曲地区', 5424, '54');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542421', '那曲县', 542421, '5424');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542422', '嘉黎县', 542422, '5424');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542423', '比如县', 542423, '5424');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542424', '聂荣县', 542424, '5424');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542425', '安多县', 542425, '5424');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542426', '申扎县', 542426, '5424');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542427', '索县', 542427, '5424');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542428', '班戈县', 542428, '5424');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542429', '巴青县', 542429, '5424');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542430', '尼玛县', 542430, '5424');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5425', '阿里地区', 5425, '54');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542521', '普兰县', 542521, '5425');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542522', '札达县', 542522, '5425');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542523', '噶尔县', 542523, '5425');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542524', '日土县', 542524, '5425');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542525', '革吉县', 542525, '5425');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542526', '改则县', 542526, '5425');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542527', '措勤县', 542527, '5425');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('5426', '林芝地区', 5426, '54');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542621', '林芝县', 542621, '5426');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542622', '工布江达县', 542622, '5426');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542623', '米林县', 542623, '5426');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542624', '墨脱县', 542624, '5426');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542625', '波密县', 542625, '5426');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542626', '察隅县', 542626, '5426');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('542627', '朗县', 542627, '5426');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('61', '陕西省', 61, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6101', '西安市', 6101, '61');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610101', '市辖区', 610101, '6101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610102', '新城区', 610102, '6101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610103', '碑林区', 610103, '6101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610104', '莲湖区', 610104, '6101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610111', '灞桥区', 610111, '6101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610112', '未央区', 610112, '6101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610113', '雁塔区', 610113, '6101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610114', '阎良区', 610114, '6101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610115', '临潼区', 610115, '6101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610116', '长安区', 610116, '6101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610122', '蓝田县', 610122, '6101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610124', '周至县', 610124, '6101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610125', '户县', 610125, '6101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610126', '高陵县', 610126, '6101');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6102', '铜川市', 6102, '61');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610201', '市辖区', 610201, '6102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610202', '王益区', 610202, '6102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610203', '印台区', 610203, '6102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610204', '耀州区', 610204, '6102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610222', '宜君县', 610222, '6102');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6103', '宝鸡市', 6103, '61');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610301', '市辖区', 610301, '6103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610302', '渭滨区', 610302, '6103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610303', '金台区', 610303, '6103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610304', '陈仓区', 610304, '6103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610322', '凤翔县', 610322, '6103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610323', '岐山县', 610323, '6103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610324', '扶风县', 610324, '6103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610326', '眉县', 610326, '6103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610327', '陇县', 610327, '6103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610328', '千阳县', 610328, '6103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610329', '麟游县', 610329, '6103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610330', '凤县', 610330, '6103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610331', '太白县', 610331, '6103');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6104', '咸阳市', 6104, '61');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610401', '市辖区', 610401, '6104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610402', '秦都区', 610402, '6104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610403', '杨凌区', 610403, '6104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610404', '渭城区', 610404, '6104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610422', '三原县', 610422, '6104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610423', '泾阳县', 610423, '6104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610424', '乾县', 610424, '6104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610425', '礼泉县', 610425, '6104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610426', '永寿县', 610426, '6104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610427', '彬县', 610427, '6104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610428', '长武县', 610428, '6104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610429', '旬邑县', 610429, '6104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610430', '淳化县', 610430, '6104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610431', '武功县', 610431, '6104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610481', '兴平市', 610481, '6104');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6105', '渭南市', 6105, '61');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610501', '市辖区', 610501, '6105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610502', '临渭区', 610502, '6105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610521', '华县', 610521, '6105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610522', '潼关县', 610522, '6105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610523', '大荔县', 610523, '6105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610524', '合阳县', 610524, '6105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610525', '澄城县', 610525, '6105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610526', '蒲城县', 610526, '6105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610527', '白水县', 610527, '6105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610528', '富平县', 610528, '6105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610581', '韩城市', 610581, '6105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610582', '华阴市', 610582, '6105');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6106', '延安市', 6106, '61');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610601', '市辖区', 610601, '6106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610602', '宝塔区', 610602, '6106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610621', '延长县', 610621, '6106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610622', '延川县', 610622, '6106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610623', '子长县', 610623, '6106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610624', '安塞县', 610624, '6106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610625', '志丹县', 610625, '6106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610626', '吴起县', 610626, '6106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610627', '甘泉县', 610627, '6106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610628', '富县', 610628, '6106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610629', '洛川县', 610629, '6106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610630', '宜川县', 610630, '6106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610631', '黄龙县', 610631, '6106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610632', '黄陵县', 610632, '6106');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6107', '汉中市', 6107, '61');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610701', '市辖区', 610701, '6107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610702', '汉台区', 610702, '6107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610721', '南郑县', 610721, '6107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610722', '城固县', 610722, '6107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610723', '洋县', 610723, '6107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610724', '西乡县', 610724, '6107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610725', '勉县', 610725, '6107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610726', '宁强县', 610726, '6107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610727', '略阳县', 610727, '6107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610728', '镇巴县', 610728, '6107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610729', '留坝县', 610729, '6107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610730', '佛坪县', 610730, '6107');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6108', '榆林市', 6108, '61');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610801', '市辖区', 610801, '6108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610802', '榆阳区', 610802, '6108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610821', '神木县', 610821, '6108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610822', '府谷县', 610822, '6108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610823', '横山县', 610823, '6108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610824', '靖边县', 610824, '6108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610825', '定边县', 610825, '6108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610826', '绥德县', 610826, '6108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610827', '米脂县', 610827, '6108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610828', '佳县', 610828, '6108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610829', '吴堡县', 610829, '6108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610830', '清涧县', 610830, '6108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610831', '子洲县', 610831, '6108');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6109', '安康市', 6109, '61');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610901', '市辖区', 610901, '6109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610902', '汉滨区', 610902, '6109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610921', '汉阴县', 610921, '6109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610922', '石泉县', 610922, '6109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610923', '宁陕县', 610923, '6109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610924', '紫阳县', 610924, '6109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610925', '岚皋县', 610925, '6109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610926', '平利县', 610926, '6109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610927', '镇坪县', 610927, '6109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610928', '旬阳县', 610928, '6109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('610929', '白河县', 610929, '6109');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6110', '商洛市', 6110, '61');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('611001', '市辖区', 611001, '6110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('611002', '商州区', 611002, '6110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('611021', '洛南县', 611021, '6110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('611022', '丹凤县', 611022, '6110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('611023', '商南县', 611023, '6110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('611024', '山阳县', 611024, '6110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('611025', '镇安县', 611025, '6110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('611026', '柞水县', 611026, '6110');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('62', '甘肃省', 62, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6201', '兰州市', 6201, '62');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620101', '市辖区', 620101, '6201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620102', '城关区', 620102, '6201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620103', '七里河区', 620103, '6201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620104', '兰州市西固区', 620104, '6201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620105', '安宁区', 620105, '6201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620111', '红古区', 620111, '6201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620121', '永登县', 620121, '6201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620122', '皋兰县', 620122, '6201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620123', '榆中县', 620123, '6201');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6202', '嘉峪关市', 6202, '62');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620201', '市辖', 620201, '6202');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6203', '金昌市', 6203, '62');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620301', '市辖区', 620301, '6203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620302', '金川区', 620302, '6203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620321', '永昌县', 620321, '6203');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6204', '白银市', 6204, '62');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620401', '市辖区', 620401, '6204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620402', '白银区', 620402, '6204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620403', '平川区', 620403, '6204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620421', '靖远县', 620421, '6204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620422', '会宁县', 620422, '6204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620423', '景泰县', 620423, '6204');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6205', '天水市', 6205, '62');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620501', '市辖区', 620501, '6205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620502', '秦州区', 620502, '6205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620503', '麦积区', 620503, '6205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620521', '清水县', 620521, '6205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620522', '秦安县', 620522, '6205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620523', '甘谷县', 620523, '6205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620524', '武山县', 620524, '6205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620525', '张家川县', 620525, '6205');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6206', '武威市', 6206, '62');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620601', '市辖区', 620601, '6206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620602', '凉州区', 620602, '6206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620621', '民勤县', 620621, '6206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620622', '古浪县', 620622, '6206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620623', '天祝县', 620623, '6206');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6207', '张掖市', 6207, '62');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620701', '市辖区', 620701, '6207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620702', '甘州区', 620702, '6207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620721', '肃南裕固族自治县', 620721, '6207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620722', '民乐县', 620722, '6207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620723', '临泽县', 620723, '6207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620724', '高台县', 620724, '6207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620725', '山丹县', 620725, '6207');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6208', '平凉市', 6208, '62');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620801', '市辖区', 620801, '6208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620802', '崆峒区', 620802, '6208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620821', '泾川县', 620821, '6208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620822', '灵台县', 620822, '6208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620823', '崇信县', 620823, '6208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620824', '华亭县', 620824, '6208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620825', '庄浪县', 620825, '6208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620826', '静宁县', 620826, '6208');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6209', '酒泉市', 6209, '62');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620901', '市辖区', 620901, '6209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620902', '肃州区', 620902, '6209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620921', '金塔县', 620921, '6209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620922', '瓜州县', 620922, '6209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620923', '肃北蒙古族自治县', 620923, '6209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620924', '阿克塞县', 620924, '6209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620981', '玉门市', 620981, '6209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('620982', '敦煌市', 620982, '6209');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6210', '庆阳市', 6210, '62');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621001', '市辖区', 621001, '6210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621002', '西峰区', 621002, '6210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621021', '庆城县', 621021, '6210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621022', '环县', 621022, '6210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621023', '华池县', 621023, '6210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621024', '合水县', 621024, '6210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621025', '正宁县', 621025, '6210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621026', '宁县', 621026, '6210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621027', '镇原县', 621027, '6210');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6211', '定西市', 6211, '62');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621101', '市辖区', 621101, '6211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621102', '安定区', 621102, '6211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621121', '通渭县', 621121, '6211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621122', '陇西县', 621122, '6211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621123', '渭源县', 621123, '6211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621124', '临洮县', 621124, '6211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621125', '漳县', 621125, '6211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621126', '岷县', 621126, '6211');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6212', '陇南市', 6212, '62');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621201', '市辖区', 621201, '6212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621202', '武都区', 621202, '6212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621221', '成县', 621221, '6212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621222', '文县', 621222, '6212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621223', '宕昌县', 621223, '6212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621224', '康县', 621224, '6212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621225', '西和县', 621225, '6212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621226', '礼县', 621226, '6212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621227', '徽县', 621227, '6212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('621228', '两当县', 621228, '6212');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6229', '临夏州', 6229, '62');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('622901', '临夏市', 622901, '6229');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('622921', '临夏县', 622921, '6229');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('622922', '康乐县', 622922, '6229');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('622923', '永靖县', 622923, '6229');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('622924', '广河县', 622924, '6229');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('622925', '和政县', 622925, '6229');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('622926', '东乡族自治县', 622926, '6229');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('622927', '积石山县', 622927, '6229');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6230', '甘南州', 6230, '62');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('623001', '合作市', 623001, '6230');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('623021', '临潭县', 623021, '6230');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('623022', '卓尼县', 623022, '6230');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('623023', '舟曲县', 623023, '6230');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('623024', '迭部县', 623024, '6230');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('623025', '玛曲县', 623025, '6230');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('623026', '碌曲县', 623026, '6230');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('623027', '夏河县', 623027, '6230');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('63', '青海省', 63, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6301', '西宁市', 6301, '63');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('630101', '市辖区', 630101, '6301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('630102', '城东区', 630102, '6301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('630103', '城中区', 630103, '6301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('630104', '城西区', 630104, '6301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('630105', '城北区', 630105, '6301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('630121', '大通回族土族自治县', 630121, '6301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('630122', '湟中县', 630122, '6301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('630123', '湟源县', 630123, '6301');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6321', '海东地区', 6321, '63');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632121', '平安县', 632121, '6321');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632122', '民和县', 632122, '6321');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632123', '乐都县', 632123, '6321');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632126', '互助县', 632126, '6321');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632127', '化隆回族自治县', 632127, '6321');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632128', '循化县', 632128, '6321');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6322', '海北州', 6322, '63');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632221', '门源县', 632221, '6322');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632222', '祁连县', 632222, '6322');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632223', '海晏县', 632223, '6322');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632224', '刚察县', 632224, '6322');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6323', '黄南州', 6323, '63');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632321', '同仁县', 632321, '6323');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632322', '尖扎县', 632322, '6323');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632323', '泽库县', 632323, '6323');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632324', '河南县', 632324, '6323');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6325', '海南州', 6325, '63');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632521', '共和县', 632521, '6325');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632522', '同德县', 632522, '6325');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632523', '贵德县', 632523, '6325');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632524', '兴海县', 632524, '6325');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632525', '贵南县', 632525, '6325');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6326', '果洛州', 6326, '63');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632621', '玛沁县', 632621, '6326');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632622', '班玛县', 632622, '6326');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632623', '甘德县', 632623, '6326');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632624', '达日县', 632624, '6326');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632625', '久治县', 632625, '6326');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632626', '玛多县', 632626, '6326');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6327', '玉树州', 6327, '63');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632721', '玉树县', 632721, '6327');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632722', '杂多县', 632722, '6327');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632723', '称多县', 632723, '6327');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632724', '治多县', 632724, '6327');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632725', '囊谦县', 632725, '6327');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632726', '曲麻莱县', 632726, '6327');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6328', '海西州', 6328, '63');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632801', '格尔木市', 632801, '6328');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632802', '德令哈市', 632802, '6328');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632821', '乌兰县', 632821, '6328');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632822', '都兰县', 632822, '6328');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('632823', '天峻县', 632823, '6328');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('64', '宁夏回族自治区', 64, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6401', '银川市', 6401, '64');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640101', '市辖区', 640101, '6401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640104', '兴庆区', 640104, '6401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640105', '西夏区', 640105, '6401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640106', '金凤区', 640106, '6401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640121', '永宁县', 640121, '6401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640122', '贺兰县', 640122, '6401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640181', '灵武市', 640181, '6401');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6402', '石嘴山市', 6402, '64');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640201', '市辖区', 640201, '6402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640202', '大武口区', 640202, '6402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640205', '惠农区', 640205, '6402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640221', '平罗县', 640221, '6402');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6403', '吴忠市', 6403, '64');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640301', '市辖区', 640301, '6403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640302', '利通区', 640302, '6403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640323', '盐池县', 640323, '6403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640324', '同心县', 640324, '6403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640381', '青铜峡市', 640381, '6403');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6404', '固原市', 6404, '64');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640401', '市辖区', 640401, '6404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640402', '原州区', 640402, '6404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640422', '西吉县', 640422, '6404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640423', '隆德县', 640423, '6404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640424', '泾源县', 640424, '6404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640425', '彭阳县', 640425, '6404');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6405', '中卫市', 6405, '64');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640501', '市辖区', 640501, '6405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640502', '沙坡头区', 640502, '6405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640521', '中宁县', 640521, '6405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('640522', '海原县', 640522, '6405');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('65', '新疆维吾尔自治区', 65, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6501', '乌鲁木齐市', 6501, '65');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('650101', '市辖区', 650101, '6501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('650102', '天山区', 650102, '6501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('650103', '沙依巴克区', 650103, '6501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('650104', '新市区', 650104, '6501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('650105', '水磨沟区', 650105, '6501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('650106', '头屯河区', 650106, '6501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('650107', '达坂城区', 650107, '6501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('650108', '东山区', 650108, '6501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('650121', '乌鲁木齐县', 650121, '6501');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6502', '克拉玛依市', 6502, '65');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('650201', '市辖区', 650201, '6502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('650202', '独山子区', 650202, '6502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('650203', '克拉玛依区', 650203, '6502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('650204', '白碱滩区', 650204, '6502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('650205', '乌尔禾区', 650205, '6502');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6521', '吐鲁番地区', 6521, '65');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652101', '吐鲁番市', 652101, '6521');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652122', '鄯善县', 652122, '6521');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652123', '托克逊县', 652123, '6521');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6522', '哈密地区', 6522, '65');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652201', '哈密市', 652201, '6522');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652222', '巴里坤县', 652222, '6522');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652223', '伊吾县', 652223, '6522');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6523', '昌吉州', 6523, '65');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652301', '昌吉市', 652301, '6523');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652302', '阜康市', 652302, '6523');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652303', '米泉市', 652303, '6523');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652323', '呼图壁县', 652323, '6523');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652324', '玛纳斯', 652324, '6523');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652325', '奇台县', 652325, '6523');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652327', '吉木萨尔县', 652327, '6523');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652328', '木垒县', 652328, '6523');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6527', '博尔塔拉蒙古自治州', 6527, '65');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652701', '博乐市', 652701, '6527');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652722', '精河县', 652722, '6527');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652723', '温泉县', 652723, '6527');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6528', '巴音郭楞蒙古自治州', 6528, '65');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652801', '库尔勒市', 652801, '6528');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652822', '轮台县', 652822, '6528');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652823', '尉犁县', 652823, '6528');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652824', '若羌县', 652824, '6528');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652825', '且末县', 652825, '6528');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652826', '焉耆县', 652826, '6528');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652827', '和静县', 652827, '6528');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652828', '和硕县', 652828, '6528');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652829', '博湖县', 652829, '6528');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6529', '阿克苏地区', 6529, '65');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652901', '阿克苏市', 652901, '6529');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652922', '温宿县', 652922, '6529');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652923', '库车县', 652923, '6529');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652924', '沙雅县', 652924, '6529');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652925', '新和县', 652925, '6529');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652926', '拜城县', 652926, '6529');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652927', '乌什县', 652927, '6529');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652928', '阿瓦提县', 652928, '6529');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('652929', '柯坪县', 652929, '6529');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6530', '克州', 6530, '65');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653001', '阿图什市', 653001, '6530');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653022', '阿克陶县', 653022, '6530');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653023', '阿合奇县', 653023, '6530');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653024', '乌恰县', 653024, '6530');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6531', '喀什地区', 6531, '65');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653101', '喀什市', 653101, '6531');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653121', '疏附县', 653121, '6531');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653122', '疏勒县', 653122, '6531');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653123', '英吉沙县', 653123, '6531');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653124', '泽普县', 653124, '6531');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653125', '莎车县', 653125, '6531');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653126', '叶城县', 653126, '6531');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653127', '麦盖提县', 653127, '6531');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653128', '岳普湖县', 653128, '6531');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653129', '伽师县', 653129, '6531');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653130', '巴楚县', 653130, '6531');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653131', '塔什库尔干县', 653131, '6531');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6532', '和田地区', 6532, '65');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653201', '和田市', 653201, '6532');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653221', '和田县', 653221, '6532');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653222', '墨玉县', 653222, '6532');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653223', '皮山县', 653223, '6532');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653224', '洛浦县', 653224, '6532');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653225', '策勒县', 653225, '6532');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653226', '于田县', 653226, '6532');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('653227', '民丰县', 653227, '6532');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6540', '伊犁州', 6540, '65');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654002', '伊宁市', 654002, '6540');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654003', '奎屯市', 654003, '6540');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654021', '伊宁县', 654021, '6540');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654022', '察布查尔县', 654022, '6540');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654023', '霍城县', 654023, '6540');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654024', '巩留县', 654024, '6540');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654025', '新源县', 654025, '6540');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654026', '昭苏县', 654026, '6540');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654027', '特克斯县', 654027, '6540');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654028', '尼勒克县', 654028, '6540');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6542', '塔城地区', 6542, '65');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654201', '塔城市', 654201, '6542');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654202', '乌苏市', 654202, '6542');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654221', '额敏县', 654221, '6542');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654223', '沙湾县', 654223, '6542');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654224', '托里县', 654224, '6542');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654225', '裕民县', 654225, '6542');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654226', '和布克赛尔蒙古自治县', 654226, '6542');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6543', '阿勒泰地区', 6543, '65');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654301', '阿勒泰市', 654301, '6543');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654321', '布尔津县', 654321, '6543');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654322', '富蕴县', 654322, '6543');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654323', '福海县', 654323, '6543');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654324', '哈巴河县', 654324, '6543');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654325', '青河县', 654325, '6543');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('654326', '吉木乃县', 654326, '6543');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('6590', '省直辖行政单位', 6590, '65');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('659001', '石河子市', 659001, '6590');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('659002', '阿拉尔市', 659002, '6590');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('659003', '图木舒克市', 659003, '6590');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('659004', '五家渠市', 659004, '6590');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('71', '台湾省', 71, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('81', '香港特别行政区', 81, '1');
-INSERT INTO `cola_area` (ID_, AREA_NAME_, LEVEL_, PARENT_ID_) VALUES ('82', '澳门特别行政区', 82, '1');
+
+# Dump of table COLA_AREA
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_AREA`;
+
+CREATE TABLE `COLA_AREA` (
+  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+  `AREA_NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `LEVEL_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `PARENT_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+LOCK TABLES `COLA_AREA` WRITE;
+/*!40000 ALTER TABLE `COLA_AREA` DISABLE KEYS */;
+
+INSERT INTO `COLA_AREA` (`ID_`, `AREA_NAME_`, `LEVEL_`, `PARENT_ID_`)
+VALUES
+	(X'31',X'E585A8E59BBD',X'31',X'2D31'),
+	(X'3131',X'E58C97E4BAACE5B882',X'3131',X'31'),
+	(X'31313031',X'E5B882E8BE96E58CBA',X'31313031',X'3131'),
+	(X'313130313031',X'E4B89CE59F8EE58CBA',X'313130313031',X'31313031'),
+	(X'313130313032',X'E8A5BFE59F8EE58CBA',X'313130313032',X'31313031'),
+	(X'313130313033',X'E5B487E69687E58CBA',X'313130313033',X'31313031'),
+	(X'313130313034',X'E5AEA3E6ADA6E58CBA',X'313130313034',X'31313031'),
+	(X'313130313035',X'E69C9DE998B3E58CBA',X'313130313035',X'31313031'),
+	(X'313130313036',X'E4B8B0E58FB0E58CBA',X'313130313036',X'31313031'),
+	(X'313130313037',X'E79FB3E699AFE5B1B1E58CBA',X'313130313037',X'31313031'),
+	(X'313130313038',X'E6B5B7E6B780E58CBA',X'313130313038',X'31313031'),
+	(X'313130313039',X'E997A8E5A4B4E6B29FE58CBA',X'313130313039',X'31313031'),
+	(X'313130313131',X'E688BFE5B1B1E58CBA',X'313130313131',X'31313031'),
+	(X'313130313132',X'E9809AE5B79EE58CBA',X'313130313132',X'31313031'),
+	(X'313130313133',X'E9A1BAE4B989E58CBA',X'313130313133',X'31313031'),
+	(X'313130313134',X'E6988CE5B9B3E58CBA',X'313130313134',X'31313031'),
+	(X'313130313135',X'E5A4A7E585B4E58CBA',X'313130313135',X'31313031'),
+	(X'313130313136',X'E68080E69F94E58CBA',X'313130313136',X'31313031'),
+	(X'313130313137',X'E5B9B3E8B0B7E58CBA',X'313130313137',X'31313031'),
+	(X'31313032',X'E58EBF',X'31313032',X'3131'),
+	(X'313130323238',X'E5AF86E4BA91E58EBF',X'313130323238',X'31313032'),
+	(X'313130323239',X'E5BBB6E5BA86E58EBF',X'313130323239',X'31313032'),
+	(X'3132',X'E5A4A9E6B4A5E5B882',X'3132',X'31'),
+	(X'31323031',X'E5B882E8BE96E58CBA',X'31323031',X'3132'),
+	(X'313230313031',X'E5928CE5B9B3E58CBA',X'313230313031',X'31323031'),
+	(X'313230313032',X'E6B2B3E4B89CE58CBA',X'313230313032',X'31323031'),
+	(X'313230313033',X'E6B2B3E8A5BFE58CBA',X'313230313033',X'31323031'),
+	(X'313230313034',X'E58D97E5BC80E58CBA',X'313230313034',X'31323031'),
+	(X'313230313035',X'E6B2B3E58C97E58CBA',X'313230313035',X'31323031'),
+	(X'313230313036',X'E7BAA2E6A1A5E58CBA',X'313230313036',X'31323031'),
+	(X'313230313037',X'E5A198E6B2BDE58CBA',X'313230313037',X'31323031'),
+	(X'313230313038',X'E6B189E6B2BDE58CBA',X'313230313038',X'31323031'),
+	(X'313230313039',X'E5A4A7E6B8AFE58CBA',X'313230313039',X'31323031'),
+	(X'313230313130',X'E4B89CE4B8BDE58CBA',X'313230313130',X'31323031'),
+	(X'313230313131',X'E8A5BFE99D92E58CBA',X'313230313131',X'31323031'),
+	(X'313230313132',X'E6B4A5E58D97E58CBA',X'313230313132',X'31323031'),
+	(X'313230313133',X'E58C97E8BEB0E58CBA',X'313230313133',X'31323031'),
+	(X'313230313134',X'E6ADA6E6B885E58CBA',X'313230313134',X'31323031'),
+	(X'313230313135',X'E5AE9DE59DBBE58CBA',X'313230313135',X'31323031'),
+	(X'31323032',X'E5B882E8BE96E58EBF',X'31323032',X'3132'),
+	(X'313230323231',X'E5AE81E6B2B3E58EBF',X'313230323231',X'31323032'),
+	(X'313230323233',X'E99D99E6B5B7E58EBF',X'313230323233',X'31323032'),
+	(X'313230323235',X'E8939FE58EBF',X'313230323235',X'31323032'),
+	(X'3133',X'E6B2B3E58C97E79C81',X'3133',X'31'),
+	(X'31333031',X'E79FB3E5AEB6E5BA84E5B882',X'31333031',X'3133'),
+	(X'313330313031',X'E5B882E8BE96E58CBA',X'313330313031',X'31333031'),
+	(X'313330313032',X'E995BFE5AE89E58CBA',X'313330313032',X'31333031'),
+	(X'313330313033',X'E6A1A5E4B89CE58CBA',X'313330313033',X'31333031'),
+	(X'313330313034',X'E6A1A5E8A5BFE58CBA',X'313330313034',X'31333031'),
+	(X'313330313035',X'E696B0E58D8EE58CBA',X'313330313035',X'31333031'),
+	(X'313330313037',X'E4BA95E99989E79FBFE58CBA',X'313330313037',X'31333031'),
+	(X'313330313038',X'E8A395E58D8EE58CBA',X'313330313038',X'31333031'),
+	(X'313330313231',X'E4BA95E99989E58EBF',X'313330313231',X'31333031'),
+	(X'313330313233',X'E6ADA3E5AE9AE58EBF',X'313330313233',X'31333031'),
+	(X'313330313234',X'E6A0BEE59F8EE58EBF',X'313330313234',X'31333031'),
+	(X'313330313235',X'E8A18CE59490E58EBF',X'313330313235',X'31333031'),
+	(X'313330313236',X'E781B5E5AFBFE58EBF',X'313330313236',X'31333031'),
+	(X'313330313237',X'E9AB98E98291E58EBF',X'313330313237',X'31333031'),
+	(X'313330313238',X'E6B7B1E6B3BDE58EBF',X'313330313238',X'31333031'),
+	(X'313330313239',X'E8B59EE79A87E58EBF',X'313330313239',X'31333031'),
+	(X'313330313330',X'E697A0E69E81E58EBF',X'313330313330',X'31333031'),
+	(X'313330313331',X'E5B9B3E5B1B1E58EBF',X'313330313331',X'31333031'),
+	(X'313330313332',X'E58583E6B08FE58EBF',X'313330313332',X'31333031'),
+	(X'313330313333',X'E8B5B5E58EBF',X'313330313333',X'31333031'),
+	(X'313330313831',X'E8BE9BE99B86E5B882',X'313330313831',X'31333031'),
+	(X'313330313832',X'E89781E59F8EE5B882',X'313330313832',X'31333031'),
+	(X'313330313833',X'E6998BE5B79EE5B882',X'313330313833',X'31333031'),
+	(X'313330313834',X'E696B0E4B990E5B882',X'313330313834',X'31333031'),
+	(X'313330313835',X'E9B9BFE6B389E5B882',X'313330313835',X'31333031'),
+	(X'31333032',X'E59490E5B1B1E5B882',X'31333032',X'3133'),
+	(X'313330323031',X'E5B882E8BE96E58CBA',X'313330323031',X'31333032'),
+	(X'313330323032',X'E8B7AFE58D97E58CBA',X'313330323032',X'31333032'),
+	(X'313330323033',X'E8B7AFE58C97E58CBA',X'313330323033',X'31333032'),
+	(X'313330323034',X'E58FA4E586B6E58CBA',X'313330323034',X'31333032'),
+	(X'313330323035',X'E5BC80E5B9B3E58CBA',X'313330323035',X'31333032'),
+	(X'313330323037',X'E4B8B0E58D97E58CBA',X'313330323037',X'31333032'),
+	(X'313330323038',X'E4B8B0E6B6A6E58CBA',X'313330323038',X'31333032'),
+	(X'313330323233',X'E6BBA6E58EBF',X'313330323233',X'31333032'),
+	(X'313330323234',X'E6BBA6E58D97E58EBF',X'313330323234',X'31333032'),
+	(X'313330323235',X'E4B990E4BAADE58EBF',X'313330323235',X'31333032'),
+	(X'313330323237',X'E8BF81E8A5BFE58EBF',X'313330323237',X'31333032'),
+	(X'313330323239',X'E78E89E794B0E58EBF',X'313330323239',X'31333032'),
+	(X'313330323330',X'E59490E6B5B7E58EBF',X'313330323330',X'31333032'),
+	(X'313330323831',X'E981B5E58C96E5B882',X'313330323831',X'31333032'),
+	(X'313330323833',X'E8BF81E5AE89E5B882',X'313330323833',X'31333032'),
+	(X'31333033',X'E7A7A6E79A87E5B29BE5B882',X'31333033',X'3133'),
+	(X'313330333031',X'E5B882E8BE96E58CBA',X'313330333031',X'31333033'),
+	(X'313330333032',X'E6B5B7E6B8AFE58CBA',X'313330333032',X'31333033'),
+	(X'313330333033',X'E5B1B1E6B5B7E585B3E58CBA',X'313330333033',X'31333033'),
+	(X'313330333034',X'E58C97E688B4E6B2B3E58CBA',X'313330333034',X'31333033'),
+	(X'313330333231',X'E99D92E9BE99E6BBA1E6978FE887AAE6B2BBE58EBF',X'313330333231',X'31333033'),
+	(X'313330333232',X'E6988CE9BB8EE58EBF',X'313330333232',X'31333033'),
+	(X'313330333233',X'E68A9AE5AE81E58EBF',X'313330333233',X'31333033'),
+	(X'313330333234',X'E58DA2E9BE99E58EBF',X'313330333234',X'31333033'),
+	(X'31333034',X'E982AFE983B8E5B882',X'31333034',X'3133'),
+	(X'313330343031',X'E5B882E8BE96E58CBA',X'313330343031',X'31333034'),
+	(X'313330343032',X'E982AFE5B1B1E58CBA',X'313330343032',X'31333034'),
+	(X'313330343033',X'E4B89BE58FB0E58CBA',X'313330343033',X'31333034'),
+	(X'313330343034',X'E5A48DE585B4E58CBA',X'313330343034',X'31333034'),
+	(X'313330343036',X'E5B3B0E5B3B0E79FBFE58CBA',X'313330343036',X'31333034'),
+	(X'313330343231',X'E982AFE983B8E58EBF',X'313330343231',X'31333034'),
+	(X'313330343233',X'E4B8B4E6BCB3E58EBF',X'313330343233',X'31333034'),
+	(X'313330343234',X'E68890E5AE89E58EBF',X'313330343234',X'31333034'),
+	(X'313330343235',X'E5A4A7E5908DE58EBF',X'313330343235',X'31333034'),
+	(X'313330343236',X'E6B689E58EBF',X'313330343236',X'31333034'),
+	(X'313330343237',X'E7A381E58EBF',X'313330343237',X'31333034'),
+	(X'313330343238',X'E882A5E4B9A1E58EBF',X'313330343238',X'31333034'),
+	(X'313330343239',X'E6B0B8E5B9B4E58EBF',X'313330343239',X'31333034'),
+	(X'313330343330',X'E982B1E58EBF',X'313330343330',X'31333034'),
+	(X'313330343331',X'E9B8A1E6B3BDE58EBF',X'313330343331',X'31333034'),
+	(X'313330343332',X'E5B9BFE5B9B3E58EBF',X'313330343332',X'31333034'),
+	(X'313330343333',X'E9A686E999B6E58EBF',X'313330343333',X'31333034'),
+	(X'313330343334',X'E9AD8FE58EBF',X'313330343334',X'31333034'),
+	(X'313330343335',X'E69BB2E591A8E58EBF',X'313330343335',X'31333034'),
+	(X'313330343831',X'E6ADA6E5AE89E5B882',X'313330343831',X'31333034'),
+	(X'31333035',X'E982A2E58FB0E5B882',X'31333035',X'3133'),
+	(X'313330353031',X'E5B882E8BE96E58CBA',X'313330353031',X'31333035'),
+	(X'313330353032',X'E6A1A5E4B89CE58CBA',X'313330353032',X'31333035'),
+	(X'313330353033',X'E6A1A5E8A5BFE58CBA',X'313330353033',X'31333035'),
+	(X'313330353231',X'E982A2E58FB0E58EBF',X'313330353231',X'31333035'),
+	(X'313330353232',X'E4B8B4E59F8EE58EBF',X'313330353232',X'31333035'),
+	(X'313330353233',X'E58685E982B1E58EBF',X'313330353233',X'31333035'),
+	(X'313330353234',X'E69F8FE4B9A1E58EBF',X'313330353234',X'31333035'),
+	(X'313330353235',X'E99A86E5B0A7E58EBF',X'313330353235',X'31333035'),
+	(X'313330353236',X'E4BBBBE58EBF',X'313330353236',X'31333035'),
+	(X'313330353237',X'E58D97E5928CE58EBF',X'313330353237',X'31333035'),
+	(X'313330353238',X'E5AE81E6998BE58EBF',X'313330353238',X'31333035'),
+	(X'313330353239',X'E5B7A8E9B9BFE58EBF',X'313330353239',X'31333035'),
+	(X'313330353330',X'E696B0E6B2B3E58EBF',X'313330353330',X'31333035'),
+	(X'313330353331',X'E5B9BFE5AE97E58EBF',X'313330353331',X'31333035'),
+	(X'313330353332',X'E5B9B3E4B9A1E58EBF',X'313330353332',X'31333035'),
+	(X'313330353333',X'E5A881E58EBF',X'313330353333',X'31333035'),
+	(X'313330353334',X'E6B885E6B2B3E58EBF',X'313330353334',X'31333035'),
+	(X'313330353335',X'E4B8B4E8A5BFE58EBF',X'313330353335',X'31333035'),
+	(X'313330353831',X'E58D97E5AEABE5B882',X'313330353831',X'31333035'),
+	(X'313330353832',X'E6B299E6B2B3E5B882',X'313330353832',X'31333035'),
+	(X'31333036',X'E4BF9DE5AE9AE5B882',X'31333036',X'3133'),
+	(X'313330363031',X'E5B882E8BE96E58CBA',X'313330363031',X'31333036'),
+	(X'313330363032',X'E696B0E5B882E58CBA',X'313330363032',X'31333036'),
+	(X'313330363033',X'E58C97E5B882E58CBA',X'313330363033',X'31333036'),
+	(X'313330363034',X'E58D97E5B882E58CBA',X'313330363034',X'31333036'),
+	(X'313330363231',X'E6BBA1E59F8EE58EBF',X'313330363231',X'31333036'),
+	(X'313330363232',X'E6B885E88B91E58EBF',X'313330363232',X'31333036'),
+	(X'313330363233',X'E6B69EE6B0B4E58EBF',X'313330363233',X'31333036'),
+	(X'313330363234',X'E9989CE5B9B3E58EBF',X'313330363234',X'31333036'),
+	(X'313330363235',X'E5BE90E6B0B4E58EBF',X'313330363235',X'31333036'),
+	(X'313330363236',X'E5AE9AE585B4E58EBF',X'313330363236',X'31333036'),
+	(X'313330363237',X'E59490E58EBF',X'313330363237',X'31333036'),
+	(X'313330363238',X'E9AB98E998B3E58EBF',X'313330363238',X'31333036'),
+	(X'313330363239',X'E5AEB9E59F8EE58EBF',X'313330363239',X'31333036'),
+	(X'313330363330',X'E6B69EE6BA90E58EBF',X'313330363330',X'31333036'),
+	(X'313330363331',X'E69C9BE983BDE58EBF',X'313330363331',X'31333036'),
+	(X'313330363332',X'E5AE89E696B0E58EBF',X'313330363332',X'31333036'),
+	(X'313330363333',X'E69893E58EBF',X'313330363333',X'31333036'),
+	(X'313330363334',X'E69BB2E998B3E58EBF',X'313330363334',X'31333036'),
+	(X'313330363335',X'E8A0A1E58EBF',X'313330363335',X'31333036'),
+	(X'313330363336',X'E9A1BAE5B9B3E58EBF',X'313330363336',X'31333036'),
+	(X'313330363337',X'E58D9AE9878EE58EBF',X'313330363337',X'31333036'),
+	(X'313330363338',X'E99B84E58EBF',X'313330363338',X'31333036'),
+	(X'313330363831',X'E6B6BFE5B79EE5B882',X'313330363831',X'31333036'),
+	(X'313330363832',X'E5AE9AE5B79EE5B882',X'313330363832',X'31333036'),
+	(X'313330363833',X'E5AE89E59BBDE5B882',X'313330363833',X'31333036'),
+	(X'313330363834',X'E9AB98E7A291E5BA97E5B882',X'313330363834',X'31333036'),
+	(X'31333037',X'E5BCA0E5AEB6E58FA3E5B882',X'31333037',X'3133'),
+	(X'313330373031',X'E5B882E8BE96E58CBA',X'313330373031',X'31333037'),
+	(X'313330373032',X'E6A1A5E4B89CE58CBA',X'313330373032',X'31333037'),
+	(X'313330373033',X'E6A1A5E8A5BFE58CBA',X'313330373033',X'31333037'),
+	(X'313330373035',X'E5AEA3E58C96E58CBA',X'313330373035',X'31333037'),
+	(X'313330373036',X'E4B88BE88AB1E59BADE58CBA',X'313330373036',X'31333037'),
+	(X'313330373231',X'E5AEA3E58C96E58EBF',X'313330373231',X'31333037'),
+	(X'313330373232',X'E5BCA0E58C97E58EBF',X'313330373232',X'31333037'),
+	(X'313330373233',X'E5BAB7E4BF9DE58EBF',X'313330373233',X'31333037'),
+	(X'313330373234',X'E6B2BDE6BA90E58EBF',X'313330373234',X'31333037'),
+	(X'313330373235',X'E5B09AE4B989E58EBF',X'313330373235',X'31333037'),
+	(X'313330373236',X'E8949AE58EBF',X'313330373236',X'31333037'),
+	(X'313330373237',X'E998B3E58E9FE58EBF',X'313330373237',X'31333037'),
+	(X'313330373238',X'E68080E5AE89E58EBF',X'313330373238',X'31333037'),
+	(X'313330373239',X'E4B887E585A8E58EBF',X'313330373239',X'31333037'),
+	(X'313330373330',X'E68080E69DA5E58EBF',X'313330373330',X'31333037'),
+	(X'313330373331',X'E6B6BFE9B9BFE58EBF',X'313330373331',X'31333037'),
+	(X'313330373332',X'E8B5A4E59F8EE58EBF',X'313330373332',X'31333037'),
+	(X'313330373333',X'E5B487E7A4BCE58EBF',X'313330373333',X'31333037'),
+	(X'31333038',X'E689BFE5BEB7E5B882',X'31333038',X'3133'),
+	(X'313330383031',X'E5B882E8BE96E58CBA',X'313330383031',X'31333038'),
+	(X'313330383032',X'E58F8CE6A1A5E58CBA',X'313330383032',X'31333038'),
+	(X'313330383033',X'E58F8CE6BBA6E58CBA',X'313330383033',X'31333038'),
+	(X'313330383034',X'E9B9B0E6898BE890A5E5AD90E79FBFE58CBA',X'313330383034',X'31333038'),
+	(X'313330383231',X'E689BFE5BEB7E58EBF',X'313330383231',X'31333038'),
+	(X'313330383232',X'E585B4E99A86E58EBF',X'313330383232',X'31333038'),
+	(X'313330383233',X'E5B9B3E6B389E58EBF',X'313330383233',X'31333038'),
+	(X'313330383234',X'E6BBA6E5B9B3E58EBF',X'313330383234',X'31333038'),
+	(X'313330383235',X'E99A86E58C96E58EBF',X'313330383235',X'31333038'),
+	(X'313330383236',X'E4B8B0E5AE81E6BBA1E6978FE887AAE6B2BBE58EBF',X'313330383236',X'31333038'),
+	(X'313330383237',X'E5AEBDE59F8EE6BBA1E6978FE887AAE6B2BBE58EBF',X'313330383237',X'31333038'),
+	(X'313330383238',X'E59BB4E59CBAE6BBA1E6978FE89299E58FA4E6978FE887AAE6B2BBE58EBF',X'313330383238',X'31333038'),
+	(X'31333039',X'E6B2A7E5B79EE5B882',X'31333039',X'3133'),
+	(X'313330393031',X'E5B882E8BE96E58CBA',X'313330393031',X'31333039'),
+	(X'313330393032',X'E696B0E58D8EE58CBA',X'313330393032',X'31333039'),
+	(X'313330393033',X'E8BF90E6B2B3E58CBA',X'313330393033',X'31333039'),
+	(X'313330393231',X'E6B2A7E58EBF',X'313330393231',X'31333039'),
+	(X'313330393232',X'E99D92E58EBF',X'313330393232',X'31333039'),
+	(X'313330393233',X'E4B89CE58589E58EBF',X'313330393233',X'31333039'),
+	(X'313330393234',X'E6B5B7E585B4E58EBF',X'313330393234',X'31333039'),
+	(X'313330393235',X'E79B90E5B1B1E58EBF',X'313330393235',X'31333039'),
+	(X'313330393236',X'E88283E5AE81E58EBF',X'313330393236',X'31333039'),
+	(X'313330393237',X'E58D97E79AAEE58EBF',X'313330393237',X'31333039'),
+	(X'313330393238',X'E590B4E6A1A5E58EBF',X'313330393238',X'31333039'),
+	(X'313330393239',X'E78CAEE58EBF',X'313330393239',X'31333039'),
+	(X'313330393330',X'E5AD9FE69D91E59B9EE6978FE887AAE6B2BBE58EBF',X'313330393330',X'31333039'),
+	(X'313330393831',X'E6B38AE5A4B4E5B882',X'313330393831',X'31333039'),
+	(X'313330393832',X'E4BBBBE982B1E5B882',X'313330393832',X'31333039'),
+	(X'313330393833',X'E9BB84E9AA85E5B882',X'313330393833',X'31333039'),
+	(X'313330393834',X'E6B2B3E997B4E5B882',X'313330393834',X'31333039'),
+	(X'31333130',X'E5BB8AE59D8AE5B882',X'31333130',X'3133'),
+	(X'313331303031',X'E5B882E8BE96E58CBA',X'313331303031',X'31333130'),
+	(X'313331303032',X'E5AE89E6ACA1E58CBA',X'313331303032',X'31333130'),
+	(X'313331303033',X'E5B9BFE998B3E58CBA',X'313331303033',X'31333130'),
+	(X'313331303232',X'E59BBAE5AE89E58EBF',X'313331303232',X'31333130'),
+	(X'313331303233',X'E6B0B8E6B885E58EBF',X'313331303233',X'31333130'),
+	(X'313331303234',X'E9A699E6B2B3E58EBF',X'313331303234',X'31333130'),
+	(X'313331303235',X'E5A4A7E59F8EE58EBF',X'313331303235',X'31333130'),
+	(X'313331303236',X'E69687E5AE89E58EBF',X'313331303236',X'31333130'),
+	(X'313331303238',X'E5A4A7E58E82E59B9EE6978FE887AAE6B2BBE58EBF',X'313331303238',X'31333130'),
+	(X'313331303831',X'E99CB8E5B79EE5B882',X'313331303831',X'31333130'),
+	(X'313331303832',X'E4B889E6B2B3E5B882',X'313331303832',X'31333130'),
+	(X'31333131',X'E8A1A1E6B0B4E5B882',X'31333131',X'3133'),
+	(X'313331313031',X'E5B882E8BE96E58CBA',X'313331313031',X'31333131'),
+	(X'313331313032',X'E6A183E59F8EE58CBA',X'313331313032',X'31333131'),
+	(X'313331313231',X'E69EA3E5BCBAE58EBF',X'313331313231',X'31333131'),
+	(X'313331313232',X'E6ADA6E98291E58EBF',X'313331313232',X'31333131'),
+	(X'313331313233',X'E6ADA6E5BCBAE58EBF',X'313331313233',X'31333131'),
+	(X'313331313234',X'E9A5B6E998B3E58EBF',X'313331313234',X'31333131'),
+	(X'313331313235',X'E5AE89E5B9B3E58EBF',X'313331313235',X'31333131'),
+	(X'313331313236',X'E69585E59F8EE58EBF',X'313331313236',X'31333131'),
+	(X'313331313237',X'E699AFE58EBF',X'313331313237',X'31333131'),
+	(X'313331313238',X'E9989CE59F8EE58EBF',X'313331313238',X'31333131'),
+	(X'313331313831',X'E58680E5B79EE5B882',X'313331313831',X'31333131'),
+	(X'313331313832',X'E6B7B1E5B79EE5B882',X'313331313832',X'31333131'),
+	(X'3134',X'E5B1B1E8A5BF',X'3134',X'31'),
+	(X'31343031',X'E5A4AAE58E9FE5B882',X'31343031',X'3134'),
+	(X'313430313031',X'E5B882E8BE96E58CBA',X'313430313031',X'31343031'),
+	(X'313430313035',X'E5B08FE5BA97E58CBA28E4BABAE58FA3E590ABE9AB98E696B0E7BB8FE6B58EE58CBA29',X'313430313035',X'31343031'),
+	(X'313430313036',X'E8BF8EE6B3BDE58CBA',X'313430313036',X'31343031'),
+	(X'313430313037',X'E69D8FE88AB1E5B2ADE58CBA',X'313430313037',X'31343031'),
+	(X'313430313038',X'E5B096E88D89E59DAAE58CBA',X'313430313038',X'31343031'),
+	(X'313430313039',X'E4B887E69F8FE69E97E58CBA',X'313430313039',X'31343031'),
+	(X'313430313130',X'E6998BE6BA90E58CBA',X'313430313130',X'31343031'),
+	(X'313430313231',X'E6B885E5BE90E58EBF',X'313430313231',X'31343031'),
+	(X'313430313232',X'E998B3E69BB2E58EBF',X'313430313232',X'31343031'),
+	(X'313430313233',X'E5A884E783A6E58EBF',X'313430313233',X'31343031'),
+	(X'313430313831',X'E58FA4E4BAA4E5B882',X'313430313831',X'31343031'),
+	(X'31343032',X'E5A4A7E5908CE5B882',X'31343032',X'3134'),
+	(X'313430323031',X'E5B882E8BE96E58CBA',X'313430323031',X'31343032'),
+	(X'313430323032',X'E5A4A7E5908CE5B882E59F8EE58CBA',X'313430323032',X'31343032'),
+	(X'313430323033',X'E79FBFE58CBA',X'313430323033',X'31343032'),
+	(X'313430323131',X'E58D97E9838AE58CBA',X'313430323131',X'31343032'),
+	(X'313430323132',X'E696B0E88DA3E58CBA',X'313430323132',X'31343032'),
+	(X'313430323231',X'E998B3E9AB98E58EBF',X'313430323231',X'31343032'),
+	(X'313430323232',X'E5A4A9E99587E58EBF',X'313430323232',X'31343032'),
+	(X'313430323233',X'E5B9BFE781B5E58EBF',X'313430323233',X'31343032'),
+	(X'313430323234',X'E781B5E4B898E58EBF',X'313430323234',X'31343032'),
+	(X'313430323235',X'E6B591E6BA90E58EBF',X'313430323235',X'31343032'),
+	(X'313430323236',X'E5B7A6E4BA91E58EBF',X'313430323236',X'31343032'),
+	(X'313430323237',X'E5A4A7E5908CE58EBF',X'313430323237',X'31343032'),
+	(X'31343033',X'E998B3E6B389E5B882',X'31343033',X'3134'),
+	(X'313430333031',X'E5B882E8BE96E58CBA',X'313430333031',X'31343033'),
+	(X'313430333032',X'E59F8EE58CBA',X'313430333032',X'31343033'),
+	(X'313430333033',X'E79FBFE58CBA',X'313430333033',X'31343033'),
+	(X'313430333131',X'E9838AE58CBA',X'313430333131',X'31343033'),
+	(X'313430333231',X'E5B9B3E5AE9AE58EBF',X'313430333231',X'31343033'),
+	(X'313430333232',X'E79B82E58EBF',X'313430333232',X'31343033'),
+	(X'31343034',X'E995BFE6B2BBE5B882',X'31343034',X'3134'),
+	(X'313430343031',X'E5B882E8BE96E58CBA',X'313430343031',X'31343034'),
+	(X'313430343032',X'E995BFE6B2BBE5B882E59F8EE58CBA',X'313430343032',X'31343034'),
+	(X'313430343131',X'E995BFE6B2BBE5B882E9838AE58CBA',X'313430343131',X'31343034'),
+	(X'313430343231',X'E995BFE6B2BBE58EBF',X'313430343231',X'31343034'),
+	(X'313430343233',X'E8A584E59EA3E58EBF',X'313430343233',X'31343034'),
+	(X'313430343234',X'E5B1AFE79599E58EBF',X'313430343234',X'31343034'),
+	(X'313430343235',X'E5B9B3E9A1BAE58EBF',X'313430343235',X'31343034'),
+	(X'313430343236',X'E9BB8EE59F8EE58EBF',X'313430343236',X'31343034'),
+	(X'313430343237',X'E5A3B6E585B3E58EBF',X'313430343237',X'31343034'),
+	(X'313430343238',X'E995BFE5AD90E58EBF',X'313430343238',X'31343034'),
+	(X'313430343239',X'E6ADA6E4B9A1E58EBF',X'313430343239',X'31343034'),
+	(X'313430343330',X'E6B281E58EBF',X'313430343330',X'31343034'),
+	(X'313430343331',X'E6B281E6BA90E58EBF',X'313430343331',X'31343034'),
+	(X'313430343831',X'E6BD9EE59F8EE5B882',X'313430343831',X'31343034'),
+	(X'31343035',X'E6998BE59F8EE5B882',X'31343035',X'3134'),
+	(X'313430353031',X'E5B882E8BE96E58CBA',X'313430353031',X'31343035'),
+	(X'313430353032',X'E6998BE59F8EE5B882E59F8EE58CBA',X'313430353032',X'31343035'),
+	(X'313430353231',X'E6B281E6B0B4E58EBF',X'313430353231',X'31343035'),
+	(X'313430353232',X'E998B3E59F8EE58EBF',X'313430353232',X'31343035'),
+	(X'313430353234',X'E999B5E5B79DE58EBF',X'313430353234',X'31343035'),
+	(X'313430353235',X'E6B3BDE5B79EE58EBF',X'313430353235',X'31343035'),
+	(X'313430353831',X'E9AB98E5B9B3E5B882',X'313430353831',X'31343035'),
+	(X'31343036',X'E69C94E5B79EE5B882',X'31343036',X'3134'),
+	(X'313430363031',X'E5B882E8BE96E58CBA',X'313430363031',X'31343036'),
+	(X'313430363032',X'E69C94E59F8EE58CBA',X'313430363032',X'31343036'),
+	(X'313430363033',X'E5B9B3E9B281E58CBA',X'313430363033',X'31343036'),
+	(X'313430363231',X'E5B1B1E998B4E58EBF',X'313430363231',X'31343036'),
+	(X'313430363232',X'E5BA94E58EBF',X'313430363232',X'31343036'),
+	(X'313430363233',X'E58FB3E78E89E58EBF',X'313430363233',X'31343036'),
+	(X'313430363234',X'E68080E4BB81E58EBF',X'313430363234',X'31343036'),
+	(X'31343037',X'E6998BE4B8ADE5B882',X'31343037',X'3134'),
+	(X'313430373031',X'E5B882E8BE96E58CBA',X'313430373031',X'31343037'),
+	(X'313430373032',X'E6A686E6ACA1E58CBA',X'313430373032',X'31343037'),
+	(X'313430373231',X'E6A686E7A4BEE58EBF',X'313430373231',X'31343037'),
+	(X'313430373232',X'E5B7A6E69D83E58EBF',X'313430373232',X'31343037'),
+	(X'313430373233',X'E5928CE9A1BAE58EBF',X'313430373233',X'31343037'),
+	(X'313430373234',X'E69894E998B3E58EBF',X'313430373234',X'31343037'),
+	(X'313430373235',X'E5AFBFE998B3E58EBF',X'313430373235',X'31343037'),
+	(X'313430373236',X'E5A4AAE8B0B7E58EBF',X'313430373236',X'31343037'),
+	(X'313430373237',X'E7A581E58EBF',X'313430373237',X'31343037'),
+	(X'313430373238',X'E5B9B3E981A5E58EBF',X'313430373238',X'31343037'),
+	(X'313430373239',X'E781B5E79FB3E58EBF',X'313430373239',X'31343037'),
+	(X'313430373831',X'E4BB8BE4BC91E5B882',X'313430373831',X'31343037'),
+	(X'31343038',X'E8BF90E59F8EE5B882',X'31343038',X'3134'),
+	(X'313430383031',X'E5B882E8BE96E58CBA',X'313430383031',X'31343038'),
+	(X'313430383032',X'E79B90E6B996E58CBA',X'313430383032',X'31343038'),
+	(X'313430383231',X'E4B8B4E78C97E58EBF',X'313430383231',X'31343038'),
+	(X'313430383232',X'E4B887E88DA3E58EBF',X'313430383232',X'31343038'),
+	(X'313430383233',X'E997BBE5969CE58EBF',X'313430383233',X'31343038'),
+	(X'313430383234',X'E7A8B7E5B1B1E58EBF',X'313430383234',X'31343038'),
+	(X'313430383235',X'E696B0E7BB9BE58EBF',X'313430383235',X'31343038'),
+	(X'313430383236',X'E7BB9BE58EBF',X'313430383236',X'31343038'),
+	(X'313430383237',X'E59EA3E69BB2E58EBF',X'313430383237',X'31343038'),
+	(X'313430383238',X'E5A48FE58EBF',X'313430383238',X'31343038'),
+	(X'313430383239',X'E5B9B3E99986E58EBF',X'313430383239',X'31343038'),
+	(X'313430383330',X'E88AAEE59F8EE58EBF',X'313430383330',X'31343038'),
+	(X'313430383831',X'E6B0B8E6B58EE5B882',X'313430383831',X'31343038'),
+	(X'313430383832',X'E6B2B3E6B4A5E5B882',X'313430383832',X'31343038'),
+	(X'31343039',X'E5BFBBE5B79EE5B882',X'31343039',X'3134'),
+	(X'313430393031',X'E5B882E8BE96E58CBA',X'313430393031',X'31343039'),
+	(X'313430393032',X'E5BFBBE5BA9CE58CBA',X'313430393032',X'31343039'),
+	(X'313430393231',X'E5AE9AE8A584E58EBF',X'313430393231',X'31343039'),
+	(X'313430393232',X'E4BA94E58FB0E58EBF',X'313430393232',X'31343039'),
+	(X'313430393233',X'E4BBA3E58EBF',X'313430393233',X'31343039'),
+	(X'313430393234',X'E7B981E5B399E58EBF',X'313430393234',X'31343039'),
+	(X'313430393235',X'E5AE81E6ADA6E58EBF',X'313430393235',X'31343039'),
+	(X'313430393236',X'E99D99E4B990E58EBF',X'313430393236',X'31343039'),
+	(X'313430393237',X'E7A59EE6B1A0E58EBF',X'313430393237',X'31343039'),
+	(X'313430393238',X'E4BA94E5AFA8E58EBF',X'313430393238',X'31343039'),
+	(X'313430393239',X'E5B2A2E5B29AE58EBF',X'313430393239',X'31343039'),
+	(X'313430393330',X'E6B2B3E69BB2E58EBF',X'313430393330',X'31343039'),
+	(X'313430393331',X'E4BF9DE5BEB7E58EBF',X'313430393331',X'31343039'),
+	(X'313430393332',X'E5818FE585B3E58EBF',X'313430393332',X'31343039'),
+	(X'313430393831',X'E58E9FE5B9B3E5B882',X'313430393831',X'31343039'),
+	(X'31343130',X'E4B8B4E6B1BEE5B882',X'31343130',X'3134'),
+	(X'313431303031',X'E5B882E8BE96E58CBA',X'313431303031',X'31343130'),
+	(X'313431303032',X'E5B0A7E983BDE58CBA',X'313431303032',X'31343130'),
+	(X'313431303231',X'E69BB2E6B283E58EBF',X'313431303231',X'31343130'),
+	(X'313431303232',X'E7BFBCE59F8EE58EBF',X'313431303232',X'31343130'),
+	(X'313431303233',X'E8A584E6B1BEE58EBF',X'313431303233',X'31343130'),
+	(X'313431303234',X'E6B4AAE6B49EE58EBF',X'313431303234',X'31343130'),
+	(X'313431303235',X'E58FA4E58EBF',X'313431303235',X'31343130'),
+	(X'313431303236',X'E5AE89E6B3BDE58EBF',X'313431303236',X'31343130'),
+	(X'313431303237',X'E6B5AEE5B1B1E58EBF',X'313431303237',X'31343130'),
+	(X'313431303238',X'E59089E58EBF',X'313431303238',X'31343130'),
+	(X'313431303239',X'E4B9A1E5AE81E58EBF',X'313431303239',X'31343130'),
+	(X'313431303330',X'E5A4A7E5AE81E58EBF',X'313431303330',X'31343130'),
+	(X'313431303331',X'E99AB0E58EBF',X'313431303331',X'31343130'),
+	(X'313431303332',X'E6B0B8E5928CE58EBF',X'313431303332',X'31343130'),
+	(X'313431303333',X'E892B2E58EBF',X'313431303333',X'31343130'),
+	(X'313431303334',X'E6B1BEE8A5BFE58EBF',X'313431303334',X'31343130'),
+	(X'313431303831',X'E4BEAFE9A9ACE5B882',X'313431303831',X'31343130'),
+	(X'313431303832',X'E99C8DE5B79EE5B882',X'313431303832',X'31343130'),
+	(X'31343131',X'E59095E6A281E5B882',X'31343131',X'3134'),
+	(X'313431313031',X'E5B882E8BE96E58CBA',X'313431313031',X'31343131'),
+	(X'313431313032',X'E7A6BBE79FB3E58CBA',X'313431313032',X'31343131'),
+	(X'313431313231',X'E69687E6B0B4E58EBF',X'313431313231',X'31343131'),
+	(X'313431313232',X'E4BAA4E59F8EE58EBF',X'313431313232',X'31343131'),
+	(X'313431313233',X'E585B4E58EBF',X'313431313233',X'31343131'),
+	(X'313431313234',X'E4B8B4E58EBF',X'313431313234',X'31343131'),
+	(X'313431313235',X'E69FB3E69E97E58EBF',X'313431313235',X'31343131'),
+	(X'313431313236',X'E79FB3E6A5BCE58EBF',X'313431313236',X'31343131'),
+	(X'313431313237',X'E5B29AE58EBF',X'313431313237',X'31343131'),
+	(X'313431313238',X'E696B9E5B1B1E58EBF',X'313431313238',X'31343131'),
+	(X'313431313239',X'E4B8ADE998B3E58EBF',X'313431313239',X'31343131'),
+	(X'313431313330',X'E4BAA4E58FA3E58EBF',X'313431313330',X'31343131'),
+	(X'313431313831',X'E5AD9DE4B989E5B882',X'313431313831',X'31343131'),
+	(X'313431313832',X'E6B1BEE998B3E5B882',X'313431313832',X'31343131'),
+	(X'3135',X'E58685E89299E58FA4E887AAE6B2BBE58CBA',X'3135',X'31'),
+	(X'31353031',X'E591BCE5928CE6B5A9E789B9E5B882',X'31353031',X'3135'),
+	(X'313530313031',X'E5B882E8BE96E58CBA',X'313530313031',X'31353031'),
+	(X'313530313032',X'E696B0E59F8EE58CBA',X'313530313032',X'31353031'),
+	(X'313530313033',X'E59B9EE6B091E58CBA',X'313530313033',X'31353031'),
+	(X'313530313034',X'E78E89E6B389E58CBA',X'313530313034',X'31353031'),
+	(X'313530313035',X'E8B59BE7BD95E58CBA',X'313530313035',X'31353031'),
+	(X'313530313231',X'E59C9FE5B7A6E69797',X'313530313231',X'31353031'),
+	(X'313530313232',X'E68998E5858BE68998E58EBF',X'313530313232',X'31353031'),
+	(X'313530313233',X'E5928CE69E97E6A0BCE5B094E58EBF',X'313530313233',X'31353031'),
+	(X'313530313234',X'E6B885E6B0B4E6B2B3E58EBF',X'313530313234',X'31353031'),
+	(X'313530313235',X'E6ADA6E5B79DE58EBF',X'313530313235',X'31353031'),
+	(X'31353032',X'E58C85E5A4B4E5B882',X'31353032',X'3135'),
+	(X'313530323031',X'E5B882E8BE96E58CBA',X'313530323031',X'31353032'),
+	(X'313530323032',X'E4B89CE6B2B3E58CBA',X'313530323032',X'31353032'),
+	(X'313530323033',X'E69886E983BDE4BB91E58CBA',X'313530323033',X'31353032'),
+	(X'313530323034',X'E99D92E5B1B1E58CBA',X'313530323034',X'31353032'),
+	(X'313530323035',X'E79FB3E68B90E58CBA',X'313530323035',X'31353032'),
+	(X'313530323036',X'E799BDE4BA91E98482E58D9AE79FBFE58CBA',X'313530323036',X'31353032'),
+	(X'313530323037',X'E4B99DE58E9FE58CBA',X'313530323037',X'31353032'),
+	(X'313530323231',X'E59C9FE9BB98E789B9E58FB3E69797',X'313530323231',X'31353032'),
+	(X'313530323232',X'E59BBAE998B3E58EBF',X'313530323232',X'31353032'),
+	(X'313530323233',X'E8BEBEE88C82E88194E59088E69797',X'313530323233',X'31353032'),
+	(X'31353033',X'E4B98CE6B5B7E5B882',X'31353033',X'3135'),
+	(X'313530333031',X'E4B98CE6B5B7E5B882E8BE96E58CBA',X'313530333031',X'31353033'),
+	(X'313530333032',X'E6B5B7E58B83E6B9BEE58CBA',X'313530333032',X'31353033'),
+	(X'313530333033',X'E6B5B7E58D97E58CBA',X'313530333033',X'31353033'),
+	(X'313530333034',X'E4B98CE8BEBEE58CBA',X'313530333034',X'31353033'),
+	(X'31353034',X'E8B5A4E5B3B0E5B882',X'31353034',X'3135'),
+	(X'313530343031',X'E5B882E8BE96E58CBA',X'313530343031',X'31353034'),
+	(X'313530343032',X'E7BAA2E5B1B1E58CBA',X'313530343032',X'31353034'),
+	(X'313530343033',X'E58583E5AE9DE5B1B1E58CBA',X'313530343033',X'31353034'),
+	(X'313530343034',X'E69DBEE5B1B1E58CBA',X'313530343034',X'31353034'),
+	(X'313530343231',X'E998BFE9B281E7A791E5B094E6B281E69797',X'313530343231',X'31353034'),
+	(X'313530343232',X'E5B7B4E69E97E5B7A6E69797',X'313530343232',X'31353034'),
+	(X'313530343233',X'E5B7B4E69E97E58FB3E69797',X'313530343233',X'31353034'),
+	(X'313530343234',X'E69E97E8A5BFE58EBF',X'313530343234',X'31353034'),
+	(X'313530343235',X'E5858BE4BB80E5858BE885BEE69797',X'313530343235',X'31353034'),
+	(X'313530343236',X'E7BF81E7899BE789B9E69797',X'313530343236',X'31353034'),
+	(X'313530343238',X'E59680E59687E6B281E69797',X'313530343238',X'31353034'),
+	(X'313530343239',X'E5AE81E59F8EE58EBF',X'313530343239',X'31353034'),
+	(X'313530343330',X'E69596E6B189E69797',X'313530343330',X'31353034'),
+	(X'31353035',X'E9809AE8BEBDE5B882',X'31353035',X'3135'),
+	(X'313530353031',X'E5B882E8BE96E58CBA',X'313530353031',X'31353035'),
+	(X'313530353032',X'E7A791E5B094E6B281E58CBA',X'313530353032',X'31353035'),
+	(X'313530353231',X'E7A791E5B094E6B281E5B7A6E7BFBCE4B8ADE69797',X'313530353231',X'31353035'),
+	(X'313530353232',X'E7A791E5B7A6E5908EE69797',X'313530353232',X'31353035'),
+	(X'313530353233',X'E5BC80E9B281E58EBF',X'313530353233',X'31353035'),
+	(X'313530353234',X'E5BA93E4BCA6E69797',X'313530353234',X'31353035'),
+	(X'313530353235',X'E5A588E69BBCE69797',X'313530353235',X'31353035'),
+	(X'313530353236',X'E6898EE9B281E789B9E69797',X'313530353236',X'31353035'),
+	(X'313530353831',X'E99C8DE69E97E983ADE58B92E5B882',X'313530353831',X'31353035'),
+	(X'31353036',X'E98482E5B094E5A49AE696AFE5B882',X'31353036',X'3135'),
+	(X'313530363032',X'E4B89CE8839CE58CBA',X'313530363032',X'31353036'),
+	(X'313530363231',X'E8BEBEE68B89E789B9E69797',X'313530363231',X'31353036'),
+	(X'313530363232',X'E58786E6A0BCE5B094E69797',X'313530363232',X'31353036'),
+	(X'313530363233',X'E98482E68998E5858BE5898DE69797',X'313530363233',X'31353036'),
+	(X'313530363234',X'E98482E68998E5858BE69797',X'313530363234',X'31353036'),
+	(X'313530363235',X'E69DADE994A6E69797',X'313530363235',X'31353036'),
+	(X'313530363236',X'E4B98CE5AEA1E69797',X'313530363236',X'31353036'),
+	(X'313530363237',X'E4BC8AE98791E99C8DE6B49BE69797',X'313530363237',X'31353036'),
+	(X'31353037',X'E591BCE4BCA6E8B49DE5B094E5B882',X'31353037',X'3135'),
+	(X'313530373031',X'E5B882E8BE96E58CBA',X'313530373031',X'31353037'),
+	(X'313530373032',X'E6B5B7E68B89E5B094E58CBA',X'313530373032',X'31353037'),
+	(X'313530373231',X'E998BFE88DA3E69797',X'313530373231',X'31353037'),
+	(X'313530373232',X'E88EABE58A9BE8BEBEE793A6E8BEBEE696A1E5B094E6978FE887AAE6B2BBE69797',X'313530373232',X'31353037'),
+	(X'313530373233',X'E98482E4BCA6E698A5E887AAE6B2BBE69797',X'313530373233',X'31353037'),
+	(X'313530373234',X'E98482E6B8A9E5858BE6978FE887AAE6B2BBE69797',X'313530373234',X'31353037'),
+	(X'313530373235',X'E99988E5B7B4E5B094E8998EE69797E99587',X'313530373235',X'31353037'),
+	(X'313530373236',X'E696B0E5B7B4E5B094E8998EE5B7A6E69797',X'313530373236',X'31353037'),
+	(X'313530373237',X'E696B0E5B7B4E5B094E8998EE58FB3E69797',X'313530373237',X'31353037'),
+	(X'313530373831',X'E6BBA1E6B4B2E9878CE5B882',X'313530373831',X'31353037'),
+	(X'313530373832',X'E78999E5858BE79FB3E5B882',X'313530373832',X'31353037'),
+	(X'313530373833',X'E6898EE585B0E5B1AFE5B882',X'313530373833',X'31353037'),
+	(X'313530373834',X'E9A29DE5B094E58FA4E7BAB3E5B882',X'313530373834',X'31353037'),
+	(X'313530373835',X'E6A0B9E6B2B3E5B882',X'313530373835',X'31353037'),
+	(X'31353038',X'E5B7B4E5BDA6E6B796E5B094E5B882',X'31353038',X'3135'),
+	(X'313530383031',X'E5B882E8BE96E58CBA',X'313530383031',X'31353038'),
+	(X'313530383032',X'E4B8B4E6B2B3E58CBA',X'313530383032',X'31353038'),
+	(X'313530383231',X'E4BA94E58E9FE58EBF',X'313530383231',X'31353038'),
+	(X'313530383232',X'E7A3B4E58FA3E58EBF',X'313530383232',X'31353038'),
+	(X'313530383233',X'E4B98CE68B89E789B9E5898DE69797',X'313530383233',X'31353038'),
+	(X'313530383234',X'E4B98CE68B89E789B9E4B8ADE69797',X'313530383234',X'31353038'),
+	(X'313530383235',X'E4B98CE68B89E789B9E5908EE69797',X'313530383235',X'31353038'),
+	(X'313530383236',X'E69DADE994A6E5908EE69797',X'313530383236',X'31353038'),
+	(X'31353039',X'E4B98CE585B0E5AF9FE5B883E5B882',X'31353039',X'3135'),
+	(X'313530393031',X'E5B882E8BE96E58CBA',X'313530393031',X'31353039'),
+	(X'313530393032',X'E99B86E5AE81E58CBA',X'313530393032',X'31353039'),
+	(X'313530393231',X'E58D93E8B584E58EBF',X'313530393231',X'31353039'),
+	(X'313530393232',X'E58C96E5BEB7E58EBF',X'313530393232',X'31353039'),
+	(X'313530393233',X'E59586E983BDE58EBF',X'313530393233',X'31353039'),
+	(X'313530393234',X'E585B4E5928CE58EBF',X'313530393234',X'31353039'),
+	(X'313530393235',X'E58789E59F8EE58EBF',X'313530393235',X'31353039'),
+	(X'313530393236',X'E5AF9FE59388E5B094E58FB3E7BFBCE5898DE69797',X'313530393236',X'31353039'),
+	(X'313530393237',X'E5AF9FE58FB3E4B8ADE69797',X'313530393237',X'31353039'),
+	(X'313530393238',X'E5AF9FE59388E5B094E58FB3E7BFBCE5908EE69797',X'313530393238',X'31353039'),
+	(X'313530393239',X'E59B9BE5AD90E78E8BE69797',X'313530393239',X'31353039'),
+	(X'313530393831',X'E4B8B0E99587E5B882',X'313530393831',X'31353039'),
+	(X'31353232',X'E585B4E5AE89E79B9F',X'31353232',X'3135'),
+	(X'313532323031',X'E4B98CE585B0E6B5A9E789B9E5B882',X'313532323031',X'31353232'),
+	(X'313532323032',X'E998BFE5B094E5B1B1E5B882',X'313532323032',X'31353232'),
+	(X'313532323231',X'E7A791E58FB3E5898DE69797',X'313532323231',X'31353232'),
+	(X'313532323232',X'E7A791E58FB3E4B8ADE69797',X'313532323232',X'31353232'),
+	(X'313532323233',X'E6898EE8B589E789B9E69797',X'313532323233',X'31353232'),
+	(X'313532323234',X'E7AA81E6B389E58EBF',X'313532323234',X'31353232'),
+	(X'31353235',X'E994A1E69E97E983ADE58B92E79B9F',X'31353235',X'3135'),
+	(X'313532353031',X'E4BA8CE8BF9EE6B5A9E789B9E5B882',X'313532353031',X'31353235'),
+	(X'313532353032',X'E994A1E69E97E6B5A9E789B9E5B882',X'313532353032',X'31353235'),
+	(X'313532353232',X'E998BFE5B7B4E5988EE69797',X'313532353232',X'31353235'),
+	(X'313532353233',X'E88B8FE5B0BCE789B9E5B7A6E69797',X'313532353233',X'31353235'),
+	(X'313532353234',X'E88B8FE5B0BCE789B9E58FB3E69797',X'313532353234',X'31353235'),
+	(X'313532353235',X'E4B89CE4B98CE78FA0E7A986E6B281E69797',X'313532353235',X'31353235'),
+	(X'313532353236',X'E8A5BFE4B98CE78FA0E7A986E6B281E69797',X'313532353236',X'31353235'),
+	(X'313532353237',X'E5A4AAE4BB86E5AFBAE69797',X'313532353237',X'31353235'),
+	(X'313532353238',X'E995B6E9BB84E69797',X'313532353238',X'31353235'),
+	(X'313532353239',X'E6ADA3E995B6E799BDE69797',X'313532353239',X'31353235'),
+	(X'313532353330',X'E6ADA3E8939DE69797',X'313532353330',X'31353235'),
+	(X'313532353331',X'E5A49AE4BCA6E58EBF',X'313532353331',X'31353235'),
+	(X'31353239',X'E998BFE68B89E59684E79B9F',X'31353239',X'3135'),
+	(X'313532393231',X'E998BFE68B89E59684E5B7A6E69797',X'313532393231',X'31353239'),
+	(X'313532393232',X'E998BFE68B89E59684E58FB3E69797',X'313532393232',X'31353239'),
+	(X'313532393233',X'E9A29DE6B58EE7BAB3E69797',X'313532393233',X'31353239'),
+	(X'3231',X'E8BEBDE5AE81E79C81',X'3231',X'31'),
+	(X'32313031',X'E6B288E998B3E5B882',X'32313031',X'3231'),
+	(X'323130313031',X'E5B882E8BE96E58CBA',X'323130313031',X'32313031'),
+	(X'323130313032',X'E5928CE5B9B3E58CBA',X'323130313032',X'32313031'),
+	(X'323130313033',X'E6B288E6B2B3E58CBA',X'323130313033',X'32313031'),
+	(X'323130313034',X'E5A4A7E4B89CE58CBA',X'323130313034',X'32313031'),
+	(X'323130313035',X'E79A87E5A791E58CBA',X'323130313035',X'32313031'),
+	(X'323130313036',X'E99381E8A5BFE58CBA',X'323130313036',X'32313031'),
+	(X'323130313131',X'E88B8FE5AEB6E5B1AFE58CBA',X'323130313131',X'32313031'),
+	(X'323130313132',X'E4B89CE999B5E58CBA',X'323130313132',X'32313031'),
+	(X'323130313133',X'E696B0E59F8EE5AD90E58CBA',X'323130313133',X'32313031'),
+	(X'323130313134',X'E4BA8EE6B4AAE58CBA',X'323130313134',X'32313031'),
+	(X'323130313232',X'E8BEBDE4B8ADE58EBF',X'323130313232',X'32313031'),
+	(X'323130313233',X'E5BAB7E5B9B3E58EBF',X'323130313233',X'32313031'),
+	(X'323130313234',X'E6B395E5BA93E58EBF',X'323130313234',X'32313031'),
+	(X'323130313831',X'E696B0E6B091E5B882',X'323130313831',X'32313031'),
+	(X'32313032',X'E5A4A7E8BF9EE5B882',X'32313032',X'3231'),
+	(X'323130323031',X'E5B882E8BE96E58CBA',X'323130323031',X'32313032'),
+	(X'323130323032',X'E4B8ADE5B1B1E58CBA',X'323130323032',X'32313032'),
+	(X'323130323033',X'E8A5BFE5B297E58CBA',X'323130323033',X'32313032'),
+	(X'323130323034',X'E6B299E6B2B3E58FA3E58CBA',X'323130323034',X'32313032'),
+	(X'323130323131',X'E79498E4BA95E5AD90E58CBA',X'323130323131',X'32313032'),
+	(X'323130323132',X'E69785E9A1BAE58FA3E58CBA',X'323130323132',X'32313032'),
+	(X'323130323133',X'E98791E5B79EE58CBA',X'323130323133',X'32313032'),
+	(X'323130323234',X'E995BFE6B5B7E58EBF',X'323130323234',X'32313032'),
+	(X'323130323831',X'E793A6E688BFE5BA97E5B882',X'323130323831',X'32313032'),
+	(X'323130323832',X'E699AEE585B0E5BA97E5B882',X'323130323832',X'32313032'),
+	(X'323130323833',X'E5BA84E6B2B3E5B882',X'323130323833',X'32313032'),
+	(X'32313033',X'E99E8DE5B1B1E5B882',X'32313033',X'3231'),
+	(X'323130333031',X'E5B882E8BE96E58CBA',X'323130333031',X'32313033'),
+	(X'323130333032',X'E99381E4B89CE58CBA',X'323130333032',X'32313033'),
+	(X'323130333033',X'E99381E8A5BFE58CBA',X'323130333033',X'32313033'),
+	(X'323130333034',X'E7AB8BE5B1B1E58CBA',X'323130333034',X'32313033'),
+	(X'323130333131',X'E58D83E5B1B1E58CBA',X'323130333131',X'32313033'),
+	(X'323130333231',X'E58FB0E5AE89E58EBF',X'323130333231',X'32313033'),
+	(X'323130333233',X'E5B2ABE5B2A9E58EBF',X'323130333233',X'32313033'),
+	(X'323130333831',X'E6B5B7E59F8EE5B882',X'323130333831',X'32313033'),
+	(X'32313034',X'E68A9AE9A1BAE5B882',X'32313034',X'3231'),
+	(X'323130343031',X'E5B882E8BE96E58CBA',X'323130343031',X'32313034'),
+	(X'323130343032',X'E696B0E68A9AE58CBA',X'323130343032',X'32313034'),
+	(X'323130343033',X'E4B89CE6B4B2E58CBA',X'323130343033',X'32313034'),
+	(X'323130343034',X'E69C9BE88AB1E58CBA',X'323130343034',X'32313034'),
+	(X'323130343131',X'E9A1BAE59F8EE58CBA',X'323130343131',X'32313034'),
+	(X'323130343231',X'E68A9AE9A1BAE58EBF',X'323130343231',X'32313034'),
+	(X'323130343232',X'E696B0E5AEBEE6BBA1E6978FE887AAE6B2BBE58EBF',X'323130343232',X'32313034'),
+	(X'323130343233',X'E6B885E58E9FE6BBA1E6978FE887AAE6B2BBE58EBF',X'323130343233',X'32313034'),
+	(X'32313035',X'E69CACE6BAAAE5B882',X'32313035',X'3231'),
+	(X'323130353031',X'E5B882E8BE96E58CBA',X'323130353031',X'32313035'),
+	(X'323130353032',X'E5B9B3E5B1B1E58CBA',X'323130353032',X'32313035'),
+	(X'323130353033',X'E6BAAAE6B996E58CBA',X'323130353033',X'32313035'),
+	(X'323130353034',X'E6988EE5B1B1E58CBA',X'323130353034',X'32313035'),
+	(X'323130353035',X'E58D97E88AACE58CBA',X'323130353035',X'32313035'),
+	(X'323130353231',X'E69CACE6BAAAE6BBA1E6978FE887AAE6B2BBE58EBF',X'323130353231',X'32313035'),
+	(X'323130353232',X'E6A193E4BB81E6BBA1E6978FE887AAE6B2BBE58EBF',X'323130353232',X'32313035'),
+	(X'32313036',X'E4B8B9E4B89CE5B882',X'32313036',X'3231'),
+	(X'323130363031',X'E5B882E8BE96E58CBA',X'323130363031',X'32313036'),
+	(X'323130363032',X'E58583E5AE9DE58CBA',X'323130363032',X'32313036'),
+	(X'323130363033',X'E68CAFE585B4E58CBA',X'323130363033',X'32313036'),
+	(X'323130363034',X'E68CAFE5AE89E58CBA',X'323130363034',X'32313036'),
+	(X'323130363234',X'E5AEBDE794B8E6BBA1E6978FE887AAE6B2BBE58EBF',X'323130363234',X'32313036'),
+	(X'323130363831',X'E4B89CE6B8AFE5B882',X'323130363831',X'32313036'),
+	(X'323130363832',X'E587A4E59F8EE5B882',X'323130363832',X'32313036'),
+	(X'32313037',X'E994A6E5B79EE5B882',X'32313037',X'3231'),
+	(X'323130373031',X'E5B882E8BE96E58CBA',X'323130373031',X'32313037'),
+	(X'323130373032',X'E58FA4E5A194E58CBA',X'323130373032',X'32313037'),
+	(X'323130373033',X'E5878CE6B2B3E58CBA',X'323130373033',X'32313037'),
+	(X'323130373131',X'E5A4AAE5928CE58CBA',X'323130373131',X'32313037'),
+	(X'323130373236',X'E9BB91E5B1B1E58EBF',X'323130373236',X'32313037'),
+	(X'323130373237',X'E4B989E58EBF',X'323130373237',X'32313037'),
+	(X'323130373831',X'E5878CE6B5B7E5B882',X'323130373831',X'32313037'),
+	(X'323130373832',X'E58C97E99587E5B882',X'323130373832',X'32313037'),
+	(X'32313038',X'E890A5E58FA3E5B882',X'32313038',X'3231'),
+	(X'323130383031',X'E5B882E8BE96E58CBA',X'323130383031',X'32313038'),
+	(X'323130383032',X'E7AB99E5898DE58CBA',X'323130383032',X'32313038'),
+	(X'323130383033',X'E8A5BFE5B882E58CBA',X'323130383033',X'32313038'),
+	(X'323130383034',X'E9B285E9B1BCE59C88E58CBA',X'323130383034',X'32313038'),
+	(X'323130383131',X'E88081E8BEB9E58CBA',X'323130383131',X'32313038'),
+	(X'323130383831',X'E79B96E5B79EE5B882',X'323130383831',X'32313038'),
+	(X'323130383832',X'E5A4A7E79FB3E6A1A5E5B882',X'323130383832',X'32313038'),
+	(X'32313039',X'E9989CE696B0E5B882',X'32313039',X'3231'),
+	(X'323130393031',X'E5B882E8BE96E58CBA',X'323130393031',X'32313039'),
+	(X'323130393032',X'E6B5B7E5B79EE58CBA',X'323130393032',X'32313039'),
+	(X'323130393033',X'E696B0E982B1E58CBA',X'323130393033',X'32313039'),
+	(X'323130393034',X'E5A4AAE5B9B3E58CBA',X'323130393034',X'32313039'),
+	(X'323130393035',X'E6B885E6B2B3E997A8E58CBA',X'323130393035',X'32313039'),
+	(X'323130393131',X'E7BB86E6B2B3E58CBA',X'323130393131',X'32313039'),
+	(X'323130393231',X'E9989CE696B0E89299E58FA4E6978FE887AAE6B2BBE58EBF',X'323130393231',X'32313039'),
+	(X'323130393232',X'E5BDB0E6ADA6E58EBF',X'323130393232',X'32313039'),
+	(X'32313130',X'E8BEBDE998B3E5B882',X'32313130',X'3231'),
+	(X'323131303031',X'E5B882E8BE96E58CBA',X'323131303031',X'32313130'),
+	(X'323131303032',X'E799BDE5A194E58CBA',X'323131303032',X'32313130'),
+	(X'323131303033',X'E69687E59CA3E58CBA',X'323131303033',X'32313130'),
+	(X'323131303034',X'E5AE8FE4BC9FE58CBA',X'323131303034',X'32313130'),
+	(X'323131303035',X'E5BC93E995BFE5B2ADE58CBA',X'323131303035',X'32313130'),
+	(X'323131303131',X'E5A4AAE5AD90E6B2B3E58CBA',X'323131303131',X'32313130'),
+	(X'323131303231',X'E8BEBDE998B3E58EBF',X'323131303231',X'32313130'),
+	(X'323131303831',X'E781AFE5A194E5B882',X'323131303831',X'32313130'),
+	(X'32313131',X'E79B98E994A6E5B882',X'32313131',X'3231'),
+	(X'323131313031',X'E5B882E8BE96E58CBA',X'323131313031',X'32313131'),
+	(X'323131313032',X'E58F8CE58FB0E5AD90E58CBA',X'323131313032',X'32313131'),
+	(X'323131313033',X'E585B4E99A86E58FB0E58CBA',X'323131313033',X'32313131'),
+	(X'323131313231',X'E5A4A7E6B4BCE58EBF',X'323131313231',X'32313131'),
+	(X'323131313232',X'E79B98E5B1B1E58EBF',X'323131313232',X'32313131'),
+	(X'32313132',X'E99381E5B2ADE5B882',X'32313132',X'3231'),
+	(X'323131323031',X'E5B882E8BE96E58CBA',X'323131323031',X'32313132'),
+	(X'323131323032',X'E993B6E5B79EE58CBA',X'323131323032',X'32313132'),
+	(X'323131323034',X'E6B885E6B2B3E58CBA',X'323131323034',X'32313132'),
+	(X'323131323231',X'E99381E5B2ADE58EBF',X'323131323231',X'32313132'),
+	(X'323131323233',X'E8A5BFE4B8B0E58EBF',X'323131323233',X'32313132'),
+	(X'323131323234',X'E6988CE59BBEE58EBF',X'323131323234',X'32313132'),
+	(X'323131323831',X'E8B083E585B5E5B1B1E5B882',X'323131323831',X'32313132'),
+	(X'323131323832',X'E5BC80E58E9FE5B882',X'323131323832',X'32313132'),
+	(X'32313133',X'E69C9DE998B3E5B882',X'32313133',X'3231'),
+	(X'323131333031',X'E5B882E8BE96E58CBA',X'323131333031',X'32313133'),
+	(X'323131333032',X'E58F8CE5A194E58CBA',X'323131333032',X'32313133'),
+	(X'323131333033',X'E9BE99E59F8EE58CBA',X'323131333033',X'32313133'),
+	(X'323131333231',X'E69C9DE998B3E58EBF',X'323131333231',X'32313133'),
+	(X'323131333232',X'E5BBBAE5B9B3E58EBF',X'323131333232',X'32313133'),
+	(X'323131333234',X'E59680E59687E6B281E5B7A6E7BFBCE89299E58FA4E6978FE887AAE6B2BBE58EBF',X'323131333234',X'32313133'),
+	(X'323131333831',X'E58C97E7A5A8E5B882',X'323131333831',X'32313133'),
+	(X'323131333832',X'E5878CE6BA90E5B882',X'323131333832',X'32313133'),
+	(X'32313134',X'E891ABE88AA6E5B29BE5B882',X'32313134',X'3231'),
+	(X'323131343031',X'E5B882E8BE96E58CBA',X'323131343031',X'32313134'),
+	(X'323131343032',X'E8BF9EE5B1B1E58CBA',X'323131343032',X'32313134'),
+	(X'323131343033',X'E9BE99E6B8AFE58CBA',X'323131343033',X'32313134'),
+	(X'323131343034',X'E58D97E7A5A8E58CBA',X'323131343034',X'32313134'),
+	(X'323131343231',X'E7BBA5E4B8ADE58EBF',X'323131343231',X'32313134'),
+	(X'323131343232',X'E5BBBAE6988CE58EBF',X'323131343232',X'32313134'),
+	(X'323131343831',X'E585B4E59F8EE5B882',X'323131343831',X'32313134'),
+	(X'3232',X'E59089E69E97E79C81',X'3232',X'31'),
+	(X'32323031',X'E995BFE698A5E5B882',X'32323031',X'3232'),
+	(X'323230313031',X'E995BFE698A5E5B882E8BE96E58CBA',X'323230313031',X'32323031'),
+	(X'323230313032',X'E58D97E585B3E58CBA',X'323230313032',X'32323031'),
+	(X'323230313033',X'E5AEBDE59F8EE58CBA',X'323230313033',X'32323031'),
+	(X'323230313034',X'E69C9DE998B3E58CBA',X'323230313034',X'32323031'),
+	(X'323230313035',X'E4BA8CE98193E58CBA',X'323230313035',X'32323031'),
+	(X'323230313036',X'E7BBBFE59BADE58CBA',X'323230313036',X'32323031'),
+	(X'323230313132',X'E58F8CE998B3E58CBA',X'323230313132',X'32323031'),
+	(X'323230313232',X'E5869CE5AE89E58EBF',X'323230313232',X'32323031'),
+	(X'323230313831',X'E4B99DE58FB0E5B882',X'323230313831',X'32323031'),
+	(X'323230313832',X'E6A686E6A091E5B882',X'323230313832',X'32323031'),
+	(X'323230313833',X'E5BEB7E683A0E5B882',X'323230313833',X'32323031'),
+	(X'32323032',X'E59089E69E97E5B882',X'32323032',X'3232'),
+	(X'323230323031',X'E59089E69E97E5B882E8BE96E58CBA',X'323230323031',X'32323032'),
+	(X'323230323032',X'E6988CE98291E58CBA',X'323230323032',X'32323032'),
+	(X'323230323033',X'E9BE99E6BDADE58CBA',X'323230323033',X'32323032'),
+	(X'323230323034',X'E888B9E890A5E58CBA',X'323230323034',X'32323032'),
+	(X'323230323131',X'E4B8B0E6BBA1E58CBA',X'323230323131',X'32323032'),
+	(X'323230323231',X'E6B0B8E59089E58EBF',X'323230323231',X'32323032'),
+	(X'323230323831',X'E89B9FE6B2B3E5B882',X'323230323831',X'32323032'),
+	(X'323230323832',X'E6A1A6E794B8E5B882',X'323230323832',X'32323032'),
+	(X'323230323833',X'E88892E585B0E5B882',X'323230323833',X'32323032'),
+	(X'323230323834',X'E7A390E79FB3E5B882',X'323230323834',X'32323032'),
+	(X'32323033',X'E59B9BE5B9B3E5B882',X'32323033',X'3232'),
+	(X'323230333031',X'E59B9BE5B9B3E5B882E8BE96E58CBA',X'323230333031',X'32323033'),
+	(X'323230333032',X'E99381E8A5BFE58CBA',X'323230333032',X'32323033'),
+	(X'323230333033',X'E99381E4B89CE58CBA',X'323230333033',X'32323033'),
+	(X'323230333232',X'E6A2A8E6A091E58EBF',X'323230333232',X'32323033'),
+	(X'323230333233',X'E4BC8AE9809AE6BBA1E6978FE887AAE6B2BBE58EBF',X'323230333233',X'32323033'),
+	(X'323230333831',X'E585ACE4B8BBE5B2ADE5B882',X'323230333831',X'32323033'),
+	(X'323230333832',X'E58F8CE8BEBDE5B882',X'323230333832',X'32323033'),
+	(X'32323034',X'E8BEBDE6BA90E5B882',X'32323034',X'3232'),
+	(X'323230343031',X'E8BEBDE6BA90E5B882E8BE96E58CBA',X'323230343031',X'32323034'),
+	(X'323230343032',X'E9BE99E5B1B1E58CBA',X'323230343032',X'32323034'),
+	(X'323230343033',X'E8A5BFE5AE89E58CBA',X'323230343033',X'32323034'),
+	(X'323230343231',X'E4B89CE4B8B0E58EBF',X'323230343231',X'32323034'),
+	(X'323230343232',X'E4B89CE8BEBDE58EBF',X'323230343232',X'32323034'),
+	(X'32323035',X'E9809AE58C96E5B882',X'32323035',X'3232'),
+	(X'323230353031',X'E9809AE58C96E5B882E8BE96E58CBA',X'323230353031',X'32323035'),
+	(X'323230353032',X'E4B89CE6988CE58CBA',X'323230353032',X'32323035'),
+	(X'323230353033',X'E4BA8CE98193E6B19FE58CBA',X'323230353033',X'32323035'),
+	(X'323230353231',X'E9809AE58C96E58EBF',X'323230353231',X'32323035'),
+	(X'323230353233',X'E8BE89E58D97E58EBF',X'323230353233',X'32323035'),
+	(X'323230353234',X'E69FB3E6B2B3E58EBF',X'323230353234',X'32323035'),
+	(X'323230353831',X'E6A285E6B2B3E58FA3E5B882',X'323230353831',X'32323035'),
+	(X'323230353832',X'E99B86E5AE89E5B882',X'323230353832',X'32323035'),
+	(X'32323036',X'E799BDE5B1B1E5B882',X'32323036',X'3232'),
+	(X'323230363031',X'E799BDE5B1B1E5B882E8BE96E58CBA',X'323230363031',X'32323036'),
+	(X'323230363032',X'E585ABE98193E6B19FE58CBA',X'323230363032',X'32323036'),
+	(X'323230363034',X'E6B19FE6BA90E58CBA',X'323230363034',X'32323036'),
+	(X'323230363231',X'E68A9AE69DBEE58EBF',X'323230363231',X'32323036'),
+	(X'323230363232',X'E99D96E5AE87E58EBF',X'323230363232',X'32323036'),
+	(X'323230363233',X'E995BFE799BDE69C9DE9B29CE6978FE887AAE6B2BBE58EBF',X'323230363233',X'32323036'),
+	(X'323230363831',X'E4B8B4E6B19FE5B882',X'323230363831',X'32323036'),
+	(X'32323037',X'E69DBEE58E9FE5B882',X'32323037',X'3232'),
+	(X'323230373031',X'E69DBEE58E9FE5B882E8BE96E58CBA',X'323230373031',X'32323037'),
+	(X'323230373032',X'E5AE81E6B19FE58CBA',X'323230373032',X'32323037'),
+	(X'323230373231',X'E5898DE983ADE5B094E7BD97E696AFE89299E58FA4E6978FE887AAE6B2BBE58EBF',X'323230373231',X'32323037'),
+	(X'323230373232',X'E995BFE5B2ADE58EBF',X'323230373232',X'32323037'),
+	(X'323230373233',X'E4B9BEE5AE89E58EBF',X'323230373233',X'32323037'),
+	(X'323230373234',X'E689B6E4BD99E58EBF',X'323230373234',X'32323037'),
+	(X'32323038',X'E799BDE59F8EE5B882',X'32323038',X'3232'),
+	(X'323230383031',X'E799BDE59F8EE5B882E8BE96E58CBA',X'323230383031',X'32323038'),
+	(X'323230383032',X'E6B4AEE58C97E58CBA',X'323230383032',X'32323038'),
+	(X'323230383231',X'E99587E8B589E58EBF',X'323230383231',X'32323038'),
+	(X'323230383232',X'E9809AE6A686E58EBF',X'323230383232',X'32323038'),
+	(X'323230383831',X'E6B4AEE58D97E5B882',X'323230383831',X'32323038'),
+	(X'323230383832',X'E5A4A7E5AE89E5B882',X'323230383832',X'32323038'),
+	(X'32323234',X'E5BBB6E8BEB9E69C9DE9B29CE6978FE887AAE6B2BBE5B79E',X'32323234',X'3232'),
+	(X'323232343031',X'E5BBB6E59089E5B882',X'323232343031',X'32323234'),
+	(X'323232343032',X'E59BBEE4BBACE5B882',X'323232343032',X'32323234'),
+	(X'323232343033',X'E695A6E58C96E5B882',X'323232343033',X'32323234'),
+	(X'323232343034',X'E78FB2E698A5E5B882',X'323232343034',X'32323234'),
+	(X'323232343035',X'E9BE99E4BA95E5B882',X'323232343035',X'32323234'),
+	(X'323232343036',X'E5928CE9BE99E5B882',X'323232343036',X'32323234'),
+	(X'323232343234',X'E6B1AAE6B885E58EBF',X'323232343234',X'32323234'),
+	(X'323232343236',X'E5AE89E59BBEE58EBF',X'323232343236',X'32323234'),
+	(X'3233',X'E9BB91E9BE99E6B19FE79C81',X'3233',X'31'),
+	(X'32333031',X'E59388E5B094E6BBA8E5B882',X'32333031',X'3233'),
+	(X'323330313031',X'E5B882E8BE96E58CBA',X'323330313031',X'32333031'),
+	(X'323330313032',X'E98193E9878CE58CBA',X'323330313032',X'32333031'),
+	(X'323330313033',X'E58D97E5B297E58CBA',X'323330313033',X'32333031'),
+	(X'323330313034',X'E98193E5A496E58CBA',X'323330313034',X'32333031'),
+	(X'323330313038',X'E5B9B3E688BFE58CBA',X'323330313038',X'32333031'),
+	(X'323330313039',X'E69DBEE58C97E58CBA',X'323330313039',X'32333031'),
+	(X'323330313130',X'E9A699E59D8AE58CBA',X'323330313130',X'32333031'),
+	(X'323330313131',X'E591BCE585B0E58CBA',X'323330313131',X'32333031'),
+	(X'323330313132',X'E998BFE59F8EE58CBA',X'323330313132',X'32333031'),
+	(X'323330313233',X'E4BE9DE585B0E58EBF',X'323330313233',X'32333031'),
+	(X'323330313234',X'E696B9E6ADA3E58EBF',X'323330313234',X'32333031'),
+	(X'323330313235',X'E5AEBEE58EBF',X'323330313235',X'32333031'),
+	(X'323330313236',X'E5B7B4E5BDA6E58EBF',X'323330313236',X'32333031'),
+	(X'323330313237',X'E69CA8E585B0E58EBF',X'323330313237',X'32333031'),
+	(X'323330313238',X'E9809AE6B2B3E58EBF',X'323330313238',X'32333031'),
+	(X'323330313239',X'E5BBB6E5AFBFE58EBF',X'323330313239',X'32333031'),
+	(X'323330313832',X'E58F8CE59F8EE5B882',X'323330313832',X'32333031'),
+	(X'323330313833',X'E5B09AE5BF97E5B882',X'323330313833',X'32333031'),
+	(X'323330313834',X'E4BA94E5B8B8E5B882',X'323330313834',X'32333031'),
+	(X'32333032',X'E9BD90E9BD90E59388E5B094E5B882',X'32333032',X'3233'),
+	(X'323330323031',X'E5B882E8BE96E58CBA',X'323330323031',X'32333032'),
+	(X'323330323032',X'E9BE99E6B299E58CBA',X'323330323032',X'32333032'),
+	(X'323330323033',X'E5BBBAE58D8EE58CBA',X'323330323033',X'32333032'),
+	(X'323330323034',X'E99381E9948BE58CBA',X'323330323034',X'32333032'),
+	(X'323330323035',X'E69882E69882E6BAAAE58CBA',X'323330323035',X'32333032'),
+	(X'323330323036',X'E5AF8CE68B89E5B094E59FBAE58CBA',X'323330323036',X'32333032'),
+	(X'323330323037',X'E7A2BEE5AD90E5B1B1E58CBA',X'323330323037',X'32333032'),
+	(X'323330323038',X'E6A285E9878CE696AFE8BEBEE696A1E5B094E6978FE58CBA',X'323330323038',X'32333032'),
+	(X'323330323231',X'E9BE99E6B19FE58EBF',X'323330323231',X'32333032'),
+	(X'323330323233',X'E4BE9DE5AE89E58EBF',X'323330323233',X'32333032'),
+	(X'323330323234',X'E6B3B0E69DA5E58EBF',X'323330323234',X'32333032'),
+	(X'323330323235',X'E79498E58D97E58EBF',X'323330323235',X'32333032'),
+	(X'323330323237',X'E5AF8CE8A395E58EBF',X'323330323237',X'32333032'),
+	(X'323330323239',X'E5858BE5B1B1E58EBF',X'323330323239',X'32333032'),
+	(X'323330323330',X'E5858BE4B89CE58EBF',X'323330323330',X'32333032'),
+	(X'323330323331',X'E68B9CE6B389E58EBF',X'323330323331',X'32333032'),
+	(X'323330323831',X'E8AEB7E6B2B3E5B882',X'323330323831',X'32333032'),
+	(X'32333033',X'E9B8A1E8A5BFE5B882',X'32333033',X'3233'),
+	(X'323330333031',X'E5B882E8BE96E58CBA',X'323330333031',X'32333033'),
+	(X'323330333032',X'E9B8A1E586A0E58CBA',X'323330333032',X'32333033'),
+	(X'323330333033',X'E68192E5B1B1E58CBA',X'323330333033',X'32333033'),
+	(X'323330333034',X'E6BBB4E98193E58CBA',X'323330333034',X'32333033'),
+	(X'323330333035',X'E6A2A8E6A091E58CBA',X'323330333035',X'32333033'),
+	(X'323330333036',X'E59F8EE5AD90E6B2B3E58CBA',X'323330333036',X'32333033'),
+	(X'323330333037',X'E9BABBE5B1B1E58CBA',X'323330333037',X'32333033'),
+	(X'323330333231',X'E9B8A1E4B89CE58EBF',X'323330333231',X'32333033'),
+	(X'323330333831',X'E8998EE69E97E5B882',X'323330333831',X'32333033'),
+	(X'323330333832',X'E5AF86E5B1B1E5B882',X'323330333832',X'32333033'),
+	(X'32333034',X'E9B9A4E5B297E5B882',X'32333034',X'3233'),
+	(X'323330343031',X'E5B882E8BE96E58CBA',X'323330343031',X'32333034'),
+	(X'323330343032',X'E59091E998B3E58CBA',X'323330343032',X'32333034'),
+	(X'323330343033',X'E5B7A5E5869CE58CBA',X'323330343033',X'32333034'),
+	(X'323330343034',X'E58D97E5B1B1E58CBA',X'323330343034',X'32333034'),
+	(X'323330343035',X'E585B4E5AE89E58CBA',X'323330343035',X'32333034'),
+	(X'323330343036',X'E4B89CE5B1B1E58CBA',X'323330343036',X'32333034'),
+	(X'323330343037',X'E585B4E5B1B1E58CBA',X'323330343037',X'32333034'),
+	(X'323330343231',X'E8909DE58C97E58EBF',X'323330343231',X'32333034'),
+	(X'323330343232',X'E7BBA5E6BBA8E58EBF',X'323330343232',X'32333034'),
+	(X'32333035',X'E58F8CE9B8ADE5B1B1E5B882',X'32333035',X'3233'),
+	(X'323330353031',X'E5B882E8BE96E58CBA',X'323330353031',X'32333035'),
+	(X'323330353032',X'E5B096E5B1B1E58CBA',X'323330353032',X'32333035'),
+	(X'323330353033',X'E5B2ADE4B89CE58CBA',X'323330353033',X'32333035'),
+	(X'323330353035',X'E59B9BE696B9E58FB0E58CBA',X'323330353035',X'32333035'),
+	(X'323330353036',X'E5AE9DE5B1B1E58CBA',X'323330353036',X'32333035'),
+	(X'323330353231',X'E99B86E8B4A4E58EBF',X'323330353231',X'32333035'),
+	(X'323330353232',X'E58F8BE8B08AE58EBF',X'323330353232',X'32333035'),
+	(X'323330353233',X'E5AE9DE6B885E58EBF',X'323330353233',X'32333035'),
+	(X'323330353234',X'E9A5B6E6B2B3E58EBF',X'323330353234',X'32333035'),
+	(X'32333036',X'E5A4A7E5BA86E5B882',X'32333036',X'3233'),
+	(X'323330363031',X'E5B882E8BE96E58CBA',X'323330363031',X'32333036'),
+	(X'323330363032',X'E890A8E5B094E59BBEE58CBA',X'323330363032',X'32333036'),
+	(X'323330363033',X'E9BE99E587A4E58CBA',X'323330363033',X'32333036'),
+	(X'323330363034',X'E8AEA9E883A1E8B7AFE58CBA',X'323330363034',X'32333036'),
+	(X'323330363035',X'E7BAA2E5B297E58CBA',X'323330363035',X'32333036'),
+	(X'323330363036',X'E5A4A7E5908CE58CBA',X'323330363036',X'32333036'),
+	(X'323330363231',X'E88287E5B79EE58EBF',X'323330363231',X'32333036'),
+	(X'323330363232',X'E88287E6BA90E58EBF',X'323330363232',X'32333036'),
+	(X'323330363233',X'E69E97E794B8E58EBF',X'323330363233',X'32333036'),
+	(X'323330363234',X'E69D9CE5B094E4BCAFE789B9E58EBF',X'323330363234',X'32333036'),
+	(X'32333037',X'E4BC8AE698A5E5B882',X'32333037',X'3233'),
+	(X'323330373031',X'E5B882E8BE96E58CBA',X'323330373031',X'32333037'),
+	(X'323330373032',X'E4BC8AE698A5E58CBA',X'323330373032',X'32333037'),
+	(X'323330373033',X'E58D97E5B294E58CBA',X'323330373033',X'32333037'),
+	(X'323330373034',X'E58F8BE5A5BDE58CBA',X'323330373034',X'32333037'),
+	(X'323330373035',X'E8A5BFE69E97E58CBA',X'323330373035',X'32333037'),
+	(X'323330373036',X'E7BFA0E5B3A6E58CBA',X'323330373036',X'32333037'),
+	(X'323330373037',X'E696B0E99D92E58CBA',X'323330373037',X'32333037'),
+	(X'323330373038',X'E7BE8EE6BAAAE58CBA',X'323330373038',X'32333037'),
+	(X'323330373039',X'E98791E5B1B1E5B1AFE58CBA',X'323330373039',X'32333037'),
+	(X'323330373130',X'E4BA94E890A5E58CBA',X'323330373130',X'32333037'),
+	(X'323330373131',X'E4B98CE9A9ACE6B2B3E58CBA',X'323330373131',X'32333037'),
+	(X'323330373132',X'E6B1A4E697BAE6B2B3E58CBA',X'323330373132',X'32333037'),
+	(X'323330373133',X'E5B8A6E5B2ADE58CBA',X'323330373133',X'32333037'),
+	(X'323330373134',X'E4B98CE4BC8AE5B2ADE58CBA',X'323330373134',X'32333037'),
+	(X'323330373135',X'E7BAA2E6989FE58CBA',X'323330373135',X'32333037'),
+	(X'323330373136',X'E4B88AE79498E5B2ADE58CBA',X'323330373136',X'32333037'),
+	(X'323330373232',X'E59889E88DABE58EBF',X'323330373232',X'32333037'),
+	(X'323330373831',X'E99381E58A9BE5B882',X'323330373831',X'32333037'),
+	(X'32333038',X'E4BDB3E69CA8E696AFE5B882',X'32333038',X'3233'),
+	(X'323330383031',X'E5B882E8BE96E58CBA',X'323330383031',X'32333038'),
+	(X'323330383033',X'E59091E998B3E58CBA',X'323330383033',X'32333038'),
+	(X'323330383034',X'E5898DE8BF9BE58CBA',X'323330383034',X'32333038'),
+	(X'323330383035',X'E4B89CE9A38EE58CBA',X'323330383035',X'32333038'),
+	(X'323330383131',X'E9838AE58CBA',X'323330383131',X'32333038'),
+	(X'323330383232',X'E6A1A6E58D97E58EBF',X'323330383232',X'32333038'),
+	(X'323330383236',X'E6A1A6E5B79DE58EBF',X'323330383236',X'32333038'),
+	(X'323330383238',X'E6B1A4E58E9FE58EBF',X'323330383238',X'32333038'),
+	(X'323330383333',X'E68A9AE8BF9CE58EBF',X'323330383333',X'32333038'),
+	(X'323330383831',X'E5908CE6B19FE5B882',X'323330383831',X'32333038'),
+	(X'323330383832',X'E5AF8CE994A6E5B882',X'323330383832',X'32333038'),
+	(X'32333039',X'E4B883E58FB0E6B2B3E5B882',X'32333039',X'3233'),
+	(X'323330393031',X'E5B882E8BE96E58CBA',X'323330393031',X'32333039'),
+	(X'323330393032',X'E696B0E585B4E58CBA',X'323330393032',X'32333039'),
+	(X'323330393033',X'E6A183E5B1B1E58CBA',X'323330393033',X'32333039'),
+	(X'323330393034',X'E88C84E5AD90E6B2B3E58CBA',X'323330393034',X'32333039'),
+	(X'323330393231',X'E58B83E588A9E58EBF',X'323330393231',X'32333039'),
+	(X'32333130',X'E789A1E4B8B9E6B19FE5B882',X'32333130',X'3233'),
+	(X'323331303031',X'E5B882E8BE96E58CBA',X'323331303031',X'32333130'),
+	(X'323331303032',X'E4B89CE5AE89E58CBA',X'323331303032',X'32333130'),
+	(X'323331303033',X'E998B3E6988EE58CBA',X'323331303033',X'32333130'),
+	(X'323331303034',X'E788B1E6B091E58CBA',X'323331303034',X'32333130'),
+	(X'323331303035',X'E8A5BFE5AE89E58CBA',X'323331303035',X'32333130'),
+	(X'323331303234',X'E4B89CE5AE81E58EBF',X'323331303234',X'32333130'),
+	(X'323331303235',X'E69E97E58FA3E58EBF',X'323331303235',X'32333130'),
+	(X'323331303831',X'E7BBA5E88AACE6B2B3E5B882',X'323331303831',X'32333130'),
+	(X'323331303833',X'E6B5B7E69E97E5B882',X'323331303833',X'32333130'),
+	(X'323331303834',X'E5AE81E5AE89E5B882',X'323331303834',X'32333130'),
+	(X'323331303835',X'E7A986E6A3B1E5B882',X'323331303835',X'32333130'),
+	(X'32333131',X'E9BB91E6B2B3E5B882',X'32333131',X'3233'),
+	(X'323331313031',X'E5B882E8BE96E58CBA',X'323331313031',X'32333131'),
+	(X'323331313032',X'E788B1E8BE89E58CBA',X'323331313032',X'32333131'),
+	(X'323331313231',X'E5ABA9E6B19FE58EBF',X'323331313231',X'32333131'),
+	(X'323331313233',X'E9808AE5858BE58EBF',X'323331313233',X'32333131'),
+	(X'323331313234',X'E5AD99E590B4E58EBF',X'323331313234',X'32333131'),
+	(X'323331313831',X'E58C97E5AE89E5B882',X'323331313831',X'32333131'),
+	(X'323331313832',X'E4BA94E5A4A7E8BF9EE6B1A0E5B882',X'323331313832',X'32333131'),
+	(X'32333132',X'E7BBA5E58C96E5B882',X'32333132',X'3233'),
+	(X'323331323031',X'E5B882E8BE96E58CBA',X'323331323031',X'32333132'),
+	(X'323331323032',X'E58C97E69E97E58CBA',X'323331323032',X'32333132'),
+	(X'323331323231',X'E69C9BE5A58EE58EBF',X'323331323231',X'32333132'),
+	(X'323331323232',X'E585B0E8A5BFE58EBF',X'323331323232',X'32333132'),
+	(X'323331323233',X'E99D92E58688E58EBF',X'323331323233',X'32333132'),
+	(X'323331323234',X'E5BA86E5AE89E58EBF',X'323331323234',X'32333132'),
+	(X'323331323235',X'E6988EE6B0B4E58EBF',X'323331323235',X'32333132'),
+	(X'323331323236',X'E7BBA5E6A3B1E58EBF',X'323331323236',X'32333132'),
+	(X'323331323831',X'E5AE89E8BEBEE5B882',X'323331323831',X'32333132'),
+	(X'323331323832',X'E88287E4B89CE5B882',X'323331323832',X'32333132'),
+	(X'323331323833',X'E6B5B7E4BCA6E5B882',X'323331323833',X'32333132'),
+	(X'32333237',X'E5A4A7E585B4E5AE89E5B2ADE59CB0E58CBA',X'32333237',X'3233'),
+	(X'323332373031',X'E58AA0E6A0BCE8BEBEE5A587E58CBA',X'323332373031',X'32333237'),
+	(X'323332373032',X'E69DBEE5B2ADE58CBA',X'323332373032',X'32333237'),
+	(X'323332373033',X'E696B0E69E97E58CBA',X'323332373033',X'32333237'),
+	(X'323332373034',X'E591BCE4B8ADE58CBA',X'323332373034',X'32333237'),
+	(X'323332373231',X'E591BCE78E9BE58EBF',X'323332373231',X'32333237'),
+	(X'323332373232',X'E5A194E6B2B3E58EBF',X'323332373232',X'32333237'),
+	(X'323332373233',X'E6BCA0E6B2B3E58EBF',X'323332373233',X'32333237'),
+	(X'3331',X'E4B88AE6B5B7E5B882',X'3331',X'31'),
+	(X'33313031',X'E5B882E8BE96E58CBA',X'33313031',X'3331'),
+	(X'333130313031',X'E9BB84E6B5A6E58CBA',X'333130313031',X'33313031'),
+	(X'333130313033',X'E58DA2E6B9BEE58CBA',X'333130313033',X'33313031'),
+	(X'333130313034',X'E5BE90E6B187E58CBA',X'333130313034',X'33313031'),
+	(X'333130313035',X'E995BFE5AE81E58CBA',X'333130313035',X'33313031'),
+	(X'333130313036',X'E99D99E5AE89E58CBA',X'333130313036',X'33313031'),
+	(X'333130313037',X'E699AEE99980E58CBA',X'333130313037',X'33313031'),
+	(X'333130313038',X'E997B8E58C97E58CBA',X'333130313038',X'33313031'),
+	(X'333130313039',X'E899B9E58FA3E58CBA',X'333130313039',X'33313031'),
+	(X'333130313130',X'E69DA8E6B5A6E58CBA',X'333130313130',X'33313031'),
+	(X'333130313132',X'E997B5E8A18CE58CBA',X'333130313132',X'33313031'),
+	(X'333130313133',X'E5AE9DE5B1B1E58CBA',X'333130313133',X'33313031'),
+	(X'333130313134',X'E59889E5AE9AE58CBA',X'333130313134',X'33313031'),
+	(X'333130313135',X'E6B5A6E4B89CE696B0E58CBA',X'333130313135',X'33313031'),
+	(X'333130313136',X'E98791E5B1B1E58CBA',X'333130313136',X'33313031'),
+	(X'333130313137',X'E69DBEE6B19FE58CBA',X'333130313137',X'33313031'),
+	(X'333130313138',X'E99D92E6B5A6E58CBA',X'333130313138',X'33313031'),
+	(X'333130313139',X'E58D97E6B187E58CBA',X'333130313139',X'33313031'),
+	(X'333130313230',X'E5A589E8B4A4E58CBA',X'333130313230',X'33313031'),
+	(X'33313032',X'E58EBF',X'33313032',X'3331'),
+	(X'333130323330',X'E5B487E6988EE58EBF',X'333130323330',X'33313032'),
+	(X'3332',X'E6B19FE88B8FE79C81',X'3332',X'31'),
+	(X'33323031',X'E58D97E4BAACE5B882',X'33323031',X'3332'),
+	(X'333230313031',X'E5B882E8BE96E58CBA',X'333230313031',X'33323031'),
+	(X'333230313032',X'E78E84E6ADA6E58CBA',X'333230313032',X'33323031'),
+	(X'333230313033',X'E799BDE4B88BE58CBA',X'333230313033',X'33323031'),
+	(X'333230313034',X'E7A7A6E6B7AEE58CBA',X'333230313034',X'33323031'),
+	(X'333230313035',X'E5BBBAE982BAE58CBA',X'333230313035',X'33323031'),
+	(X'333230313036',X'E9BC93E6A5BCE58CBA',X'333230313036',X'33323031'),
+	(X'333230313037',X'E4B88BE585B3E58CBA',X'333230313037',X'33323031'),
+	(X'333230313131',X'E6B5A6E58FA3E58CBA',X'333230313131',X'33323031'),
+	(X'333230313133',X'E6A096E99C9EE58CBA',X'333230313133',X'33323031'),
+	(X'333230313134',X'E99BA8E88AB1E58FB0E58CBA',X'333230313134',X'33323031'),
+	(X'333230313135',X'E6B19FE5AE81E58CBA',X'333230313135',X'33323031'),
+	(X'333230313136',X'E585ADE59088E58CBA',X'333230313136',X'33323031'),
+	(X'333230313234',X'E6BAA7E6B0B4E58EBF',X'333230313234',X'33323031'),
+	(X'333230313235',X'E9AB98E6B7B3E58EBF',X'333230313235',X'33323031'),
+	(X'33323032',X'E697A0E994A1E5B882',X'33323032',X'3332'),
+	(X'333230323031',X'E5B882E8BE96E58CBA',X'333230323031',X'33323032'),
+	(X'333230323032',X'E5B487E5AE89E58CBA',X'333230323032',X'33323032'),
+	(X'333230323033',X'E58D97E995BFE58CBA',X'333230323033',X'33323032'),
+	(X'333230323034',X'E58C97E5A198E58CBA',X'333230323034',X'33323032'),
+	(X'333230323035',X'E994A1E5B1B1E58CBA',X'333230323035',X'33323032'),
+	(X'333230323036',X'E683A0E5B1B1E58CBA',X'333230323036',X'33323032'),
+	(X'333230323131',X'E6BBA8E6B996E58CBA',X'333230323131',X'33323032'),
+	(X'333230323831',X'E6B19FE998B4E5B882',X'333230323831',X'33323032'),
+	(X'333230323832',X'E5AE9CE585B4E5B882',X'333230323832',X'33323032'),
+	(X'33323033',X'E5BE90E5B79EE5B882',X'33323033',X'3332'),
+	(X'333230333031',X'E5B882E8BE96E58CBA',X'333230333031',X'33323033'),
+	(X'333230333032',X'E9BC93E6A5BCE58CBA',X'333230333032',X'33323033'),
+	(X'333230333033',X'E4BA91E9BE99E58CBA',X'333230333033',X'33323033'),
+	(X'333230333034',X'E4B99DE9878CE58CBA',X'333230333034',X'33323033'),
+	(X'333230333035',X'E8B4BEE6B1AAE58CBA',X'333230333035',X'33323033'),
+	(X'333230333131',X'E6B389E5B1B1E58CBA',X'333230333131',X'33323033'),
+	(X'333230333231',X'E4B8B0E58EBF',X'333230333231',X'33323033'),
+	(X'333230333232',X'E6B29BE58EBF',X'333230333232',X'33323033'),
+	(X'333230333233',X'E9939CE5B1B1E58EBF',X'333230333233',X'33323033'),
+	(X'333230333234',X'E79DA2E5AE81E58EBF',X'333230333234',X'33323033'),
+	(X'333230333831',X'E696B0E6B282E5B882',X'333230333831',X'33323033'),
+	(X'333230333832',X'E982B3E5B79EE5B882',X'333230333832',X'33323033'),
+	(X'33323034',X'E5B8B8E5B79EE5B882',X'33323034',X'3332'),
+	(X'333230343031',X'E5B8B8E5B79EE5B882E58CBA',X'333230343031',X'33323034'),
+	(X'333230343032',X'E5A4A9E5AE81E58CBA',X'333230343032',X'33323034'),
+	(X'333230343034',X'E9929FE6A5BCE58CBA',X'333230343034',X'33323034'),
+	(X'333230343035',X'E6889AE5A285E5A0B0E58CBA',X'333230343035',X'33323034'),
+	(X'333230343131',X'E696B0E58C97E58CBA',X'333230343131',X'33323034'),
+	(X'333230343132',X'E6ADA6E8BF9BE58CBA',X'333230343132',X'33323034'),
+	(X'333230343831',X'E6BAA7E998B3E5B882',X'333230343831',X'33323034'),
+	(X'333230343832',X'E98791E59D9BE5B882',X'333230343832',X'33323034'),
+	(X'33323035',X'E88B8FE5B79EE5B882',X'33323035',X'3332'),
+	(X'333230353031',X'E5B882E8BE96E58CBA',X'333230353031',X'33323035'),
+	(X'333230353032',X'E6B2A7E6B5AAE58CBA',X'333230353032',X'33323035'),
+	(X'333230353033',X'E5B9B3E6B19FE58CBA',X'333230353033',X'33323035'),
+	(X'333230353034',X'E98791E9988AE58CBA',X'333230353034',X'33323035'),
+	(X'333230353035',X'E88B8FE5B79EE9AB98E696B0E58CBAE8998EE4B898E58CBA',X'333230353035',X'33323035'),
+	(X'333230353036',X'E590B4E4B8ADE58CBA',X'333230353036',X'33323035'),
+	(X'333230353037',X'E79BB8E59F8EE58CBA',X'333230353037',X'33323035'),
+	(X'333230353831',X'E5B8B8E7869FE5B882',X'333230353831',X'33323035'),
+	(X'333230353832',X'E5BCA0E5AEB6E6B8AFE5B882',X'333230353832',X'33323035'),
+	(X'333230353833',X'E69886E5B1B1E5B882',X'333230353833',X'33323035'),
+	(X'333230353834',X'E590B4E6B19FE5B882',X'333230353834',X'33323035'),
+	(X'333230353835',X'E5A4AAE4BB93E5B882',X'333230353835',X'33323035'),
+	(X'33323036',X'E58D97E9809AE5B882',X'33323036',X'3332'),
+	(X'333230363031',X'E5B882E8BE96E58CBA',X'333230363031',X'33323036'),
+	(X'333230363032',X'E5B487E5B79DE58CBA',X'333230363032',X'33323036'),
+	(X'333230363131',X'E6B8AFE997B8E58CBA',X'333230363131',X'33323036'),
+	(X'333230363231',X'E6B5B7E5AE89E58EBF',X'333230363231',X'33323036'),
+	(X'333230363233',X'E5A682E4B89C',X'333230363233',X'33323036'),
+	(X'333230363831',X'E590AFE4B89CE5B882',X'333230363831',X'33323036'),
+	(X'333230363832',X'E5A682E79A8BE5B88209',X'333230363832',X'33323036'),
+	(X'333230363833',X'E9809AE5B79EE5B882',X'333230363833',X'33323036'),
+	(X'333230363834',X'E6B5B7E997A8E5B882',X'333230363834',X'33323036'),
+	(X'33323037',X'E8BF9EE4BA91E6B8AFE5B882',X'33323037',X'3332'),
+	(X'333230373031',X'E5B882E8BE96E58CBA',X'333230373031',X'33323037'),
+	(X'333230373033',X'E8BF9EE4BA91E58CBA',X'333230373033',X'33323037'),
+	(X'333230373035',X'E696B0E6B5A6E58CBA',X'333230373035',X'33323037'),
+	(X'333230373036',X'E6B5B7E5B79EE58CBA',X'333230373036',X'33323037'),
+	(X'333230373231',X'E8B5A3E6A686E58EBF',X'333230373231',X'33323037'),
+	(X'333230373232',X'E4B89CE6B5B7E58EBF',X'333230373232',X'33323037'),
+	(X'333230373233',X'E7818CE4BA91E58EBF',X'333230373233',X'33323037'),
+	(X'333230373234',X'E7818CE58D97E58EBF',X'333230373234',X'33323037'),
+	(X'33323038',X'E6B7AEE5AE89E5B882',X'33323038',X'3332'),
+	(X'333230383031',X'E5B882E8BE96E58CBA',X'333230383031',X'33323038'),
+	(X'333230383032',X'E6B885E6B2B3E58CBA',X'333230383032',X'33323038'),
+	(X'333230383033',X'E6A59AE5B79EE58CBA',X'333230383033',X'33323038'),
+	(X'333230383034',X'E6B7AEE998B4E58CBA',X'333230383034',X'33323038'),
+	(X'333230383131',X'E6B885E6B5A6E58CBA',X'333230383131',X'33323038'),
+	(X'333230383236',X'E6B69FE6B0B4E58EBF',X'333230383236',X'33323038'),
+	(X'333230383239',X'E6B4AAE6B3BDE58EBF',X'333230383239',X'33323038'),
+	(X'333230383330',X'E79BB1E79C99E58EBF',X'333230383330',X'33323038'),
+	(X'333230383331',X'E98791E6B996E58EBF',X'333230383331',X'33323038'),
+	(X'33323039',X'E79B90E59F8EE5B882',X'33323039',X'3332'),
+	(X'333230393031',X'E5B882E8BE96E58CBA',X'333230393031',X'33323039'),
+	(X'333230393032',X'E4BAADE6B996E58CBA',X'333230393032',X'33323039'),
+	(X'333230393033',X'E79B90E983BDE58CBA',X'333230393033',X'33323039'),
+	(X'333230393231',X'E5938DE6B0B4E58EBF',X'333230393231',X'33323039'),
+	(X'333230393232',X'E6BBA8E6B5B7E58EBF',X'333230393232',X'33323039'),
+	(X'333230393233',X'E9989CE5AE81E58EBF',X'333230393233',X'33323039'),
+	(X'333230393234',X'E5B084E998B3E58EBF',X'333230393234',X'33323039'),
+	(X'333230393235',X'E5BBBAE6B996E58EBF',X'333230393235',X'33323039'),
+	(X'333230393831',X'E4B89CE58FB0E5B882',X'333230393831',X'33323039'),
+	(X'333230393832',X'E5A4A7E4B8B0E5B882',X'333230393832',X'33323039'),
+	(X'33323130',X'E689ACE5B79EE5B882',X'33323130',X'3332'),
+	(X'333231303031',X'',X'333231303031',X'33323130'),
+	(X'333231303032',X'E5B9BFE999B5E58CBA',X'333231303032',X'33323130'),
+	(X'333231303033',X'E98297E6B19FE58CBA',X'333231303033',X'33323130'),
+	(X'333231303131',X'E7BBB4E689ACE58CBA',X'333231303131',X'33323130'),
+	(X'333231303233',X'E5AE9DE5BA94E58EBF',X'333231303233',X'33323130'),
+	(X'333231303831',X'E4BBAAE5BE81E5B882',X'333231303831',X'33323130'),
+	(X'333231303834',X'E9AB98E982AEE5B882',X'333231303834',X'33323130'),
+	(X'333231303838',X'E6B19FE983BDE5B882',X'333231303838',X'33323130'),
+	(X'33323131',X'E99587E6B19FE5B882',X'33323131',X'3332'),
+	(X'333231313031',X'E5B882E58CBA',X'333231313031',X'33323131'),
+	(X'333231313032',X'E4BAACE58FA3E58CBA',X'333231313032',X'33323131'),
+	(X'333231313131',X'E6B6A6E5B79EE58CBA',X'333231313131',X'33323131'),
+	(X'333231313132',X'E4B8B9E5BE92E58CBA',X'333231313132',X'33323131'),
+	(X'333231313831',X'E4B8B9E998B3E5B882',X'333231313831',X'33323131'),
+	(X'333231313832',X'E689ACE4B8ADE5B882',X'333231313832',X'33323131'),
+	(X'333231313833',X'E58FA5E5AEB9E5B882',X'333231313833',X'33323131'),
+	(X'33323132',X'E6B3B0E5B79EE5B882',X'33323132',X'3332'),
+	(X'333231323031',X'E5B882E8BE96E58CBA',X'333231323031',X'33323132'),
+	(X'333231323032',X'E6B5B7E999B5E58CBA',X'333231323032',X'33323132'),
+	(X'333231323033',X'E9AB98E6B8AFE58CBA',X'333231323033',X'33323132'),
+	(X'333231323831',X'E585B4E58C96E5B882',X'333231323831',X'33323132'),
+	(X'333231323832',X'E99D96E6B19FE5B882',X'333231323832',X'33323132'),
+	(X'333231323833',X'E6B3B0E585B4E5B882',X'333231323833',X'33323132'),
+	(X'333231323834',X'E5A79CE5A0B0E5B882',X'333231323834',X'33323132'),
+	(X'33323133',X'E5AEBFE8BF81E5B882',X'33323133',X'3332'),
+	(X'333231333031',X'E5B882E8BE96E58CBA',X'333231333031',X'33323133'),
+	(X'333231333032',X'E5AEBFE59F8EE58CBA',X'333231333032',X'33323133'),
+	(X'333231333131',X'E5AEBFE8B1ABE58CBA',X'333231333131',X'33323133'),
+	(X'333231333232',X'E6B2ADE998B3E58EBF',X'333231333232',X'33323133'),
+	(X'333231333233',X'E6B397E998B3E58EBF',X'333231333233',X'33323133'),
+	(X'333231333234',X'E6B397E6B4AAE58EBF',X'333231333234',X'33323133'),
+	(X'3333',X'E6B599E6B19FE79C81',X'3333',X'31'),
+	(X'33333031',X'E69DADE5B79EE5B882',X'33333031',X'3333'),
+	(X'333330313031',X'E5B882E8BE96E58CBA',X'333330313031',X'33333031'),
+	(X'333330313032',X'E4B88AE59F8EE58CBA',X'333330313032',X'33333031'),
+	(X'333330313033',X'E4B88BE59F8EE58CBA',X'333330313033',X'33333031'),
+	(X'333330313034',X'E6B19FE5B9B2E58CBA',X'333330313034',X'33333031'),
+	(X'333330313035',X'E68BB1E5A285E58CBA',X'333330313035',X'33333031'),
+	(X'333330313036',X'E8A5BFE6B996E58CBA',X'333330313036',X'33333031'),
+	(X'333330313038',X'E6BBA8E6B19FE58CBA',X'333330313038',X'33333031'),
+	(X'333330313039',X'E890A7E5B1B1E58CBA',X'333330313039',X'33333031'),
+	(X'333330313130',X'E4BD99E69DADE58CBA',X'333330313130',X'33333031'),
+	(X'333330313232',X'E6A190E5BA90E58EBF',X'333330313232',X'33333031'),
+	(X'333330313237',X'E6B7B3E5AE89E58EBF',X'333330313237',X'33333031'),
+	(X'333330313832',X'E5BBBAE5BEB7E5B882',X'333330313832',X'33333031'),
+	(X'333330313833',X'E5AF8CE998B3E5B882',X'333330313833',X'33333031'),
+	(X'333330313835',X'E4B8B4E5AE89E5B882',X'333330313835',X'33333031'),
+	(X'33333032',X'E5AE81E6B3A2E5B882',X'33333032',X'3333'),
+	(X'333330323031',X'E5B882E8BE96E58CBA',X'333330323031',X'33333032'),
+	(X'333330323033',X'E6B5B7E69B99E58CBA',X'333330323033',X'33333032'),
+	(X'333330323034',X'E6B19FE4B89CE58CBA',X'333330323034',X'33333032'),
+	(X'333330323035',X'E6B19FE58C97E58CBA',X'333330323035',X'33333032'),
+	(X'333330323036',X'E58C97E4BB91E58CBA',X'333330323036',X'33333032'),
+	(X'333330323131',X'E99587E6B5B7E58CBA',X'333330323131',X'33333032'),
+	(X'333330323132',X'E9849EE5B79EE58CBA',X'333330323132',X'33333032'),
+	(X'333330323235',X'E8B1A1E5B1B1E58EBF',X'333330323235',X'33333032'),
+	(X'333330323236',X'E5AE81E6B5B7E58EBF',X'333330323236',X'33333032'),
+	(X'333330323831',X'E4BD99E5A79AE5B882',X'333330323831',X'33333032'),
+	(X'333330323832',X'E68588E6BAAAE5B882',X'333330323832',X'33333032'),
+	(X'333330323833',X'E5A589E58C96E5B882',X'333330323833',X'33333032'),
+	(X'33333033',X'E6B8A9E5B79EE5B882',X'33333033',X'3333'),
+	(X'333330333031',X'E5B882E8BE96E58CBA',X'333330333031',X'33333033'),
+	(X'333330333032',X'E9B9BFE59F8EE58CBA',X'333330333032',X'33333033'),
+	(X'333330333033',X'E9BE99E6B9BEE58CBA',X'333330333033',X'33333033'),
+	(X'333330333034',X'E793AFE6B5B7E58CBA',X'333330333034',X'33333033'),
+	(X'333330333232',X'E6B49EE5A4B4E58EBF',X'333330333232',X'33333033'),
+	(X'333330333234',X'E6B0B8E59889E58EBF',X'333330333234',X'33333033'),
+	(X'333330333236',X'E5B9B3E998B3E58EBF',X'333330333236',X'33333033'),
+	(X'333330333237',X'E88B8DE58D97E58EBF',X'333330333237',X'33333033'),
+	(X'333330333238',X'E69687E68890E58EBF',X'333330333238',X'33333033'),
+	(X'333330333239',X'E6B3B0E9A1BAE58EBF',X'333330333239',X'33333033'),
+	(X'333330333831',X'E7919EE5AE89E5B882',X'333330333831',X'33333033'),
+	(X'333330333832',X'E4B990E6B885E5B882',X'333330333832',X'33333033'),
+	(X'33333034',X'E59889E585B4E5B882',X'33333034',X'3333'),
+	(X'333330343031',X'E5B882E8BE96E58CBA',X'333330343031',X'33333034'),
+	(X'333330343032',X'E58D97E6B996E58CBA',X'333330343032',X'33333034'),
+	(X'333330343131',X'E7A780E6B4B2E58CBA',X'333330343131',X'33333034'),
+	(X'333330343231',X'E59889E59684E58EBF',X'333330343231',X'33333034'),
+	(X'333330343234',X'E6B5B7E79B90E58EBF',X'333330343234',X'33333034'),
+	(X'333330343831',X'E6B5B7E5AE81E5B882',X'333330343831',X'33333034'),
+	(X'333330343832',X'E5B9B3E6B996E5B882',X'333330343832',X'33333034'),
+	(X'333330343833',X'E6A190E4B9A1E5B882',X'333330343833',X'33333034'),
+	(X'33333035',X'E6B996E5B79EE5B882',X'33333035',X'3333'),
+	(X'333330353031',X'E5B882E8BE96E58CBA',X'333330353031',X'33333035'),
+	(X'333330353032',X'E590B4E585B4E58CBA',X'333330353032',X'33333035'),
+	(X'333330353033',X'E58D97E6B594E58CBA',X'333330353033',X'33333035'),
+	(X'333330353231',X'E5BEB7E6B885E58EBF',X'333330353231',X'33333035'),
+	(X'333330353232',X'E995BFE585B4E58EBF',X'333330353232',X'33333035'),
+	(X'333330353233',X'E5AE89E59089E58EBF',X'333330353233',X'33333035'),
+	(X'33333036',X'E7BB8DE585B4E5B882',X'33333036',X'3333'),
+	(X'333330363031',X'E5B882E8BE96E58CBA',X'333330363031',X'33333036'),
+	(X'333330363032',X'E8B68AE59F8EE58CBA',X'333330363032',X'33333036'),
+	(X'333330363231',X'E7BB8DE585B4E58EBF',X'333330363231',X'33333036'),
+	(X'333330363234',X'E696B0E6988CE58EBF',X'333330363234',X'33333036'),
+	(X'333330363831',X'E8AFB8E69AA8E5B882',X'333330363831',X'33333036'),
+	(X'333330363832',X'E4B88AE8999EE5B882',X'333330363832',X'33333036'),
+	(X'333330363833',X'E5B58AE5B79EE5B882',X'333330363833',X'33333036'),
+	(X'33333037',X'E98791E58D8EE5B882',X'33333037',X'3333'),
+	(X'333330373031',X'E5B882E8BE96E58CBA',X'333330373031',X'33333037'),
+	(X'333330373032',X'E5A9BAE59F8EE58CBA',X'333330373032',X'33333037'),
+	(X'333330373033',X'E98791E4B89CE58CBA',X'333330373033',X'33333037'),
+	(X'333330373233',X'E6ADA6E4B989E58EBF',X'333330373233',X'33333037'),
+	(X'333330373236',X'E6B5A6E6B19FE58EBF',X'333330373236',X'33333037'),
+	(X'333330373237',X'E7A390E5AE89E58EBF',X'333330373237',X'33333037'),
+	(X'333330373831',X'E585B0E6BAAAE5B882',X'333330373831',X'33333037'),
+	(X'333330373832',X'E4B989E4B98CE5B882',X'333330373832',X'33333037'),
+	(X'333330373833',X'E4B89CE998B3E5B882',X'333330373833',X'33333037'),
+	(X'333330373834',X'E6B0B8E5BAB7E5B882',X'333330373834',X'33333037'),
+	(X'33333038',X'E8A1A2E5B79EE5B882',X'33333038',X'3333'),
+	(X'333330383031',X'E5B882E8BE96E58CBA',X'333330383031',X'33333038'),
+	(X'333330383032',X'E69FAFE59F8EE58CBA',X'333330383032',X'33333038'),
+	(X'333330383033',X'E8A1A2E6B19FE58CBA',X'333330383033',X'33333038'),
+	(X'333330383232',X'E5B8B8E5B1B1E58EBF',X'333330383232',X'33333038'),
+	(X'333330383234',X'E5BC80E58C96E58EBF',X'333330383234',X'33333038'),
+	(X'333330383235',X'E9BE99E6B8B8E58EBF',X'333330383235',X'33333038'),
+	(X'333330383831',X'E6B19FE5B1B1E5B882',X'333330383831',X'33333038'),
+	(X'33333039',X'E8889FE5B1B1E5B882',X'33333039',X'3333'),
+	(X'333330393031',X'E5B882E8BE96E58CBA',X'333330393031',X'33333039'),
+	(X'333330393032',X'E5AE9AE6B5B7E58CBA',X'333330393032',X'33333039'),
+	(X'333330393033',X'E699AEE99980E58CBA',X'333330393033',X'33333039'),
+	(X'333330393231',X'E5B2B1E5B1B1E58EBF',X'333330393231',X'33333039'),
+	(X'333330393232',X'E5B58AE6B397E58EBF',X'333330393232',X'33333039'),
+	(X'33333130',X'E58FB0E5B79EE5B882',X'33333130',X'3333'),
+	(X'333331303031',X'E5B882E8BE96E58CBA',X'333331303031',X'33333130'),
+	(X'333331303032',X'E6A492E6B19FE58CBA',X'333331303032',X'33333130'),
+	(X'333331303033',X'E9BB84E5B2A9E58CBA',X'333331303033',X'33333130'),
+	(X'333331303034',X'E8B7AFE6A1A5E58CBA',X'333331303034',X'33333130'),
+	(X'333331303231',X'E78E89E78EAFE58EBF',X'333331303231',X'33333130'),
+	(X'333331303232',X'E4B889E997A8E58EBF',X'333331303232',X'33333130'),
+	(X'333331303233',X'E5A4A9E58FB0E58EBF',X'333331303233',X'33333130'),
+	(X'333331303234',X'E4BB99E5B185E58EBF',X'333331303234',X'33333130'),
+	(X'333331303831',X'E6B8A9E5B2ADE5B882',X'333331303831',X'33333130'),
+	(X'333331303832',X'E4B8B4E6B5B7E5B882',X'333331303832',X'33333130'),
+	(X'33333131',X'E4B8BDE6B0B4E5B882',X'33333131',X'3333'),
+	(X'333331313031',X'E5B882E8BE96E58CBA',X'333331313031',X'33333131'),
+	(X'333331313032',X'E88EB2E983BDE58CBA',X'333331313032',X'33333131'),
+	(X'333331313231',X'E99D92E794B0E58EBF',X'333331313231',X'33333131'),
+	(X'333331313232',X'E7BC99E4BA91E58EBF',X'333331313232',X'33333131'),
+	(X'333331313233',X'E98182E6988CE58EBF',X'333331313233',X'33333131'),
+	(X'333331313234',X'E69DBEE998B3E58EBF',X'333331313234',X'33333131'),
+	(X'333331313235',X'E4BA91E5928CE58EBF',X'333331313235',X'33333131'),
+	(X'333331313236',X'E5BA86E58583E58EBF',X'333331313236',X'33333131'),
+	(X'333331313237',X'E699AFE5AE81E795B2E6978FE887AAE6B2BBE58EBF',X'333331313237',X'33333131'),
+	(X'333331313831',X'E9BE99E6B389E5B882',X'333331313831',X'33333131'),
+	(X'3334',X'E5AE89E5BEBDE79C81',X'3334',X'31'),
+	(X'33343031',X'E59088E882A5E5B882',X'33343031',X'3334'),
+	(X'333430313031',X'E5B882E8BE96E58CBA',X'333430313031',X'33343031'),
+	(X'333430313032',X'E791B6E6B5B7E58CBA',X'333430313032',X'33343031'),
+	(X'333430313033',X'E5BA90E998B3E58CBA',X'333430313033',X'33343031'),
+	(X'333430313034',X'E89C80E5B1B1E58CBA',X'333430313034',X'33343031'),
+	(X'333430313131',X'E58C85E6B2B3E58CBA',X'333430313131',X'33343031'),
+	(X'333430313231',X'E995BFE4B8B0E58EBF',X'333430313231',X'33343031'),
+	(X'333430313232',X'E882A5E4B89CE58EBF',X'333430313232',X'33343031'),
+	(X'333430313233',X'E882A5E8A5BFE58EBF',X'333430313233',X'33343031'),
+	(X'33343032',X'E88A9CE6B996E5B882',X'33343032',X'3334'),
+	(X'333430323031',X'E5B882E8BE96E58CBA',X'333430323031',X'33343032'),
+	(X'333430323032',X'E9959CE6B996E58CBA',X'333430323032',X'33343032'),
+	(X'333430323033',X'E5BC8BE6B19FE58CBA',X'333430323033',X'33343032'),
+	(X'333430323037',X'E9B8A0E6B19FE58CBA',X'333430323037',X'33343032'),
+	(X'333430323038',X'E4B889E5B1B1E58CBA',X'333430323038',X'33343032'),
+	(X'333430323231',X'E88A9CE6B996E58EBF',X'333430323231',X'33343032'),
+	(X'333430323232',X'E7B981E6988CE58EBF',X'333430323232',X'33343032'),
+	(X'333430323233',X'E58D97E999B5E58EBF',X'333430323233',X'33343032'),
+	(X'33343033',X'E89A8CE59FA0E5B882',X'33343033',X'3334'),
+	(X'333430333031',X'E5B882E8BE96E58CBA',X'333430333031',X'33343033'),
+	(X'333430333032',X'E9BE99E5AD90E6B996E58CBA',X'333430333032',X'33343033'),
+	(X'333430333033',X'E89A8CE5B1B1E58CBA',X'333430333033',X'33343033'),
+	(X'333430333034',X'E7A6B9E4BC9AE58CBA',X'333430333034',X'33343033'),
+	(X'333430333131',X'E6B7AEE4B88AE58CBA',X'333430333131',X'33343033'),
+	(X'333430333231',X'E68080E8BF9CE58EBF',X'333430333231',X'33343033'),
+	(X'333430333232',X'E4BA94E6B2B3E58EBF',X'333430333232',X'33343033'),
+	(X'333430333233',X'E59BBAE99587E58EBF',X'333430333233',X'33343033'),
+	(X'33343034',X'E6B7AEE58D97E5B882',X'33343034',X'3334'),
+	(X'333430343031',X'E5B882E8BE96E58CBA',X'333430343031',X'33343034'),
+	(X'333430343032',X'E5A4A7E9809AE58CBA',X'333430343032',X'33343034'),
+	(X'333430343033',X'E794B0E5AEB6E5BAB5E58CBA',X'333430343033',X'33343034'),
+	(X'333430343034',X'E8B0A2E5AEB6E99B86E58CBA',X'333430343034',X'33343034'),
+	(X'333430343035',X'E585ABE585ACE5B1B1E58CBA',X'333430343035',X'33343034'),
+	(X'333430343036',X'E6BD98E99B86E58CBA',X'333430343036',X'33343034'),
+	(X'333430343231',X'E587A4E58FB0E58EBF',X'333430343231',X'33343034'),
+	(X'33343035',X'E9A9ACE99E8DE5B1B1E5B882',X'33343035',X'3334'),
+	(X'333430353031',X'E5B882E8BE96E58CBA',X'333430353031',X'33343035'),
+	(X'333430353032',X'E98791E5AEB6E5BA84E58CBA',X'333430353032',X'33343035'),
+	(X'333430353033',X'E88AB1E5B1B1E58CBA',X'333430353033',X'33343035'),
+	(X'333430353034',X'E99BA8E5B1B1E58CBA',X'333430353034',X'33343035'),
+	(X'333430353231',X'E5BD93E6B682E58EBF',X'333430353231',X'33343035'),
+	(X'33343036',X'E6B7AEE58C97E5B882',X'33343036',X'3334'),
+	(X'333430363031',X'E5B882E8BE96E58CBA',X'333430363031',X'33343036'),
+	(X'333430363032',X'E69D9CE99B86E58CBA',X'333430363032',X'33343036'),
+	(X'333430363033',X'E79BB8E5B1B1E58CBA',X'333430363033',X'33343036'),
+	(X'333430363034',X'E78388E5B1B1E58CBA',X'333430363034',X'33343036'),
+	(X'333430363231',X'E6BF89E6BAAAE58EBF',X'333430363231',X'33343036'),
+	(X'33343037',X'E9939CE999B5E5B882',X'33343037',X'3334'),
+	(X'333430373031',X'E5B882E8BE96E58CBA',X'333430373031',X'33343037'),
+	(X'333430373032',X'E9939CE5AE98E5B1B1E58CBA',X'333430373032',X'33343037'),
+	(X'333430373033',X'E78BAEE5AD90E5B1B1E58CBA',X'333430373033',X'33343037'),
+	(X'333430373131',X'E9939CE999B5E5B882E9838AE58CBA',X'333430373131',X'33343037'),
+	(X'333430373231',X'E9939CE999B5E58EBF',X'333430373231',X'33343037'),
+	(X'33343038',X'E5AE89E5BA86E5B882',X'33343038',X'3334'),
+	(X'333430383031',X'E5B882E8BE96E58CBA',X'333430383031',X'33343038'),
+	(X'333430383032',X'E8BF8EE6B19FE58CBA',X'333430383032',X'33343038'),
+	(X'333430383033',X'E5A4A7E8A782E58CBA',X'333430383033',X'33343038'),
+	(X'333430383131',X'E5AE9CE7A780E58CBA',X'333430383131',X'33343038'),
+	(X'333430383232',X'E68080E5AE81E58EBF',X'333430383232',X'33343038'),
+	(X'333430383233',X'E69E9EE998B3E58EBF',X'333430383233',X'33343038'),
+	(X'333430383234',X'E6BD9CE5B1B1E58EBF',X'333430383234',X'33343038'),
+	(X'333430383235',X'E5A4AAE6B996E58EBF',X'333430383235',X'33343038'),
+	(X'333430383236',X'E5AEBFE69DBEE58EBF',X'333430383236',X'33343038'),
+	(X'333430383237',X'E69C9BE6B19FE58EBF',X'333430383237',X'33343038'),
+	(X'333430383238',X'E5B2B3E8A5BFE58EBF',X'333430383238',X'33343038'),
+	(X'333430383831',X'E6A190E59F8EE5B882',X'333430383831',X'33343038'),
+	(X'33343130',X'E9BB84E5B1B1E5B882',X'33343130',X'3334'),
+	(X'333431303031',X'E5B882E8BE96E58CBA',X'333431303031',X'33343130'),
+	(X'333431303032',X'E5B1AFE6BAAAE58CBA',X'333431303032',X'33343130'),
+	(X'333431303033',X'E9BB84E5B1B1E58CBA',X'333431303033',X'33343130'),
+	(X'333431303034',X'E5BEBDE5B79EE58CBA',X'333431303034',X'33343130'),
+	(X'333431303231',X'E6AD99E58EBF',X'333431303231',X'33343130'),
+	(X'333431303232',X'E4BC91E5AE81E58EBF',X'333431303232',X'33343130'),
+	(X'333431303233',X'E9BB9FE58EBF',X'333431303233',X'33343130'),
+	(X'333431303234',X'E7A581E997A8E58EBF',X'333431303234',X'33343130'),
+	(X'33343131',X'E6BB81E5B79EE5B882',X'33343131',X'3334'),
+	(X'333431313031',X'E5B882E8BE96E58CBA',X'333431313031',X'33343131'),
+	(X'333431313032',X'E79085E7908AE58CBA',X'333431313032',X'33343131'),
+	(X'333431313033',X'E58D97E8B0AFE58CBA',X'333431313033',X'33343131'),
+	(X'333431313232',X'E69DA5E5AE89E58EBF',X'333431313232',X'33343131'),
+	(X'333431313234',X'E585A8E6A492E58EBF',X'333431313234',X'33343131'),
+	(X'333431313235',X'E5AE9AE8BF9CE58EBF',X'333431313235',X'33343131'),
+	(X'333431313236',X'E587A4E998B3E58EBF',X'333431313236',X'33343131'),
+	(X'333431313831',X'E5A4A9E995BFE5B882',X'333431313831',X'33343131'),
+	(X'333431313832',X'E6988EE58589E5B882',X'333431313832',X'33343131'),
+	(X'33343132',X'E9989CE998B3E5B882',X'33343132',X'3334'),
+	(X'333431323031',X'E5B882E8BE96E58CBA',X'333431323031',X'33343132'),
+	(X'333431323032',X'E9A28DE5B79EE58CBA',X'333431323032',X'33343132'),
+	(X'333431323033',X'E9A28DE4B89CE58CBA',X'333431323033',X'33343132'),
+	(X'333431323034',X'E9A28DE6B389E58CBA',X'333431323034',X'33343132'),
+	(X'333431323231',X'E4B8B4E6B389E58EBF',X'333431323231',X'33343132'),
+	(X'333431323232',X'E5A4AAE5928CE58EBF',X'333431323232',X'33343132'),
+	(X'333431323235',X'E9989CE58D97E58EBF',X'333431323235',X'33343132'),
+	(X'333431323236',X'E9A28DE4B88AE58EBF',X'333431323236',X'33343132'),
+	(X'333431323832',X'E7958CE9A696E5B882',X'333431323832',X'33343132'),
+	(X'33343133',X'E5AEBFE5B79EE5B882',X'33343133',X'3334'),
+	(X'333431333031',X'E5B882E8BE96E58CBA',X'333431333031',X'33343133'),
+	(X'333431333032',X'E5A289E6A1A5E58CBA',X'333431333032',X'33343133'),
+	(X'333431333231',X'E7A080E5B1B1E58EBF',X'333431333231',X'33343133'),
+	(X'333431333232',X'E890A7E58EBF',X'333431333232',X'33343133'),
+	(X'333431333233',X'E781B5E792A7E58EBF',X'333431333233',X'33343133'),
+	(X'333431333234',X'E6B397E58EBF',X'333431333234',X'33343133'),
+	(X'33343134',X'E5B7A2E6B996E5B882',X'33343134',X'3334'),
+	(X'333431343031',X'E5B882E8BE96E58CBA',X'333431343031',X'33343134'),
+	(X'333431343032',X'E5B185E5B7A2E58CBA',X'333431343032',X'33343134'),
+	(X'333431343231',X'E5BA90E6B19FE58EBF',X'333431343231',X'33343134'),
+	(X'333431343232',X'E697A0E4B8BAE58EBF',X'333431343232',X'33343134'),
+	(X'333431343233',X'E590ABE5B1B1E58EBF',X'333431343233',X'33343134'),
+	(X'333431343234',X'E5928CE58EBF',X'333431343234',X'33343134'),
+	(X'33343135',X'E585ADE5AE89E5B882',X'33343135',X'3334'),
+	(X'333431353031',X'E5B882E8BE96E58CBA',X'333431353031',X'33343135'),
+	(X'333431353032',X'E98791E5AE89E58CBA',X'333431353032',X'33343135'),
+	(X'333431353033',X'E8A395E5AE89E58CBA',X'333431353033',X'33343135'),
+	(X'333431353231',X'E5AFBFE58EBF',X'333431353231',X'33343135'),
+	(X'333431353232',X'E99C8DE982B1E58EBF',X'333431353232',X'33343135'),
+	(X'333431353233',X'E88892E59F8EE58EBF',X'333431353233',X'33343135'),
+	(X'333431353234',X'E98791E5AFA8E58EBF',X'333431353234',X'33343135'),
+	(X'333431353235',X'E99C8DE5B1B1E58EBF',X'333431353235',X'33343135'),
+	(X'33343136',X'E4BAB3E5B79EE5B882',X'33343136',X'3334'),
+	(X'333431363031',X'E5B882E8BE96E58CBA',X'333431363031',X'33343136'),
+	(X'333431363032',X'E8B0AFE59F8EE58CBA',X'333431363032',X'33343136'),
+	(X'333431363231',X'E6B6A1E998B3E58EBF',X'333431363231',X'33343136'),
+	(X'333431363232',X'E89299E59F8EE58EBF',X'333431363232',X'33343136'),
+	(X'333431363233',X'E588A9E8BE9BE58EBF',X'333431363233',X'33343136'),
+	(X'33343137',X'E6B1A0E5B79EE5B882',X'33343137',X'3334'),
+	(X'333431373031',X'E5B882E8BE96E58CBA',X'333431373031',X'33343137'),
+	(X'333431373032',X'E8B4B5E6B1A0E58CBA',X'333431373032',X'33343137'),
+	(X'333431373231',X'E4B89CE887B3E58EBF',X'333431373231',X'33343137'),
+	(X'333431373232',X'E79FB3E58FB0E58EBF',X'333431373232',X'33343137'),
+	(X'333431373233',X'E99D92E998B3E58EBF',X'333431373233',X'33343137'),
+	(X'33343138',X'E5AEA3E59F8EE5B882',X'33343138',X'3334'),
+	(X'333431383031',X'E5B882E8BE96E58CBA',X'333431383031',X'33343138'),
+	(X'333431383032',X'E5AEA3E5B79EE58CBA',X'333431383032',X'33343138'),
+	(X'333431383231',X'E9838EE6BAAAE58EBF',X'333431383231',X'33343138'),
+	(X'333431383232',X'E5B9BFE5BEB7E58EBF',X'333431383232',X'33343138'),
+	(X'333431383233',X'E6B3BEE58EBF',X'333431383233',X'33343138'),
+	(X'333431383234',X'E7BBA9E6BAAAE58EBF',X'333431383234',X'33343138'),
+	(X'333431383235',X'E6978CE5BEB7E58EBF',X'333431383235',X'33343138'),
+	(X'333431383831',X'E5AE81E59BBDE5B882',X'333431383831',X'33343138'),
+	(X'3335',X'E7A68FE5BBBAE79C81',X'3335',X'31'),
+	(X'33353031',X'E7A68FE5B79EE5B882',X'33353031',X'3335'),
+	(X'333530313031',X'E5B882E8BE96E58CBA',X'333530313031',X'33353031'),
+	(X'333530313032',X'E9BC93E6A5BCE58CBA',X'333530313032',X'33353031'),
+	(X'333530313033',X'E58FB0E6B19FE58CBA',X'333530313033',X'33353031'),
+	(X'333530313034',X'E4BB93E5B1B1E58CBA',X'333530313034',X'33353031'),
+	(X'333530313035',X'E9A9ACE5B0BEE58CBA',X'333530313035',X'33353031'),
+	(X'333530313131',X'E6998BE5AE89E58CBA',X'333530313131',X'33353031'),
+	(X'333530313231',X'E997BDE4BEAFE58EBF',X'333530313231',X'33353031'),
+	(X'333530313232',X'E8BF9EE6B19FE58EBF',X'333530313232',X'33353031'),
+	(X'333530313233',X'E7BD97E6BA90E58EBF',X'333530313233',X'33353031'),
+	(X'333530313234',X'E997BDE6B885E58EBF',X'333530313234',X'33353031'),
+	(X'333530313235',X'E6B0B8E6B3B0E58EBF',X'333530313235',X'33353031'),
+	(X'333530313238',X'E5B9B3E6BDADE58EBF',X'333530313238',X'33353031'),
+	(X'333530313831',X'E7A68FE6B885E5B882',X'333530313831',X'33353031'),
+	(X'333530313832',X'E995BFE4B990E5B882',X'333530313832',X'33353031'),
+	(X'33353032',X'E58EA6E997A8E5B882',X'33353032',X'3335'),
+	(X'333530323031',X'E5B882E8BE96E58CBA',X'333530323031',X'33353032'),
+	(X'333530323033',X'E6809DE6988EE58CBA',X'333530323033',X'33353032'),
+	(X'333530323035',X'E6B5B7E6B2A7E58CBA',X'333530323035',X'33353032'),
+	(X'333530323036',X'E6B996E9878CE58CBA',X'333530323036',X'33353032'),
+	(X'333530323131',X'E99B86E7BE8EE58CBA',X'333530323131',X'33353032'),
+	(X'333530323132',X'E5908CE5AE89E58CBA',X'333530323132',X'33353032'),
+	(X'333530323133',X'E7BF94E5AE89E58CBA',X'333530323133',X'33353032'),
+	(X'33353033',X'E88E86E794B0E5B882',X'33353033',X'3335'),
+	(X'333530333031',X'E5B882E8BE96E58CBA',X'333530333031',X'33353033'),
+	(X'333530333032',X'E59F8EE58EA2E58CBA',X'333530333032',X'33353033'),
+	(X'333530333033',X'E6B6B5E6B19FE58CBA',X'333530333033',X'33353033'),
+	(X'333530333034',X'E88D94E59F8EE58CBA',X'333530333034',X'33353033'),
+	(X'333530333035',X'E7A780E5B1BFE58CBA',X'333530333035',X'33353033'),
+	(X'333530333232',X'E4BB99E6B8B8E58EBF',X'333530333232',X'33353033'),
+	(X'33353034',X'E4B889E6988EE5B882',X'33353034',X'3335'),
+	(X'333530343031',X'E5B882E8BE96E58CBA',X'333530343031',X'33353034'),
+	(X'333530343032',X'E6A285E58897E58CBA',X'333530343032',X'33353034'),
+	(X'333530343033',X'E4B889E58583E58CBA',X'333530343033',X'33353034'),
+	(X'333530343231',X'E6988EE6BAAAE58EBF',X'333530343231',X'33353034'),
+	(X'333530343233',X'E6B885E6B581E58EBF',X'333530343233',X'33353034'),
+	(X'333530343234',X'E5AE81E58C96E58EBF',X'333530343234',X'33353034'),
+	(X'333530343235',X'E5A4A7E794B0E58EBF',X'333530343235',X'33353034'),
+	(X'333530343236',X'E5B0A4E6BAAAE58EBF',X'333530343236',X'33353034'),
+	(X'333530343237',X'E6B299E58EBF',X'333530343237',X'33353034'),
+	(X'333530343238',X'E5B086E4B990E58EBF',X'333530343238',X'33353034'),
+	(X'333530343239',X'E6B3B0E5AE81E58EBF',X'333530343239',X'33353034'),
+	(X'333530343330',X'E5BBBAE5AE81E58EBF',X'333530343330',X'33353034'),
+	(X'333530343831',X'E6B0B8E5AE89E5B882',X'333530343831',X'33353034'),
+	(X'33353035',X'E6B389E5B79EE5B882',X'33353035',X'3335'),
+	(X'333530353031',X'E5B882E8BE96E58CBA',X'333530353031',X'33353035'),
+	(X'333530353032',X'E9B2A4E59F8EE58CBA',X'333530353032',X'33353035'),
+	(X'333530353033',X'E4B8B0E6B3BDE58CBA',X'333530353033',X'33353035'),
+	(X'333530353034',X'E6B49BE6B19FE58CBA',X'333530353034',X'33353035'),
+	(X'333530353035',X'E6B389E6B8AFE58CBA',X'333530353035',X'33353035'),
+	(X'333530353231',X'E683A0E5AE89E58EBF',X'333530353231',X'33353035'),
+	(X'333530353234',X'E5AE89E6BAAAE58EBF',X'333530353234',X'33353035'),
+	(X'333530353235',X'E6B0B8E698A5E58EBF',X'333530353235',X'33353035'),
+	(X'333530353236',X'E5BEB7E58C96E58EBF',X'333530353236',X'33353035'),
+	(X'333530353237',X'E98791E997A8E58EBF',X'333530353237',X'33353035'),
+	(X'333530353831',X'E79FB3E78BAEE5B882',X'333530353831',X'33353035'),
+	(X'333530353832',X'E6998BE6B19FE5B882',X'333530353832',X'33353035'),
+	(X'333530353833',X'E58D97E5AE89E5B882',X'333530353833',X'33353035'),
+	(X'33353036',X'E6BCB3E5B79EE5B882',X'33353036',X'3335'),
+	(X'333530363031',X'E5B882E8BE96E58CBA',X'333530363031',X'33353036'),
+	(X'333530363032',X'E88A97E59F8EE58CBA',X'333530363032',X'33353036'),
+	(X'333530363033',X'E9BE99E69687E58CBA',X'333530363033',X'33353036'),
+	(X'333530363232',X'E4BA91E99C84E58EBF',X'333530363232',X'33353036'),
+	(X'333530363233',X'E6BCB3E6B5A6E58EBF',X'333530363233',X'33353036'),
+	(X'333530363234',X'E8AF8FE5AE89E58EBF',X'333530363234',X'33353036'),
+	(X'333530363235',X'E995BFE6B3B0E58EBF',X'333530363235',X'33353036'),
+	(X'333530363236',X'E4B89CE5B1B1E58EBF',X'333530363236',X'33353036'),
+	(X'333530363237',X'E58D97E99D96E58EBF',X'333530363237',X'33353036'),
+	(X'333530363238',X'E5B9B3E5928CE58EBF',X'333530363238',X'33353036'),
+	(X'333530363239',X'E58D8EE5AE89E58EBF',X'333530363239',X'33353036'),
+	(X'333530363831',X'E9BE99E6B5B7E5B882',X'333530363831',X'33353036'),
+	(X'33353037',X'E58D97E5B9B3E5B882',X'33353037',X'3335'),
+	(X'333530373031',X'E5B882E8BE96E58CBA',X'333530373031',X'33353037'),
+	(X'333530373032',X'E5BBB6E5B9B3E58CBA',X'333530373032',X'33353037'),
+	(X'333530373231',X'E9A1BAE6988CE58EBF',X'333530373231',X'33353037'),
+	(X'333530373232',X'E6B5A6E59F8EE58EBF',X'333530373232',X'33353037'),
+	(X'333530373233',X'E58589E6B3BDE58EBF',X'333530373233',X'33353037'),
+	(X'333530373234',X'E69DBEE6BAAAE58EBF',X'333530373234',X'33353037'),
+	(X'333530373235',X'E694BFE5928CE58EBF',X'333530373235',X'33353037'),
+	(X'333530373831',X'E982B5E6ADA6E5B882',X'333530373831',X'33353037'),
+	(X'333530373832',X'E6ADA6E5A4B7E5B1B1E5B882',X'333530373832',X'33353037'),
+	(X'333530373833',X'E5BBBAE793AFE5B882',X'333530373833',X'33353037'),
+	(X'333530373834',X'E5BBBAE998B3E5B882',X'333530373834',X'33353037'),
+	(X'33353038',X'E9BE99E5B2A9E5B882',X'33353038',X'3335'),
+	(X'333530383031',X'E5B882E8BE96E58CBA',X'333530383031',X'33353038'),
+	(X'333530383032',X'E696B0E7BD97E58CBA',X'333530383032',X'33353038'),
+	(X'333530383231',X'E995BFE6B180E58EBF',X'333530383231',X'33353038'),
+	(X'333530383232',X'E6B0B8E5AE9AE58EBF',X'333530383232',X'33353038'),
+	(X'333530383233',X'E4B88AE69DADE58EBF',X'333530383233',X'33353038'),
+	(X'333530383234',X'E6ADA6E5B9B3E58EBF',X'333530383234',X'33353038'),
+	(X'333530383235',X'E8BF9EE59F8EE58EBF',X'333530383235',X'33353038'),
+	(X'333530383831',X'E6BCB3E5B9B3E5B882',X'333530383831',X'33353038'),
+	(X'33353039',X'E5AE81E5BEB7E5B882E38080',X'33353039',X'3335'),
+	(X'333530393031',X'E5B882E8BE96E58CBA',X'333530393031',X'33353039'),
+	(X'333530393032',X'E89589E59F8EE58CBA',X'333530393032',X'33353039'),
+	(X'333530393231',X'E99C9EE6B5A6E58EBF',X'333530393231',X'33353039'),
+	(X'333530393232',X'E58FA4E794B0E58EBF',X'333530393232',X'33353039'),
+	(X'333530393233',X'E5B18FE58D97E58EBF',X'333530393233',X'33353039'),
+	(X'333530393234',X'E5AFBFE5AE81E58EBF',X'333530393234',X'33353039'),
+	(X'333530393235',X'E591A8E5AE81E58EBF',X'333530393235',X'33353039'),
+	(X'333530393236',X'E69F98E88DA3E58EBF',X'333530393236',X'33353039'),
+	(X'333530393831',X'E7A68FE5AE89E5B882',X'333530393831',X'33353039'),
+	(X'333530393832',X'E7A68FE9BC8EE5B882',X'333530393832',X'33353039'),
+	(X'3336',X'E6B19FE8A5BFE79C81',X'3336',X'31'),
+	(X'33363031',X'E58D97E6988CE5B882',X'33363031',X'3336'),
+	(X'333630313031',X'E5B882E8BE96E58CBA',X'333630313031',X'33363031'),
+	(X'333630313032',X'E4B89CE6B996E58CBA',X'333630313032',X'33363031'),
+	(X'333630313033',X'E8A5BFE6B996E58CBA',X'333630313033',X'33363031'),
+	(X'333630313034',X'E99D92E4BA91E8B0B1E58CBA',X'333630313034',X'33363031'),
+	(X'333630313035',X'E6B9BEE9878CE58CBA',X'333630313035',X'33363031'),
+	(X'333630313131',X'E99D92E5B1B1E6B996E58CBA',X'333630313131',X'33363031'),
+	(X'333630313231',X'E58D97E6988CE58EBF',X'333630313231',X'33363031'),
+	(X'333630313232',X'E696B0E5BBBAE58EBF',X'333630313232',X'33363031'),
+	(X'333630313233',X'E5AE89E4B989E58EBF',X'333630313233',X'33363031'),
+	(X'333630313234',X'E8BF9BE8B4A4E58EBF',X'333630313234',X'33363031'),
+	(X'33363032',X'E699AFE5BEB7E99587E5B882',X'33363032',X'3336'),
+	(X'333630323031',X'E5B882E8BE96E58CBA',X'333630323031',X'33363032'),
+	(X'333630323032',X'E6988CE6B19FE58CBA',X'333630323032',X'33363032'),
+	(X'333630323033',X'E78FA0E5B1B1E58CBA',X'333630323033',X'33363032'),
+	(X'333630323232',X'E6B5AEE6A281E58EBF',X'333630323232',X'33363032'),
+	(X'333630323831',X'E4B990E5B9B3E5B882',X'333630323831',X'33363032'),
+	(X'33363033',X'E8908DE4B9A1E5B882',X'33363033',X'3336'),
+	(X'333630333031',X'E5B882E8BE96E58CBA',X'333630333031',X'33363033'),
+	(X'333630333032',X'E5AE89E6BA90E58CBA',X'333630333032',X'33363033'),
+	(X'333630333133',X'E6B998E4B89CE58CBA',X'333630333133',X'33363033'),
+	(X'333630333231',X'E88EB2E88AB1E58EBF',X'333630333231',X'33363033'),
+	(X'333630333232',X'E4B88AE6A097E58EBF',X'333630333232',X'33363033'),
+	(X'333630333233',X'E88AA6E6BAAAE58EBF',X'333630333233',X'33363033'),
+	(X'33363034',X'E4B99DE6B19FE5B882',X'33363034',X'3336'),
+	(X'333630343031',X'E5B882E8BE96E58CBA',X'333630343031',X'33363034'),
+	(X'333630343032',X'E5BA90E5B1B1E58CBA',X'333630343032',X'33363034'),
+	(X'333630343033',X'E6B594E998B3E58CBA',X'333630343033',X'33363034'),
+	(X'333630343231',X'E4B99DE6B19FE58EBF',X'333630343231',X'33363034'),
+	(X'333630343233',X'E6ADA6E5AE81E58EBF',X'333630343233',X'33363034'),
+	(X'333630343234',X'E4BFAEE6B0B4E58EBF',X'333630343234',X'33363034'),
+	(X'333630343235',X'E6B0B8E4BFAEE58EBF',X'333630343235',X'33363034'),
+	(X'333630343236',X'E5BEB7E5AE89E58EBF',X'333630343236',X'33363034'),
+	(X'333630343237',X'E6989FE5AD90E58EBF',X'333630343237',X'33363034'),
+	(X'333630343238',X'E983BDE6988CE58EBF',X'333630343238',X'33363034'),
+	(X'333630343239',X'E6B996E58FA3E58EBF',X'333630343239',X'33363034'),
+	(X'333630343330',X'E5BDADE6B3BDE58EBF',X'333630343330',X'33363034'),
+	(X'333630343831',X'E7919EE6988CE5B882',X'333630343831',X'33363034'),
+	(X'33363035',X'E696B0E4BD99E5B882',X'33363035',X'3336'),
+	(X'333630353031',X'E5B882E8BE96E58CBA',X'333630353031',X'33363035'),
+	(X'333630353032',X'E6B89DE6B0B4E58CBA',X'333630353032',X'33363035'),
+	(X'333630353231',X'E58886E5AE9CE58EBF',X'333630353231',X'33363035'),
+	(X'33363036',X'E9B9B0E6BDADE5B882',X'33363036',X'3336'),
+	(X'333630363031',X'E5B882E8BE96E58CBA',X'333630363031',X'33363036'),
+	(X'333630363032',X'E69C88E6B996E58CBA',X'333630363032',X'33363036'),
+	(X'333630363232',X'E4BD99E6B19FE58EBF',X'333630363232',X'33363036'),
+	(X'333630363831',X'E8B4B5E6BAAAE5B882',X'333630363831',X'33363036'),
+	(X'33363037',X'E8B5A3E5B79EE5B882',X'33363037',X'3336'),
+	(X'333630373031',X'E5B882E8BE96E58CBA',X'333630373031',X'33363037'),
+	(X'333630373032',X'E7ABA0E8B4A1E58CBA',X'333630373032',X'33363037'),
+	(X'333630373231',X'E8B5A3E58EBF',X'333630373231',X'33363037'),
+	(X'333630373232',X'E4BFA1E4B8B0E58EBF',X'333630373232',X'33363037'),
+	(X'333630373233',X'E5A4A7E4BD99E58EBF',X'333630373233',X'33363037'),
+	(X'333630373234',X'E4B88AE78AB9E58EBF',X'333630373234',X'33363037'),
+	(X'333630373235',X'E5B487E4B989E58EBF',X'333630373235',X'33363037'),
+	(X'333630373236',X'E5AE89E8BF9CE58EBF',X'333630373236',X'33363037'),
+	(X'333630373237',X'E9BE99E58D97E58EBF',X'333630373237',X'33363037'),
+	(X'333630373238',X'E5AE9AE58D97E58EBF',X'333630373238',X'33363037'),
+	(X'333630373239',X'E585A8E58D97E58EBF',X'333630373239',X'33363037'),
+	(X'333630373330',X'E5AE81E983BDE58EBF',X'333630373330',X'33363037'),
+	(X'333630373331',X'E4BA8EE983BDE58EBF',X'333630373331',X'33363037'),
+	(X'333630373332',X'E585B4E59BBDE58EBF',X'333630373332',X'33363037'),
+	(X'333630373333',X'E4BC9AE6988CE58EBF',X'333630373333',X'33363037'),
+	(X'333630373334',X'E5AFBBE4B98CE58EBF',X'333630373334',X'33363037'),
+	(X'333630373335',X'E79FB3E59F8EE58EBF',X'333630373335',X'33363037'),
+	(X'333630373831',X'E7919EE98791E5B882',X'333630373831',X'33363037'),
+	(X'333630373832',X'E58D97E5BAB7E5B882',X'333630373832',X'33363037'),
+	(X'33363038',X'E59089E5AE89E5B882',X'33363038',X'3336'),
+	(X'333630383031',X'E5B882E8BE96E58CBA',X'333630383031',X'33363038'),
+	(X'333630383032',X'E59089E5B79EE58CBA',X'333630383032',X'33363038'),
+	(X'333630383033',X'E99D92E58E9FE58CBA',X'333630383033',X'33363038'),
+	(X'333630383231',X'E59089E5AE89E58EBF',X'333630383231',X'33363038'),
+	(X'333630383232',X'E59089E6B0B4E58EBF',X'333630383232',X'33363038'),
+	(X'333630383233',X'E5B3A1E6B19FE58EBF',X'333630383233',X'33363038'),
+	(X'333630383234',X'E696B0E5B9B2E58EBF',X'333630383234',X'33363038'),
+	(X'333630383235',X'E6B0B8E4B8B0E58EBF',X'333630383235',X'33363038'),
+	(X'333630383236',X'E6B3B0E5928CE58EBF',X'333630383236',X'33363038'),
+	(X'333630383237',X'E98182E5B79DE58EBF',X'333630383237',X'33363038'),
+	(X'333630383238',X'E4B887E5AE89E58EBF',X'333630383238',X'33363038'),
+	(X'333630383239',X'E5AE89E7A68FE58EBF',X'333630383239',X'33363038'),
+	(X'333630383330',X'E6B0B8E696B0E58EBF',X'333630383330',X'33363038'),
+	(X'333630383831',X'E4BA95E58688E5B1B1E5B882',X'333630383831',X'33363038'),
+	(X'33363039',X'E5AE9CE698A5E5B882',X'33363039',X'3336'),
+	(X'333630393031',X'E5B882E8BE96E58CBA',X'333630393031',X'33363039'),
+	(X'333630393032',X'E8A281E5B79EE58CBA',X'333630393032',X'33363039'),
+	(X'333630393231',X'E5A589E696B0E58EBF',X'333630393231',X'33363039'),
+	(X'333630393232',X'E4B887E8BDBDE58EBF',X'333630393232',X'33363039'),
+	(X'333630393233',X'E4B88AE9AB98E58EBF',X'333630393233',X'33363039'),
+	(X'333630393234',X'E5AE9CE4B8B0E58EBF',X'333630393234',X'33363039'),
+	(X'333630393235',X'E99D96E5AE89E58EBF',X'333630393235',X'33363039'),
+	(X'333630393236',X'E9939CE9BC93E58EBF',X'333630393236',X'33363039'),
+	(X'333630393831',X'E4B8B0E59F8EE5B882',X'333630393831',X'33363039'),
+	(X'333630393832',X'E6A89FE6A091E5B882',X'333630393832',X'33363039'),
+	(X'333630393833',X'E9AB98E5AE89E5B882',X'333630393833',X'33363039'),
+	(X'33363130',X'E68A9AE5B79EE5B882',X'33363130',X'3336'),
+	(X'333631303031',X'E5B882E8BE96E58CBA',X'333631303031',X'33363130'),
+	(X'333631303032',X'E4B8B4E5B79DE58CBA',X'333631303032',X'33363130'),
+	(X'333631303231',X'E58D97E59F8EE58EBF',X'333631303231',X'33363130'),
+	(X'333631303232',X'E9BB8EE5B79DE58EBF',X'333631303232',X'33363130'),
+	(X'333631303233',X'E58D97E4B8B0E58EBF',X'333631303233',X'33363130'),
+	(X'333631303234',X'E5B487E4BB81E58EBF',X'333631303234',X'33363130'),
+	(X'333631303235',X'E4B990E5AE89E58EBF',X'333631303235',X'33363130'),
+	(X'333631303236',X'E5AE9CE9BB84E58EBF',X'333631303236',X'33363130'),
+	(X'333631303237',X'E98791E6BAAAE58EBF',X'333631303237',X'33363130'),
+	(X'333631303238',X'E8B584E6BAAAE58EBF',X'333631303238',X'33363130'),
+	(X'333631303239',X'E4B89CE4B9A1E58EBF',X'333631303239',X'33363130'),
+	(X'333631303330',X'E5B9BFE6988CE58EBF',X'333631303330',X'33363130'),
+	(X'33363131',X'E4B88AE9A5B6E5B882',X'33363131',X'3336'),
+	(X'333631313031',X'E5B882E8BE96E58CBA',X'333631313031',X'33363131'),
+	(X'333631313032',X'E4BFA1E5B79EE58CBA',X'333631313032',X'33363131'),
+	(X'333631313231',X'E4B88AE9A5B6E58EBF',X'333631313231',X'33363131'),
+	(X'333631313232',X'E5B9BFE4B8B0E58EBF',X'333631313232',X'33363131'),
+	(X'333631313233',X'E78E89E5B1B1E58EBF',X'333631313233',X'33363131'),
+	(X'333631313234',X'E99385E5B1B1E58EBF',X'333631313234',X'33363131'),
+	(X'333631313235',X'E6A8AAE5B3B0E58EBF',X'333631313235',X'33363131'),
+	(X'333631313236',X'E5BC8BE998B3E58EBF',X'333631313236',X'33363131'),
+	(X'333631313237',X'E4BD99E5B9B2E58EBF',X'333631313237',X'33363131'),
+	(X'333631313238',X'E984B1E998B3E58EBF',X'333631313238',X'33363131'),
+	(X'333631313239',X'E4B887E5B9B4E58EBF',X'333631313239',X'33363131'),
+	(X'333631313330',X'E5A9BAE6BA90E58EBF',X'333631313330',X'33363131'),
+	(X'333631313831',X'E5BEB7E585B4E5B882',X'333631313831',X'33363131'),
+	(X'3337',X'E5B1B1E4B89CE79C81',X'3337',X'31'),
+	(X'33373031',X'E6B58EE58D97E5B882',X'33373031',X'3337'),
+	(X'333730313031',X'E5B882E8BE96E58CBA',X'333730313031',X'33373031'),
+	(X'333730313032',X'E58E86E4B88BE58CBA',X'333730313032',X'33373031'),
+	(X'333730313033',X'E5B882E4B8ADE58CBA',X'333730313033',X'33373031'),
+	(X'333730313034',X'E6A790E88DABE58CBA',X'333730313034',X'33373031'),
+	(X'333730313035',X'E5A4A9E6A1A5E58CBA',X'333730313035',X'33373031'),
+	(X'333730313132',X'E58E86E59F8EE58CBA',X'333730313132',X'33373031'),
+	(X'333730313133',X'E995BFE6B885E58CBA',X'333730313133',X'33373031'),
+	(X'333730313234',X'E5B9B3E998B4E58EBF',X'333730313234',X'33373031'),
+	(X'333730313235',X'E6B58EE998B3E58EBF',X'333730313235',X'33373031'),
+	(X'333730313236',X'E59586E6B2B3E58EBF',X'333730313236',X'33373031'),
+	(X'333730313831',X'E7ABA0E4B898E5B882',X'333730313831',X'33373031'),
+	(X'33373032',X'E99D92E5B29BE5B882',X'33373032',X'3337'),
+	(X'333730323031',X'E5B882E8BE96E58CBA',X'333730323031',X'33373032'),
+	(X'333730323032',X'E5B882E58D97E58CBA',X'333730323032',X'33373032'),
+	(X'333730323033',X'E5B882E58C97E58CBA',X'333730323033',X'33373032'),
+	(X'333730323035',X'E59B9BE696B9E58CBA',X'333730323035',X'33373032'),
+	(X'333730323131',X'E9BB84E5B29BE58CBA',X'333730323131',X'33373032'),
+	(X'333730323132',X'E5B482E5B1B1E58CBA',X'333730323132',X'33373032'),
+	(X'333730323133',X'E69D8EE6B2A7E58CBA',X'333730323133',X'33373032'),
+	(X'333730323134',X'E59F8EE998B3E58CBA',X'333730323134',X'33373032'),
+	(X'333730323831',X'E883B6E5B79EE5B882',X'333730323831',X'33373032'),
+	(X'333730323832',X'E58DB3E5A2A8E5B882',X'333730323832',X'33373032'),
+	(X'333730323833',X'E5B9B3E5BAA6E5B882',X'333730323833',X'33373032'),
+	(X'333730323834',X'E883B6E58D97E5B882',X'333730323834',X'33373032'),
+	(X'333730323835',X'E88EB1E8A5BFE5B882',X'333730323835',X'33373032'),
+	(X'33373033',X'E6B784E58D9AE5B882',X'33373033',X'3337'),
+	(X'333730333031',X'E5B882E8BE96E58CBA',X'333730333031',X'33373033'),
+	(X'333730333032',X'E6B784E5B79DE58CBA',X'333730333032',X'33373033'),
+	(X'333730333033',X'E5BCA0E5BA97E58CBA',X'333730333033',X'33373033'),
+	(X'333730333034',X'E58D9AE5B1B1E58CBA',X'333730333034',X'33373033'),
+	(X'333730333035',X'E4B8B4E6B784E58CBA',X'333730333035',X'33373033'),
+	(X'333730333036',X'E591A8E69D91E58CBA',X'333730333036',X'33373033'),
+	(X'333730333231',X'E6A193E58FB0E58EBF',X'333730333231',X'33373033'),
+	(X'333730333232',X'E9AB98E99D92E58EBF',X'333730333232',X'33373033'),
+	(X'333730333233',X'E6B282E6BA90E58EBF',X'333730333233',X'33373033'),
+	(X'33373034',X'E69EA3E5BA84E5B882',X'33373034',X'3337'),
+	(X'333730343031',X'E5B882E8BE96E58CBA',X'333730343031',X'33373034'),
+	(X'333730343032',X'E5B882E4B8ADE58CBA',X'333730343032',X'33373034'),
+	(X'333730343033',X'E8969BE59F8EE58CBA',X'333730343033',X'33373034'),
+	(X'333730343034',X'E5B384E59F8EE58CBA',X'333730343034',X'33373034'),
+	(X'333730343035',X'E58FB0E584BFE5BA84E58CBA',X'333730343035',X'33373034'),
+	(X'333730343036',X'E5B1B1E4BAADE58CBA',X'333730343036',X'33373034'),
+	(X'333730343831',X'E6BB95E5B79EE5B882',X'333730343831',X'33373034'),
+	(X'33373035',X'E4B89CE890A5E5B882',X'33373035',X'3337'),
+	(X'333730353031',X'E5B882E8BE96E58CBA',X'333730353031',X'33373035'),
+	(X'333730353032',X'E4B89CE890A5E58CBA',X'333730353032',X'33373035'),
+	(X'333730353033',X'E6B2B3E58FA3E58CBA',X'333730353033',X'33373035'),
+	(X'333730353231',X'E59EA6E588A9E58EBF',X'333730353231',X'33373035'),
+	(X'333730353232',X'E588A9E6B4A5E58EBF',X'333730353232',X'33373035'),
+	(X'333730353233',X'E5B9BFE9A5B6E58EBF',X'333730353233',X'33373035'),
+	(X'33373036',X'E7839FE58FB0E5B882',X'33373036',X'3337'),
+	(X'333730363031',X'E5B882E8BE96E58CBA',X'333730363031',X'33373036'),
+	(X'333730363032',X'E88A9DE7BD98E58CBA',X'333730363032',X'33373036'),
+	(X'333730363131',X'E7A68FE5B1B1E58CBA',X'333730363131',X'33373036'),
+	(X'333730363132',X'E7899FE5B9B3E58CBA',X'333730363132',X'33373036'),
+	(X'333730363133',X'E88EB1E5B1B1E58CBA',X'333730363133',X'33373036'),
+	(X'333730363334',X'E995BFE5B29BE58EBF',X'333730363334',X'33373036'),
+	(X'333730363831',X'E9BE99E58FA3E5B882',X'333730363831',X'33373036'),
+	(X'333730363832',X'E88EB1E998B3E5B882',X'333730363832',X'33373036'),
+	(X'333730363833',X'E88EB1E5B79EE5B882',X'333730363833',X'33373036'),
+	(X'333730363834',X'E893ACE88EB1E5B882',X'333730363834',X'33373036'),
+	(X'333730363835',X'E68B9BE8BF9CE5B882',X'333730363835',X'33373036'),
+	(X'333730363836',X'E6A096E99C9EE5B882',X'333730363836',X'33373036'),
+	(X'333730363837',X'E6B5B7E998B3E5B882',X'333730363837',X'33373036'),
+	(X'33373037',X'E6BD8DE59D8AE5B882',X'33373037',X'3337'),
+	(X'333730373031',X'E5B882E8BE96E58CBA',X'333730373031',X'33373037'),
+	(X'333730373032',X'E6BD8DE59F8EE58CBA',X'333730373032',X'33373037'),
+	(X'333730373033',X'E5AF92E4BAADE58CBA',X'333730373033',X'33373037'),
+	(X'333730373034',X'E59D8AE5AD90E58CBA',X'333730373034',X'33373037'),
+	(X'333730373035',X'E5A58EE69687E58CBA',X'333730373035',X'33373037'),
+	(X'333730373234',X'E4B8B4E69C90E58EBF',X'333730373234',X'33373037'),
+	(X'333730373235',X'E6988CE4B990E58EBF',X'333730373235',X'33373037'),
+	(X'333730373831',X'E99D92E5B79EE5B882',X'333730373831',X'33373037'),
+	(X'333730373832',X'E8AFB8E59F8EE5B882',X'333730373832',X'33373037'),
+	(X'333730373833',X'E5AFBFE58589E5B882',X'333730373833',X'33373037'),
+	(X'333730373834',X'E5AE89E4B898E5B882',X'333730373834',X'33373037'),
+	(X'333730373835',X'E9AB98E5AF86E5B882',X'333730373835',X'33373037'),
+	(X'333730373836',X'E6988CE98291E5B882',X'333730373836',X'33373037'),
+	(X'33373038',X'E6B58EE5AE81E5B882',X'33373038',X'3337'),
+	(X'333730383031',X'E5B882E8BE96E58CBA',X'333730383031',X'33373038'),
+	(X'333730383032',X'E5B882E4B8ADE58CBA',X'333730383032',X'33373038'),
+	(X'333730383131',X'E4BBBBE59F8EE58CBA',X'333730383131',X'33373038'),
+	(X'333730383236',X'E5BEAEE5B1B1E58EBF09090909',X'333730383236',X'33373038'),
+	(X'333730383237',X'E9B1BCE58FB0E58EBF',X'333730383237',X'33373038'),
+	(X'333730383238',X'E98791E4B9A1E58EBF',X'333730383238',X'33373038'),
+	(X'333730383239',X'E59889E7A5A5E58EBF',X'333730383239',X'33373038'),
+	(X'333730383330',X'E6B1B6E4B88AE58EBF',X'333730383330',X'33373038'),
+	(X'333730383331',X'E6B397E6B0B4E58EBF',X'333730383331',X'33373038'),
+	(X'333730383332',X'E6A281E5B1B1E58EBF',X'333730383332',X'33373038'),
+	(X'333730383831',X'E69BB2E9989CE5B882',X'333730383831',X'33373038'),
+	(X'333730383832',X'E58596E5B79EE5B882',X'333730383832',X'33373038'),
+	(X'333730383833',X'E982B9E59F8EE5B882',X'333730383833',X'33373038'),
+	(X'33373039',X'E6B3B0E5AE89E5B882',X'33373039',X'3337'),
+	(X'333730393031',X'E5B882E8BE96E58CBA',X'333730393031',X'33373039'),
+	(X'333730393032',X'E6B3B0E5B1B1E58CBA',X'333730393032',X'33373039'),
+	(X'333730393033',X'E5B2B1E5B2B3E58CBA',X'333730393033',X'33373039'),
+	(X'333730393231',X'E5AE81E998B3E58EBF',X'333730393231',X'33373039'),
+	(X'333730393233',X'E4B89CE5B9B3E58EBF',X'333730393233',X'33373039'),
+	(X'333730393832',X'E696B0E6B3B0E5B882',X'333730393832',X'33373039'),
+	(X'333730393833',X'E882A5E59F8EE5B882',X'333730393833',X'33373039'),
+	(X'33373130',X'E5A881E6B5B7E5B882',X'33373130',X'3337'),
+	(X'333731303031',X'E5B882E8BE96E58CBA',X'333731303031',X'33373130'),
+	(X'333731303032',X'E78EAFE7BFA0E58CBA',X'333731303032',X'33373130'),
+	(X'333731303831',X'E69687E799BBE5B882',X'333731303831',X'33373130'),
+	(X'333731303832',X'E88DA3E68890E5B882',X'333731303832',X'33373130'),
+	(X'333731303833',X'E4B9B3E5B1B1E5B882',X'333731303833',X'33373130'),
+	(X'33373131',X'E697A5E785A7E5B882',X'33373131',X'3337'),
+	(X'333731313031',X'E5B882E8BE96E58CBA',X'333731313031',X'33373131'),
+	(X'333731313032',X'E4B89CE6B8AFE58CBA',X'333731313032',X'33373131'),
+	(X'333731313033',X'E5B29AE5B1B1E58CBA',X'333731313033',X'33373131'),
+	(X'333731313231',X'E4BA94E88EB2E58EBF',X'333731313231',X'33373131'),
+	(X'333731313232',X'E88E92E58EBF',X'333731313232',X'33373131'),
+	(X'33373132',X'E88EB1E88A9CE5B882',X'33373132',X'3337'),
+	(X'333731323031',X'E5B882E8BE96E58CBA',X'333731323031',X'33373132'),
+	(X'333731323032',X'E88EB1E59F8EE58CBA',X'333731323032',X'33373132'),
+	(X'333731323033',X'E992A2E59F8EE58CBA',X'333731323033',X'33373132'),
+	(X'33373133',X'E4B8B4E6B282E5B882',X'33373133',X'3337'),
+	(X'333731333031',X'E4B8B4E6B282E5B882E8BE96E58CBA',X'333731333031',X'33373133'),
+	(X'333731333032',X'E585B0E5B1B1E58CBA',X'333731333032',X'33373133'),
+	(X'333731333131',X'E7BD97E5BA84E58CBA',X'333731333131',X'33373133'),
+	(X'333731333132',X'E6B2B3E4B89CE58CBA',X'333731333132',X'33373133'),
+	(X'333731333231',X'E6B282E58D97E58EBF',X'333731333231',X'33373133'),
+	(X'333731333232',X'E983AFE59F8EE58EBF',X'333731333232',X'33373133'),
+	(X'333731333233',X'E6B282E6B0B4E58EBF',X'333731333233',X'33373133'),
+	(X'333731333234',X'E88B8DE5B1B1E58EBF',X'333731333234',X'33373133'),
+	(X'333731333235',X'E8B4B9E58EBF',X'333731333235',X'33373133'),
+	(X'333731333236',X'E5B9B3E98291E58EBF',X'333731333236',X'33373133'),
+	(X'333731333237',X'E88E92E58D97E58EBF',X'333731333237',X'33373133'),
+	(X'333731333238',X'E89299E998B4E58EBF',X'333731333238',X'33373133'),
+	(X'333731333239',X'E4B8B4E6B2ADE58EBF',X'333731333239',X'33373133'),
+	(X'33373134',X'E5BEB7E5B79EE5B882',X'33373134',X'3337'),
+	(X'333731343031',X'E5B882E8BE96E58CBA',X'333731343031',X'33373134'),
+	(X'333731343032',X'E5BEB7E59F8EE58CBA',X'333731343032',X'33373134'),
+	(X'333731343231',X'E999B5E58EBF',X'333731343231',X'33373134'),
+	(X'333731343232',X'E5AE81E6B4A5E58EBF',X'333731343232',X'33373134'),
+	(X'333731343233',X'E5BA86E4BA91E58EBF',X'333731343233',X'33373134'),
+	(X'333731343234',X'E4B8B4E98291E58EBF',X'333731343234',X'33373134'),
+	(X'333731343235',X'E9BD90E6B2B3E58EBF',X'333731343235',X'33373134'),
+	(X'333731343236',X'E5B9B3E58E9FE58EBF',X'333731343236',X'33373134'),
+	(X'333731343237',X'E5A48FE6B4A5E58EBF',X'333731343237',X'33373134'),
+	(X'333731343238',X'E6ADA6E59F8EE58EBF',X'333731343238',X'33373134'),
+	(X'333731343831',X'E4B990E999B5E5B882',X'333731343831',X'33373134'),
+	(X'333731343832',X'E7A6B9E59F8EE5B882',X'333731343832',X'33373134'),
+	(X'33373135',X'E8818AE59F8EE5B882',X'33373135',X'3337'),
+	(X'333731353031',X'E5B882E8BE96E58CBA',X'333731353031',X'33373135'),
+	(X'333731353032',X'E4B89CE6988CE5BA9CE58CBA',X'333731353032',X'33373135'),
+	(X'333731353231',X'E998B3E8B0B7E58EBF',X'333731353231',X'33373135'),
+	(X'333731353232',X'E88E98E58EBF',X'333731353232',X'33373135'),
+	(X'333731353233',X'E88C8CE5B9B3E58EBF',X'333731353233',X'33373135'),
+	(X'333731353234',X'E4B89CE998BFE58EBF',X'333731353234',X'33373135'),
+	(X'333731353235',X'E586A0E58EBF',X'333731353235',X'33373135'),
+	(X'333731353236',X'E9AB98E59490E58EBF',X'333731353236',X'33373135'),
+	(X'333731353831',X'E4B8B4E6B885E5B882',X'333731353831',X'33373135'),
+	(X'33373136',X'E6BBA8E5B79EE5B882',X'33373136',X'3337'),
+	(X'333731363031',X'E5B882E8BE96E58CBA',X'333731363031',X'33373136'),
+	(X'333731363032',X'E6BBA8E59F8EE58CBA',X'333731363032',X'33373136'),
+	(X'333731363231',X'E683A0E6B091E58EBF',X'333731363231',X'33373136'),
+	(X'333731363232',X'E998B3E4BFA1E58EBF',X'333731363232',X'33373136'),
+	(X'333731363233',X'E697A0E6A3A3E58EBF',X'333731363233',X'33373136'),
+	(X'333731363234',X'E6B2BEE58C96E58EBF',X'333731363234',X'33373136'),
+	(X'333731363235',X'E58D9AE585B4E58EBF',X'333731363235',X'33373136'),
+	(X'333731363236',X'E982B9E5B9B3E58EBF',X'333731363236',X'33373136'),
+	(X'33373137',X'E88F8FE6B3BDE5B882',X'33373137',X'3337'),
+	(X'333731373031',X'E5B882E8BE96E58CBA',X'333731373031',X'33373137'),
+	(X'333731373032',X'E789A1E4B8B9E58CBA',X'333731373032',X'33373137'),
+	(X'333731373231',X'E69BB9E58EBF',X'333731373231',X'33373137'),
+	(X'333731373232',X'E58D95E58EBF',X'333731373232',X'33373137'),
+	(X'333731373233',X'E68890E6ADA6E58EBF',X'333731373233',X'33373137'),
+	(X'333731373234',X'E5B7A8E9878EE58EBF',X'333731373234',X'33373137'),
+	(X'333731373235',X'E98393E59F8EE58EBF',X'333731373235',X'33373137'),
+	(X'333731373236',X'E98484E59F8EE58EBF',X'333731373236',X'33373137'),
+	(X'333731373237',X'E5AE9AE999B6E58EBF',X'333731373237',X'33373137'),
+	(X'333731373238',X'E4B89CE6988EE58EBF',X'333731373238',X'33373137'),
+	(X'3431',X'E6B2B3E58D97E79C81',X'3431',X'31'),
+	(X'34313031',X'E98391E5B79EE5B882',X'34313031',X'3431'),
+	(X'343130313031',X'E5B882E8BE96E58CBA',X'343130313031',X'34313031'),
+	(X'343130313032',X'E4B8ADE58E9FE58CBA',X'343130313032',X'34313031'),
+	(X'343130313033',X'E4BA8CE4B883E58CBA',X'343130313033',X'34313031'),
+	(X'343130313034',X'E7AEA1E59F8EE59B9EE6978FE58CBA',X'343130313034',X'34313031'),
+	(X'343130313035',X'E98791E6B0B4E58CBA',X'343130313035',X'34313031'),
+	(X'343130313036',X'E4B88AE8A197E58CBA',X'343130313036',X'34313031'),
+	(X'343130313038',X'E683A0E6B58EE58CBA',X'343130313038',X'34313031'),
+	(X'343130313232',X'E4B8ADE7899FE58EBF',X'343130313232',X'34313031'),
+	(X'343130313831',X'E5B7A9E4B989E5B882',X'343130313831',X'34313031'),
+	(X'343130313832',X'E88DA5E998B3E5B882',X'343130313832',X'34313031'),
+	(X'343130313833',X'E696B0E5AF86E5B882',X'343130313833',X'34313031'),
+	(X'343130313834',X'E696B0E98391E5B882',X'343130313834',X'34313031'),
+	(X'343130313835',X'E799BBE5B081E5B882',X'343130313835',X'34313031'),
+	(X'34313032',X'E5BC80E5B081E5B882',X'34313032',X'3431'),
+	(X'343130323031',X'E5B882E8BE96E58CBA',X'343130323031',X'34313032'),
+	(X'343130323032',X'E9BE99E4BAADE58CBA',X'343130323032',X'34313032'),
+	(X'343130323033',X'E9A1BAE6B2B3E58CBA',X'343130323033',X'34313032'),
+	(X'343130323034',X'E9BC93E6A5BCE58CBA',X'343130323034',X'34313032'),
+	(X'343130323035',X'E7A6B9E78E8BE58FB0E58CBA',X'343130323035',X'34313032'),
+	(X'343130323131',X'E98791E6988EE58CBA',X'343130323131',X'34313032'),
+	(X'343130323231',X'E69D9EE58EBF',X'343130323231',X'34313032'),
+	(X'343130323232',X'E9809AE8AEB8E58EBF',X'343130323232',X'34313032'),
+	(X'343130323233',X'E5B089E6B08FE58EBF',X'343130323233',X'34313032'),
+	(X'343130323234',X'E5BC80E5B081E58EBF',X'343130323234',X'34313032'),
+	(X'343130323235',X'E585B0E88083E58EBF',X'343130323235',X'34313032'),
+	(X'34313033',X'E6B49BE998B3E5B882',X'34313033',X'3431'),
+	(X'343130333031',X'E5B882E8BE96E58CBA',X'343130333031',X'34313033'),
+	(X'343130333032',X'E88081E59F8EE58CBA',X'343130333032',X'34313033'),
+	(X'343130333033',X'E8A5BFE5B7A5E58CBA',X'343130333033',X'34313033'),
+	(X'343130333034',X'E5BB9BE6B2B3E59B9EE6978FE58CBA',X'343130333034',X'34313033'),
+	(X'343130333035',X'E6B6A7E8A5BFE58CBA',X'343130333035',X'34313033'),
+	(X'343130333036',X'E59089E588A9E58CBA',X'343130333036',X'34313033'),
+	(X'343130333037',X'E6B49BE9BE99E58CBA',X'343130333037',X'34313033'),
+	(X'343130333232',X'E5AD9FE6B4A5E58EBF',X'343130333232',X'34313033'),
+	(X'343130333233',X'E696B0E5AE89E58EBF',X'343130333233',X'34313033'),
+	(X'343130333234',X'E6A0BEE5B79DE58EBF',X'343130333234',X'34313033'),
+	(X'343130333235',X'E5B5A9E58EBF',X'343130333235',X'34313033'),
+	(X'343130333236',X'E6B19DE998B3E58EBF',X'343130333236',X'34313033'),
+	(X'343130333237',X'E5AE9CE998B3E58EBF',X'343130333237',X'34313033'),
+	(X'343130333238',X'E6B49BE5AE81E58EBF',X'343130333238',X'34313033'),
+	(X'343130333239',X'E4BC8AE5B79DE58EBF',X'343130333239',X'34313033'),
+	(X'343130333831',X'E58183E5B888E5B882',X'343130333831',X'34313033'),
+	(X'34313034',X'E5B9B3E9A1B6E5B1B1E5B882',X'34313034',X'3431'),
+	(X'343130343031',X'E5B882E8BE96E58CBA',X'343130343031',X'34313034'),
+	(X'343130343032',X'E696B0E58D8EE58CBA',X'343130343032',X'34313034'),
+	(X'343130343033',X'E58DABE4B89CE58CBA',X'343130343033',X'34313034'),
+	(X'343130343034',X'E79FB3E9BE99E58CBA',X'343130343034',X'34313034'),
+	(X'343130343131',X'E6B99BE6B2B3E58CBA',X'343130343131',X'34313034'),
+	(X'343130343231',X'E5AE9DE4B8B0E58EBF',X'343130343231',X'34313034'),
+	(X'343130343232',X'E58FB62020E58EBF',X'343130343232',X'34313034'),
+	(X'343130343233',X'E9B281E5B1B1E58EBF',X'343130343233',X'34313034'),
+	(X'343130343235',X'E9838F2020E58EBF',X'343130343235',X'34313034'),
+	(X'343130343831',X'E8889EE992A2E5B882',X'343130343831',X'34313034'),
+	(X'343130343832',X'E6B19DE5B79EE5B882',X'343130343832',X'34313034'),
+	(X'34313035',X'E5AE89E998B3E5B882',X'34313035',X'3431'),
+	(X'343130353031',X'E5B882E8BE96E58CBA',X'343130353031',X'34313035'),
+	(X'343130353032',X'E69687E5B3B0E58CBA',X'343130353032',X'34313035'),
+	(X'343130353033',X'E58C97E585B3E58CBA',X'343130353033',X'34313035'),
+	(X'343130353035',X'E6AEB7E983BDE58CBA',X'343130353035',X'34313035'),
+	(X'343130353036',X'E9BE99E5AE89E58CBA',X'343130353036',X'34313035'),
+	(X'343130353232',X'E5AE89E998B3E58EBF',X'343130353232',X'34313035'),
+	(X'343130353233',X'E6B1A4E998B4E58EBF',X'343130353233',X'34313035'),
+	(X'343130353236',X'E6BB91E58EBF',X'343130353236',X'34313035'),
+	(X'343130353237',X'E58685E9BB84E58EBF',X'343130353237',X'34313035'),
+	(X'343130353831',X'E69E97E5B79EE5B882',X'343130353831',X'34313035'),
+	(X'34313036',X'E9B9A4E5A381E5B882',X'34313036',X'3431'),
+	(X'343130363031',X'E5B882E8BE96E58CBA',X'343130363031',X'34313036'),
+	(X'343130363032',X'E9B9A4E5B1B1E58CBA',X'343130363032',X'34313036'),
+	(X'343130363033',X'E5B1B1E59F8EE58CBA',X'343130363033',X'34313036'),
+	(X'343130363131',X'E6B787E6BBA8E58CBA',X'343130363131',X'34313036'),
+	(X'343130363231',X'E6B59AE58EBF',X'343130363231',X'34313036'),
+	(X'343130363232',X'E6B787E58EBF',X'343130363232',X'34313036'),
+	(X'34313037',X'E696B0E4B9A1E5B882',X'34313037',X'3431'),
+	(X'343130373031',X'E5B882E8BE96E58CBA',X'343130373031',X'34313037'),
+	(X'343130373032',X'E7BAA2E69797E58CBA',X'343130373032',X'34313037'),
+	(X'343130373033',X'E58DABE6BBA8E58CBA',X'343130373033',X'34313037'),
+	(X'343130373034',X'E587A4E6B389E58CBA',X'343130373034',X'34313037'),
+	(X'343130373131',X'E789A7E9878EE58CBA',X'343130373131',X'34313037'),
+	(X'343130373231',X'E696B0E4B9A1E58EBF',X'343130373231',X'34313037'),
+	(X'343130373234',X'E88EB7E59889E58EBF',X'343130373234',X'34313037'),
+	(X'343130373235',X'E58E9FE998B3E58EBF',X'343130373235',X'34313037'),
+	(X'343130373236',X'E5BBB6E6B4A5E58EBF',X'343130373236',X'34313037'),
+	(X'343130373237',X'E5B081E4B898E58EBF',X'343130373237',X'34313037'),
+	(X'343130373238',X'E995BFE59EA3E58EBF',X'343130373238',X'34313037'),
+	(X'343130373831',X'E58DABE8BE89E5B882',X'343130373831',X'34313037'),
+	(X'343130373832',X'E8BE89E58EBFE5B882',X'343130373832',X'34313037'),
+	(X'34313038',X'E784A6E4BD9CE5B882',X'34313038',X'3431'),
+	(X'343130383031',X'E5B882E8BE96E58CBA',X'343130383031',X'34313038'),
+	(X'343130383032',X'E8A7A3E694BEE58CBA',X'343130383032',X'34313038'),
+	(X'343130383033',X'E4B8ADE7AB99E58CBA',X'343130383033',X'34313038'),
+	(X'343130383034',X'E9A9ACE69D91E58CBA',X'343130383034',X'34313038'),
+	(X'343130383131',X'E5B1B1E998B3E58CBA',X'343130383131',X'34313038'),
+	(X'343130383231',X'E4BFAEE6ADA6E58EBF',X'343130383231',X'34313038'),
+	(X'343130383232',X'E58D9AE788B1E58EBF',X'343130383232',X'34313038'),
+	(X'343130383233',X'E6ADA6E9999FE58EBF',X'343130383233',X'34313038'),
+	(X'343130383235',X'E6B8A9E58EBF',X'343130383235',X'34313038'),
+	(X'343130383831',X'E6B58EE6BA90E5B882',X'343130383831',X'34313038'),
+	(X'343130383832',X'E6B281E998B3E5B882',X'343130383832',X'34313038'),
+	(X'343130383833',X'E5AD9FE5B79EE5B882',X'343130383833',X'34313038'),
+	(X'34313039',X'E6BFAEE998B3E5B882',X'34313039',X'3431'),
+	(X'343130393031',X'E5B882E8BE96E58CBA',X'343130393031',X'34313039'),
+	(X'343130393032',X'E58D8EE9BE99E58CBA',X'343130393032',X'34313039'),
+	(X'343130393232',X'E6B885E4B8B0E58EBF',X'343130393232',X'34313039'),
+	(X'343130393233',X'E58D97E4B990E58EBF',X'343130393233',X'34313039'),
+	(X'343130393236',X'E88C83E58EBF',X'343130393236',X'34313039'),
+	(X'343130393237',X'E58FB0E5898DE58EBF',X'343130393237',X'34313039'),
+	(X'343130393238',X'E6BFAEE998B3E58EBF',X'343130393238',X'34313039'),
+	(X'34313130',X'E8AEB8E6988CE5B882',X'34313130',X'3431'),
+	(X'343131303031',X'E5B882E8BE96E58CBA',X'343131303031',X'34313130'),
+	(X'343131303032',X'E9AD8FE983BDE58CBA',X'343131303032',X'34313130'),
+	(X'343131303233',X'E8AEB8E6988CE58EBF',X'343131303233',X'34313130'),
+	(X'343131303234',X'E984A2E999B5E58EBF',X'343131303234',X'34313130'),
+	(X'343131303235',X'E8A584E59F8EE58EBF',X'343131303235',X'34313130'),
+	(X'343131303831',X'E7A6B9E5B79EE5B882',X'343131303831',X'34313130'),
+	(X'343131303832',X'E995BFE8919BE5B882',X'343131303832',X'34313130'),
+	(X'34313131',X'E6BCAFE6B2B3E5B882',X'34313131',X'3431'),
+	(X'343131313031',X'E5B882E8BE96E58CBA',X'343131313031',X'34313131'),
+	(X'343131313032',X'E6BA90E6B187E58CBA',X'343131313032',X'34313131'),
+	(X'343131313033',X'E983BEE59F8EE58CBA',X'343131313033',X'34313131'),
+	(X'343131313034',X'E58FACE999B5E58CBA',X'343131313034',X'34313131'),
+	(X'343131313231',X'E8889EE998B3E58EBF',X'343131313231',X'34313131'),
+	(X'343131313232',X'E4B8B4E9A296E58EBF',X'343131313232',X'34313131'),
+	(X'34313132',X'E4B889E997A8E5B3A1E5B882',X'34313132',X'3431'),
+	(X'343131323031',X'E5B882E8BE96E58CBA',X'343131323031',X'34313132'),
+	(X'343131323032',X'E6B996E6BBA8E58CBA',X'343131323032',X'34313132'),
+	(X'343131323231',X'E6B891E6B1A0E58EBF',X'343131323231',X'34313132'),
+	(X'343131323232',X'E99995E58EBF',X'343131323232',X'34313132'),
+	(X'343131323234',X'E58DA2E6B08FE58EBF',X'343131323234',X'34313132'),
+	(X'343131323831',X'E4B989E9A9ACE5B882',X'343131323831',X'34313132'),
+	(X'343131323832',X'E781B5E5AE9DE5B882',X'343131323832',X'34313132'),
+	(X'34313133',X'E58D97E998B3E5B882',X'34313133',X'3431'),
+	(X'343131333031',X'E5B882E8BE96E58CBA',X'343131333031',X'34313133'),
+	(X'343131333032',X'E5AE9BE59F8EE58CBA',X'343131333032',X'34313133'),
+	(X'343131333033',X'E58DA7E9BE99E58CBA',X'343131333033',X'34313133'),
+	(X'343131333231',X'E58D97E58FACE58EBF',X'343131333231',X'34313133'),
+	(X'343131333232',X'E696B9E59F8EE58EBF',X'343131333232',X'34313133'),
+	(X'343131333233',X'E8A5BFE5B3A1E58EBF',X'343131333233',X'34313133'),
+	(X'343131333234',X'E99587E5B9B3E58EBF',X'343131333234',X'34313133'),
+	(X'343131333235',X'E58685E4B9A1E58EBF',X'343131333235',X'34313133'),
+	(X'343131333236',X'E6B785E5B79DE58EBF',X'343131333236',X'34313133'),
+	(X'343131333237',X'E7A4BEE69797E58EBF',X'343131333237',X'34313133'),
+	(X'343131333238',X'E59490E6B2B3E58EBF',X'343131333238',X'34313133'),
+	(X'343131333239',X'E696B0E9878EE58EBF',X'343131333239',X'34313133'),
+	(X'343131333330',X'E6A190E69F8FE58EBF',X'343131333330',X'34313133'),
+	(X'343131333831',X'E98293E5B79EE5B882',X'343131333831',X'34313133'),
+	(X'34313134',X'E59586E4B898E5B882',X'34313134',X'3431'),
+	(X'343131343031',X'E5B882E8BE96E58CBA',X'343131343031',X'34313134'),
+	(X'343131343032',X'E6A281E59BADE58CBA',X'343131343032',X'34313134'),
+	(X'343131343033',X'E79DA2E998B3E58CBA',X'343131343033',X'34313134'),
+	(X'343131343231',X'E6B091E69D83E58EBF',X'343131343231',X'34313134'),
+	(X'343131343232',X'E79DA2E58EBF',X'343131343232',X'34313134'),
+	(X'343131343233',X'E5AE81E999B5E58EBF',X'343131343233',X'34313134'),
+	(X'343131343234',X'E69F98E59F8EE58EBF',X'343131343234',X'34313134'),
+	(X'343131343235',X'E8999EE59F8EE58EBF',X'343131343235',X'34313134'),
+	(X'343131343236',X'E5A48FE98291E58EBF',X'343131343236',X'34313134'),
+	(X'343131343831',X'E6B0B8E59F8EE5B882',X'343131343831',X'34313134'),
+	(X'34313135',X'E4BFA1E998B3E5B882',X'34313135',X'3431'),
+	(X'343131353031',X'E5B882E8BE96E58CBA',X'343131353031',X'34313135'),
+	(X'343131353032',X'E6B589E6B2B3E58CBA',X'343131353032',X'34313135'),
+	(X'343131353033',X'E5B9B3E6A1A5E58CBA',X'343131353033',X'34313135'),
+	(X'343131353231',X'E7BD97E5B1B1E58EBF',X'343131353231',X'34313135'),
+	(X'343131353232',X'E58589E5B1B1E58EBF',X'343131353232',X'34313135'),
+	(X'343131353233',X'E696B0E58EBF',X'343131353233',X'34313135'),
+	(X'343131353234',X'E59586E59F8EE58EBF',X'343131353234',X'34313135'),
+	(X'343131353235',X'E59BBAE5A78BE58EBF',X'343131353235',X'34313135'),
+	(X'343131353236',X'E6BDA2E5B79DE58EBF',X'343131353236',X'34313135'),
+	(X'343131353237',X'E6B7AEE6BBA8E58EBF',X'343131353237',X'34313135'),
+	(X'343131353238',X'E681AFE58EBF',X'343131353238',X'34313135'),
+	(X'34313136',X'E591A8E58FA3E5B882',X'34313136',X'3431'),
+	(X'343131363031',X'E5B882E8BE96E58CBA',X'343131363031',X'34313136'),
+	(X'343131363032',X'E5B79DE6B187E58CBA',X'343131363032',X'34313136'),
+	(X'343131363231',X'E689B6E6B29FE58EBF',X'343131363231',X'34313136'),
+	(X'343131363232',X'E8A5BFE58D8EE58EBF',X'343131363232',X'34313136'),
+	(X'343131363233',X'E59586E6B0B4E58EBF',X'343131363233',X'34313136'),
+	(X'343131363234',X'E6B288E4B898E58EBF',X'343131363234',X'34313136'),
+	(X'343131363235',X'E983B8E59F8EE58EBF',X'343131363235',X'34313136'),
+	(X'343131363236',X'E6B7AEE998B3E58EBF',X'343131363236',X'34313136'),
+	(X'343131363237',X'E5A4AAE5BAB7E58EBF',X'343131363237',X'34313136'),
+	(X'343131363238',X'E9B9BFE98291E58EBF',X'343131363238',X'34313136'),
+	(X'343131363831',X'E9A1B9E59F8EE5B882',X'343131363831',X'34313136'),
+	(X'34313137',X'E9A9BBE9A9ACE5BA97E5B882',X'34313137',X'3431'),
+	(X'343131373031',X'E5B882E8BE96E58CBA',X'343131373031',X'34313137'),
+	(X'343131373032',X'E9A9BFE59F8EE58CBA',X'343131373032',X'34313137'),
+	(X'343131373231',X'E8A5BFE5B9B3E58EBF',X'343131373231',X'34313137'),
+	(X'343131373232',X'E4B88AE894A1E58EBF',X'343131373232',X'34313137'),
+	(X'343131373233',X'E5B9B3E88886E58EBF',X'343131373233',X'34313137'),
+	(X'343131373234',X'E6ADA3E998B3E58EBF',X'343131373234',X'34313137'),
+	(X'343131373235',X'E7A1AEE5B1B1E58EBF',X'343131373235',X'34313137'),
+	(X'343131373236',X'E6B38CE998B3E58EBF',X'343131373236',X'34313137'),
+	(X'343131373237',X'E6B19DE58D97E58EBF',X'343131373237',X'34313137'),
+	(X'343131373238',X'E98182E5B9B3E58EBF',X'343131373238',X'34313137'),
+	(X'343131373239',X'E696B0E894A1E58EBF',X'343131373239',X'34313137'),
+	(X'3432',X'E6B996E58C97E79C81',X'3432',X'31'),
+	(X'34323031',X'E6ADA6E6B189E5B882',X'34323031',X'3432'),
+	(X'343230313031',X'E5B882E8BE96E58CBA',X'343230313031',X'34323031'),
+	(X'343230313032',X'E6B19FE5B2B8E58CBA',X'343230313032',X'34323031'),
+	(X'343230313033',X'E6B19FE6B189E58CBA',X'343230313033',X'34323031'),
+	(X'343230313034',X'E7A19AE58FA3E58CBA',X'343230313034',X'34323031'),
+	(X'343230313035',X'E6B189E998B3E58CBA',X'343230313035',X'34323031'),
+	(X'343230313036',X'E6ADA6E6988CE58CBA',X'343230313036',X'34323031'),
+	(X'343230313037',X'E99D92E5B1B1E58CBA',X'343230313037',X'34323031'),
+	(X'343230313131',X'E6B4AAE5B1B1E58CBA',X'343230313131',X'34323031'),
+	(X'343230313132',X'E4B89CE8A5BFE6B996E58CBA',X'343230313132',X'34323031'),
+	(X'343230313133',X'E6B189E58D97E58CBA',X'343230313133',X'34323031'),
+	(X'343230313134',X'E894A1E794B8E58CBA',X'343230313134',X'34323031'),
+	(X'343230313135',X'E6B19FE5A48FE58CBA',X'343230313135',X'34323031'),
+	(X'343230313136',X'E9BB84E99982E58CBA',X'343230313136',X'34323031'),
+	(X'343230313137',X'E6ADA6E6B189E5B882E696B0E6B4B2E58CBA',X'343230313137',X'34323031'),
+	(X'34323032',X'E9BB84E79FB3E5B882',X'34323032',X'3432'),
+	(X'343230323031',X'E5B882E8BE96E58CBA',X'343230323031',X'34323032'),
+	(X'343230323032',X'E9BB84E79FB3E6B8AFE58CBA',X'343230323032',X'34323032'),
+	(X'343230323033',X'E8A5BFE5A19EE5B1B1E58CBA',X'343230323033',X'34323032'),
+	(X'343230323034',X'E4B88BE99986E58CBA',X'343230323034',X'34323032'),
+	(X'343230323035',X'E99381E5B1B1E58CBA',X'343230323035',X'34323032'),
+	(X'343230323232',X'E998B3E696B0E58EBF',X'343230323232',X'34323032'),
+	(X'343230323831',X'E5A4A7E586B6E5B882',X'343230323831',X'34323032'),
+	(X'34323033',X'E58D81E5A0B0E5B882',X'34323033',X'3432'),
+	(X'343230333031',X'E5B882E8BE96E58CBA',X'343230333031',X'34323033'),
+	(X'343230333032',X'E88C85E7AEADE58CBA',X'343230333032',X'34323033'),
+	(X'343230333033',X'E5BCA0E6B9BEE58CBA',X'343230333033',X'34323033'),
+	(X'343230333231',X'E983A7E58EBF',X'343230333231',X'34323033'),
+	(X'343230333232',X'E983A7E8A5BFE58EBF',X'343230333232',X'34323033'),
+	(X'343230333233',X'E7ABB9E5B1B1E58EBF',X'343230333233',X'34323033'),
+	(X'343230333234',X'E7ABB9E6BAAAE58EBF',X'343230333234',X'34323033'),
+	(X'343230333235',X'E688BFE58EBF',X'343230333235',X'34323033'),
+	(X'343230333831',X'E4B8B9E6B19FE58FA3E5B882',X'343230333831',X'34323033'),
+	(X'34323035',X'E5AE9CE6988CE5B882',X'34323035',X'3432'),
+	(X'343230353031',X'E5B882E8BE96E58CBA',X'343230353031',X'34323035'),
+	(X'343230353032',X'E8A5BFE999B5E58CBA',X'343230353032',X'34323035'),
+	(X'343230353033',X'E4BC8DE5AEB6E5B297E58CBA',X'343230353033',X'34323035'),
+	(X'343230353034',X'E782B9E5869BE58CBA',X'343230353034',X'34323035'),
+	(X'343230353035',X'E78C87E4BAADE58CBA',X'343230353035',X'34323035'),
+	(X'343230353036',X'E5A4B7E999B5E58CBA',X'343230353036',X'34323035'),
+	(X'343230353235',X'E8BF9CE5AE89E58EBF',X'343230353235',X'34323035'),
+	(X'343230353236',X'E585B4E5B1B1E58EBF',X'343230353236',X'34323035'),
+	(X'343230353237',X'E7A7ADE5BD92E58EBF',X'343230353237',X'34323035'),
+	(X'343230353238',X'E995BFE998B3E59C9FE5AEB6E6978FE887AAE6B2BBE58EBF',X'343230353238',X'34323035'),
+	(X'343230353239',X'E4BA94E5B3B0E59C9FE5AEB6E6978FE887AAE6B2BBE58EBF',X'343230353239',X'34323035'),
+	(X'343230353831',X'E5AE9CE983BDE5B882',X'343230353831',X'34323035'),
+	(X'343230353832',X'E5BD93E998B3E5B882',X'343230353832',X'34323035'),
+	(X'343230353833',X'E69E9DE6B19FE5B882',X'343230353833',X'34323035'),
+	(X'34323036',X'E8A584E6A88AE5B882',X'34323036',X'3432'),
+	(X'343230363031',X'E5B882E8BE96E58CBA',X'343230363031',X'34323036'),
+	(X'343230363032',X'E8A584E59F8EE58CBA',X'343230363032',X'34323036'),
+	(X'343230363036',X'E6A88AE59F8EE58CBA',X'343230363036',X'34323036'),
+	(X'343230363037',X'E8A584E998B3E58CBA',X'343230363037',X'34323036'),
+	(X'343230363234',X'E58D97E6BCB3E58EBF',X'343230363234',X'34323036'),
+	(X'343230363235',X'E8B0B7E59F8EE58EBF',X'343230363235',X'34323036'),
+	(X'343230363236',X'E4BF9DE5BAB7E58EBF',X'343230363236',X'34323036'),
+	(X'343230363832',X'E88081E6B2B3E58FA3E5B882',X'343230363832',X'34323036'),
+	(X'343230363833',X'E69EA3E998B3E5B882',X'343230363833',X'34323036'),
+	(X'343230363834',X'E5AE9CE59F8EE5B882',X'343230363834',X'34323036'),
+	(X'34323037',X'E98482E5B79EE5B882',X'34323037',X'3432'),
+	(X'343230373031',X'E5B882E8BE96E58CBA',X'343230373031',X'34323037'),
+	(X'343230373032',X'E7B2B1E5AD90E6B996E58CBA',X'343230373032',X'34323037'),
+	(X'343230373033',X'E58D8EE5AEB9E58CBA',X'343230373033',X'34323037'),
+	(X'343230373034',X'E98482E59F8EE58CBA',X'343230373034',X'34323037'),
+	(X'34323038',X'E88D86E997A8E5B882',X'34323038',X'3432'),
+	(X'343230383031',X'E5B882E8BE96E58CBA',X'343230383031',X'34323038'),
+	(X'343230383032',X'E4B89CE5AE9DE58CBA',X'343230383032',X'34323038'),
+	(X'343230383034',X'E68E87E58880E58CBA',X'343230383034',X'34323038'),
+	(X'343230383231',X'E4BAACE5B1B1E58EBF',X'343230383231',X'34323038'),
+	(X'343230383232',X'E6B299E6B48BE58EBF',X'343230383232',X'34323038'),
+	(X'343230383831',X'E9929FE7A5A5E5B882',X'343230383831',X'34323038'),
+	(X'34323039',X'E5AD9DE6849FE5B882',X'34323039',X'3432'),
+	(X'343230393031',X'E5B882E8BE96E58CBA',X'343230393031',X'34323039'),
+	(X'343230393032',X'E5AD9DE58D97E58CBA',X'343230393032',X'34323039'),
+	(X'343230393231',X'E5AD9DE6988CE58EBF',X'343230393231',X'34323039'),
+	(X'343230393232',X'E5A4A7E6829FE58EBF',X'343230393232',X'34323039'),
+	(X'343230393233',X'E4BA91E6A2A6E58EBF',X'343230393233',X'34323039'),
+	(X'343230393831',X'E5BA94E59F8EE5B882',X'343230393831',X'34323039'),
+	(X'343230393832',X'E5AE89E99986E5B882',X'343230393832',X'34323039'),
+	(X'343230393834',X'E6B189E5B79DE5B882',X'343230393834',X'34323039'),
+	(X'34323130',X'E88D86E5B79EE5B882',X'34323130',X'3432'),
+	(X'343231303031',X'E5B882E8BE96E58CBA',X'343231303031',X'34323130'),
+	(X'343231303032',X'E6B299E5B882E58CBA',X'343231303032',X'34323130'),
+	(X'343231303033',X'E88D86E5B79EE58CBA',X'343231303033',X'34323130'),
+	(X'343231303232',X'E585ACE5AE89E58EBF',X'343231303232',X'34323130'),
+	(X'343231303233',X'E79B91E588A9E58EBF',X'343231303233',X'34323130'),
+	(X'343231303234',X'E6B19FE999B5E58EBF',X'343231303234',X'34323130'),
+	(X'343231303831',X'E79FB3E9A696E5B882',X'343231303831',X'34323130'),
+	(X'343231303833',X'E6B4AAE6B996E5B882',X'343231303833',X'34323130'),
+	(X'343231303837',X'E69DBEE6BB8BE5B882',X'343231303837',X'34323130'),
+	(X'34323131',X'E9BB84E58688E5B882',X'34323131',X'3432'),
+	(X'343231313031',X'E5B882E8BE96E58CBA',X'343231313031',X'34323131'),
+	(X'343231313032',X'E9BB84E5B79EE58CBA',X'343231313032',X'34323131'),
+	(X'343231313231',X'E59BA2E9A38EE58EBF',X'343231313231',X'34323131'),
+	(X'343231313232',X'E7BAA2E5AE89E58EBF',X'343231313232',X'34323131'),
+	(X'343231313233',X'E7BD97E794B0E58EBF',X'343231313233',X'34323131'),
+	(X'343231313234',X'E88BB1E5B1B1E58EBF',X'343231313234',X'34323131'),
+	(X'343231313235',X'E6B5A0E6B0B4E58EBF',X'343231313235',X'34323131'),
+	(X'343231313236',X'E895B2E698A5E58EBF',X'343231313236',X'34323131'),
+	(X'343231313237',X'E9BB84E6A285E58EBF',X'343231313237',X'34323131'),
+	(X'343231313831',X'E9BABBE59F8EE5B882',X'343231313831',X'34323131'),
+	(X'343231313832',X'E6ADA6E7A9B4E5B882',X'343231313832',X'34323131'),
+	(X'34323132',X'E592B8E5AE81E5B882',X'34323132',X'3432'),
+	(X'343231323031',X'E5B882E8BE96E58CBA',X'343231323031',X'34323132'),
+	(X'343231323032',X'E592B8E5AE89E58CBA',X'343231323032',X'34323132'),
+	(X'343231323231',X'E59889E9B1BCE58EBF',X'343231323231',X'34323132'),
+	(X'343231323232',X'E9809AE59F8EE58EBF',X'343231323232',X'34323132'),
+	(X'343231323233',X'E5B487E998B3E58EBF',X'343231323233',X'34323132'),
+	(X'343231323234',X'E9809AE5B1B1E58EBF',X'343231323234',X'34323132'),
+	(X'343231323831',X'E8B5A4E5A381E5B882',X'343231323831',X'34323132'),
+	(X'34323133',X'E99A8FE5B79EE5B882',X'34323133',X'3432'),
+	(X'343231333031',X'E5B882E8BE96E58CBA',X'343231333031',X'34323133'),
+	(X'343231333032',X'E69BBEE983BDE58CBA',X'343231333032',X'34323133'),
+	(X'343231333831',X'E5B9BFE6B0B4E5B882',X'343231333831',X'34323133'),
+	(X'34323238',X'E681A9E696BDE5B79E',X'34323238',X'3432'),
+	(X'343232383031',X'E681A9E696BDE5B882',X'343232383031',X'34323238'),
+	(X'343232383032',X'E588A9E5B79DE5B882',X'343232383032',X'34323238'),
+	(X'343232383232',X'E5BBBAE5A78BE58EBF',X'343232383232',X'34323238'),
+	(X'343232383233',X'E5B7B4E4B89CE58EBF',X'343232383233',X'34323238'),
+	(X'343232383235',X'E5AEA3E681A9E58EBF',X'343232383235',X'34323238'),
+	(X'343232383236',X'E592B8E4B8B0E58EBF',X'343232383236',X'34323238'),
+	(X'343232383237',X'E69DA5E587A4E58EBF',X'343232383237',X'34323238'),
+	(X'343232383238',X'E9B9A4E5B3B0E58EBF',X'343232383238',X'34323238'),
+	(X'34323930',X'E79C81E79BB4E8BE96E8A18CE694BFE58D95E4BD8D',X'34323930',X'3432'),
+	(X'343239303034',X'E4BB99E6A183E5B882',X'343239303034',X'34323930'),
+	(X'343239303035',X'E6BD9CE6B19FE5B882',X'343239303035',X'34323930'),
+	(X'343239303036',X'E5A4A9E997A8E5B882',X'343239303036',X'34323930'),
+	(X'343239303231',X'E7A59EE5869CE69EB6E69E97E58CBA',X'343239303231',X'34323930'),
+	(X'3433',X'E6B996E58D97E79C81',X'3433',X'31'),
+	(X'34333031',X'E995BFE6B299E5B882',X'34333031',X'3433'),
+	(X'343330313031',X'E5B882E8BE96E58CBA',X'343330313031',X'34333031'),
+	(X'343330313032',X'E88A99E89389E58CBA',X'343330313032',X'34333031'),
+	(X'343330313033',X'E5A4A9E5BF83E58CBA',X'343330313033',X'34333031'),
+	(X'343330313034',X'E5B2B3E9BA93E58CBA',X'343330313034',X'34333031'),
+	(X'343330313035',X'E5BC80E7A68FE58CBA',X'343330313035',X'34333031'),
+	(X'343330313131',X'E99BA8E88AB1E58CBA',X'343330313131',X'34333031'),
+	(X'343330313231',X'E995BFE6B299E58EBF',X'343330313231',X'34333031'),
+	(X'343330313232',X'E69C9BE59F8EE58EBF',X'343330313232',X'34333031'),
+	(X'343330313234',X'E5AE81E4B9A1E58EBF',X'343330313234',X'34333031'),
+	(X'343330313831',X'E6B58FE998B3E5B882',X'343330313831',X'34333031'),
+	(X'34333032',X'E6A0AAE6B4B2E5B882',X'34333032',X'3433'),
+	(X'343330323031',X'E5B882E8BE96E58CBA',X'343330323031',X'34333032'),
+	(X'343330323032',X'E88DB7E5A198E58CBA',X'343330323032',X'34333032'),
+	(X'343330323033',X'E88AA6E6B79EE58CBA',X'343330323033',X'34333032'),
+	(X'343330323034',X'E79FB3E5B3B0E58CBA',X'343330323034',X'34333032'),
+	(X'343330323131',X'E5A4A9E58583E58CBA',X'343330323131',X'34333032'),
+	(X'343330323231',X'E6A0AAE6B4B2E58EBF',X'343330323231',X'34333032'),
+	(X'343330323233',X'E694B8E58EBF',X'343330323233',X'34333032'),
+	(X'343330323234',X'E88CB6E999B5E58EBF',X'343330323234',X'34333032'),
+	(X'343330323235',X'E7828EE999B5E58EBF',X'343330323235',X'34333032'),
+	(X'343330323831',X'E986B4E999B5E5B882',X'343330323831',X'34333032'),
+	(X'34333033',X'E6B998E6BDADE5B882',X'34333033',X'3433'),
+	(X'343330333031',X'E5B882E8BE96E58CBA',X'343330333031',X'34333033'),
+	(X'343330333032',X'E99BA8E6B996E58CBA',X'343330333032',X'34333033'),
+	(X'343330333034',X'E5B2B3E5A198E58CBA',X'343330333034',X'34333033'),
+	(X'343330333231',X'E6B998E6BDADE58EBF',X'343330333231',X'34333033'),
+	(X'343330333831',X'E6B998E4B9A1E5B882',X'343330333831',X'34333033'),
+	(X'343330333832',X'E99FB6E5B1B1E5B882',X'343330333832',X'34333033'),
+	(X'34333034',X'E8A1A1E998B3E5B882',X'34333034',X'3433'),
+	(X'343330343031',X'E5B882E8BE96E58CBA',X'343330343031',X'34333034'),
+	(X'343330343035',X'E78FA0E69996E58CBA',X'343330343035',X'34333034'),
+	(X'343330343036',X'E99B81E5B3B0E58CBA',X'343330343036',X'34333034'),
+	(X'343330343037',X'E79FB3E9BC93E58CBA',X'343330343037',X'34333034'),
+	(X'343330343038',X'E892B8E6B998E58CBA',X'343330343038',X'34333034'),
+	(X'343330343132',X'E58D97E5B2B3E58CBA',X'343330343132',X'34333034'),
+	(X'343330343231',X'E8A1A1E998B3E58EBF',X'343330343231',X'34333034'),
+	(X'343330343232',X'E8A1A1E58D97E58EBF',X'343330343232',X'34333034'),
+	(X'343330343233',X'E8A1A1E5B1B1E58EBF',X'343330343233',X'34333034'),
+	(X'343330343234',X'E8A1A1E4B89CE58EBF',X'343330343234',X'34333034'),
+	(X'343330343236',X'E7A581E4B89CE58EBF',X'343330343236',X'34333034'),
+	(X'343330343831',X'E88092E998B3E5B882',X'343330343831',X'34333034'),
+	(X'343330343832',X'E5B8B8E5AE81E5B882',X'343330343832',X'34333034'),
+	(X'34333035',X'E982B5E998B3E5B882',X'34333035',X'3433'),
+	(X'343330353031',X'E5B882E8BE96E58CBA',X'343330353031',X'34333035'),
+	(X'343330353032',X'E58F8CE6B885E58CBA',X'343330353032',X'34333035'),
+	(X'343330353033',X'E5A4A7E7A5A5E58CBA',X'343330353033',X'34333035'),
+	(X'343330353131',X'E58C97E5A194E58CBA',X'343330353131',X'34333035'),
+	(X'343330353231',X'E982B5E4B89CE58EBF',X'343330353231',X'34333035'),
+	(X'343330353232',X'E696B0E982B5E58EBF',X'343330353232',X'34333035'),
+	(X'343330353233',X'E982B5E998B3E58EBF',X'343330353233',X'34333035'),
+	(X'343330353234',X'E99A86E59B9EE58EBF',X'343330353234',X'34333035'),
+	(X'343330353235',X'E6B49EE58FA3E58EBF',X'343330353235',X'34333035'),
+	(X'343330353237',X'E7BBA5E5AE81E58EBF',X'343330353237',X'34333035'),
+	(X'343330353238',X'E696B0E5AE81E58EBF',X'343330353238',X'34333035'),
+	(X'343330353239',X'E59F8EE6ADA5E88B97E6978FE887AAE6B2BBE58EBF',X'343330353239',X'34333035'),
+	(X'343330353831',X'E6ADA6E58688E5B882',X'343330353831',X'34333035'),
+	(X'34333036',X'E5B2B3E998B3E5B882',X'34333036',X'3433'),
+	(X'343330363031',X'E5B882E8BE96E58CBA',X'343330363031',X'34333036'),
+	(X'343330363032',X'E5B2B3E998B3E6A5BCE58CBA',X'343330363032',X'34333036'),
+	(X'343330363033',X'E4BA91E6BAAAE58CBA',X'343330363033',X'34333036'),
+	(X'343330363131',X'E5909BE5B1B1E58CBA',X'343330363131',X'34333036'),
+	(X'343330363231',X'E5B2B3E998B3E58EBF',X'343330363231',X'34333036'),
+	(X'343330363233',X'E58D8EE5AEB9E58EBF',X'343330363233',X'34333036'),
+	(X'343330363234',X'E6B998E998B4E58EBF',X'343330363234',X'34333036'),
+	(X'343330363236',X'E5B9B3E6B19FE58EBF',X'343330363236',X'34333036'),
+	(X'343330363831',X'E6B1A9E7BD97E5B882',X'343330363831',X'34333036'),
+	(X'343330363832',X'E4B8B4E6B998E5B882',X'343330363832',X'34333036'),
+	(X'34333037',X'E5B8B8E5BEB7E5B882',X'34333037',X'3433'),
+	(X'343330373031',X'E5B882E8BE96E58CBA',X'343330373031',X'34333037'),
+	(X'343330373032',X'E6ADA6E999B5E58CBA',X'343330373032',X'34333037'),
+	(X'343330373033',X'E9BC8EE59F8EE58CBA',X'343330373033',X'34333037'),
+	(X'343330373231',X'E5AE89E4B9A1E58EBF',X'343330373231',X'34333037'),
+	(X'343330373232',X'E6B189E5AFBFE58EBF',X'343330373232',X'34333037'),
+	(X'343330373233',X'E6BEA7E58EBF',X'343330373233',X'34333037'),
+	(X'343330373234',X'E4B8B4E6BEA7E58EBF',X'343330373234',X'34333037'),
+	(X'343330373235',X'E6A183E6BA90E58EBF',X'343330373235',X'34333037'),
+	(X'343330373236',X'E79FB3E997A8E58EBF',X'343330373236',X'34333037'),
+	(X'343330373831',X'E6B4A5E5B882E5B882',X'343330373831',X'34333037'),
+	(X'34333038',X'E5BCA0E5AEB6E7958CE5B882',X'34333038',X'3433'),
+	(X'343330383031',X'E5B882E8BE96E58CBA',X'343330383031',X'34333038'),
+	(X'343330383032',X'E6B0B8E5AE9AE58CBA',X'343330383032',X'34333038'),
+	(X'343330383131',X'E6ADA6E999B5E6BA90E58CBA',X'343330383131',X'34333038'),
+	(X'343330383231',X'E68588E588A9E58EBF',X'343330383231',X'34333038'),
+	(X'343330383232',X'E6A191E6A48DE58EBF',X'343330383232',X'34333038'),
+	(X'34333039',X'E79B8AE998B3E5B882',X'34333039',X'3433'),
+	(X'343330393031',X'E5B882E8BE96E58CBA',X'343330393031',X'34333039'),
+	(X'343330393032',X'E8B584E998B3E58CBA',X'343330393032',X'34333039'),
+	(X'343330393033',X'E8B5ABE5B1B1E58CBA',X'343330393033',X'34333039'),
+	(X'343330393231',X'E58D97E58EBF',X'343330393231',X'34333039'),
+	(X'343330393232',X'E6A183E6B19FE58EBF',X'343330393232',X'34333039'),
+	(X'343330393233',X'E5AE89E58C96E58EBF',X'343330393233',X'34333039'),
+	(X'343330393831',X'E6B285E6B19FE5B882',X'343330393831',X'34333039'),
+	(X'34333130',X'E983B4E5B79EE5B882',X'34333130',X'3433'),
+	(X'343331303031',X'E5B882E8BE96E58CBA',X'343331303031',X'34333130'),
+	(X'343331303032',X'E58C97E6B996E58CBA',X'343331303032',X'34333130'),
+	(X'343331303033',X'E88B8FE4BB99E58CBA',X'343331303033',X'34333130'),
+	(X'343331303231',X'E6A182E998B3E58EBF',X'343331303231',X'34333130'),
+	(X'343331303232',X'E5AE9CE7ABA0E58EBF',X'343331303232',X'34333130'),
+	(X'343331303233',X'E6B0B8E585B4E58EBF',X'343331303233',X'34333130'),
+	(X'343331303234',X'E59889E7A6BEE58EBF',X'343331303234',X'34333130'),
+	(X'343331303235',X'E4B8B4E6ADA6E58EBF',X'343331303235',X'34333130'),
+	(X'343331303236',X'E6B19DE59F8EE58EBF',X'343331303236',X'34333130'),
+	(X'343331303237',X'E6A182E4B89CE58EBF',X'343331303237',X'34333130'),
+	(X'343331303238',X'E5AE89E4BB81E58EBF',X'343331303238',X'34333130'),
+	(X'343331303831',X'E8B584E585B4E5B882',X'343331303831',X'34333130'),
+	(X'34333131',X'E6B0B8E5B79EE5B882',X'34333131',X'3433'),
+	(X'343331313031',X'E5B882E8BE96E58CBA',X'343331313031',X'34333131'),
+	(X'343331313032',X'E99BB6E999B5E58CBA',X'343331313032',X'34333131'),
+	(X'343331313033',X'E586B7E6B0B4E6BBA9E58CBA',X'343331313033',X'34333131'),
+	(X'343331313231',X'E7A581E998B3E58EBF',X'343331313231',X'34333131'),
+	(X'343331313232',X'E4B89CE5AE89E58EBF',X'343331313232',X'34333131'),
+	(X'343331313233',X'E58F8CE7898CE58EBF',X'343331313233',X'34333131'),
+	(X'343331313234',X'E98193E58EBF',X'343331313234',X'34333131'),
+	(X'343331313235',X'E6B19FE6B0B8E58EBF',X'343331313235',X'34333131'),
+	(X'343331313236',X'E5AE81E8BF9CE58EBF',X'343331313236',X'34333131'),
+	(X'343331313237',X'E8939DE5B1B1E58EBF',X'343331313237',X'34333131'),
+	(X'343331313238',X'E696B0E794B0E58EBF',X'343331313238',X'34333131'),
+	(X'343331313239',X'E6B19FE58D8EE58EBF',X'343331313239',X'34333131'),
+	(X'34333132',X'E68080E58C96E5B882',X'34333132',X'3433'),
+	(X'343331323031',X'E5B882E8BE96E58CBA',X'343331323031',X'34333132'),
+	(X'343331323032',X'E9B9A4E59F8EE58CBA',X'343331323032',X'34333132'),
+	(X'343331323231',X'E4B8ADE696B9E58EBF',X'343331323231',X'34333132'),
+	(X'343331323232',X'E6B285E999B5E58EBF',X'343331323232',X'34333132'),
+	(X'343331323233',X'E8BEB0E6BAAAE58EBF',X'343331323233',X'34333132'),
+	(X'343331323234',X'E6BA86E6B5A6E58EBF',X'343331323234',X'34333132'),
+	(X'343331323235',X'E4BC9AE5908CE58EBF',X'343331323235',X'34333132'),
+	(X'343331323236',X'E9BABBE998B3E88B97E6978FE887AAE6B2BBE58EBF',X'343331323236',X'34333132'),
+	(X'343331323237',X'E696B0E69983E4BE97E6978FE887AAE6B2BBE58EBF',X'343331323237',X'34333132'),
+	(X'343331323238',X'E88AB7E6B19FE4BE97E6978FE887AAE6B2BBE58EBF',X'343331323238',X'34333132'),
+	(X'343331323239',X'E99D96E5B79EE88B97E6978FE4BE97E6978FE58EBF',X'343331323239',X'34333132'),
+	(X'343331323330',X'E9809AE98193E4BE97E6978FE887AAE6B2BBE58EBF',X'343331323330',X'34333132'),
+	(X'343331323831',X'E6B4AAE6B19FE5B882',X'343331323831',X'34333132'),
+	(X'34333133',X'E5A884E5BA95E5B882',X'34333133',X'3433'),
+	(X'343331333031',X'E5B882E8BE96E58CBA',X'343331333031',X'34333133'),
+	(X'343331333032',X'E5A884E6989FE58CBA',X'343331333032',X'34333133'),
+	(X'343331333231',X'E58F8CE5B3B0E58EBF',X'343331333231',X'34333133'),
+	(X'343331333232',X'E696B0E58C96E58EBF',X'343331333232',X'34333133'),
+	(X'343331333831',X'E586B7E6B0B4E6B19FE5B882',X'343331333831',X'34333133'),
+	(X'343331333832',X'E6B69FE6BA90E5B882',X'343331333832',X'34333133'),
+	(X'34333331',X'E6B998E8A5BFE59C9FE5AEB6E6978FE88B97E6978FE887AAE6B2BBE5B79E',X'34333331',X'3433'),
+	(X'343333313031',X'E59089E9A696E5B882',X'343333313031',X'34333331'),
+	(X'343333313232',X'E6B3B8E6BAAAE58EBF',X'343333313232',X'34333331'),
+	(X'343333313233',X'E587A4E587B0E58EBF',X'343333313233',X'34333331'),
+	(X'343333313234',X'E88AB1E59EA3E58EBF',X'343333313234',X'34333331'),
+	(X'343333313235',X'E4BF9DE99D96E58EBF',X'343333313235',X'34333331'),
+	(X'343333313236',X'E58FA4E4B888E58EBF',X'343333313236',X'34333331'),
+	(X'343333313237',X'E6B0B8E9A1BAE58EBF',X'343333313237',X'34333331'),
+	(X'343333313330',X'E9BE99E5B1B1E58EBF',X'343333313330',X'34333331'),
+	(X'3434',X'E5B9BFE4B89CE79C81',X'3434',X'31'),
+	(X'34343031',X'E5B9BFE5B79EE5B882',X'34343031',X'3434'),
+	(X'343430313031',X'E5B882E8BE96E58CBA',X'343430313031',X'34343031'),
+	(X'343430313033',X'E88D94E6B9BEE58CBA',X'343430313033',X'34343031'),
+	(X'343430313034',X'E8B68AE7A780E58CBA',X'343430313034',X'34343031'),
+	(X'343430313035',X'E6B5B7E78FA0E58CBA',X'343430313035',X'34343031'),
+	(X'343430313036',X'E5A4A9E6B2B3E58CBA',X'343430313036',X'34343031'),
+	(X'343430313131',X'E799BDE4BA91E58CBA',X'343430313131',X'34343031'),
+	(X'343430313132',X'E9BB84E59F94E58CBA',X'343430313132',X'34343031'),
+	(X'343430313133',X'E795AAE7A6BAE58CBA',X'343430313133',X'34343031'),
+	(X'343430313134',X'E88AB1E983BDE58CBA',X'343430313134',X'34343031'),
+	(X'343430313135',X'E58D97E6B299E58CBA',X'343430313135',X'34343031'),
+	(X'343430313136',X'E8909DE5B297E58CBA',X'343430313136',X'34343031'),
+	(X'343430313833',X'E5A29EE59F8EE5B882',X'343430313833',X'34343031'),
+	(X'343430313834',X'E4BB8EE58C96E5B882',X'343430313834',X'34343031'),
+	(X'34343032',X'E99FB6E585B3E5B882',X'34343032',X'3434'),
+	(X'343430323031',X'E5B882E8BE96E58CBA',X'343430323031',X'34343032'),
+	(X'343430323033',X'E6ADA6E6B19FE58CBA',X'343430323033',X'34343032'),
+	(X'343430323034',X'E6B588E6B19FE58CBA',X'343430323034',X'34343032'),
+	(X'343430323035',X'E69BB2E6B19FE58CBA',X'343430323035',X'34343032'),
+	(X'343430323232',X'E5A78BE585B4E58EBF',X'343430323232',X'34343032'),
+	(X'343430323234',X'E4BB81E58C96E58EBF',X'343430323234',X'34343032'),
+	(X'343430323239',X'E7BF81E6BA90E58EBF',X'343430323239',X'34343032'),
+	(X'343430323332',X'E4B9B3E6BA90E791B6E6978FE887AAE6B2BBE58EBF',X'343430323332',X'34343032'),
+	(X'343430323333',X'E696B0E4B8B0E58EBF',X'343430323333',X'34343032'),
+	(X'343430323831',X'E4B990E6988CE5B882',X'343430323831',X'34343032'),
+	(X'343430323832',X'E58D97E99B84E5B882',X'343430323832',X'34343032'),
+	(X'34343033',X'E6B7B1E59CB3E5B882',X'34343033',X'3434'),
+	(X'343430333031',X'E5B882E8BE96E58CBA',X'343430333031',X'34343033'),
+	(X'343430333033',X'E7BD97E6B996E58CBA',X'343430333033',X'34343033'),
+	(X'343430333034',X'E7A68FE794B0E58CBA',X'343430333034',X'34343033'),
+	(X'343430333035',X'E58D97E5B1B1E58CBA',X'343430333035',X'34343033'),
+	(X'343430333036',X'E5AE9DE5AE89E58CBA',X'343430333036',X'34343033'),
+	(X'343430333037',X'E9BE99E5B297E58CBA',X'343430333037',X'34343033'),
+	(X'343430333038',X'E79B90E794B0E58CBA',X'343430333038',X'34343033'),
+	(X'34343034',X'E78FA0E6B5B7E5B882',X'34343034',X'3434'),
+	(X'343430343031',X'E5B882E8BE96E58CBA',X'343430343031',X'34343034'),
+	(X'343430343032',X'E9A699E6B4B2E58CBA',X'343430343032',X'34343034'),
+	(X'343430343033',X'E69697E997A8E58CBA',X'343430343033',X'34343034'),
+	(X'343430343034',X'E98791E6B9BEE58CBA',X'343430343034',X'34343034'),
+	(X'34343035',X'E6B195E5A4B4E5B882',X'34343035',X'3434'),
+	(X'343430353031',X'E5B882E8BE96E58CBA',X'343430353031',X'34343035'),
+	(X'343430353037',X'E9BE99E6B996E58CBA',X'343430353037',X'34343035'),
+	(X'343430353131',X'E98791E5B9B3E58CBA',X'343430353131',X'34343035'),
+	(X'343430353132',X'E6BFA0E6B19FE58CBA',X'343430353132',X'34343035'),
+	(X'343430353133',X'E6BDAEE998B3E58CBA',X'343430353133',X'34343035'),
+	(X'343430353134',X'E6BDAEE58D97E58CBA',X'343430353134',X'34343035'),
+	(X'343430353135',X'E6BE84E6B5B7E58CBA',X'343430353135',X'34343035'),
+	(X'343430353233',X'E58D97E6BEB3E58EBF',X'343430353233',X'34343035'),
+	(X'34343036',X'E4BD9BE5B1B1E5B882',X'34343036',X'3434'),
+	(X'343430363031',X'E5B882E8BE96E58CBA',X'343430363031',X'34343036'),
+	(X'343430363034',X'E7A685E59F8EE58CBA',X'343430363034',X'34343036'),
+	(X'343430363035',X'E58D97E6B5B7E58CBA',X'343430363035',X'34343036'),
+	(X'343430363036',X'E9A1BAE5BEB7E58CBA',X'343430363036',X'34343036'),
+	(X'343430363037',X'E4B889E6B0B4E58CBA',X'343430363037',X'34343036'),
+	(X'343430363038',X'E9AB98E6988EE58CBA',X'343430363038',X'34343036'),
+	(X'34343037',X'E6B19FE997A8E5B882',X'34343037',X'3434'),
+	(X'343430373031',X'E5B882E8BE96E58CBA',X'343430373031',X'34343037'),
+	(X'343430373033',X'E893ACE6B19FE58CBA',X'343430373033',X'34343037'),
+	(X'343430373034',X'E6B19FE6B5B7E58CBA',X'343430373034',X'34343037'),
+	(X'343430373035',X'E696B0E4BC9AE58CBA',X'343430373035',X'34343037'),
+	(X'343430373831',X'E58FB0E5B1B1E5B882',X'343430373831',X'34343037'),
+	(X'343430373833',X'E5BC80E5B9B3E5B882',X'343430373833',X'34343037'),
+	(X'343430373834',X'E9B9A4E5B1B1E5B882',X'343430373834',X'34343037'),
+	(X'343430373835',X'E681A9E5B9B3E5B882',X'343430373835',X'34343037'),
+	(X'34343038',X'E6B99BE6B19FE5B882',X'34343038',X'3434'),
+	(X'343430383031',X'E5B882E8BE96E58CBA',X'343430383031',X'34343038'),
+	(X'343430383032',X'E6B99BE6B19FE5B882E8B5A4E59D8EE58CBA',X'343430383032',X'34343038'),
+	(X'343430383033',X'E6B99BE6B19FE5B882E99C9EE5B1B1E58CBA',X'343430383033',X'34343038'),
+	(X'343430383034',X'E6B99BE6B19FE5B882E59DA1E5A4B4E58CBA',X'343430383034',X'34343038'),
+	(X'343430383131',X'E6B99BE6B19FE5B882E9BABBE7ABA0E58CBA',X'343430383131',X'34343038'),
+	(X'343430383233',X'E98182E6BAAAE58EBF',X'343430383233',X'34343038'),
+	(X'343430383235',X'E5BE90E997BBE58EBF',X'343430383235',X'34343038'),
+	(X'343430383831',X'E5BB89E6B19FE5B882',X'343430383831',X'34343038'),
+	(X'343430383832',X'E99BB7E5B79EE5B882',X'343430383832',X'34343038'),
+	(X'343430383833',X'E590B4E5B79DE5B882',X'343430383833',X'34343038'),
+	(X'34343039',X'E88C82E5908DE5B882',X'34343039',X'3434'),
+	(X'343430393031',X'E5B882E8BE96E58CBA',X'343430393031',X'34343039'),
+	(X'343430393032',X'E88C82E58D97E58CBA',X'343430393032',X'34343039'),
+	(X'343430393033',X'E88C82E6B8AFE58CBA',X'343430393033',X'34343039'),
+	(X'343430393233',X'E794B5E799BDE58EBF',X'343430393233',X'34343039'),
+	(X'343430393831',X'E9AB98E5B79EE5B882',X'343430393831',X'34343039'),
+	(X'343430393832',X'E58C96E5B79EE5B882',X'343430393832',X'34343039'),
+	(X'343430393833',X'E4BFA1E5AE9CE5B882',X'343430393833',X'34343039'),
+	(X'34343132',X'E88287E5BA86E5B882',X'34343132',X'3434'),
+	(X'343431323031',X'E5B882E8BE96E58CBA',X'343431323031',X'34343132'),
+	(X'343431323032',X'E7ABAFE5B79EE58CBA',X'343431323032',X'34343132'),
+	(X'343431323033',X'E9BC8EE6B996E58CBA',X'343431323033',X'34343132'),
+	(X'343431323233',X'E5B9BFE5AE81E58EBF',X'343431323233',X'34343132'),
+	(X'343431323234',X'E68080E99B86E58EBF',X'343431323234',X'34343132'),
+	(X'343431323235',X'E5B081E5BC80E58EBF',X'343431323235',X'34343132'),
+	(X'343431323236',X'E5BEB7E5BA86E58EBF',X'343431323236',X'34343132'),
+	(X'343431323833',X'E9AB98E8A681E5B882',X'343431323833',X'34343132'),
+	(X'343431323834',X'E59B9BE4BC9AE5B882',X'343431323834',X'34343132'),
+	(X'34343133',X'E683A0E5B79EE5B882',X'34343133',X'3434'),
+	(X'343431333031',X'E5B882E8BE96E58CBA',X'343431333031',X'34343133'),
+	(X'343431333032',X'E683A0E59F8EE58CBA',X'343431333032',X'34343133'),
+	(X'343431333033',X'E683A0E998B3E58CBA',X'343431333033',X'34343133'),
+	(X'343431333232',X'E58D9AE7BD97E58EBF',X'343431333232',X'34343133'),
+	(X'343431333233',X'E683A0E4B89CE58EBF',X'343431333233',X'34343133'),
+	(X'343431333234',X'E9BE99E997A8E58EBF',X'343431333234',X'34343133'),
+	(X'34343134',X'E6A285E5B79EE5B882',X'34343134',X'3434'),
+	(X'343431343031',X'E5B882E8BE96E58CBA',X'343431343031',X'34343134'),
+	(X'343431343032',X'E6A285E6B19FE58CBA',X'343431343032',X'34343134'),
+	(X'343431343231',X'E6A285E58EBF',X'343431343231',X'34343134'),
+	(X'343431343232',X'E5A4A7E59F94E58EBF',X'343431343232',X'34343134'),
+	(X'343431343233',X'E4B8B0E9A1BAE58EBF',X'343431343233',X'34343134'),
+	(X'343431343234',X'E4BA94E58D8EE58EBF',X'343431343234',X'34343134'),
+	(X'343431343236',X'E5B9B3E8BF9CE58EBF',X'343431343236',X'34343134'),
+	(X'343431343237',X'E89589E5B2ADE58EBF',X'343431343237',X'34343134'),
+	(X'343431343831',X'E585B4E5AE81E5B882',X'343431343831',X'34343134'),
+	(X'34343135',X'E6B195E5B0BEE5B882',X'34343135',X'3434'),
+	(X'343431353031',X'E5B882E8BE96E58CBA',X'343431353031',X'34343135'),
+	(X'343431353032',X'E59F8EE58CBA',X'343431353032',X'34343135'),
+	(X'343431353231',X'E6B5B7E4B8B0E58EBF',X'343431353231',X'34343135'),
+	(X'343431353233',X'E99986E6B2B3E58EBF',X'343431353233',X'34343135'),
+	(X'343431353831',X'E99986E4B8B0E5B882',X'343431353831',X'34343135'),
+	(X'34343136',X'E6B2B3E6BA90E5B882',X'34343136',X'3434'),
+	(X'343431363031',X'E5B882E8BE96E58CBA',X'343431363031',X'34343136'),
+	(X'343431363032',X'E6BA90E59F8EE58CBA',X'343431363032',X'34343136'),
+	(X'343431363231',X'E7B4ABE98791E58EBF',X'343431363231',X'34343136'),
+	(X'343431363232',X'E9BE99E5B79DE58EBF',X'343431363232',X'34343136'),
+	(X'343431363233',X'E8BF9EE5B9B3E58EBF',X'343431363233',X'34343136'),
+	(X'343431363234',X'E5928CE5B9B3E58EBF',X'343431363234',X'34343136'),
+	(X'343431363235',X'E4B89CE6BA90E58EBF',X'343431363235',X'34343136'),
+	(X'34343137',X'E998B3E6B19FE5B882',X'34343137',X'3434'),
+	(X'343431373031',X'E5B882E8BE96E58CBA',X'343431373031',X'34343137'),
+	(X'343431373032',X'E6B19FE59F8EE58CBA',X'343431373032',X'34343137'),
+	(X'343431373231',X'E998B3E8A5BFE58EBF',X'343431373231',X'34343137'),
+	(X'343431373233',X'E998B3E4B89CE58EBF',X'343431373233',X'34343137'),
+	(X'343431373831',X'E998B3E698A5E5B882',X'343431373831',X'34343137'),
+	(X'34343138',X'E6B885E8BF9CE5B882',X'34343138',X'3434'),
+	(X'343431383031',X'E5B882E8BE96E58CBA',X'343431383031',X'34343138'),
+	(X'343431383032',X'E6B885E59F8EE58CBA',X'343431383032',X'34343138'),
+	(X'343431383231',X'E4BD9BE58688E58EBF',X'343431383231',X'34343138'),
+	(X'343431383233',X'E998B3E5B1B1E58EBF',X'343431383233',X'34343138'),
+	(X'343431383235',X'E8BF9EE5B1B1E58EBF',X'343431383235',X'34343138'),
+	(X'343431383236',X'E8BF9EE58D97E791B6E6978FE887AAE6B2BBE58EBF',X'343431383236',X'34343138'),
+	(X'343431383237',X'E6B885E696B0E58EBF',X'343431383237',X'34343138'),
+	(X'343431383831',X'E88BB1E5BEB7E5B882',X'343431383831',X'34343138'),
+	(X'343431383832',X'E8BF9EE5B79EE5B882',X'343431383832',X'34343138'),
+	(X'34343139',X'E4B89CE88E9EE5B882',X'34343139',X'3434'),
+	(X'34343230',X'E4B8ADE5B1B1E5B882',X'34343230',X'3434'),
+	(X'34343531',X'E6BDAEE5B79EE5B882',X'34343531',X'3434'),
+	(X'343435313031',X'E5B882E8BE96E58CBA',X'343435313031',X'34343531'),
+	(X'343435313032',X'E6BDAEE5B79EE5B882E6B998E6A1A5E58CBA',X'343435313032',X'34343531'),
+	(X'343435313231',X'E6BDAEE5B79EE5B882E6BDAEE5AE89E58EBF',X'343435313231',X'34343531'),
+	(X'343435313232',X'E6BDAEE5B79EE5B882E9A5B6E5B9B3E58EBF',X'343435313232',X'34343531'),
+	(X'34343532',X'E68FADE998B3E5B882',X'34343532',X'3434'),
+	(X'343435323031',X'E5B882E8BE96E58CBA',X'343435323031',X'34343532'),
+	(X'343435323032',X'E6A695E59F8EE58CBA',X'343435323032',X'34343532'),
+	(X'343435323231',X'E68FADE4B89CE58EBF',X'343435323231',X'34343532'),
+	(X'343435323232',X'E68FADE8A5BFE58EBF',X'343435323232',X'34343532'),
+	(X'343435323234',X'E683A0E69DA5E58EBF',X'343435323234',X'34343532'),
+	(X'343435323831',X'E699AEE5AE81E5B882',X'343435323831',X'34343532'),
+	(X'34343533',X'E4BA91E6B5AEE5B882',X'34343533',X'3434'),
+	(X'343435333031',X'E5B882E8BE96E58CBA',X'343435333031',X'34343533'),
+	(X'343435333032',X'E4BA91E59F8EE58CBA',X'343435333032',X'34343533'),
+	(X'343435333231',X'E696B0E585B4E58EBF',X'343435333231',X'34343533'),
+	(X'343435333232',X'E98381E58D97E58EBF',X'343435333232',X'34343533'),
+	(X'343435333233',X'E4BA91E5AE89E58EBF',X'343435333233',X'34343533'),
+	(X'343435333831',X'E7BD97E5AE9AE5B882',X'343435333831',X'34343533'),
+	(X'3435',X'E5B9BFE8A5BFE5A3AEE6978FE887AAE6B2BBE58CBA',X'3435',X'31'),
+	(X'34353031',X'E58D97E5AE81E5B882',X'34353031',X'3435'),
+	(X'343530313031',X'E5B882E8BE96E58CBA',X'343530313031',X'34353031'),
+	(X'343530313032',X'E585B4E5AE81E58CBA',X'343530313032',X'34353031'),
+	(X'343530313033',X'E99D92E7A780E58CBA',X'343530313033',X'34353031'),
+	(X'343530313035',X'E6B19FE58D97E58CBA',X'343530313035',X'34353031'),
+	(X'343530313037',X'E8A5BFE4B9A1E5A198E58CBA',X'343530313037',X'34353031'),
+	(X'343530313038',X'E889AFE5BA86E58CBA',X'343530313038',X'34353031'),
+	(X'343530313039',X'E98295E5AE81E58CBA',X'343530313039',X'34353031'),
+	(X'343530313232',X'E6ADA6E9B8A3E58EBF',X'343530313232',X'34353031'),
+	(X'343530313233',X'E99A86E5AE89E58EBF',X'343530313233',X'34353031'),
+	(X'343530313234',X'E9A9ACE5B1B1E58EBF',X'343530313234',X'34353031'),
+	(X'343530313235',X'E4B88AE69E97E58EBF',X'343530313235',X'34353031'),
+	(X'343530313236',X'E5AEBEE998B3E58EBF',X'343530313236',X'34353031'),
+	(X'343530313237',X'E6A8AAE58EBF',X'343530313237',X'34353031'),
+	(X'34353032',X'E69FB3E5B79EE5B882',X'34353032',X'3435'),
+	(X'343530323031',X'E5B882E8BE96E58CBA',X'343530323031',X'34353032'),
+	(X'343530323032',X'E59F8EE4B8ADE58CBA',X'343530323032',X'34353032'),
+	(X'343530323033',X'E9B1BCE5B3B0E58CBA',X'343530323033',X'34353032'),
+	(X'343530323034',X'E69FB3E58D97E58CBA',X'343530323034',X'34353032'),
+	(X'343530323035',X'E69FB3E58C97E58CBA',X'343530323035',X'34353032'),
+	(X'343530323231',X'E69FB3E6B19FE58EBF',X'343530323231',X'34353032'),
+	(X'343530323232',X'E69FB3E59F8EE58EBF',X'343530323232',X'34353032'),
+	(X'343530323233',X'E9B9BFE5AFA8E58EBF',X'343530323233',X'34353032'),
+	(X'343530323234',X'E89E8DE5AE89E58EBF',X'343530323234',X'34353032'),
+	(X'343530323235',X'E89E8DE6B0B4E88B97E6978FE887AAE6B2BBE58EBF',X'343530323235',X'34353032'),
+	(X'343530323236',X'E4B889E6B19FE4BE97E6978FE887AAE6B2BBE58EBF',X'343530323236',X'34353032'),
+	(X'34353033',X'E6A182E69E97E5B882',X'34353033',X'3435'),
+	(X'343530333031',X'E5B882E8BE96E58CBA',X'343530333031',X'34353033'),
+	(X'343530333032',X'E7A780E5B3B0E58CBA',X'343530333032',X'34353033'),
+	(X'343530333033',X'E58FA0E5BDA9E58CBA',X'343530333033',X'34353033'),
+	(X'343530333034',X'E8B1A1E5B1B1E58CBA',X'343530333034',X'34353033'),
+	(X'343530333035',X'E4B883E6989FE58CBA',X'343530333035',X'34353033'),
+	(X'343530333131',X'E99B81E5B1B1E58CBA',X'343530333131',X'34353033'),
+	(X'343530333231',X'E998B3E69C94E58EBF',X'343530333231',X'34353033'),
+	(X'343530333232',X'E4B8B4E6A182E58EBF',X'343530333232',X'34353033'),
+	(X'343530333233',X'E781B5E5B79DE58EBF',X'343530333233',X'34353033'),
+	(X'343530333234',X'E585A8E5B79EE58EBF',X'343530333234',X'34353033'),
+	(X'343530333235',X'E585B4E5AE89E58EBF',X'343530333235',X'34353033'),
+	(X'343530333236',X'E6B0B8E7A68FE58EBF',X'343530333236',X'34353033'),
+	(X'343530333237',X'E7818CE998B3E58EBF',X'343530333237',X'34353033'),
+	(X'343530333238',X'E9BE99E8839CE59084E6978FE887AAE6B2BBE58EBF',X'343530333238',X'34353033'),
+	(X'343530333239',X'E8B584E6BA90E58EBF',X'343530333239',X'34353033'),
+	(X'343530333330',X'E5B9B3E4B990E58EBF',X'343530333330',X'34353033'),
+	(X'343530333331',X'E88D94E6B5A6E58EBF',X'343530333331',X'34353033'),
+	(X'343530333332',X'E681ADE59F8EE58EBF',X'343530333332',X'34353033'),
+	(X'34353034',X'E6A2A7E5B79EE5B882',X'34353034',X'3435'),
+	(X'343530343031',X'E5B882E8BE96E58CBA',X'343530343031',X'34353034'),
+	(X'343530343033',X'E4B887E7A780E58CBA',X'343530343033',X'34353034'),
+	(X'343530343034',X'E89DB6E5B1B1E58CBA',X'343530343034',X'34353034'),
+	(X'343530343035',X'E995BFE6B4B2E58CBA',X'343530343035',X'34353034'),
+	(X'343530343231',X'E88B8DE6A2A7E58EBF',X'343530343231',X'34353034'),
+	(X'343530343232',X'E897A4E58EBF',X'343530343232',X'34353034'),
+	(X'343530343233',X'E89299E5B1B1E58EBF',X'343530343233',X'34353034'),
+	(X'343530343831',X'E5B291E6BAAAE5B882',X'343530343831',X'34353034'),
+	(X'34353035',X'E58C97E6B5B7E5B882',X'34353035',X'3435'),
+	(X'343530353031',X'E5B882E8BE96E58CBA',X'343530353031',X'34353035'),
+	(X'343530353032',X'E6B5B7E59F8EE58CBA',X'343530353032',X'34353035'),
+	(X'343530353033',X'E993B6E6B5B7E58CBA',X'343530353033',X'34353035'),
+	(X'343530353132',X'E99381E5B1B1E6B8AFE58CBA',X'343530353132',X'34353035'),
+	(X'343530353231',X'E59088E6B5A6E58EBF',X'343530353231',X'34353035'),
+	(X'34353036',X'E998B2E59F8EE6B8AFE5B882',X'34353036',X'3435'),
+	(X'343530363031',X'E5B882E8BE96E58CBA',X'343530363031',X'34353036'),
+	(X'343530363032',X'E6B8AFE58FA3E58CBA',X'343530363032',X'34353036'),
+	(X'343530363033',X'E998B2E59F8EE58CBA',X'343530363033',X'34353036'),
+	(X'343530363231',X'E4B88AE6809DE58EBF',X'343530363231',X'34353036'),
+	(X'343530363831',X'E4B89CE585B4E5B882',X'343530363831',X'34353036'),
+	(X'34353037',X'E992A6E5B79EE5B882',X'34353037',X'3435'),
+	(X'343530373031',X'E5B882E8BE96E58CBA',X'343530373031',X'34353037'),
+	(X'343530373032',X'E992A6E58D97E58CBA',X'343530373032',X'34353037'),
+	(X'343530373033',X'E992A6E58C97E58CBA',X'343530373033',X'34353037'),
+	(X'343530373231',X'E781B5E5B1B1E58EBF',X'343530373231',X'34353037'),
+	(X'343530373232',X'E6B5A6E58C97E58EBF',X'343530373232',X'34353037'),
+	(X'34353038',X'E8B4B5E6B8AFE5B882',X'34353038',X'3435'),
+	(X'343530383031',X'E5B882E8BE96E58CBA',X'343530383031',X'34353038'),
+	(X'343530383032',X'E6B8AFE58C97E58CBA',X'343530383032',X'34353038'),
+	(X'343530383033',X'E6B8AFE58D97E58CBA',X'343530383033',X'34353038'),
+	(X'343530383034',X'E8A683E5A198E58CBA',X'343530383034',X'34353038'),
+	(X'343530383231',X'E5B9B3E58D97E58EBF',X'343530383231',X'34353038'),
+	(X'343530383831',X'E6A182E5B9B3E5B882',X'343530383831',X'34353038'),
+	(X'34353039',X'E78E89E69E97E5B882',X'34353039',X'3435'),
+	(X'343530393031',X'E5B882E8BE96E58CBA',X'343530393031',X'34353039'),
+	(X'343530393032',X'E78E89E5B79EE58CBA',X'343530393032',X'34353039'),
+	(X'343530393231',X'E5AEB9E58EBF',X'343530393231',X'34353039'),
+	(X'343530393232',X'E99986E5B79DE58EBF',X'343530393232',X'34353039'),
+	(X'343530393233',X'E58D9AE799BDE58EBF',X'343530393233',X'34353039'),
+	(X'343530393234',X'E585B4E4B89AE58EBF',X'343530393234',X'34353039'),
+	(X'343530393831',X'E58C97E6B581E5B882',X'343530393831',X'34353039'),
+	(X'34353130',X'E799BEE889B2E5B882',X'34353130',X'3435'),
+	(X'343531303031',X'E5B882E8BE96E58CBA',X'343531303031',X'34353130'),
+	(X'343531303032',X'E58FB3E6B19FE58CBA',X'343531303032',X'34353130'),
+	(X'343531303231',X'E794B0E998B3E58EBF',X'343531303231',X'34353130'),
+	(X'343531303232',X'E794B0E4B89CE58EBF',X'343531303232',X'34353130'),
+	(X'343531303233',X'E5B9B3E69E9CE58EBF',X'343531303233',X'34353130'),
+	(X'343531303234',X'E5BEB7E4BF9DE58EBF',X'343531303234',X'34353130'),
+	(X'343531303235',X'E99D96E8A5BFE58EBF',X'343531303235',X'34353130'),
+	(X'343531303236',X'E982A3E59DA1E58EBF',X'343531303236',X'34353130'),
+	(X'343531303237',X'E5878CE4BA91E58EBF',X'343531303237',X'34353130'),
+	(X'343531303238',X'E4B990E4B89AE58EBF',X'343531303238',X'34353130'),
+	(X'343531303239',X'E794B0E69E97E58EBF',X'343531303239',X'34353130'),
+	(X'343531303330',X'E8A5BFE69E97E58EBF',X'343531303330',X'34353130'),
+	(X'343531303331',X'E99A86E69E97E59084E6978FE887AAE6B2BBE58EBF',X'343531303331',X'34353130'),
+	(X'34353131',X'E8B4BAE5B79EE5B882',X'34353131',X'3435'),
+	(X'343531313031',X'E5B882E8BE96E58CBA',X'343531313031',X'34353131'),
+	(X'343531313032',X'E585ABE6ADA5E58CBA',X'343531313032',X'34353131'),
+	(X'343531313231',X'E698ADE5B9B3E58EBF',X'343531313231',X'34353131'),
+	(X'343531313232',X'E9929FE5B1B1E58EBF',X'343531313232',X'34353131'),
+	(X'343531313233',X'E5AF8CE5B79DE791B6E6978FE887AAE6B2BBE58EBF',X'343531313233',X'34353131'),
+	(X'34353132',X'E6B2B3E6B1A0E5B882',X'34353132',X'3435'),
+	(X'343531323031',X'E5B882E8BE96E58CBA',X'343531323031',X'34353132'),
+	(X'343531323032',X'E98791E59F8EE6B19FE58CBA',X'343531323032',X'34353132'),
+	(X'343531323231',X'E58D97E4B8B9E58EBF',X'343531323231',X'34353132'),
+	(X'343531323232',X'E5A4A9E5B3A8E58EBF',X'343531323232',X'34353132'),
+	(X'343531323233',X'E587A4E5B1B1E58EBF',X'343531323233',X'34353132'),
+	(X'343531323234',X'E4B89CE585B0E58EBF',X'343531323234',X'34353132'),
+	(X'343531323235',X'E7BD97E59F8EE4BBABE4BDACE6978FE887AAE6B2BBE58EBF',X'343531323235',X'34353132'),
+	(X'343531323236',X'E78EAFE6B19FE6AF9BE58D97E6978FE887AAE6B2BBE58EBF',X'343531323236',X'34353132'),
+	(X'343531323237',X'E5B7B4E9A9ACE791B6E6978FE887AAE6B2BBE58EBF',X'343531323237',X'34353132'),
+	(X'343531323238',X'E983BDE5AE89E791B6E6978FE887AAE6B2BBE58EBF',X'343531323238',X'34353132'),
+	(X'343531323239',X'E5A4A7E58C96E791B6E6978FE887AAE6B2BBE58EBF',X'343531323239',X'34353132'),
+	(X'343531323831',X'E5AE9CE5B79EE5B882',X'343531323831',X'34353132'),
+	(X'34353133',X'E69DA5E5AEBEE5B882',X'34353133',X'3435'),
+	(X'343531333031',X'E5B882E8BE96E58CBA',X'343531333031',X'34353133'),
+	(X'343531333032',X'E585B4E5AEBEE58CBA',X'343531333032',X'34353133'),
+	(X'343531333231',X'E5BFBBE59F8EE58EBF',X'343531333231',X'34353133'),
+	(X'343531333232',X'E8B1A1E5B79EE58EBF',X'343531333232',X'34353133'),
+	(X'343531333233',X'E6ADA6E5AEA3E58EBF',X'343531333233',X'34353133'),
+	(X'343531333234',X'E98791E7A780E791B6E6978FE887AAE6B2BBE58EBF',X'343531333234',X'34353133'),
+	(X'343531333831',X'E59088E5B1B1E5B882',X'343531333831',X'34353133'),
+	(X'34353134',X'E5B487E5B7A6E5B882',X'34353134',X'3435'),
+	(X'343531343031',X'E5B882E8BE96E58CBA',X'343531343031',X'34353134'),
+	(X'343531343032',X'E6B19FE5B79EE58CBA',X'343531343032',X'34353134'),
+	(X'343531343231',X'E689B6E7BBA5E58EBF',X'343531343231',X'34353134'),
+	(X'343531343232',X'E5AE81E6988EE58EBF',X'343531343232',X'34353134'),
+	(X'343531343233',X'E9BE99E5B79EE58EBF',X'343531343233',X'34353134'),
+	(X'343531343234',X'E5A4A7E696B0E58EBF',X'343531343234',X'34353134'),
+	(X'343531343235',X'E5A4A9E7AD89E58EBF',X'343531343235',X'34353134'),
+	(X'343531343831',X'E587ADE7A5A5E5B882',X'343531343831',X'34353134'),
+	(X'3436',X'E6B5B7E58D97E79C81',X'3436',X'31'),
+	(X'34363031',X'E6B5B7E58FA3E5B882',X'34363031',X'3436'),
+	(X'343630313031',X'E5B882E8BE96E58CBA',X'343630313031',X'34363031'),
+	(X'343630313035',X'E7A780E88BB1E58CBA',X'343630313035',X'34363031'),
+	(X'343630313036',X'E9BE99E58D8EE58CBA',X'343630313036',X'34363031'),
+	(X'343630313037',X'E790BCE5B1B1E58CBA',X'343630313037',X'34363031'),
+	(X'343630313038',X'E7BE8EE585B0E58CBA',X'343630313038',X'34363031'),
+	(X'34363032',X'E4B889E4BA9AE5B882',X'34363032',X'3436'),
+	(X'343630323031',X'E5B882E8BE96E58CBA',X'343630323031',X'34363032'),
+	(X'34363930',X'E79C81E5B19EE8999AE68B9FE5B882',X'34363930',X'3436'),
+	(X'343639303031',X'E4BA94E68C87E5B1B1E5B882',X'343639303031',X'34363930'),
+	(X'343639303032',X'E790BCE6B5B7E5B882',X'343639303032',X'34363930'),
+	(X'343639303033',X'E5848BE5B79EE5B882',X'343639303033',X'34363930'),
+	(X'343639303035',X'E69687E6988CE5B882',X'343639303035',X'34363930'),
+	(X'343639303036',X'E4B887E5AE81E5B882',X'343639303036',X'34363930'),
+	(X'343639303037',X'E4B89CE696B9E5B882',X'343639303037',X'34363930'),
+	(X'343639303235',X'E5AE9AE5AE89E58EBF',X'343639303235',X'34363930'),
+	(X'343639303236',X'E5B1AFE6988CE58EBF',X'343639303236',X'34363930'),
+	(X'343639303237',X'E6BE84E8BF88E58EBF',X'343639303237',X'34363930'),
+	(X'343639303238',X'E4B8B4E9AB98E58EBF',X'343639303238',X'34363930'),
+	(X'343639303330',X'E799BDE6B299E9BB8EE6978FE887AAE6B2BBE58EBF',X'343639303330',X'34363930'),
+	(X'343639303331',X'E6988CE6B19FE9BB8EE6978FE887AAE6B2BBE58EBF',X'343639303331',X'34363930'),
+	(X'343639303333',X'E4B990E4B89CE9BB8EE6978FE887AAE6B2BBE58EBF',X'343639303333',X'34363930'),
+	(X'343639303334',X'E999B5E6B0B4E9BB8EE6978FE887AAE6B2BBE58EBF',X'343639303334',X'34363930'),
+	(X'343639303335',X'E4BF9DE4BAADE9BB8EE6978FE88B97E6978FE887AAE6B2BBE58EBF',X'343639303335',X'34363930'),
+	(X'343639303336',X'E790BCE4B8ADE9BB8EE6978FE88B97E6978FE887AAE6B2BBE58EBF',X'343639303336',X'34363930'),
+	(X'343639303337',X'E8A5BFE6B299E7BEA4E5B29B',X'343639303337',X'34363930'),
+	(X'343639303338',X'E58D97E6B299E7BEA4E5B29B',X'343639303338',X'34363930'),
+	(X'343639303339',X'E4B8ADE6B299E7BEA4E5B29BE79A84E5B29BE7A481E58F8AE585B6E6B5B7E59F9F',X'343639303339',X'34363930'),
+	(X'3530',X'E9878DE5BA86E5B882',X'3530',X'31'),
+	(X'35303031',X'E5B882E8BE96E58CBA',X'35303031',X'3530'),
+	(X'353030313031',X'E4B887E5B79EE58CBA',X'353030313031',X'35303031'),
+	(X'353030313032',X'E6B6AAE999B5E58CBA',X'353030313032',X'35303031'),
+	(X'353030313033',X'E6B89DE4B8ADE58CBA',X'353030313033',X'35303031'),
+	(X'353030313034',X'E5A4A7E6B8A1E58FA3E58CBA',X'353030313034',X'35303031'),
+	(X'353030313035',X'E6B19FE58C97E58CBA',X'353030313035',X'35303031'),
+	(X'353030313036',X'E6B299E59DAAE59D9DE58CBA',X'353030313036',X'35303031'),
+	(X'353030313037',X'E4B99DE9BE99E59DA1E58CBA',X'353030313037',X'35303031'),
+	(X'353030313038',X'E58D97E5B2B8E58CBA',X'353030313038',X'35303031'),
+	(X'353030313039',X'E58C97E7A29AE58CBA',X'353030313039',X'35303031'),
+	(X'353030313130',X'E4B887E79B9BE58CBA',X'353030313130',X'35303031'),
+	(X'353030313131',X'E58F8CE6A1A5E58CBA',X'353030313131',X'35303031'),
+	(X'353030313132',X'E6B89DE58C97E58CBA',X'353030313132',X'35303031'),
+	(X'353030313133',X'E5B7B4E58D97E58CBA',X'353030313133',X'35303031'),
+	(X'353030313134',X'E9BB94E6B19FE58CBA',X'353030313134',X'35303031'),
+	(X'353030313135',X'E995BFE5AFBFE58CBA',X'353030313135',X'35303031'),
+	(X'353030313136',X'E6B19FE6B4A5E58CBA',X'353030313136',X'35303031'),
+	(X'353030313137',X'E59088E5B79DE58CBA',X'353030313137',X'35303031'),
+	(X'353030313138',X'E6B0B8E5B79DE58CBA',X'353030313138',X'35303031'),
+	(X'353030313139',X'E58D97E5B79DE58CBA',X'353030313139',X'35303031'),
+	(X'35303032',X'E58EBF',X'35303032',X'3530'),
+	(X'353030323232',X'E7B6A6E6B19FE58EBF',X'353030323232',X'35303032'),
+	(X'353030323233',X'E6BDBCE58D97E58EBF',X'353030323233',X'35303032'),
+	(X'353030323234',X'E9939CE6A281E58EBF',X'353030323234',X'35303032'),
+	(X'353030323235',X'E5A4A7E8B6B3E58EBF',X'353030323235',X'35303032'),
+	(X'353030323236',X'E88DA3E6988CE58EBF',X'353030323236',X'35303032'),
+	(X'353030323237',X'E792A7E5B1B1E58EBF',X'353030323237',X'35303032'),
+	(X'353030323238',X'E6A281E5B9B3E58EBF',X'353030323238',X'35303032'),
+	(X'353030323239',X'E59F8EE58FA3E58EBF',X'353030323239',X'35303032'),
+	(X'353030323330',X'E4B8B0E983BDE58EBF',X'353030323330',X'35303032'),
+	(X'353030323331',X'E59EABE6B19FE58EBF',X'353030323331',X'35303032'),
+	(X'353030323332',X'E6ADA6E99A86E58EBF',X'353030323332',X'35303032'),
+	(X'353030323333',X'E5BFA0E58EBF',X'353030323333',X'35303032'),
+	(X'353030323334',X'E5BC80E58EBF',X'353030323334',X'35303032'),
+	(X'353030323335',X'E4BA91E998B3E58EBF',X'353030323335',X'35303032'),
+	(X'353030323336',X'E5A589E88A82E58EBF',X'353030323336',X'35303032'),
+	(X'353030323337',X'E5B7ABE5B1B1E58EBF',X'353030323337',X'35303032'),
+	(X'353030323338',X'E5B7ABE6BAAAE58EBF',X'353030323338',X'35303032'),
+	(X'353030323430',X'E79FB3E69FB1E58EBF',X'353030323430',X'35303032'),
+	(X'353030323431',X'E7A780E5B1B1E59C9FE5AEB6E6978FE88B97E6978FE887AAE6B2BBE58EBF',X'353030323431',X'35303032'),
+	(X'353030323432',X'E98589E998B3E59C9FE5AEB6E6978FE88B97E6978FE887AAE6B2BBE58EBF',X'353030323432',X'35303032'),
+	(X'353030323433',X'E5BDADE6B0B4E88B97E6978FE59C9FE5AEB6E6978FE887AAE6B2BBE58EBF',X'353030323433',X'35303032'),
+	(X'3531',X'E59B9BE5B79DE79C81',X'3531',X'31'),
+	(X'35313031',X'E68890E983BDE5B882',X'35313031',X'3531'),
+	(X'353130313031',X'E5B882E8BE96E58CBA',X'353130313031',X'35313031'),
+	(X'353130313034',X'E994A6E6B19FE58CBA',X'353130313034',X'35313031'),
+	(X'353130313035',X'E99D92E7BE8AE58CBA',X'353130313035',X'35313031'),
+	(X'353130313036',X'E98791E7899BE58CBA',X'353130313036',X'35313031'),
+	(X'353130313037',X'E6ADA6E4BEAFE58CBA',X'353130313037',X'35313031'),
+	(X'353130313038',X'E68890E58D8EE58CBA',X'353130313038',X'35313031'),
+	(X'353130313132',X'E9BE99E6B389E9A9BFE58CBA',X'353130313132',X'35313031'),
+	(X'353130313133',X'E99D92E799BDE6B19FE58CBA',X'353130313133',X'35313031'),
+	(X'353130313134',X'E696B0E983BDE58CBA',X'353130313134',X'35313031'),
+	(X'353130313135',X'E6B8A9E6B19FE58CBA',X'353130313135',X'35313031'),
+	(X'353130313231',X'E98791E5A082E58EBF',X'353130313231',X'35313031'),
+	(X'353130313232',X'E58F8CE6B581E58EBF',X'353130313232',X'35313031'),
+	(X'353130313234',X'E983ABE58EBF',X'353130313234',X'35313031'),
+	(X'353130313239',X'E5A4A7E98291E58EBF',X'353130313239',X'35313031'),
+	(X'353130313331',X'E892B2E6B19FE58EBF',X'353130313331',X'35313031'),
+	(X'353130313332',X'E696B0E6B4A5E58EBF',X'353130313332',X'35313031'),
+	(X'353130313831',X'E983BDE6B19FE5A0B0E5B882',X'353130313831',X'35313031'),
+	(X'353130313832',X'E5BDADE5B79EE5B882',X'353130313832',X'35313031'),
+	(X'353130313833',X'E9829BE5B483E5B882',X'353130313833',X'35313031'),
+	(X'353130313834',X'E5B487E5B79EE5B882',X'353130313834',X'35313031'),
+	(X'35313033',X'E887AAE8B4A1E5B882',X'35313033',X'3531'),
+	(X'353130333031',X'E5B882E8BE96E58CBA',X'353130333031',X'35313033'),
+	(X'353130333032',X'E887AAE6B581E4BA95E58CBA',X'353130333032',X'35313033'),
+	(X'353130333033',X'E8B4A1E4BA95E58CBA',X'353130333033',X'35313033'),
+	(X'353130333034',X'E5A4A7E5AE89E58CBA',X'353130333034',X'35313033'),
+	(X'353130333131',X'E6B2BFE6BBA9E58CBA',X'353130333131',X'35313033'),
+	(X'353130333231',X'E88DA3E58EBF',X'353130333231',X'35313033'),
+	(X'353130333232',X'E5AF8CE9A1BAE58EBF',X'353130333232',X'35313033'),
+	(X'35313034',X'E69480E69E9DE88AB1E5B882',X'35313034',X'3531'),
+	(X'353130343031',X'E5B882E8BE96E58CBA',X'353130343031',X'35313034'),
+	(X'353130343032',X'E69480E69E9DE88AB1E4B89CE58CBA',X'353130343032',X'35313034'),
+	(X'353130343033',X'E8A5BFE58CBA',X'353130343033',X'35313034'),
+	(X'353130343131',X'E4BB81E5928CE58CBA',X'353130343131',X'35313034'),
+	(X'353130343231',X'E7B1B3E69893E58EBF',X'353130343231',X'35313034'),
+	(X'353130343232',X'E79B90E8BEB9E58EBF',X'353130343232',X'35313034'),
+	(X'35313035',X'E6B3B8E5B79EE5B882',X'35313035',X'3531'),
+	(X'353130353031',X'E5B882E8BE96E58CBA',X'353130353031',X'35313035'),
+	(X'353130353032',X'E6B19FE998B3E58CBA',X'353130353032',X'35313035'),
+	(X'353130353033',X'E7BAB3E6BAAAE58CBA',X'353130353033',X'35313035'),
+	(X'353130353034',X'E9BE99E9A9ACE6BDADE58CBA',X'353130353034',X'35313035'),
+	(X'353130353231',X'E6B3B8E58EBF',X'353130353231',X'35313035'),
+	(X'353130353232',X'E59088E6B19FE58EBF',X'353130353232',X'35313035'),
+	(X'353130353234',X'E58F99E6B0B8E58EBF',X'353130353234',X'35313035'),
+	(X'353130353235',X'E58FA4E894BAE58EBF',X'353130353235',X'35313035'),
+	(X'35313036',X'E5BEB7E998B3E5B882',X'35313036',X'3531'),
+	(X'353130363031',X'E5B882E8BE96E58CBA',X'353130363031',X'35313036'),
+	(X'353130363033',X'E6978CE998B3E58CBA',X'353130363033',X'35313036'),
+	(X'353130363233',X'E4B8ADE6B19FE58EBF',X'353130363233',X'35313036'),
+	(X'353130363236',X'E7BD97E6B19FE58EBF',X'353130363236',X'35313036'),
+	(X'353130363831',X'E5B9BFE6B189E5B882',X'353130363831',X'35313036'),
+	(X'353130363832',X'E4BB80E982A1E5B882',X'353130363832',X'35313036'),
+	(X'353130363833',X'E7BBB5E7ABB9E5B882',X'353130363833',X'35313036'),
+	(X'35313037',X'E7BBB5E998B3E5B882',X'35313037',X'3531'),
+	(X'353130373031',X'E5B882E8BE96E58CBA',X'353130373031',X'35313037'),
+	(X'353130373033',X'E6B6AAE59F8EE58CBA',X'353130373033',X'35313037'),
+	(X'353130373034',X'E6B8B8E4BB99E58CBA',X'353130373034',X'35313037'),
+	(X'353130373232',X'E4B889E58FB0E58EBF',X'353130373232',X'35313037'),
+	(X'353130373233',X'E79B90E4BAADE58EBF',X'353130373233',X'35313037'),
+	(X'353130373234',X'E5AE89E58EBF',X'353130373234',X'35313037'),
+	(X'353130373235',X'E6A293E6BDBCE58EBF',X'353130373235',X'35313037'),
+	(X'353130373236',X'E58C97E5B79DE7BE8CE6978FE887AAE6B2BBE58EBF',X'353130373236',X'35313037'),
+	(X'353130373237',X'E5B9B3E6ADA6E58EBF',X'353130373237',X'35313037'),
+	(X'353130373831',X'E6B19FE6B2B9E5B882',X'353130373831',X'35313037'),
+	(X'35313038',X'E5B9BFE58583E5B882',X'35313038',X'3531'),
+	(X'353130383031',X'E5B882E8BE96E58CBA',X'353130383031',X'35313038'),
+	(X'353130383032',X'E5B882E4B8ADE58CBA',X'353130383032',X'35313038'),
+	(X'353130383131',X'E58583E59D9DE58CBA',X'353130383131',X'35313038'),
+	(X'353130383132',X'E69C9DE5A4A9E58CBA',X'353130383132',X'35313038'),
+	(X'353130383231',X'E697BAE88B8DE58EBF',X'353130383231',X'35313038'),
+	(X'353130383232',X'E99D92E5B79DE58EBF',X'353130383232',X'35313038'),
+	(X'353130383233',X'E58991E99881E58EBF',X'353130383233',X'35313038'),
+	(X'353130383234',X'E88B8DE6BAAAE58EBF',X'353130383234',X'35313038'),
+	(X'35313039',X'E98182E5AE81E5B882',X'35313039',X'3531'),
+	(X'353130393031',X'E5B882E8BE96E58CBA',X'353130393031',X'35313039'),
+	(X'353130393033',X'E888B9E5B1B1E58CBA',X'353130393033',X'35313039'),
+	(X'353130393034',X'E5AE89E5B185E58CBA',X'353130393034',X'35313039'),
+	(X'353130393231',X'E893ACE6BAAAE58EBF',X'353130393231',X'35313039'),
+	(X'353130393232',X'E5B084E6B4AAE58EBF',X'353130393232',X'35313039'),
+	(X'353130393233',X'E5A4A7E88BB1E58EBF',X'353130393233',X'35313039'),
+	(X'35313130',X'E58685E6B19FE5B882',X'35313130',X'3531'),
+	(X'353131303031',X'E5B882E8BE96E58CBA',X'353131303031',X'35313130'),
+	(X'353131303032',X'E5B882E4B8ADE58CBA',X'353131303032',X'35313130'),
+	(X'353131303131',X'E4B89CE585B4E58CBA',X'353131303131',X'35313130'),
+	(X'353131303234',X'E5A881E8BF9CE58EBF',X'353131303234',X'35313130'),
+	(X'353131303235',X'E8B584E4B8ADE58EBF',X'353131303235',X'35313130'),
+	(X'353131303238',X'E99A86E6988CE58EBF',X'353131303238',X'35313130'),
+	(X'35313131',X'E4B990E5B1B1E5B882',X'35313131',X'3531'),
+	(X'353131313031',X'E5B882E8BE96E58CBA',X'353131313031',X'35313131'),
+	(X'353131313032',X'E5B882E4B8ADE58CBA',X'353131313032',X'35313131'),
+	(X'353131313131',X'E6B299E6B9BEE58CBA',X'353131313131',X'35313131'),
+	(X'353131313132',X'E4BA94E9809AE6A1A5E58CBA',X'353131313132',X'35313131'),
+	(X'353131313133',X'E98791E58FA3E6B2B3E58CBA',X'353131313133',X'35313131'),
+	(X'353131313233',X'E78A8DE4B8BAE58EBF',X'353131313233',X'35313131'),
+	(X'353131313234',X'E4BA95E7A094E58EBF',X'353131313234',X'35313131'),
+	(X'353131313236',X'E5A4B9E6B19FE58EBF',X'353131313236',X'35313131'),
+	(X'353131313239',X'E6B290E5B79DE58EBF',X'353131313239',X'35313131'),
+	(X'353131313332',X'E5B3A8E8BEB9E5BD9DE6978FE887AAE6B2BBE58EBF',X'353131313332',X'35313131'),
+	(X'353131313333',X'E9A9ACE8BEB9E5BD9DE6978FE887AAE6B2BBE58EBF',X'353131313333',X'35313131'),
+	(X'353131313831',X'E5B3A8E79C89E5B1B1E5B882',X'353131313831',X'35313131'),
+	(X'35313133',X'E58D97E58585E5B882',X'35313133',X'3531'),
+	(X'353131333031',X'E5B882E8BE96E58CBA',X'353131333031',X'35313133'),
+	(X'353131333032',X'E9A1BAE5BA86E58CBA',X'353131333032',X'35313133'),
+	(X'353131333033',X'E9AB98E59DAAE58CBA',X'353131333033',X'35313133'),
+	(X'353131333034',X'E59889E999B5E58CBA',X'353131333034',X'35313133'),
+	(X'353131333231',X'E58D97E983A8E58EBF',X'353131333231',X'35313133'),
+	(X'353131333232',X'E890A5E5B1B1E58EBF',X'353131333232',X'35313133'),
+	(X'353131333233',X'E893ACE5AE89E58EBF',X'353131333233',X'35313133'),
+	(X'353131333234',X'E4BBAAE99987E58EBF',X'353131333234',X'35313133'),
+	(X'353131333235',X'E8A5BFE58585E58EBF',X'353131333235',X'35313133'),
+	(X'353131333831',X'E99886E4B8ADE5B882',X'353131333831',X'35313133'),
+	(X'35313134',X'E79C89E5B1B1E5B882',X'35313134',X'3531'),
+	(X'353131343031',X'E5B882E8BE96E58CBA',X'353131343031',X'35313134'),
+	(X'353131343032',X'E4B89CE59DA1E58CBA',X'353131343032',X'35313134'),
+	(X'353131343231',X'E4BB81E5AFBFE58EBF',X'353131343231',X'35313134'),
+	(X'353131343232',X'E5BDADE5B1B1E58EBF',X'353131343232',X'35313134'),
+	(X'353131343233',X'E6B4AAE99B85E58EBF',X'353131343233',X'35313134'),
+	(X'353131343234',X'E4B8B9E6A3B1E58EBF',X'353131343234',X'35313134'),
+	(X'353131343235',X'E99D92E7A59EE58EBF',X'353131343235',X'35313134'),
+	(X'35313135',X'E5AE9CE5AEBEE5B882',X'35313135',X'3531'),
+	(X'353131353031',X'E5B882E8BE96E58CBA',X'353131353031',X'35313135'),
+	(X'353131353032',X'E7BFA0E5B18FE58CBA',X'353131353032',X'35313135'),
+	(X'353131353231',X'E5AE9CE5AEBEE58EBF',X'353131353231',X'35313135'),
+	(X'353131353232',X'E58D97E6BAAAE58EBF',X'353131353232',X'35313135'),
+	(X'353131353233',X'E6B19FE5AE89E58EBF',X'353131353233',X'35313135'),
+	(X'353131353234',X'E995BFE5AE81E58EBF',X'353131353234',X'35313135'),
+	(X'353131353235',X'E9AB98E58EBF',X'353131353235',X'35313135'),
+	(X'353131353236',X'E78F99E58EBF',X'353131353236',X'35313135'),
+	(X'353131353237',X'E7ADA0E8BF9EE58EBF',X'353131353237',X'35313135'),
+	(X'353131353238',X'E585B4E69687E58EBF',X'353131353238',X'35313135'),
+	(X'353131353239',X'E5B18FE5B1B1E58EBF',X'353131353239',X'35313135'),
+	(X'35313136',X'E5B9BFE5AE89E5B882',X'35313136',X'3531'),
+	(X'353131363031',X'E5B882E8BE96E58CBA',X'353131363031',X'35313136'),
+	(X'353131363032',X'E5B9BFE5AE89E58CBA',X'353131363032',X'35313136'),
+	(X'353131363231',X'E5B2B3E6B1A0E58EBF',X'353131363231',X'35313136'),
+	(X'353131363232',X'E6ADA6E8839CE58EBF',X'353131363232',X'35313136'),
+	(X'353131363233',X'E982BBE6B0B4E58EBF',X'353131363233',X'35313136'),
+	(X'353131363831',X'E58D8EE893A5E5B882',X'353131363831',X'35313136'),
+	(X'35313137',X'E8BEBEE5B79EE5B882',X'35313137',X'3531'),
+	(X'353131373031',X'E5B882E8BE96E58CBA',X'353131373031',X'35313137'),
+	(X'353131373032',X'E9809AE5B79DE58CBA',X'353131373032',X'35313137'),
+	(X'353131373231',X'E8BEBEE58EBF',X'353131373231',X'35313137'),
+	(X'353131373232',X'E5AEA3E6B189E58EBF',X'353131373232',X'35313137'),
+	(X'353131373233',X'E5BC80E6B19FE58EBF',X'353131373233',X'35313137'),
+	(X'353131373234',X'E5A4A7E7ABB9E58EBF',X'353131373234',X'35313137'),
+	(X'353131373235',X'E6B8A0E58EBF',X'353131373235',X'35313137'),
+	(X'353131373831',X'E4B887E6BA90E5B882',X'353131373831',X'35313137'),
+	(X'35313138',X'E99B85E5AE89E5B882',X'35313138',X'3531'),
+	(X'353131383031',X'E5B882E8BE96E58CBA',X'353131383031',X'35313138'),
+	(X'353131383032',X'E99BA8E59F8EE58CBA',X'353131383032',X'35313138'),
+	(X'353131383231',X'E5908DE5B1B1E58EBF',X'353131383231',X'35313138'),
+	(X'353131383232',X'E88DA5E7BB8FE58EBF',X'353131383232',X'35313138'),
+	(X'353131383233',X'E6B189E6BA90E58EBF',X'353131383233',X'35313138'),
+	(X'353131383234',X'E79FB3E6A389E58EBF',X'353131383234',X'35313138'),
+	(X'353131383235',X'E5A4A9E585A8E58EBF',X'353131383235',X'35313138'),
+	(X'353131383236',X'E88AA6E5B1B1E58EBF',X'353131383236',X'35313138'),
+	(X'353131383237',X'E5AE9DE585B4E58EBF',X'353131383237',X'35313138'),
+	(X'35313139',X'E5B7B4E4B8ADE5B882',X'35313139',X'3531'),
+	(X'353131393031',X'E5B882E8BE96E58CBA',X'353131393031',X'35313139'),
+	(X'353131393032',X'E5B7B4E5B79EE58CBA',X'353131393032',X'35313139'),
+	(X'353131393231',X'E9809AE6B19FE58EBF',X'353131393231',X'35313139'),
+	(X'353131393232',X'E58D97E6B19FE58EBF',X'353131393232',X'35313139'),
+	(X'353131393233',X'E5B9B3E6988CE58EBF',X'353131393233',X'35313139'),
+	(X'35313230',X'E8B584E998B3E5B882',X'35313230',X'3531'),
+	(X'353132303031',X'E5B882E8BE96E58CBA',X'353132303031',X'35313230'),
+	(X'353132303032',X'E99B81E6B19FE58CBA',X'353132303032',X'35313230'),
+	(X'353132303231',X'E5AE89E5B2B3E58EBF',X'353132303231',X'35313230'),
+	(X'353132303232',X'E4B990E887B3E58EBF',X'353132303232',X'35313230'),
+	(X'353132303831',X'E7AE80E998B3E5B882',X'353132303831',X'35313230'),
+	(X'35313332',X'E998BFE59D9DE5B79E',X'35313332',X'3531'),
+	(X'353133323231',X'E6B1B6E5B79DE58EBF',X'353133323231',X'35313332'),
+	(X'353133323232',X'E79086E58EBF',X'353133323232',X'35313332'),
+	(X'353133323233',X'E88C82E58EBF',X'353133323233',X'35313332'),
+	(X'353133323234',X'E69DBEE6BD98E58EBF',X'353133323234',X'35313332'),
+	(X'353133323235',X'E4B99DE5AFA8E6B29FE58EBF',X'353133323235',X'35313332'),
+	(X'353133323236',X'E98791E5B79DE58EBF',X'353133323236',X'35313332'),
+	(X'353133323237',X'E5B08FE98791E58EBF',X'353133323237',X'35313332'),
+	(X'353133323238',X'E9BB91E6B0B4E58EBF',X'353133323238',X'35313332'),
+	(X'353133323239',X'E9A9ACE5B094E5BAB7E58EBF',X'353133323239',X'35313332'),
+	(X'353133323330',X'E5A3A4E5A198E58EBF',X'353133323330',X'35313332'),
+	(X'353133323331',X'E998BFE59D9DE58EBF',X'353133323331',X'35313332'),
+	(X'353133323332',X'E88BA5E5B094E79B96E58EBF',X'353133323332',X'35313332'),
+	(X'353133323333',X'E7BAA2E58E9FE58EBF',X'353133323333',X'35313332'),
+	(X'35313333',X'E79498E5AD9CE8978FE6978FE887AAE6B2BBE5B79E',X'35313333',X'3531'),
+	(X'353133333231',X'E5BAB7E5AE9AE58EBF',X'353133333231',X'35313333'),
+	(X'353133333232',X'E6B3B8E5AE9AE58EBF',X'353133333232',X'35313333'),
+	(X'353133333233',X'E4B8B9E5B7B4E58EBF',X'353133333233',X'35313333'),
+	(X'353133333234',X'E4B99DE9BE99E58EBF',X'353133333234',X'35313333'),
+	(X'353133333235',X'E99B85E6B19FE58EBF',X'353133333235',X'35313333'),
+	(X'353133333236',X'E98193E5AD9AE58EBF',X'353133333236',X'35313333'),
+	(X'353133333237',X'E78289E99C8DE58EBF',X'353133333237',X'35313333'),
+	(X'353133333238',X'E79498E5AD9CE58EBF',X'353133333238',X'35313333'),
+	(X'353133333239',X'E696B0E9BE99E58EBF',X'353133333239',X'35313333'),
+	(X'353133333330',X'E5BEB7E6A0BCE58EBF',X'353133333330',X'35313333'),
+	(X'353133333331',X'E799BDE78E89E58EBF',X'353133333331',X'35313333'),
+	(X'353133333332',X'E79FB3E6B8A0E58EBF',X'353133333332',X'35313333'),
+	(X'353133333333',X'E889B2E8BEBEE58EBF',X'353133333333',X'35313333'),
+	(X'353133333334',X'E79086E5A198E58EBF',X'353133333334',X'35313333'),
+	(X'353133333335',X'E5B7B4E5A198E58EBF',X'353133333335',X'35313333'),
+	(X'353133333336',X'E4B9A1E59F8EE58EBF',X'353133333336',X'35313333'),
+	(X'353133333337',X'E7A8BBE59F8EE58EBF',X'353133333337',X'35313333'),
+	(X'353133333338',X'E5BE97E88DA3E58EBF',X'353133333338',X'35313333'),
+	(X'35313334',X'E58789E5B1B1E5B79E',X'35313334',X'3531'),
+	(X'353133343031',X'E8A5BFE6988CE5B882',X'353133343031',X'35313334'),
+	(X'353133343232',X'E69CA8E9878CE8978FE6978FE887AAE6B2BBE58EBF',X'353133343232',X'35313334'),
+	(X'353133343233',X'E79B90E6BA90E58EBF',X'353133343233',X'35313334'),
+	(X'353133343234',X'E5BEB7E6988C',X'353133343234',X'35313334'),
+	(X'353133343235',X'E4BC9AE79086E58EBF',X'353133343235',X'35313334'),
+	(X'353133343236',X'E4BC9AE4B89CE58EBF',X'353133343236',X'35313334'),
+	(X'353133343237',X'E5AE81E58D97E58EBF',X'353133343237',X'35313334'),
+	(X'353133343238',X'E699AEE6A0BCE58EBF',X'353133343238',X'35313334'),
+	(X'353133343239',X'E5B883E68B96E58EBF',X'353133343239',X'35313334'),
+	(X'353133343330',X'E98791E998B3E58EBF',X'353133343330',X'35313334'),
+	(X'353133343331',X'E698ADE8A789E58EBF',X'353133343331',X'35313334'),
+	(X'353133343332',X'E5969CE5BEB7E58EBF',X'353133343332',X'35313334'),
+	(X'353133343333',X'E58695E5AE81E58EBF',X'353133343333',X'35313334'),
+	(X'353133343334',X'E8B68AE8A5BFE58EBF',X'353133343334',X'35313334'),
+	(X'353133343335',X'E79498E6B49BE58EBF',X'353133343335',X'35313334'),
+	(X'353133343336',X'E7BE8EE5A791E58EBF',X'353133343336',X'35313334'),
+	(X'353133343337',X'E99BB7E6B3A2E58EBF',X'353133343337',X'35313334'),
+	(X'3532',X'E8B4B5E5B79EE79C81',X'3532',X'31'),
+	(X'35323031',X'E8B4B5E998B3E5B882',X'35323031',X'3532'),
+	(X'353230313031',X'E5B882E8BE96E58CBA',X'353230313031',X'35323031'),
+	(X'353230313032',X'E58D97E6988EE58CBA',X'353230313032',X'35323031'),
+	(X'353230313033',X'E4BA91E5B2A9E58CBA',X'353230313033',X'35323031'),
+	(X'353230313131',X'E88AB1E6BAAAE58CBA',X'353230313131',X'35323031'),
+	(X'353230313132',X'E4B98CE5BD93E58CBA',X'353230313132',X'35323031'),
+	(X'353230313133',X'E799BDE4BA91E58CBA',X'353230313133',X'35323031'),
+	(X'353230313134',X'E5B08FE6B2B3E58CBA',X'353230313134',X'35323031'),
+	(X'353230313231',X'E5BC80E998B3E58EBF',X'353230313231',X'35323031'),
+	(X'353230313232',X'E681AFE783BDE58EBF',X'353230313232',X'35323031'),
+	(X'353230313233',X'E4BFAEE69687E58EBF',X'353230313233',X'35323031'),
+	(X'353230313831',X'E6B885E99587E5B882',X'353230313831',X'35323031'),
+	(X'35323032',X'E585ADE79B98E6B0B4E5B882',X'35323032',X'3532'),
+	(X'353230323031',X'E9929FE5B1B1E58CBA',X'353230323031',X'35323032'),
+	(X'353230323033',X'E585ADE69E9DE789B9E58CBA',X'353230323033',X'35323032'),
+	(X'353230323231',X'E6B0B4E59F8EE58EBF',X'353230323231',X'35323032'),
+	(X'353230323232',X'E79B98E58EBF',X'353230323232',X'35323032'),
+	(X'35323033',X'E981B5E4B989E5B882',X'35323033',X'3532'),
+	(X'353230333031',X'E5B882E8BE96E58CBA',X'353230333031',X'35323033'),
+	(X'353230333032',X'E7BAA2E88AB1E5B297E58CBA',X'353230333032',X'35323033'),
+	(X'353230333033',X'E6B187E5B79DE58CBA',X'353230333033',X'35323033'),
+	(X'353230333231',X'E981B5E4B989E58EBF',X'353230333231',X'35323033'),
+	(X'353230333232',X'E6A190E6A293E58EBF',X'353230333232',X'35323033'),
+	(X'353230333233',X'E7BBA5E998B3E58EBF',X'353230333233',X'35323033'),
+	(X'353230333234',X'E6ADA3E5AE89E58EBF',X'353230333234',X'35323033'),
+	(X'353230333235',X'E98193E79C9FE4BBA1E4BDACE6978FE88B97E6978FE887AAE6B2BBE58EBF',X'353230333235',X'35323033'),
+	(X'353230333236',X'E58AA1E5B79DE4BBA1E4BDACE6978FE88B97E6978FE887AAE6B2BBE58EBF',X'353230333236',X'35323033'),
+	(X'353230333237',X'E587A4E58688E58EBF',X'353230333237',X'35323033'),
+	(X'353230333238',X'E6B984E6BDADE58EBF',X'353230333238',X'35323033'),
+	(X'353230333239',X'E4BD99E5BA86E58EBF',X'353230333239',X'35323033'),
+	(X'353230333330',X'E4B9A0E6B0B4E58EBF',X'353230333330',X'35323033'),
+	(X'353230333831',X'E8B5A4E6B0B4E5B882',X'353230333831',X'35323033'),
+	(X'353230333832',X'E4BB81E68080E5B882',X'353230333832',X'35323033'),
+	(X'35323034',X'E5AE89E9A1BAE5B882',X'35323034',X'3532'),
+	(X'353230343031',X'E5B882E8BE96E58CBA',X'353230343031',X'35323034'),
+	(X'353230343032',X'E8A5BFE7A780E58CBA',X'353230343032',X'35323034'),
+	(X'353230343231',X'E5B9B3E59D9DE58EBF',X'353230343231',X'35323034'),
+	(X'353230343232',X'E699AEE5AE9AE58EBF',X'353230343232',X'35323034'),
+	(X'353230343233',X'E99587E5AE81E5B883E4BE9DE6978FE88B97E6978FE887AAE6B2BBE58EBF',X'353230343233',X'35323034'),
+	(X'353230343234',X'E585B3E5B2ADE887AAE6B2BBE58EBF',X'353230343234',X'35323034'),
+	(X'353230343235',X'E7B4ABE4BA91E88B97E6978FE5B883E4BE9DE6978FE887AAE6B2BBE58EBF',X'353230343235',X'35323034'),
+	(X'35323232',X'E9939CE4BB81E59CB0E58CBA',X'35323232',X'3532'),
+	(X'353232323031',X'E9939CE4BB81E5B882',X'353232323031',X'35323232'),
+	(X'353232323232',X'E6B19FE58FA3E58EBF',X'353232323232',X'35323232'),
+	(X'353232323233',X'E78E89E5B18FE4BE97E6978FE887AAE6B2BBE58EBF',X'353232323233',X'35323232'),
+	(X'353232323234',X'E79FB3E998A1E58EBF',X'353232323234',X'35323232'),
+	(X'353232323235',X'E6809DE58D97E58EBFE38080',X'353232323235',X'35323232'),
+	(X'353232323236',X'E58DB0E6B19FE59C9FE5AEB6E6978FE88B97E6978FE887AAE6B2BBE58EBF',X'353232323236',X'35323232'),
+	(X'353232323237',X'E5BEB7E6B19FE58EBF',X'353232323237',X'35323232'),
+	(X'353232323238',X'E6B2BFE6B2B3E59C9FE5AEB6E6978FE887AAE6B2BBE58EBF',X'353232323238',X'35323232'),
+	(X'353232323239',X'E69DBEE6A183E88B97E6978FE887AAE6B2BBE58EBF',X'353232323239',X'35323232'),
+	(X'353232323330',X'E4B887E5B1B1E789B9E58CBA',X'353232323330',X'35323232'),
+	(X'35323233',X'E9BB94E8A5BFE58D97E5B79E',X'35323233',X'3532'),
+	(X'353232333031',X'E585B4E4B989E5B882',X'353232333031',X'35323233'),
+	(X'353232333232',X'E585B4E4BB81E58EBF',X'353232333232',X'35323233'),
+	(X'353232333233',X'E699AEE5AE89E58EBF',X'353232333233',X'35323233'),
+	(X'353232333234',X'E699B4E99A86E58EBF',X'353232333234',X'35323233'),
+	(X'353232333235',X'E8B49EE4B8B0E58EBF',X'353232333235',X'35323233'),
+	(X'353232333236',X'E69C9BE8B09FE58EBF',X'353232333236',X'35323233'),
+	(X'353232333237',X'E5868CE4BAA8E58EBF',X'353232333237',X'35323233'),
+	(X'353232333238',X'E5AE89E9BE99E58EBF',X'353232333238',X'35323233'),
+	(X'35323234',X'E6AF95E88A82E59CB0E58CBA',X'35323234',X'3532'),
+	(X'353232343031',X'E6AF95E88A82E5B882',X'353232343031',X'35323234'),
+	(X'353232343232',X'E5A4A7E696B9E58EBF',X'353232343232',X'35323234'),
+	(X'353232343233',X'E9BB94E8A5BFE58EBF',X'353232343233',X'35323234'),
+	(X'353232343234',X'E98791E6B299E58EBF',X'353232343234',X'35323234'),
+	(X'353232343235',X'E7BB87E98791E58EBF',X'353232343235',X'35323234'),
+	(X'353232343236',X'E7BAB3E99B8DE58EBF',X'353232343236',X'35323234'),
+	(X'353232343237',X'E5A881E5AE81E5BD9DE6978FE59B9EE6978FE88B97E6978FE887AAE6B2BBE58EBF',X'353232343237',X'35323234'),
+	(X'353232343238',X'E8B5ABE7ABA0E58EBF',X'353232343238',X'35323234'),
+	(X'35323236',X'E9BB94E4B89CE58D97E88B97E6978FE4BE97E6978FE887AAE6B2BBE5B79E',X'35323236',X'3532'),
+	(X'353232363031',X'E587AFE9878CE5B882',X'353232363031',X'35323236'),
+	(X'353232363232',X'E9BB84E5B9B3E58EBF',X'353232363232',X'35323236'),
+	(X'353232363233',X'E696BDE7A789E58EBF',X'353232363233',X'35323236'),
+	(X'353232363234',X'E4B889E7A997E58EBF',X'353232363234',X'35323236'),
+	(X'353232363235',X'E99587E8BF9CE58EBF',X'353232363235',X'35323236'),
+	(X'353232363236',X'E5B291E5B7A9E58EBF',X'353232363236',X'35323236'),
+	(X'353232363237',X'E5A4A9E69FB1E58EBF',X'353232363237',X'35323236'),
+	(X'353232363238',X'E994A6E5B18FE58EBF',X'353232363238',X'35323236'),
+	(X'353232363239',X'E58991E6B2B3E58EBF',X'353232363239',X'35323236'),
+	(X'353232363330',X'E58FB0E6B19FE58EBF',X'353232363330',X'35323236'),
+	(X'353232363331',X'E9BB8EE5B9B3E58EBF',X'353232363331',X'35323236'),
+	(X'353232363332',X'E6A695E6B19FE58EBF',X'353232363332',X'35323236'),
+	(X'353232363333',X'E4BB8EE6B19FE58EBF',X'353232363333',X'35323236'),
+	(X'353232363334',X'E99BB7E5B1B1E58EBF',X'353232363334',X'35323236'),
+	(X'353232363335',X'E9BABBE6B19FE58EBF',X'353232363335',X'35323236'),
+	(X'353232363336',X'E4B8B9E5AFA8E58EBF',X'353232363336',X'35323236'),
+	(X'35323237',X'E9BB94E58D97E5B883E4BE9DE6978FE88B97E6978FE887AAE6B2BBE5B79E',X'35323237',X'3532'),
+	(X'353232373031',X'E983BDE58C80E5B882',X'353232373031',X'35323237'),
+	(X'353232373032',X'E7A68FE6B389E5B882',X'353232373032',X'35323237'),
+	(X'353232373232',X'E88D94E6B3A2E58EBF',X'353232373232',X'35323237'),
+	(X'353232373233',X'E8B4B5E5AE9AE58EBF',X'353232373233',X'35323237'),
+	(X'353232373235',X'E793AEE5AE89E58EBF',X'353232373235',X'35323237'),
+	(X'353232373236',X'E78BACE5B1B1E58EBF',X'353232373236',X'35323237'),
+	(X'353232373237',X'E5B9B3E5A198E58EBF',X'353232373237',X'35323237'),
+	(X'353232373238',X'E7BD97E794B8E58EBF',X'353232373238',X'35323237'),
+	(X'353232373239',X'E995BFE9A1BAE58EBF',X'353232373239',X'35323237'),
+	(X'353232373330',X'E9BE99E9878CE58EBF',X'353232373330',X'35323237'),
+	(X'353232373331',X'E683A0E6B0B4E58EBF',X'353232373331',X'35323237'),
+	(X'353232373332',X'E4B889E983BDE6B0B4E6978FE887AAE6B2BBE58EBF',X'353232373332',X'35323237'),
+	(X'3533',X'E4BA91E58D97E79C81',X'3533',X'31'),
+	(X'35333031',X'E69886E6988EE5B882',X'35333031',X'3533'),
+	(X'353330313031',X'E5B882E8BE96E58CBA',X'353330313031',X'35333031'),
+	(X'353330313032',X'E4BA94E58D8EE58CBA',X'353330313032',X'35333031'),
+	(X'353330313033',X'E79B98E9BE99E58CBA',X'353330313033',X'35333031'),
+	(X'353330313131',X'E5AE98E6B8A1E58CBA',X'353330313131',X'35333031'),
+	(X'353330313132',X'E8A5BFE5B1B1E58CBA',X'353330313132',X'35333031'),
+	(X'353330313133',X'E4B89CE5B79DE58CBA',X'353330313133',X'35333031'),
+	(X'353330313231',X'E59188E8B4A1E58EBF',X'353330313231',X'35333031'),
+	(X'353330313232',X'E6998BE5AE81E58EBF',X'353330313232',X'35333031'),
+	(X'353330313234',X'E5AF8CE6B091E58EBF',X'353330313234',X'35333031'),
+	(X'353330313235',X'E5AE9CE889AFE58EBF',X'353330313235',X'35333031'),
+	(X'353330313236',X'E79FB3E69E97E58EBF',X'353330313236',X'35333031'),
+	(X'353330313237',X'E5B5A9E6988EE58EBF',X'353330313237',X'35333031'),
+	(X'353330313238',X'E7A684E58A9DE58EBF',X'353330313238',X'35333031'),
+	(X'353330313239',X'E5AFBBE794B8E58EBF',X'353330313239',X'35333031'),
+	(X'353330313831',X'E5AE89E5AE81E5B882',X'353330313831',X'35333031'),
+	(X'35333033',X'E69BB2E99D96E5B882',X'35333033',X'3533'),
+	(X'353330333031',X'E5B882E8BE96E58CBA',X'353330333031',X'35333033'),
+	(X'353330333032',X'E9BA92E9BA9FE58CBA',X'353330333032',X'35333033'),
+	(X'353330333231',X'E9A9ACE9BE99E58EBF',X'353330333231',X'35333033'),
+	(X'353330333232',X'E99986E889AFE58EBF',X'353330333232',X'35333033'),
+	(X'353330333233',X'E5B888E5AE97E58EBF',X'353330333233',X'35333033'),
+	(X'353330333234',X'E7BD97E5B9B3E58EBF',X'353330333234',X'35333033'),
+	(X'353330333235',X'E5AF8CE6BA90E58EBF',X'353330333235',X'35333033'),
+	(X'353330333236',X'E4BC9AE6B3BDE58EBF',X'353330333236',X'35333033'),
+	(X'353330333238',X'E6B2BEE79B8AE58EBF',X'353330333238',X'35333033'),
+	(X'353330333831',X'E5AEA3E5A881E5B882',X'353330333831',X'35333033'),
+	(X'35333034',X'E78E89E6BAAAE5B882',X'35333034',X'3533'),
+	(X'353330343031',X'E5B882E8BE96E58CBA',X'353330343031',X'35333034'),
+	(X'353330343032',X'E7BAA2E5A194E58CBA',X'353330343032',X'35333034'),
+	(X'353330343231',X'E6B19FE5B79DE58EBF',X'353330343231',X'35333034'),
+	(X'353330343232',X'E6BE84E6B19FE58EBF',X'353330343232',X'35333034'),
+	(X'353330343233',X'E9809AE6B5B7E58EBF',X'353330343233',X'35333034'),
+	(X'353330343234',X'E58D8EE5AE81E58EBF',X'353330343234',X'35333034'),
+	(X'353330343235',X'E69893E997A8E58EBF',X'353330343235',X'35333034'),
+	(X'353330343236',X'E5B3A8E5B1B1E58EBF',X'353330343236',X'35333034'),
+	(X'353330343237',X'E696B0E5B9B3E58EBF',X'353330343237',X'35333034'),
+	(X'353330343238',X'E58583E6B19FE58EBF',X'353330343238',X'35333034'),
+	(X'35333035',X'E4BF9DE5B1B1E5B882',X'35333035',X'3533'),
+	(X'353330353031',X'E5B882E8BE96E58CBA',X'353330353031',X'35333035'),
+	(X'353330353032',X'E99A86E998B3E58CBA',X'353330353032',X'35333035'),
+	(X'353330353231',X'E696BDE794B8E58EBF',X'353330353231',X'35333035'),
+	(X'353330353232',X'E885BEE586B2E58EBF',X'353330353232',X'35333035'),
+	(X'353330353233',X'E9BE99E999B5E58EBF',X'353330353233',X'35333035'),
+	(X'353330353234',X'E6988CE5AE81E58EBF',X'353330353234',X'35333035'),
+	(X'35333036',X'E698ADE9809AE5B882',X'35333036',X'3533'),
+	(X'353330363031',X'E5B882E8BE96E58CBA',X'353330363031',X'35333036'),
+	(X'353330363032',X'E698ADE998B3E58CBA',X'353330363032',X'35333036'),
+	(X'353330363231',X'E9B281E794B8E58EBF',X'353330363231',X'35333036'),
+	(X'353330363232',X'E5B7A7E5AEB6E58EBF',X'353330363232',X'35333036'),
+	(X'353330363233',X'E79B90E6B4A5E58EBF',X'353330363233',X'35333036'),
+	(X'353330363234',X'E5A4A7E585B3E58EBF',X'353330363234',X'35333036'),
+	(X'353330363235',X'E6B0B8E59684E58EBF',X'353330363235',X'35333036'),
+	(X'353330363236',X'E7BBA5E6B19FE58EBF',X'353330363236',X'35333036'),
+	(X'353330363237',X'E99587E99B84E58EBF',X'353330363237',X'35333036'),
+	(X'353330363238',X'E5BD9DE889AFE58EBF',X'353330363238',X'35333036'),
+	(X'353330363239',X'E5A881E4BFA1E58EBF',X'353330363239',X'35333036'),
+	(X'353330363330',X'E6B0B4E5AF8CE58EBF',X'353330363330',X'35333036'),
+	(X'35333037',X'E4B8BDE6B19FE5B882',X'35333037',X'3533'),
+	(X'353330373031',X'E5B882E8BE96E58CBA',X'353330373031',X'35333037'),
+	(X'353330373032',X'E58FA4E59F8EE58CBA',X'353330373032',X'35333037'),
+	(X'353330373231',X'E78E89E9BE99E58EBF',X'353330373231',X'35333037'),
+	(X'353330373232',X'E6B0B8E8839CE58EBF',X'353330373232',X'35333037'),
+	(X'353330373233',X'E58D8EE59DAAE58EBF',X'353330373233',X'35333037'),
+	(X'353330373234',X'E5AE81E89297E58EBF',X'353330373234',X'35333037'),
+	(X'35333038',X'E6809DE88C85E5B882',X'35333038',X'3533'),
+	(X'353330383031',X'E5B882E8BE96E58CBA',X'353330383031',X'35333038'),
+	(X'353330383032',X'E7BFA0E4BA91E58CBA',X'353330383032',X'35333038'),
+	(X'353330383231',X'E699AEE6B4B1E58EBF',X'353330383231',X'35333038'),
+	(X'353330383232',X'E5A2A8E6B19FE58EBF',X'353330383232',X'35333038'),
+	(X'353330383233',X'E699AFE4B89CE58EBF',X'353330383233',X'35333038'),
+	(X'353330383234',X'E699AFE8B0B7E58EBF',X'353330383234',X'35333038'),
+	(X'353330383235',X'E99587E6B285E58EBF',X'353330383235',X'35333038'),
+	(X'353330383236',X'E6B19FE59F8EE58EBF',X'353330383236',X'35333038'),
+	(X'353330383237',X'E5AD9FE8BF9EE58EBF',X'353330383237',X'35333038'),
+	(X'353330383238',X'E6BE9CE6B2A7E58EBF',X'353330383238',X'35333038'),
+	(X'353330383239',X'E8A5BFE79B9FE58EBF',X'353330383239',X'35333038'),
+	(X'35333039',X'E4B8B4E6B2A7E5B882',X'35333039',X'3533'),
+	(X'353330393031',X'E5B882E8BE96E58CBA',X'353330393031',X'35333039'),
+	(X'353330393032',X'E4B8B4E7BF94E58CBA',X'353330393032',X'35333039'),
+	(X'353330393231',X'E587A4E5BA86E58EBF',X'353330393231',X'35333039'),
+	(X'353330393232',X'E4BA91E58EBF',X'353330393232',X'35333039'),
+	(X'353330393233',X'E6B0B8E5BEB7E58EBF',X'353330393233',X'35333039'),
+	(X'353330393234',X'E99587E5BAB7E58EBF',X'353330393234',X'35333039'),
+	(X'353330393235',X'E58F8CE6B19FE58EBF',X'353330393235',X'35333039'),
+	(X'353330393236',X'E880BFE9A9ACE58EBF',X'353330393236',X'35333039'),
+	(X'353330393237',X'E6B2A7E6BA90E58EBF',X'353330393237',X'35333039'),
+	(X'35333233',X'E6A59AE99B84E5B79E',X'35333233',X'3533'),
+	(X'353332333031',X'E6A59AE99B84E5B882',X'353332333031',X'35333233'),
+	(X'353332333232',X'E58F8CE69F8FE58EBF',X'353332333232',X'35333233'),
+	(X'353332333233',X'E7899FE5AE9AE58EBF',X'353332333233',X'35333233'),
+	(X'353332333234',X'E58D97E58D8EE58EBF',X'353332333234',X'35333233'),
+	(X'353332333235',X'E5A79AE5AE89E58EBF',X'353332333235',X'35333233'),
+	(X'353332333236',X'E5A4A7E5A79AE58EBF',X'353332333236',X'35333233'),
+	(X'353332333237',X'E6B0B8E4BB81E58EBF',X'353332333237',X'35333233'),
+	(X'353332333238',X'E58583E8B08BE58EBF',X'353332333238',X'35333233'),
+	(X'353332333239',X'E6ADA6E5AE9AE58EBF',X'353332333239',X'35333233'),
+	(X'353332333331',X'E7A684E4B8B0E58EBF',X'353332333331',X'35333233'),
+	(X'35333235',X'E7BAA2E6B2B3E5B79E',X'35333235',X'3533'),
+	(X'353332353031',X'E4B8AAE697A7E5B882',X'353332353031',X'35333235'),
+	(X'353332353032',X'E5BC80E8BF9CE5B882',X'353332353032',X'35333235'),
+	(X'353332353232',X'E89299E887AAE58EBF',X'353332353232',X'35333235'),
+	(X'353332353233',X'E5B18FE8BEB9E58EBF',X'353332353233',X'35333235'),
+	(X'353332353234',X'E5BBBAE6B0B4E58EBF',X'353332353234',X'35333235'),
+	(X'353332353235',X'E79FB3E5B18FE58EBF',X'353332353235',X'35333235'),
+	(X'353332353236',X'E5BCA5E58B92E58EBF',X'353332353236',X'35333235'),
+	(X'353332353237',X'E6B3B8E8A5BFE58EBF',X'353332353237',X'35333235'),
+	(X'353332353238',X'E58583E998B3E58EBF',X'353332353238',X'35333235'),
+	(X'353332353239',X'E7BAA2E6B2B3E58EBF',X'353332353239',X'35333235'),
+	(X'353332353330',X'E98791E5B9B3E58EBF',X'353332353330',X'35333235'),
+	(X'353332353331',X'E7BBBFE698A5E58EBF',X'353332353331',X'35333235'),
+	(X'353332353332',X'E6B2B3E58FA3E58EBF',X'353332353332',X'35333235'),
+	(X'35333236',X'E69687E5B1B1E5B79E',X'35333236',X'3533'),
+	(X'353332363231',X'E69687E5B1B1E58EBF',X'353332363231',X'35333236'),
+	(X'353332363232',X'E7A09AE5B1B1E58EBF',X'353332363232',X'35333236'),
+	(X'353332363233',X'E8A5BFE795B4E58EBF',X'353332363233',X'35333236'),
+	(X'353332363234',X'E9BABBE6A097E59DA1E58EBF',X'353332363234',X'35333236'),
+	(X'353332363235',X'E9A9ACE585B3E58EBF',X'353332363235',X'35333236'),
+	(X'353332363236',X'E4B898E58C97E58EBF',X'353332363236',X'35333236'),
+	(X'353332363237',X'E5B9BFE58D97E58EBF',X'353332363237',X'35333236'),
+	(X'353332363238',X'E5AF8CE5AE81E58EBF',X'353332363238',X'35333236'),
+	(X'35333238',X'E8A5BFE58F8CE78988E7BAB3E5B79E',X'35333238',X'3533'),
+	(X'353332383031',X'E699AFE6B4AAE5B882',X'353332383031',X'35333238'),
+	(X'353332383232',X'E58B90E6B5B7E58EBF',X'353332383232',X'35333238'),
+	(X'353332383233',X'E58B90E8858AE58EBF',X'353332383233',X'35333238'),
+	(X'35333239',X'E5A4A7E79086E5B79E',X'35333239',X'3533'),
+	(X'353332393031',X'E5A4A7E79086E5B882',X'353332393031',X'35333239'),
+	(X'353332393232',X'E6BCBEE6BF9EE58EBF',X'353332393232',X'35333239'),
+	(X'353332393233',X'E7A5A5E4BA91E58EBF',X'353332393233',X'35333239'),
+	(X'353332393234',X'E5AEBEE5B79DE58EBF',X'353332393234',X'35333239'),
+	(X'353332393235',X'E5BCA5E6B8A1E58EBF',X'353332393235',X'35333239'),
+	(X'353332393236',X'E58D97E6B6A7E58EBF',X'353332393236',X'35333239'),
+	(X'353332393237',X'E5B78DE5B1B1E58EBF',X'353332393237',X'35333239'),
+	(X'353332393238',X'E6B0B8E5B9B3E58EBF',X'353332393238',X'35333239'),
+	(X'353332393239',X'E4BA91E9BE99E58EBF',X'353332393239',X'35333239'),
+	(X'353332393330',X'E6B4B1E6BA90E58EBF',X'353332393330',X'35333239'),
+	(X'353332393331',X'E58991E5B79DE58EBF',X'353332393331',X'35333239'),
+	(X'353332393332',X'E9B9A4E5BA86E58EBF',X'353332393332',X'35333239'),
+	(X'35333331',X'E5BEB7E5AE8FE5B79E',X'35333331',X'3533'),
+	(X'353333313032',X'E7919EE4B8BDE5B882',X'353333313032',X'35333331'),
+	(X'353333313033',X'E6BD9EE8A5BFE5B882',X'353333313033',X'35333331'),
+	(X'353333313232',X'E6A281E6B2B3E58EBF',X'353333313232',X'35333331'),
+	(X'353333313233',X'E79B88E6B19FE58EBF',X'353333313233',X'35333331'),
+	(X'353333313234',X'E99987E5B79DE58EBF',X'353333313234',X'35333331'),
+	(X'35333333',X'E68092E6B19FE5B79E',X'35333333',X'3533'),
+	(X'353333333231',X'E6B3B8E6B0B4E58EBF',X'353333333231',X'35333333'),
+	(X'353333333233',X'E7A68FE8B4A1E58EBF',X'353333333233',X'35333333'),
+	(X'353333333234',X'E8B4A1E5B1B1E58EBF',X'353333333234',X'35333333'),
+	(X'353333333235',X'E585B0E59DAAE58EBF',X'353333333235',X'35333333'),
+	(X'35333334',X'E8BFAAE5BA86E5B79E',X'35333334',X'3533'),
+	(X'353333343231',X'E9A699E6A0BCE9878CE68B89E58EBF',X'353333343231',X'35333334'),
+	(X'353333343232',X'E5BEB7E992A6E58EBF',X'353333343232',X'35333334'),
+	(X'353333343233',X'E7BBB4E8A5BFE58EBF',X'353333343233',X'35333334'),
+	(X'3534',X'E8A5BFE8978FE887AAE6B2BBE58CBA',X'3534',X'31'),
+	(X'35343031',X'E68B89E890A8E5B882',X'35343031',X'3534'),
+	(X'353430313031',X'E5B882E8BE96E58CBA',X'353430313031',X'35343031'),
+	(X'353430313032',X'E59F8EE585B3E58CBA',X'353430313032',X'35343031'),
+	(X'353430313231',X'E69E97E591A8E58EBF',X'353430313231',X'35343031'),
+	(X'353430313232',X'E5BD93E99B84E58EBF',X'353430313232',X'35343031'),
+	(X'353430313233',X'E5B0BCE69CA8E58EBF',X'353430313233',X'35343031'),
+	(X'353430313234',X'E69BB2E6B0B4E58EBF',X'353430313234',X'35343031'),
+	(X'353430313235',X'E5A086E9BE99E5BEB7E5BA86',X'353430313235',X'35343031'),
+	(X'353430313236',X'E8BEBEE5AD9CE58EBF',X'353430313236',X'35343031'),
+	(X'353430313237',X'E5A2A8E7ABB9E5B7A5E58DA1E58EBF',X'353430313237',X'35343031'),
+	(X'35343231',X'E6988CE983BDE59CB0E58CBA',X'35343231',X'3534'),
+	(X'353432313231',X'E6988CE983BDE58EBF',X'353432313231',X'35343231'),
+	(X'353432313232',X'E6B19FE8BEBEE58EBF',X'353432313232',X'35343231'),
+	(X'353432313233',X'E8B4A1E8A789E58EBF',X'353432313233',X'35343231'),
+	(X'353432313234',X'E7B1BBE4B98CE9BD90E58EBF',X'353432313234',X'35343231'),
+	(X'353432313235',X'E4B881E99D92E58EBF',X'353432313235',X'35343231'),
+	(X'353432313236',X'E5AF9FE4BA9AE58EBF',X'353432313236',X'35343231'),
+	(X'353432313237',X'E585ABE5AEBFE58EBF',X'353432313237',X'35343231'),
+	(X'353432313238',X'E5B7A6E8B4A1E58EBF',X'353432313238',X'35343231'),
+	(X'353432313239',X'E88A92E5BAB7E58EBF',X'353432313239',X'35343231'),
+	(X'353432313332',X'E6B49BE99A86E58EBF',X'353432313332',X'35343231'),
+	(X'353432313333',X'E8BEB9E59D9DE58EBF',X'353432313333',X'35343231'),
+	(X'35343232',X'E5B1B1E58D97E59CB0E58CBA',X'35343232',X'3534'),
+	(X'353432323231',X'E4B983E4B89CE58EBF',X'353432323231',X'35343232'),
+	(X'353432323232',X'E6898EE59B8AE58EBF',X'353432323232',X'35343232'),
+	(X'353432323233',X'E8B4A1E5988EE58EBF',X'353432323233',X'35343232'),
+	(X'353432323234',X'E6A191E697A5E58EBF',X'353432323234',X'35343232'),
+	(X'353432323235',X'E790BCE7BB93E58EBF',X'353432323235',X'35343232'),
+	(X'353432323236',X'E69BB2E69DBEE58EBF',X'353432323236',X'35343232'),
+	(X'353432323237',X'E68EAAE7BE8EE58EBF',X'353432323237',X'35343232'),
+	(X'353432323238',X'E6B49BE6898EE58EBF',X'353432323238',X'35343232'),
+	(X'353432323239',X'E58AA0E69FA5E58EBF',X'353432323239',X'35343232'),
+	(X'353432323331',X'E99A86E5AD90E58EBF',X'353432323331',X'35343232'),
+	(X'353432323332',X'E99499E982A3E58EBF',X'353432323332',X'35343232'),
+	(X'353432323333',X'E6B5AAE58DA1E5AD90E58EBF',X'353432323333',X'35343232'),
+	(X'35343233',X'E697A5E59680E58899E59CB0E58CBA',X'35343233',X'3534'),
+	(X'353432333031',X'E697A5E59680E58899E5B882',X'353432333031',X'35343233'),
+	(X'353432333232',X'E58D97E69CA8E69E97E58EBF',X'353432333232',X'35343233'),
+	(X'353432333233',X'E6B19FE5AD9CE58EBF',X'353432333233',X'35343233'),
+	(X'353432333234',X'E5AE9AE697A5E58EBF',X'353432333234',X'35343233'),
+	(X'353432333235',X'E890A8E8BFA6E58EBF',X'353432333235',X'35343233'),
+	(X'353432333236',X'E68B89E5AD9CE58EBF',X'353432333236',X'35343233'),
+	(X'353432333237',X'E69882E4BB81E58EBF',X'353432333237',X'35343233'),
+	(X'353432333238',X'E8B0A2E9809AE997A8E58EBF',X'353432333238',X'35343233'),
+	(X'353432333239',X'E799BDE69C97E58EBF',X'353432333239',X'35343233'),
+	(X'353432333330',X'E4BB81E5B883E58EBF',X'353432333330',X'35343233'),
+	(X'353432333331',X'E5BAB7E9A9ACE58EBF',X'353432333331',X'35343233'),
+	(X'353432333332',X'E5AE9AE7BB93E58EBF',X'353432333332',X'35343233'),
+	(X'353432333333',X'E4BBB2E5B7B4E58EBF',X'353432333333',X'35343233'),
+	(X'353432333334',X'E4BA9AE4B89CE58EBF',X'353432333334',X'35343233'),
+	(X'353432333335',X'E59089E99A86E58EBF',X'353432333335',X'35343233'),
+	(X'353432333336',X'E88182E68B89E69CA8E58EBF',X'353432333336',X'35343233'),
+	(X'353432333337',X'E890A8E5988EE58EBF',X'353432333337',X'35343233'),
+	(X'353432333338',X'E5B297E5B7B4E58EBF',X'353432333338',X'35343233'),
+	(X'35343234',X'E982A3E69BB2E59CB0E58CBA',X'35343234',X'3534'),
+	(X'353432343231',X'E982A3E69BB2E58EBF',X'353432343231',X'35343234'),
+	(X'353432343232',X'E59889E9BB8EE58EBF',X'353432343232',X'35343234'),
+	(X'353432343233',X'E6AF94E5A682E58EBF',X'353432343233',X'35343234'),
+	(X'353432343234',X'E88182E88DA3E58EBF',X'353432343234',X'35343234'),
+	(X'353432343235',X'E5AE89E5A49AE58EBF',X'353432343235',X'35343234'),
+	(X'353432343236',X'E794B3E6898EE58EBF',X'353432343236',X'35343234'),
+	(X'353432343237',X'E7B4A2E58EBF',X'353432343237',X'35343234'),
+	(X'353432343238',X'E78FADE68888E58EBF',X'353432343238',X'35343234'),
+	(X'353432343239',X'E5B7B4E99D92E58EBF',X'353432343239',X'35343234'),
+	(X'353432343330',X'E5B0BCE78E9BE58EBF',X'353432343330',X'35343234'),
+	(X'35343235',X'E998BFE9878CE59CB0E58CBA',X'35343235',X'3534'),
+	(X'353432353231',X'E699AEE585B0E58EBF',X'353432353231',X'35343235'),
+	(X'353432353232',X'E69CADE8BEBEE58EBF',X'353432353232',X'35343235'),
+	(X'353432353233',X'E599B6E5B094E58EBF',X'353432353233',X'35343235'),
+	(X'353432353234',X'E697A5E59C9FE58EBF',X'353432353234',X'35343235'),
+	(X'353432353235',X'E99DA9E59089E58EBF',X'353432353235',X'35343235'),
+	(X'353432353236',X'E694B9E58899E58EBF',X'353432353236',X'35343235'),
+	(X'353432353237',X'E68EAAE58BA4E58EBF',X'353432353237',X'35343235'),
+	(X'35343236',X'E69E97E88A9DE59CB0E58CBA',X'35343236',X'3534'),
+	(X'353432363231',X'E69E97E88A9DE58EBF',X'353432363231',X'35343236'),
+	(X'353432363232',X'E5B7A5E5B883E6B19FE8BEBEE58EBF',X'353432363232',X'35343236'),
+	(X'353432363233',X'E7B1B3E69E97E58EBF',X'353432363233',X'35343236'),
+	(X'353432363234',X'E5A2A8E884B1E58EBF',X'353432363234',X'35343236'),
+	(X'353432363235',X'E6B3A2E5AF86E58EBF',X'353432363235',X'35343236'),
+	(X'353432363236',X'E5AF9FE99A85E58EBF',X'353432363236',X'35343236'),
+	(X'353432363237',X'E69C97E58EBF',X'353432363237',X'35343236'),
+	(X'3631',X'E99995E8A5BFE79C81',X'3631',X'31'),
+	(X'36313031',X'E8A5BFE5AE89E5B882',X'36313031',X'3631'),
+	(X'363130313031',X'E5B882E8BE96E58CBA',X'363130313031',X'36313031'),
+	(X'363130313032',X'E696B0E59F8EE58CBA',X'363130313032',X'36313031'),
+	(X'363130313033',X'E7A291E69E97E58CBA',X'363130313033',X'36313031'),
+	(X'363130313034',X'E88EB2E6B996E58CBA',X'363130313034',X'36313031'),
+	(X'363130313131',X'E7819EE6A1A5E58CBA',X'363130313131',X'36313031'),
+	(X'363130313132',X'E69CAAE5A4AEE58CBA',X'363130313132',X'36313031'),
+	(X'363130313133',X'E99B81E5A194E58CBA',X'363130313133',X'36313031'),
+	(X'363130313134',X'E9988EE889AFE58CBA',X'363130313134',X'36313031'),
+	(X'363130313135',X'E4B8B4E6BDBCE58CBA',X'363130313135',X'36313031'),
+	(X'363130313136',X'E995BFE5AE89E58CBA',X'363130313136',X'36313031'),
+	(X'363130313232',X'E8939DE794B0E58EBF',X'363130313232',X'36313031'),
+	(X'363130313234',X'E591A8E887B3E58EBF',X'363130313234',X'36313031'),
+	(X'363130313235',X'E688B7E58EBF',X'363130313235',X'36313031'),
+	(X'363130313236',X'E9AB98E999B5E58EBF',X'363130313236',X'36313031'),
+	(X'36313032',X'E9939CE5B79DE5B882',X'36313032',X'3631'),
+	(X'363130323031',X'E5B882E8BE96E58CBA',X'363130323031',X'36313032'),
+	(X'363130323032',X'E78E8BE79B8AE58CBA',X'363130323032',X'36313032'),
+	(X'363130323033',X'E58DB0E58FB0E58CBA',X'363130323033',X'36313032'),
+	(X'363130323034',X'E88080E5B79EE58CBA',X'363130323034',X'36313032'),
+	(X'363130323232',X'E5AE9CE5909BE58EBF',X'363130323232',X'36313032'),
+	(X'36313033',X'E5AE9DE9B8A1E5B882',X'36313033',X'3631'),
+	(X'363130333031',X'E5B882E8BE96E58CBA',X'363130333031',X'36313033'),
+	(X'363130333032',X'E6B8ADE6BBA8E58CBA',X'363130333032',X'36313033'),
+	(X'363130333033',X'E98791E58FB0E58CBA',X'363130333033',X'36313033'),
+	(X'363130333034',X'E99988E4BB93E58CBA',X'363130333034',X'36313033'),
+	(X'363130333232',X'E587A4E7BF94E58EBF',X'363130333232',X'36313033'),
+	(X'363130333233',X'E5B290E5B1B1E58EBF',X'363130333233',X'36313033'),
+	(X'363130333234',X'E689B6E9A38EE58EBF',X'363130333234',X'36313033'),
+	(X'363130333236',X'E79C89E58EBF',X'363130333236',X'36313033'),
+	(X'363130333237',X'E99987E58EBF',X'363130333237',X'36313033'),
+	(X'363130333238',X'E58D83E998B3E58EBF',X'363130333238',X'36313033'),
+	(X'363130333239',X'E9BA9FE6B8B8E58EBF',X'363130333239',X'36313033'),
+	(X'363130333330',X'E587A4E58EBF',X'363130333330',X'36313033'),
+	(X'363130333331',X'E5A4AAE799BDE58EBF',X'363130333331',X'36313033'),
+	(X'36313034',X'E592B8E998B3E5B882',X'36313034',X'3631'),
+	(X'363130343031',X'E5B882E8BE96E58CBA',X'363130343031',X'36313034'),
+	(X'363130343032',X'E7A7A6E983BDE58CBA',X'363130343032',X'36313034'),
+	(X'363130343033',X'E69DA8E5878CE58CBA',X'363130343033',X'36313034'),
+	(X'363130343034',X'E6B8ADE59F8EE58CBA',X'363130343034',X'36313034'),
+	(X'363130343232',X'E4B889E58E9FE58EBF',X'363130343232',X'36313034'),
+	(X'363130343233',X'E6B3BEE998B3E58EBF',X'363130343233',X'36313034'),
+	(X'363130343234',X'E4B9BEE58EBF',X'363130343234',X'36313034'),
+	(X'363130343235',X'E7A4BCE6B389E58EBF',X'363130343235',X'36313034'),
+	(X'363130343236',X'E6B0B8E5AFBFE58EBF',X'363130343236',X'36313034'),
+	(X'363130343237',X'E5BDACE58EBF',X'363130343237',X'36313034'),
+	(X'363130343238',X'E995BFE6ADA6E58EBF',X'363130343238',X'36313034'),
+	(X'363130343239',X'E697ACE98291E58EBF',X'363130343239',X'36313034'),
+	(X'363130343330',X'E6B7B3E58C96E58EBF',X'363130343330',X'36313034'),
+	(X'363130343331',X'E6ADA6E58A9FE58EBF',X'363130343331',X'36313034'),
+	(X'363130343831',X'E585B4E5B9B3E5B882',X'363130343831',X'36313034'),
+	(X'36313035',X'E6B8ADE58D97E5B882',X'36313035',X'3631'),
+	(X'363130353031',X'E5B882E8BE96E58CBA',X'363130353031',X'36313035'),
+	(X'363130353032',X'E4B8B4E6B8ADE58CBA',X'363130353032',X'36313035'),
+	(X'363130353231',X'E58D8EE58EBF',X'363130353231',X'36313035'),
+	(X'363130353232',X'E6BDBCE585B3E58EBF',X'363130353232',X'36313035'),
+	(X'363130353233',X'E5A4A7E88D94E58EBF',X'363130353233',X'36313035'),
+	(X'363130353234',X'E59088E998B3E58EBF',X'363130353234',X'36313035'),
+	(X'363130353235',X'E6BE84E59F8EE58EBF',X'363130353235',X'36313035'),
+	(X'363130353236',X'E892B2E59F8EE58EBF',X'363130353236',X'36313035'),
+	(X'363130353237',X'E799BDE6B0B4E58EBF',X'363130353237',X'36313035'),
+	(X'363130353238',X'E5AF8CE5B9B3E58EBF',X'363130353238',X'36313035'),
+	(X'363130353831',X'E99FA9E59F8EE5B882',X'363130353831',X'36313035'),
+	(X'363130353832',X'E58D8EE998B4E5B882',X'363130353832',X'36313035'),
+	(X'36313036',X'E5BBB6E5AE89E5B882',X'36313036',X'3631'),
+	(X'363130363031',X'E5B882E8BE96E58CBA',X'363130363031',X'36313036'),
+	(X'363130363032',X'E5AE9DE5A194E58CBA',X'363130363032',X'36313036'),
+	(X'363130363231',X'E5BBB6E995BFE58EBF',X'363130363231',X'36313036'),
+	(X'363130363232',X'E5BBB6E5B79DE58EBF',X'363130363232',X'36313036'),
+	(X'363130363233',X'E5AD90E995BFE58EBF',X'363130363233',X'36313036'),
+	(X'363130363234',X'E5AE89E5A19EE58EBF',X'363130363234',X'36313036'),
+	(X'363130363235',X'E5BF97E4B8B9E58EBF',X'363130363235',X'36313036'),
+	(X'363130363236',X'E590B4E8B5B7E58EBF',X'363130363236',X'36313036'),
+	(X'363130363237',X'E79498E6B389E58EBF',X'363130363237',X'36313036'),
+	(X'363130363238',X'E5AF8CE58EBF',X'363130363238',X'36313036'),
+	(X'363130363239',X'E6B49BE5B79DE58EBF',X'363130363239',X'36313036'),
+	(X'363130363330',X'E5AE9CE5B79DE58EBF',X'363130363330',X'36313036'),
+	(X'363130363331',X'E9BB84E9BE99E58EBF',X'363130363331',X'36313036'),
+	(X'363130363332',X'E9BB84E999B5E58EBF',X'363130363332',X'36313036'),
+	(X'36313037',X'E6B189E4B8ADE5B882',X'36313037',X'3631'),
+	(X'363130373031',X'E5B882E8BE96E58CBA',X'363130373031',X'36313037'),
+	(X'363130373032',X'E6B189E58FB0E58CBA',X'363130373032',X'36313037'),
+	(X'363130373231',X'E58D97E98391E58EBF',X'363130373231',X'36313037'),
+	(X'363130373232',X'E59F8EE59BBAE58EBF',X'363130373232',X'36313037'),
+	(X'363130373233',X'E6B48BE58EBF',X'363130373233',X'36313037'),
+	(X'363130373234',X'E8A5BFE4B9A1E58EBF',X'363130373234',X'36313037'),
+	(X'363130373235',X'E58B89E58EBF',X'363130373235',X'36313037'),
+	(X'363130373236',X'E5AE81E5BCBAE58EBF',X'363130373236',X'36313037'),
+	(X'363130373237',X'E795A5E998B3E58EBF',X'363130373237',X'36313037'),
+	(X'363130373238',X'E99587E5B7B4E58EBF',X'363130373238',X'36313037'),
+	(X'363130373239',X'E79599E59D9DE58EBF',X'363130373239',X'36313037'),
+	(X'363130373330',X'E4BD9BE59DAAE58EBF',X'363130373330',X'36313037'),
+	(X'36313038',X'E6A686E69E97E5B882',X'36313038',X'3631'),
+	(X'363130383031',X'E5B882E8BE96E58CBA',X'363130383031',X'36313038'),
+	(X'363130383032',X'E6A686E998B3E58CBA',X'363130383032',X'36313038'),
+	(X'363130383231',X'E7A59EE69CA8E58EBF',X'363130383231',X'36313038'),
+	(X'363130383232',X'E5BA9CE8B0B7E58EBF',X'363130383232',X'36313038'),
+	(X'363130383233',X'E6A8AAE5B1B1E58EBF',X'363130383233',X'36313038'),
+	(X'363130383234',X'E99D96E8BEB9E58EBF',X'363130383234',X'36313038'),
+	(X'363130383235',X'E5AE9AE8BEB9E58EBF',X'363130383235',X'36313038'),
+	(X'363130383236',X'E7BBA5E5BEB7E58EBF',X'363130383236',X'36313038'),
+	(X'363130383237',X'E7B1B3E88482E58EBF',X'363130383237',X'36313038'),
+	(X'363130383238',X'E4BDB3E58EBF',X'363130383238',X'36313038'),
+	(X'363130383239',X'E590B4E5A0A1E58EBF',X'363130383239',X'36313038'),
+	(X'363130383330',X'E6B885E6B6A7E58EBF',X'363130383330',X'36313038'),
+	(X'363130383331',X'E5AD90E6B4B2E58EBF',X'363130383331',X'36313038'),
+	(X'36313039',X'E5AE89E5BAB7E5B882',X'36313039',X'3631'),
+	(X'363130393031',X'E5B882E8BE96E58CBA',X'363130393031',X'36313039'),
+	(X'363130393032',X'E6B189E6BBA8E58CBA',X'363130393032',X'36313039'),
+	(X'363130393231',X'E6B189E998B4E58EBF',X'363130393231',X'36313039'),
+	(X'363130393232',X'E79FB3E6B389E58EBF',X'363130393232',X'36313039'),
+	(X'363130393233',X'E5AE81E99995E58EBF',X'363130393233',X'36313039'),
+	(X'363130393234',X'E7B4ABE998B3E58EBF',X'363130393234',X'36313039'),
+	(X'363130393235',X'E5B29AE79A8BE58EBF',X'363130393235',X'36313039'),
+	(X'363130393236',X'E5B9B3E588A9E58EBF',X'363130393236',X'36313039'),
+	(X'363130393237',X'E99587E59DAAE58EBF',X'363130393237',X'36313039'),
+	(X'363130393238',X'E697ACE998B3E58EBF',X'363130393238',X'36313039'),
+	(X'363130393239',X'E799BDE6B2B3E58EBF',X'363130393239',X'36313039'),
+	(X'36313130',X'E59586E6B49BE5B882',X'36313130',X'3631'),
+	(X'363131303031',X'E5B882E8BE96E58CBA',X'363131303031',X'36313130'),
+	(X'363131303032',X'E59586E5B79EE58CBA',X'363131303032',X'36313130'),
+	(X'363131303231',X'E6B49BE58D97E58EBF',X'363131303231',X'36313130'),
+	(X'363131303232',X'E4B8B9E587A4E58EBF',X'363131303232',X'36313130'),
+	(X'363131303233',X'E59586E58D97E58EBF',X'363131303233',X'36313130'),
+	(X'363131303234',X'E5B1B1E998B3E58EBF',X'363131303234',X'36313130'),
+	(X'363131303235',X'E99587E5AE89E58EBF',X'363131303235',X'36313130'),
+	(X'363131303236',X'E69F9EE6B0B4E58EBF',X'363131303236',X'36313130'),
+	(X'3632',X'E79498E88283E79C81',X'3632',X'31'),
+	(X'36323031',X'E585B0E5B79EE5B882',X'36323031',X'3632'),
+	(X'363230313031',X'E5B882E8BE96E58CBA',X'363230313031',X'36323031'),
+	(X'363230313032',X'E59F8EE585B3E58CBA',X'363230313032',X'36323031'),
+	(X'363230313033',X'E4B883E9878CE6B2B3E58CBA',X'363230313033',X'36323031'),
+	(X'363230313034',X'E585B0E5B79EE5B882E8A5BFE59BBAE58CBA',X'363230313034',X'36323031'),
+	(X'363230313035',X'E5AE89E5AE81E58CBA',X'363230313035',X'36323031'),
+	(X'363230313131',X'E7BAA2E58FA4E58CBA',X'363230313131',X'36323031'),
+	(X'363230313231',X'E6B0B8E799BBE58EBF',X'363230313231',X'36323031'),
+	(X'363230313232',X'E79A8BE585B0E58EBF',X'363230313232',X'36323031'),
+	(X'363230313233',X'E6A686E4B8ADE58EBF',X'363230313233',X'36323031'),
+	(X'36323032',X'E59889E5B3AAE585B3E5B882',X'36323032',X'3632'),
+	(X'363230323031',X'E5B882E8BE96',X'363230323031',X'36323032'),
+	(X'36323033',X'E98791E6988CE5B882',X'36323033',X'3632'),
+	(X'363230333031',X'E5B882E8BE96E58CBA',X'363230333031',X'36323033'),
+	(X'363230333032',X'E98791E5B79DE58CBA',X'363230333032',X'36323033'),
+	(X'363230333231',X'E6B0B8E6988CE58EBF',X'363230333231',X'36323033'),
+	(X'36323034',X'E799BDE993B6E5B882',X'36323034',X'3632'),
+	(X'363230343031',X'E5B882E8BE96E58CBA',X'363230343031',X'36323034'),
+	(X'363230343032',X'E799BDE993B6E58CBA',X'363230343032',X'36323034'),
+	(X'363230343033',X'E5B9B3E5B79DE58CBA',X'363230343033',X'36323034'),
+	(X'363230343231',X'E99D96E8BF9CE58EBF',X'363230343231',X'36323034'),
+	(X'363230343232',X'E4BC9AE5AE81E58EBF',X'363230343232',X'36323034'),
+	(X'363230343233',X'E699AFE6B3B0E58EBF',X'363230343233',X'36323034'),
+	(X'36323035',X'E5A4A9E6B0B4E5B882',X'36323035',X'3632'),
+	(X'363230353031',X'E5B882E8BE96E58CBA',X'363230353031',X'36323035'),
+	(X'363230353032',X'E7A7A6E5B79EE58CBA',X'363230353032',X'36323035'),
+	(X'363230353033',X'E9BAA6E7A7AFE58CBA',X'363230353033',X'36323035'),
+	(X'363230353231',X'E6B885E6B0B4E58EBF',X'363230353231',X'36323035'),
+	(X'363230353232',X'E7A7A6E5AE89E58EBF',X'363230353232',X'36323035'),
+	(X'363230353233',X'E79498E8B0B7E58EBF',X'363230353233',X'36323035'),
+	(X'363230353234',X'E6ADA6E5B1B1E58EBF',X'363230353234',X'36323035'),
+	(X'363230353235',X'E5BCA0E5AEB6E5B79DE58EBF',X'363230353235',X'36323035'),
+	(X'36323036',X'E6ADA6E5A881E5B882',X'36323036',X'3632'),
+	(X'363230363031',X'E5B882E8BE96E58CBA',X'363230363031',X'36323036'),
+	(X'363230363032',X'E58789E5B79EE58CBA',X'363230363032',X'36323036'),
+	(X'363230363231',X'E6B091E58BA4E58EBF',X'363230363231',X'36323036'),
+	(X'363230363232',X'E58FA4E6B5AAE58EBF',X'363230363232',X'36323036'),
+	(X'363230363233',X'E5A4A9E7A59DE58EBF',X'363230363233',X'36323036'),
+	(X'36323037',X'E5BCA0E68E96E5B882',X'36323037',X'3632'),
+	(X'363230373031',X'E5B882E8BE96E58CBA',X'363230373031',X'36323037'),
+	(X'363230373032',X'E79498E5B79EE58CBA',X'363230373032',X'36323037'),
+	(X'363230373231',X'E88283E58D97E8A395E59BBAE6978FE887AAE6B2BBE58EBF',X'363230373231',X'36323037'),
+	(X'363230373232',X'E6B091E4B990E58EBF',X'363230373232',X'36323037'),
+	(X'363230373233',X'E4B8B4E6B3BDE58EBF',X'363230373233',X'36323037'),
+	(X'363230373234',X'E9AB98E58FB0E58EBF',X'363230373234',X'36323037'),
+	(X'363230373235',X'E5B1B1E4B8B9E58EBF',X'363230373235',X'36323037'),
+	(X'36323038',X'E5B9B3E58789E5B882',X'36323038',X'3632'),
+	(X'363230383031',X'E5B882E8BE96E58CBA',X'363230383031',X'36323038'),
+	(X'363230383032',X'E5B486E5B392E58CBA',X'363230383032',X'36323038'),
+	(X'363230383231',X'E6B3BEE5B79DE58EBF',X'363230383231',X'36323038'),
+	(X'363230383232',X'E781B5E58FB0E58EBF',X'363230383232',X'36323038'),
+	(X'363230383233',X'E5B487E4BFA1E58EBF',X'363230383233',X'36323038'),
+	(X'363230383234',X'E58D8EE4BAADE58EBF',X'363230383234',X'36323038'),
+	(X'363230383235',X'E5BA84E6B5AAE58EBF',X'363230383235',X'36323038'),
+	(X'363230383236',X'E99D99E5AE81E58EBF',X'363230383236',X'36323038'),
+	(X'36323039',X'E98592E6B389E5B882',X'36323039',X'3632'),
+	(X'363230393031',X'E5B882E8BE96E58CBA',X'363230393031',X'36323039'),
+	(X'363230393032',X'E88283E5B79EE58CBA',X'363230393032',X'36323039'),
+	(X'363230393231',X'E98791E5A194E58EBF',X'363230393231',X'36323039'),
+	(X'363230393232',X'E7939CE5B79EE58EBF',X'363230393232',X'36323039'),
+	(X'363230393233',X'E88283E58C97E89299E58FA4E6978FE887AAE6B2BBE58EBF',X'363230393233',X'36323039'),
+	(X'363230393234',X'E998BFE5858BE5A19EE58EBF',X'363230393234',X'36323039'),
+	(X'363230393831',X'E78E89E997A8E5B882',X'363230393831',X'36323039'),
+	(X'363230393832',X'E695A6E7858CE5B882',X'363230393832',X'36323039'),
+	(X'36323130',X'E5BA86E998B3E5B882',X'36323130',X'3632'),
+	(X'363231303031',X'E5B882E8BE96E58CBA',X'363231303031',X'36323130'),
+	(X'363231303032',X'E8A5BFE5B3B0E58CBA',X'363231303032',X'36323130'),
+	(X'363231303231',X'E5BA86E59F8EE58EBF',X'363231303231',X'36323130'),
+	(X'363231303232',X'E78EAFE58EBF',X'363231303232',X'36323130'),
+	(X'363231303233',X'E58D8EE6B1A0E58EBF',X'363231303233',X'36323130'),
+	(X'363231303234',X'E59088E6B0B4E58EBF',X'363231303234',X'36323130'),
+	(X'363231303235',X'E6ADA3E5AE81E58EBF',X'363231303235',X'36323130'),
+	(X'363231303236',X'E5AE81E58EBF',X'363231303236',X'36323130'),
+	(X'363231303237',X'E99587E58E9FE58EBF',X'363231303237',X'36323130'),
+	(X'36323131',X'E5AE9AE8A5BFE5B882',X'36323131',X'3632'),
+	(X'363231313031',X'E5B882E8BE96E58CBA',X'363231313031',X'36323131'),
+	(X'363231313032',X'E5AE89E5AE9AE58CBA',X'363231313032',X'36323131'),
+	(X'363231313231',X'E9809AE6B8ADE58EBF',X'363231313231',X'36323131'),
+	(X'363231313232',X'E99987E8A5BFE58EBF',X'363231313232',X'36323131'),
+	(X'363231313233',X'E6B8ADE6BA90E58EBF',X'363231313233',X'36323131'),
+	(X'363231313234',X'E4B8B4E6B4AEE58EBF',X'363231313234',X'36323131'),
+	(X'363231313235',X'E6BCB3E58EBF',X'363231313235',X'36323131'),
+	(X'363231313236',X'E5B2B7E58EBF',X'363231313236',X'36323131'),
+	(X'36323132',X'E99987E58D97E5B882',X'36323132',X'3632'),
+	(X'363231323031',X'E5B882E8BE96E58CBA',X'363231323031',X'36323132'),
+	(X'363231323032',X'E6ADA6E983BDE58CBA',X'363231323032',X'36323132'),
+	(X'363231323231',X'E68890E58EBF',X'363231323231',X'36323132'),
+	(X'363231323232',X'E69687E58EBF',X'363231323232',X'36323132'),
+	(X'363231323233',X'E5AE95E6988CE58EBF',X'363231323233',X'36323132'),
+	(X'363231323234',X'E5BAB7E58EBF',X'363231323234',X'36323132'),
+	(X'363231323235',X'E8A5BFE5928CE58EBF',X'363231323235',X'36323132'),
+	(X'363231323236',X'E7A4BCE58EBF',X'363231323236',X'36323132'),
+	(X'363231323237',X'E5BEBDE58EBF',X'363231323237',X'36323132'),
+	(X'363231323238',X'E4B8A4E5BD93E58EBF',X'363231323238',X'36323132'),
+	(X'36323239',X'E4B8B4E5A48FE5B79E',X'36323239',X'3632'),
+	(X'363232393031',X'E4B8B4E5A48FE5B882',X'363232393031',X'36323239'),
+	(X'363232393231',X'E4B8B4E5A48FE58EBF',X'363232393231',X'36323239'),
+	(X'363232393232',X'E5BAB7E4B990E58EBF',X'363232393232',X'36323239'),
+	(X'363232393233',X'E6B0B8E99D96E58EBF',X'363232393233',X'36323239'),
+	(X'363232393234',X'E5B9BFE6B2B3E58EBF',X'363232393234',X'36323239'),
+	(X'363232393235',X'E5928CE694BFE58EBF',X'363232393235',X'36323239'),
+	(X'363232393236',X'E4B89CE4B9A1E6978FE887AAE6B2BBE58EBF',X'363232393236',X'36323239'),
+	(X'363232393237',X'E7A7AFE79FB3E5B1B1E58EBF',X'363232393237',X'36323239'),
+	(X'36323330',X'E79498E58D97E5B79E',X'36323330',X'3632'),
+	(X'363233303031',X'E59088E4BD9CE5B882',X'363233303031',X'36323330'),
+	(X'363233303231',X'E4B8B4E6BDADE58EBF',X'363233303231',X'36323330'),
+	(X'363233303232',X'E58D93E5B0BCE58EBF',X'363233303232',X'36323330'),
+	(X'363233303233',X'E8889FE69BB2E58EBF',X'363233303233',X'36323330'),
+	(X'363233303234',X'E8BFADE983A8E58EBF',X'363233303234',X'36323330'),
+	(X'363233303235',X'E78E9BE69BB2E58EBF',X'363233303235',X'36323330'),
+	(X'363233303236',X'E7A28CE69BB2E58EBF',X'363233303236',X'36323330'),
+	(X'363233303237',X'E5A48FE6B2B3E58EBF',X'363233303237',X'36323330'),
+	(X'3633',X'E99D92E6B5B7E79C81',X'3633',X'31'),
+	(X'36333031',X'E8A5BFE5AE81E5B882',X'36333031',X'3633'),
+	(X'363330313031',X'E5B882E8BE96E58CBA',X'363330313031',X'36333031'),
+	(X'363330313032',X'E59F8EE4B89CE58CBA',X'363330313032',X'36333031'),
+	(X'363330313033',X'E59F8EE4B8ADE58CBA',X'363330313033',X'36333031'),
+	(X'363330313034',X'E59F8EE8A5BFE58CBA',X'363330313034',X'36333031'),
+	(X'363330313035',X'E59F8EE58C97E58CBA',X'363330313035',X'36333031'),
+	(X'363330313231',X'E5A4A7E9809AE59B9EE6978FE59C9FE6978FE887AAE6B2BBE58EBF',X'363330313231',X'36333031'),
+	(X'363330313232',X'E6B99FE4B8ADE58EBF',X'363330313232',X'36333031'),
+	(X'363330313233',X'E6B99FE6BA90E58EBF',X'363330313233',X'36333031'),
+	(X'36333231',X'E6B5B7E4B89CE59CB0E58CBA',X'36333231',X'3633'),
+	(X'363332313231',X'E5B9B3E5AE89E58EBF',X'363332313231',X'36333231'),
+	(X'363332313232',X'E6B091E5928CE58EBF',X'363332313232',X'36333231'),
+	(X'363332313233',X'E4B990E983BDE58EBF',X'363332313233',X'36333231'),
+	(X'363332313236',X'E4BA92E58AA9E58EBF',X'363332313236',X'36333231'),
+	(X'363332313237',X'E58C96E99A86E59B9EE6978FE887AAE6B2BBE58EBF',X'363332313237',X'36333231'),
+	(X'363332313238',X'E5BEAAE58C96E58EBF',X'363332313238',X'36333231'),
+	(X'36333232',X'E6B5B7E58C97E5B79E',X'36333232',X'3633'),
+	(X'363332323231',X'E997A8E6BA90E58EBF',X'363332323231',X'36333232'),
+	(X'363332323232',X'E7A581E8BF9EE58EBF',X'363332323232',X'36333232'),
+	(X'363332323233',X'E6B5B7E6998FE58EBF',X'363332323233',X'36333232'),
+	(X'363332323234',X'E5889AE5AF9FE58EBF',X'363332323234',X'36333232'),
+	(X'36333233',X'E9BB84E58D97E5B79E',X'36333233',X'3633'),
+	(X'363332333231',X'E5908CE4BB81E58EBF',X'363332333231',X'36333233'),
+	(X'363332333232',X'E5B096E6898EE58EBF',X'363332333232',X'36333233'),
+	(X'363332333233',X'E6B3BDE5BA93E58EBF',X'363332333233',X'36333233'),
+	(X'363332333234',X'E6B2B3E58D97E58EBF',X'363332333234',X'36333233'),
+	(X'36333235',X'E6B5B7E58D97E5B79E',X'36333235',X'3633'),
+	(X'363332353231',X'E585B1E5928CE58EBF',X'363332353231',X'36333235'),
+	(X'363332353232',X'E5908CE5BEB7E58EBF',X'363332353232',X'36333235'),
+	(X'363332353233',X'E8B4B5E5BEB7E58EBF',X'363332353233',X'36333235'),
+	(X'363332353234',X'E585B4E6B5B7E58EBF',X'363332353234',X'36333235'),
+	(X'363332353235',X'E8B4B5E58D97E58EBF',X'363332353235',X'36333235'),
+	(X'36333236',X'E69E9CE6B49BE5B79E',X'36333236',X'3633'),
+	(X'363332363231',X'E78E9BE6B281E58EBF',X'363332363231',X'36333236'),
+	(X'363332363232',X'E78FADE78E9BE58EBF',X'363332363232',X'36333236'),
+	(X'363332363233',X'E79498E5BEB7E58EBF',X'363332363233',X'36333236'),
+	(X'363332363234',X'E8BEBEE697A5E58EBF',X'363332363234',X'36333236'),
+	(X'363332363235',X'E4B985E6B2BBE58EBF',X'363332363235',X'36333236'),
+	(X'363332363236',X'E78E9BE5A49AE58EBF',X'363332363236',X'36333236'),
+	(X'36333237',X'E78E89E6A091E5B79E',X'36333237',X'3633'),
+	(X'363332373231',X'E78E89E6A091E58EBF',X'363332373231',X'36333237'),
+	(X'363332373232',X'E69D82E5A49AE58EBF',X'363332373232',X'36333237'),
+	(X'363332373233',X'E7A7B0E5A49AE58EBF',X'363332373233',X'36333237'),
+	(X'363332373234',X'E6B2BBE5A49AE58EBF',X'363332373234',X'36333237'),
+	(X'363332373235',X'E59B8AE8B0A6E58EBF',X'363332373235',X'36333237'),
+	(X'363332373236',X'E69BB2E9BABBE88EB1E58EBF',X'363332373236',X'36333237'),
+	(X'36333238',X'E6B5B7E8A5BFE5B79E',X'36333238',X'3633'),
+	(X'363332383031',X'E6A0BCE5B094E69CA8E5B882',X'363332383031',X'36333238'),
+	(X'363332383032',X'E5BEB7E4BBA4E59388E5B882',X'363332383032',X'36333238'),
+	(X'363332383231',X'E4B98CE585B0E58EBF',X'363332383231',X'36333238'),
+	(X'363332383232',X'E983BDE585B0E58EBF',X'363332383232',X'36333238'),
+	(X'363332383233',X'E5A4A9E5B3BBE58EBF',X'363332383233',X'36333238'),
+	(X'3634',X'E5AE81E5A48FE59B9EE6978FE887AAE6B2BBE58CBA',X'3634',X'31'),
+	(X'36343031',X'E993B6E5B79DE5B882',X'36343031',X'3634'),
+	(X'363430313031',X'E5B882E8BE96E58CBA',X'363430313031',X'36343031'),
+	(X'363430313034',X'E585B4E5BA86E58CBA',X'363430313034',X'36343031'),
+	(X'363430313035',X'E8A5BFE5A48FE58CBA',X'363430313035',X'36343031'),
+	(X'363430313036',X'E98791E587A4E58CBA',X'363430313036',X'36343031'),
+	(X'363430313231',X'E6B0B8E5AE81E58EBF',X'363430313231',X'36343031'),
+	(X'363430313232',X'E8B4BAE585B0E58EBF',X'363430313232',X'36343031'),
+	(X'363430313831',X'E781B5E6ADA6E5B882',X'363430313831',X'36343031'),
+	(X'36343032',X'E79FB3E598B4E5B1B1E5B882',X'36343032',X'3634'),
+	(X'363430323031',X'E5B882E8BE96E58CBA',X'363430323031',X'36343032'),
+	(X'363430323032',X'E5A4A7E6ADA6E58FA3E58CBA',X'363430323032',X'36343032'),
+	(X'363430323035',X'E683A0E5869CE58CBA',X'363430323035',X'36343032'),
+	(X'363430323231',X'E5B9B3E7BD97E58EBF',X'363430323231',X'36343032'),
+	(X'36343033',X'E590B4E5BFA0E5B882',X'36343033',X'3634'),
+	(X'363430333031',X'E5B882E8BE96E58CBA',X'363430333031',X'36343033'),
+	(X'363430333032',X'E588A9E9809AE58CBA',X'363430333032',X'36343033'),
+	(X'363430333233',X'E79B90E6B1A0E58EBF',X'363430333233',X'36343033'),
+	(X'363430333234',X'E5908CE5BF83E58EBF',X'363430333234',X'36343033'),
+	(X'363430333831',X'E99D92E9939CE5B3A1E5B882',X'363430333831',X'36343033'),
+	(X'36343034',X'E59BBAE58E9FE5B882',X'36343034',X'3634'),
+	(X'363430343031',X'E5B882E8BE96E58CBA',X'363430343031',X'36343034'),
+	(X'363430343032',X'E58E9FE5B79EE58CBA',X'363430343032',X'36343034'),
+	(X'363430343232',X'E8A5BFE59089E58EBF',X'363430343232',X'36343034'),
+	(X'363430343233',X'E99A86E5BEB7E58EBF',X'363430343233',X'36343034'),
+	(X'363430343234',X'E6B3BEE6BA90E58EBF',X'363430343234',X'36343034'),
+	(X'363430343235',X'E5BDADE998B3E58EBF',X'363430343235',X'36343034'),
+	(X'36343035',X'E4B8ADE58DABE5B882',X'36343035',X'3634'),
+	(X'363430353031',X'E5B882E8BE96E58CBA',X'363430353031',X'36343035'),
+	(X'363430353032',X'E6B299E59DA1E5A4B4E58CBA',X'363430353032',X'36343035'),
+	(X'363430353231',X'E4B8ADE5AE81E58EBF',X'363430353231',X'36343035'),
+	(X'363430353232',X'E6B5B7E58E9FE58EBF',X'363430353232',X'36343035'),
+	(X'3635',X'E696B0E79686E7BBB4E590BEE5B094E887AAE6B2BBE58CBA',X'3635',X'31'),
+	(X'36353031',X'E4B98CE9B281E69CA8E9BD90E5B882',X'36353031',X'3635'),
+	(X'363530313031',X'E5B882E8BE96E58CBA',X'363530313031',X'36353031'),
+	(X'363530313032',X'E5A4A9E5B1B1E58CBA',X'363530313032',X'36353031'),
+	(X'363530313033',X'E6B299E4BE9DE5B7B4E5858BE58CBA',X'363530313033',X'36353031'),
+	(X'363530313034',X'E696B0E5B882E58CBA',X'363530313034',X'36353031'),
+	(X'363530313035',X'E6B0B4E7A3A8E6B29FE58CBA',X'363530313035',X'36353031'),
+	(X'363530313036',X'E5A4B4E5B1AFE6B2B3E58CBA',X'363530313036',X'36353031'),
+	(X'363530313037',X'E8BEBEE59D82E59F8EE58CBA',X'363530313037',X'36353031'),
+	(X'363530313038',X'E4B89CE5B1B1E58CBA',X'363530313038',X'36353031'),
+	(X'363530313231',X'E4B98CE9B281E69CA8E9BD90E58EBF',X'363530313231',X'36353031'),
+	(X'36353032',X'E5858BE68B89E78E9BE4BE9DE5B882',X'36353032',X'3635'),
+	(X'363530323031',X'E5B882E8BE96E58CBA',X'363530323031',X'36353032'),
+	(X'363530323032',X'E78BACE5B1B1E5AD90E58CBA',X'363530323032',X'36353032'),
+	(X'363530323033',X'E5858BE68B89E78E9BE4BE9DE58CBA',X'363530323033',X'36353032'),
+	(X'363530323034',X'E799BDE7A2B1E6BBA9E58CBA',X'363530323034',X'36353032'),
+	(X'363530323035',X'E4B98CE5B094E7A6BEE58CBA',X'363530323035',X'36353032'),
+	(X'36353231',X'E59090E9B281E795AAE59CB0E58CBA',X'36353231',X'3635'),
+	(X'363532313031',X'E59090E9B281E795AAE5B882',X'363532313031',X'36353231'),
+	(X'363532313232',X'E984AFE59684E58EBF',X'363532313232',X'36353231'),
+	(X'363532313233',X'E68998E5858BE9808AE58EBF',X'363532313233',X'36353231'),
+	(X'36353232',X'E59388E5AF86E59CB0E58CBA',X'36353232',X'3635'),
+	(X'363532323031',X'E59388E5AF86E5B882',X'363532323031',X'36353232'),
+	(X'363532323232',X'E5B7B4E9878CE59DA4E58EBF',X'363532323232',X'36353232'),
+	(X'363532323233',X'E4BC8AE590BEE58EBF',X'363532323233',X'36353232'),
+	(X'36353233',X'E6988CE59089E5B79E',X'36353233',X'3635'),
+	(X'363532333031',X'E6988CE59089E5B882',X'363532333031',X'36353233'),
+	(X'363532333032',X'E9989CE5BAB7E5B882',X'363532333032',X'36353233'),
+	(X'363532333033',X'E7B1B3E6B389E5B882',X'363532333033',X'36353233'),
+	(X'363532333233',X'E591BCE59BBEE5A381E58EBF',X'363532333233',X'36353233'),
+	(X'363532333234',X'E78E9BE7BAB3E696AF',X'363532333234',X'36353233'),
+	(X'363532333235',X'E5A587E58FB0E58EBF',X'363532333235',X'36353233'),
+	(X'363532333237',X'E59089E69CA8E890A8E5B094E58EBF',X'363532333237',X'36353233'),
+	(X'363532333238',X'E69CA8E59E92E58EBF',X'363532333238',X'36353233'),
+	(X'36353237',X'E58D9AE5B094E5A194E68B89E89299E58FA4E887AAE6B2BBE5B79E',X'36353237',X'3635'),
+	(X'363532373031',X'E58D9AE4B990E5B882',X'363532373031',X'36353237'),
+	(X'363532373232',X'E7B2BEE6B2B3E58EBF',X'363532373232',X'36353237'),
+	(X'363532373233',X'E6B8A9E6B389E58EBF',X'363532373233',X'36353237'),
+	(X'36353238',X'E5B7B4E99FB3E983ADE6A59EE89299E58FA4E887AAE6B2BBE5B79E',X'36353238',X'3635'),
+	(X'363532383031',X'E5BA93E5B094E58B92E5B882',X'363532383031',X'36353238'),
+	(X'363532383232',X'E8BDAEE58FB0E58EBF',X'363532383232',X'36353238'),
+	(X'363532383233',X'E5B089E78A81E58EBF',X'363532383233',X'36353238'),
+	(X'363532383234',X'E88BA5E7BE8CE58EBF',X'363532383234',X'36353238'),
+	(X'363532383235',X'E4B894E69CABE58EBF',X'363532383235',X'36353238'),
+	(X'363532383236',X'E78489E88086E58EBF',X'363532383236',X'36353238'),
+	(X'363532383237',X'E5928CE99D99E58EBF',X'363532383237',X'36353238'),
+	(X'363532383238',X'E5928CE7A195E58EBF',X'363532383238',X'36353238'),
+	(X'363532383239',X'E58D9AE6B996E58EBF',X'363532383239',X'36353238'),
+	(X'36353239',X'E998BFE5858BE88B8FE59CB0E58CBA',X'36353239',X'3635'),
+	(X'363532393031',X'E998BFE5858BE88B8FE5B882',X'363532393031',X'36353239'),
+	(X'363532393232',X'E6B8A9E5AEBFE58EBF',X'363532393232',X'36353239'),
+	(X'363532393233',X'E5BA93E8BDA6E58EBF',X'363532393233',X'36353239'),
+	(X'363532393234',X'E6B299E99B85E58EBF',X'363532393234',X'36353239'),
+	(X'363532393235',X'E696B0E5928CE58EBF',X'363532393235',X'36353239'),
+	(X'363532393236',X'E68B9CE59F8EE58EBF',X'363532393236',X'36353239'),
+	(X'363532393237',X'E4B98CE4BB80E58EBF',X'363532393237',X'36353239'),
+	(X'363532393238',X'E998BFE793A6E68F90E58EBF',X'363532393238',X'36353239'),
+	(X'363532393239',X'E69FAFE59DAAE58EBF',X'363532393239',X'36353239'),
+	(X'36353330',X'E5858BE5B79E',X'36353330',X'3635'),
+	(X'363533303031',X'E998BFE59BBEE4BB80E5B882',X'363533303031',X'36353330'),
+	(X'363533303232',X'E998BFE5858BE999B6E58EBF',X'363533303232',X'36353330'),
+	(X'363533303233',X'E998BFE59088E5A587E58EBF',X'363533303233',X'36353330'),
+	(X'363533303234',X'E4B98CE681B0E58EBF',X'363533303234',X'36353330'),
+	(X'36353331',X'E59680E4BB80E59CB0E58CBA',X'36353331',X'3635'),
+	(X'363533313031',X'E59680E4BB80E5B882',X'363533313031',X'36353331'),
+	(X'363533313231',X'E7968FE99984E58EBF',X'363533313231',X'36353331'),
+	(X'363533313232',X'E7968FE58B92E58EBF',X'363533313232',X'36353331'),
+	(X'363533313233',X'E88BB1E59089E6B299E58EBF',X'363533313233',X'36353331'),
+	(X'363533313234',X'E6B3BDE699AEE58EBF',X'363533313234',X'36353331'),
+	(X'363533313235',X'E88E8EE8BDA6E58EBF',X'363533313235',X'36353331'),
+	(X'363533313236',X'E58FB6E59F8EE58EBF',X'363533313236',X'36353331'),
+	(X'363533313237',X'E9BAA6E79B96E68F90E58EBF',X'363533313237',X'36353331'),
+	(X'363533313238',X'E5B2B3E699AEE6B996E58EBF',X'363533313238',X'36353331'),
+	(X'363533313239',X'E4BCBDE5B888E58EBF',X'363533313239',X'36353331'),
+	(X'363533313330',X'E5B7B4E6A59AE58EBF',X'363533313330',X'36353331'),
+	(X'363533313331',X'E5A194E4BB80E5BA93E5B094E5B9B2E58EBF',X'363533313331',X'36353331'),
+	(X'36353332',X'E5928CE794B0E59CB0E58CBA',X'36353332',X'3635'),
+	(X'363533323031',X'E5928CE794B0E5B882',X'363533323031',X'36353332'),
+	(X'363533323231',X'E5928CE794B0E58EBF',X'363533323231',X'36353332'),
+	(X'363533323232',X'E5A2A8E78E89E58EBF',X'363533323232',X'36353332'),
+	(X'363533323233',X'E79AAEE5B1B1E58EBF',X'363533323233',X'36353332'),
+	(X'363533323234',X'E6B49BE6B5A6E58EBF',X'363533323234',X'36353332'),
+	(X'363533323235',X'E7AD96E58B92E58EBF',X'363533323235',X'36353332'),
+	(X'363533323236',X'E4BA8EE794B0E58EBF',X'363533323236',X'36353332'),
+	(X'363533323237',X'E6B091E4B8B0E58EBF',X'363533323237',X'36353332'),
+	(X'36353430',X'E4BC8AE78A81E5B79E',X'36353430',X'3635'),
+	(X'363534303032',X'E4BC8AE5AE81E5B882',X'363534303032',X'36353430'),
+	(X'363534303033',X'E5A58EE5B1AFE5B882',X'363534303033',X'36353430'),
+	(X'363534303231',X'E4BC8AE5AE81E58EBF',X'363534303231',X'36353430'),
+	(X'363534303232',X'E5AF9FE5B883E69FA5E5B094E58EBF',X'363534303232',X'36353430'),
+	(X'363534303233',X'E99C8DE59F8EE58EBF',X'363534303233',X'36353430'),
+	(X'363534303234',X'E5B7A9E79599E58EBF',X'363534303234',X'36353430'),
+	(X'363534303235',X'E696B0E6BA90E58EBF',X'363534303235',X'36353430'),
+	(X'363534303236',X'E698ADE88B8FE58EBF',X'363534303236',X'36353430'),
+	(X'363534303237',X'E789B9E5858BE696AFE58EBF',X'363534303237',X'36353430'),
+	(X'363534303238',X'E5B0BCE58B92E5858BE58EBF',X'363534303238',X'36353430'),
+	(X'36353432',X'E5A194E59F8EE59CB0E58CBA',X'36353432',X'3635'),
+	(X'363534323031',X'E5A194E59F8EE5B882',X'363534323031',X'36353432'),
+	(X'363534323032',X'E4B98CE88B8FE5B882',X'363534323032',X'36353432'),
+	(X'363534323231',X'E9A29DE6958FE58EBF',X'363534323231',X'36353432'),
+	(X'363534323233',X'E6B299E6B9BEE58EBF',X'363534323233',X'36353432'),
+	(X'363534323234',X'E68998E9878CE58EBF',X'363534323234',X'36353432'),
+	(X'363534323235',X'E8A395E6B091E58EBF',X'363534323235',X'36353432'),
+	(X'363534323236',X'E5928CE5B883E5858BE8B59BE5B094E89299E58FA4E887AAE6B2BBE58EBF',X'363534323236',X'36353432'),
+	(X'36353433',X'E998BFE58B92E6B3B0E59CB0E58CBA',X'36353433',X'3635'),
+	(X'363534333031',X'E998BFE58B92E6B3B0E5B882',X'363534333031',X'36353433'),
+	(X'363534333231',X'E5B883E5B094E6B4A5E58EBF',X'363534333231',X'36353433'),
+	(X'363534333232',X'E5AF8CE895B4E58EBF',X'363534333232',X'36353433'),
+	(X'363534333233',X'E7A68FE6B5B7E58EBF',X'363534333233',X'36353433'),
+	(X'363534333234',X'E59388E5B7B4E6B2B3E58EBF',X'363534333234',X'36353433'),
+	(X'363534333235',X'E99D92E6B2B3E58EBF',X'363534333235',X'36353433'),
+	(X'363534333236',X'E59089E69CA8E4B983E58EBF',X'363534333236',X'36353433'),
+	(X'36353930',X'E79C81E79BB4E8BE96E8A18CE694BFE58D95E4BD8D',X'36353930',X'3635'),
+	(X'363539303031',X'E79FB3E6B2B3E5AD90E5B882',X'363539303031',X'36353930'),
+	(X'363539303032',X'E998BFE68B89E5B094E5B882',X'363539303032',X'36353930'),
+	(X'363539303033',X'E59BBEE69CA8E88892E5858BE5B882',X'363539303033',X'36353930'),
+	(X'363539303034',X'E4BA94E5AEB6E6B8A0E5B882',X'363539303034',X'36353930'),
+	(X'3731',X'E58FB0E6B9BEE79C81',X'3731',X'31'),
+	(X'3831',X'E9A699E6B8AFE789B9E588ABE8A18CE694BFE58CBA',X'3831',X'31'),
+	(X'3832',X'E6BEB3E997A8E789B9E588ABE8A18CE694BFE58CBA',X'3832',X'31');
+
+/*!40000 ALTER TABLE `COLA_AREA` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table COLA_CATEGORY
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_CATEGORY`;
+
+CREATE TABLE `COLA_CATEGORY` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `CATEGORY_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `PARENT_ID` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_by5aj5to9lgmfvlhn4fb5b242` (`PARENT_ID`),
+  CONSTRAINT `FK_by5aj5to9lgmfvlhn4fb5b242` FOREIGN KEY (`PARENT_ID`) REFERENCES `cola_category` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+LOCK TABLES `COLA_CATEGORY` WRITE;
+/*!40000 ALTER TABLE `COLA_CATEGORY` DISABLE KEYS */;
+
+INSERT INTO `COLA_CATEGORY` (`ID`, `CATEGORY_NAME`, `description`, `PARENT_ID`)
+VALUES
+	(1,X'E9A5AEE69699',X'E8BDAFE9A5AEE69699E38081E59296E595A1E38081E88CB6E38081E595A4E98592E5928CE595A4E98592',NULL),
+	(2,X'E8B083E591B3E59381',X'E985B1E6B181E38081E985B1E6B2B9E38081E9868BE38081E592B8E79B90E38081E89A9DE6B2B9E38081E883A1E6A492E7B289E38081E88A9DE9BABBE7B289',NULL),
+	(3,X'E99BB6E9A39F',X'E7949CE782B9E38081E7B396E69E9CE38081E7949CE99DA2E58C85',NULL),
+	(4,X'E5A5B6E588B6E59381',X'E5A5B6E985AAE38081E5A5B6E7B289E38081E5A5B6E6B2B9E7AD89E5A5B6E588B6E59381',NULL),
+	(5,X'E7B2AEE6B2B9',X'E99DA2E58C85E38081E9A5BCE5B9B2E38081E99DA2E69DA1E38081E7B2A5',NULL),
+	(6,X'E88289E7B1BB2FE5AEB6E7A6BD',X'E78CAAE88289E38081E8BF9BE58FA3E7899BE88289E38081E88D89E58E9FE7BE8AE88289E38081E8858AE88289E38081E9A699E882A0',NULL),
+	(7,X'E8B186E588B6E59381',X'E5B9B2E69E9CE5928CE8B186E88590',NULL),
+	(8,X'E6B5B7E9B29C',X'5365617765656420616E642066697368',NULL);
+
+/*!40000 ALTER TABLE `COLA_CATEGORY` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table COLA_COMPANY
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_COMPANY`;
+
+CREATE TABLE `COLA_COMPANY` (
+  `ID_` varchar(60) NOT NULL,
+  `DESC_` varchar(120) DEFAULT NULL,
+  `NAME_` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `COLA_COMPANY` WRITE;
+/*!40000 ALTER TABLE `COLA_COMPANY` DISABLE KEYS */;
+
+INSERT INTO `COLA_COMPANY` (`ID_`, `DESC_`, `NAME_`)
+VALUES
+	('bstek','XXXX有限公司','XXXX'),
+	('bstek02','XXXX有限公司','XXXX');
+
+/*!40000 ALTER TABLE `COLA_COMPANY` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table COLA_COMPONENT
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_COMPONENT`;
+
+CREATE TABLE `COLA_COMPONENT` (
+  `ID_` varchar(60) NOT NULL,
+  `COMPONENT_ID_` varchar(60) NOT NULL,
+  `DESC_` varchar(120) DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `COLA_COMPONENT` WRITE;
+/*!40000 ALTER TABLE `COLA_COMPONENT` DISABLE KEYS */;
+
+INSERT INTO `COLA_COMPONENT` (`ID_`, `COMPONENT_ID_`, `DESC_`)
+VALUES
+	('b62fbb13-d24a-43bf-9234-df4808990f83','保存',NULL);
+
+/*!40000 ALTER TABLE `COLA_COMPONENT` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table COLA_DEPT
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_DEPT`;
+
+CREATE TABLE `COLA_DEPT` (
+  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+  `COMPANY_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CREATE_DATE_` datetime DEFAULT NULL,
+  `DESC_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `PARENT_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+# Dump of table COLA_EMPLOYEE
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_EMPLOYEE`;
+
+CREATE TABLE `COLA_EMPLOYEE` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `address` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `BIRTH_DATE` datetime DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `country` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `extension` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `FIRST_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `HIRE_DATE` datetime DEFAULT NULL,
+  `LAST_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `NOTES` varchar(500) COLLATE utf8_bin DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `PHOTO_PATH` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `POSTAL_CODE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `region` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `REPORTS_TO` bigint(20) DEFAULT NULL,
+  `sex` bit(1) DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `TITLE_OF_COURTESY` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_9ff8w46s3dndfcc6l4j8r844f` (`REPORTS_TO`),
+  CONSTRAINT `FK_9ff8w46s3dndfcc6l4j8r844f` FOREIGN KEY (`REPORTS_TO`) REFERENCES `COLA_EMPLOYEE` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+LOCK TABLES `COLA_EMPLOYEE` WRITE;
+/*!40000 ALTER TABLE `COLA_EMPLOYEE` DISABLE KEYS */;
+
+INSERT INTO `COLA_EMPLOYEE` (`ID`, `address`, `BIRTH_DATE`, `city`, `country`, `extension`, `FIRST_NAME`, `HIRE_DATE`, `LAST_NAME`, `NOTES`, `phone`, `PHOTO_PATH`, `POSTAL_CODE`, `region`, `REPORTS_TO`, `sex`, `title`, `TITLE_OF_COURTESY`)
+VALUES
+	(1,X'353037202D2032307468204176652E20452E204170742E203241','1973-04-21 00:00:00',X'53656174746C65',X'555341',X'73646673',X'6C6473636F646573','1992-05-01 00:00:00',X'4461766F6C696F',X'456475636174696F6E20696E636C75646573206120424120696E2070737963686F6C6F67792066726F6D20436F6C6F7261646F20537461746520556E697665727369747920696E20313937302E202053686520616C736F20636F6D706C65746564202254686520417274206F662074686520436F6C642043616C6C2E2220204E616E63792069732061206D656D626572206F6620546F6173746D61737465727320496E7465726E6174696F6E616C2E',X'2832303629203535352D39383537',X'32',X'3938313232',X'5741',2,b'1',X'53616C657320526570726573656E746174697665',X'4D732E'),
+	(2,X'39303820572E204361706974616C20576179','1976-07-02 00:00:00',X'5461636F6D61',X'555341',X'333435',X'416E64726577','1992-08-14 00:00:00',X'46756C6C6572',X'416E64726577207265636569766564206869732042545320636F6D6D65726369616C20696E203139373420616E6420612050682E442E20696E20696E7465726E6174696F6E616C206D61726B6574696E672066726F6D2074686520556E6976657273697479206F662044616C6C617320696E20313938312E2020486520697320666C75656E7420696E204672656E636820616E64204974616C69616E20616E64207265616473204765726D616E2E20204865206A6F696E65642074686520636F6D70616E7920617320612073616C657320726570726573656E7461746976652C207761732070726F6D6F74656420746F2073616C6573206D616E6167657220696E204A616E75617279203139393220616E6420746F207669636520707265736964656E74206F662073616C657320696E204D6172636820313939332E2020416E647265772069732061206D656D626572206F66207468652053616C6573204D616E6167656D656E7420526F756E647461626C652C207468652053656174746C65204368616D626572206F6620436F6D6D657263652C20616E642074686520506163696669632052696D20496D706F7274657273204173736F63696174696F6E2E',X'2832303629203535352D39343832',NULL,X'3938343031',X'5741',NULL,b'1',X'5669636520507265736964656E742C2053616C6573',X'44722E'),
+	(3,X'373232204D6F73732042617920426C76642E','1988-01-11 00:00:00',X'4B69726B6C616E64',X'555341',X'33333535',X'4A616E6574','1992-04-01 00:00:00',X'4C657665726C696E67',X'4A616E65742068617320612042532064656772656520696E206368656D69737472792066726F6D20426F73746F6E20436F6C6C656765202831393834292E20205368652068617320616C736F20636F6D706C6574656420612063657274696669636174652070726F6772616D20696E20666F6F642072657461696C696E67206D616E6167656D656E742E20204A616E65742077617320686972656420617320612073616C6573206173736F636961746520696E203139393120616E642070726F6D6F74656420746F2073616C657320726570726573656E74617469766520696E20466562727561727920313939322E',X'2832303629203535352D33343132',X'32',X'3938303333',X'5741',2,b'1',X'53616C657320526570726573656E746174697665',X'4D732E'),
+	(4,X'34313130204F6C64205265646D6F6E642052642E','1962-01-30 00:00:00',X'5265646D6F6E64',X'555341',X'35313736',X'4D61726761726574','1993-05-03 00:00:00',X'506561636F636B',X'4D6172676172657420686F6C6473206120424120696E20456E676C697368206C6974657261747572652066726F6D20436F6E636F7264696120436F6C6C6567652028313935382920616E6420616E204D412066726F6D2074686520416D65726963616E20496E73746974757465206F662043756C696E6172792041727473202831393636292E2020536865207761732061737369676E656420746F20746865204C6F6E646F6E206F66666963652074656D706F726172696C792066726F6D204A756C79207468726F756768204E6F76656D62657220313939322E',X'2832303629203535352D38313232',X'32',X'3938303532',X'5741',2,b'0',X'53616C657320526570726573656E746174697665',X'4D72732E'),
+	(5,X'313420476172726574742048696C6C','1979-07-16 00:00:00',X'4C6F6E646F6E',X'554B',X'33343533',X'53746576656E','1993-10-17 00:00:00',X'42756368616E616E',X'53746576656E2042756368616E616E206772616475617465642066726F6D2053742E20416E647265777320556E69766572736974792C2053636F746C616E642C20776974682061204253432064656772656520696E20313937362E202055706F6E206A6F696E696E672074686520636F6D70616E7920617320612073616C657320726570726573656E74617469766520696E20313939322C206865207370656E742036206D6F6E74687320696E20616E206F7269656E746174696F6E2070726F6772616D206174207468652053656174746C65206F666669636520616E64207468656E2072657475726E656420746F20686973207065726D616E656E7420706F737420696E204C6F6E646F6E2E20204865207761732070726F6D6F74656420746F2073616C6573206D616E6167657220696E204D6172636820313939332E20204D722E2042756368616E616E2068617320636F6D706C657465642074686520636F757273657320225375636365737366756C2054656C656D61726B6574696E672220616E642022496E7465726E6174696F6E616C2053616C6573204D616E6167656D656E742E222020486520697320666C75656E7420696E204672656E63682E',X'28373129203535352D34383438',X'32',X'53573120384A52',NULL,2,b'1',X'53616C6573204D616E61676572',X'4D722E'),
+	(6,X'436F76656E74727920486F757365204D696E65722052642E','1987-11-13 00:00:00',X'4C6F6E646F6E',X'554B',X'343238',X'4D69636861656C','1993-10-17 00:00:00',X'537579616D61',X'4D69636861656C2069732061206772616475617465206F662053757373657820556E697665727369747920284D412C2065636F6E6F6D6963732C20313938332920616E642074686520556E6976657273697479206F662043616C69666F726E6961206174204C6F7320416E67656C657320284D42412C206D61726B6574696E672C2031393836292E202048652068617320616C736F2074616B656E2074686520636F757273657320224D756C74692D43756C747572616C2053656C6C696E672220616E64202254696D65204D616E6167656D656E7420666F72207468652053616C65732050726F66657373696F6E616C2E222020486520697320666C75656E7420696E204A6170616E65736520616E642063616E207265616420616E64207772697465204672656E63682C20506F72747567756573652C20616E64205370616E6973682E',X'28373129203535352D37373733',X'35',X'45433220374A52',NULL,5,b'1',X'53616C657320526570726573656E746174697665',X'4D722E'),
+	(7,X'4564676568616D20486F6C6C6F772057696E6368657374657220576179','1984-10-10 00:00:00',X'4C6F6E646F6E',X'554B',X'343635',X'526F62657274','1994-01-02 00:00:00',X'4B696E67',X'526F62657274204B696E672073657276656420696E2074686520506561636520436F72707320616E642074726176656C656420657874656E736976656C79206265666F726520636F6D706C6574696E67206869732064656772656520696E20456E676C6973682061742074686520556E6976657273697479206F66204D6963686967616E20696E20313939322C207468652079656172206865206A6F696E65642074686520636F6D70616E792E2020416674657220636F6D706C6574696E67206120636F7572736520656E7469746C6564202253656C6C696E6720696E204575726F70652C2220686520776173207472616E7366657272656420746F20746865204C6F6E646F6E206F666669636520696E204D6172636820313939332E',X'28373129203535352D35353938',X'35',X'52473120395350',NULL,5,b'1',X'53616C657320526570726573656E746174697665',X'4D722E'),
+	(8,X'34373236202D2031317468204176652E204E2E452E','1982-05-23 00:00:00',X'53656174746C65',X'555341',X'32333434',X'4C61757261','1994-03-05 00:00:00',X'43616C6C6168616E',X'4C61757261207265636569766564206120424120696E2070737963686F6C6F67792066726F6D2074686520556E6976657273697479206F662057617368696E67746F6E2E20205368652068617320616C736F20636F6D706C65746564206120636F7572736520696E20627573696E657373204672656E63682E202053686520726561647320616E6420777269746573204672656E63682E',X'2832303629203535352D31313839',X'32',X'3938313035',X'5741',2,b'0',X'496E736964652053616C657320436F6F7264696E61746F72',X'4D732E'),
+	(9,X'3720486F756E6473746F6F74682052642E','1990-06-10 00:00:00',X'4C6F6E646F6E',X'554B',X'343532',X'416E6E65','1994-11-15 00:00:00',X'446F6473776F727468',X'416E6E652068617320612042412064656772656520696E20456E676C6973682066726F6D2053742E204C617772656E636520436F6C6C6567652E202053686520697320666C75656E7420696E204672656E636820616E64204765726D616E2E',X'28373129203535352D34343434',X'35',X'57473220374C54',NULL,5,b'0',X'53616C657320526570726573656E746174697665',X'4D732E');
+
+/*!40000 ALTER TABLE `COLA_EMPLOYEE` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table COLA_GROUP
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_GROUP`;
+
+CREATE TABLE `COLA_GROUP` (
+  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+  `COMPANY_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CREATE_DATE_` datetime DEFAULT NULL,
+  `DESC_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `PARENT_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+# Dump of table COLA_GROUP_MEMBER
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_GROUP_MEMBER`;
+
+CREATE TABLE `COLA_GROUP_MEMBER` (
+  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+  `DEPT_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `GROUP_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `POSITION_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `USERNAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+# Dump of table COLA_JOB
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_JOB`;
+
+CREATE TABLE `COLA_JOB` (
+  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+  `BEAN_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `COMPANY_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CRON_EXPRESSION_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `DESC_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `END_DATE` datetime DEFAULT NULL,
+  `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `START_DATE` datetime DEFAULT NULL,
+  `STATE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+# Dump of table COLA_JOB_CALENDAR
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_JOB_CALENDAR`;
+
+CREATE TABLE `COLA_JOB_CALENDAR` (
+  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+  `COMPANY_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `DESC_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `TYPE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+# Dump of table COLA_JOB_CALENDAR_DATE
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_JOB_CALENDAR_DATE`;
+
+CREATE TABLE `COLA_JOB_CALENDAR_DATE` (
+  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+  `CALENDAR_DATE_` datetime DEFAULT NULL,
+  `CALENDAR_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `DAY_OF_MONTH_` int(11) DEFAULT NULL,
+  `DAY_OF_WEEK_` int(11) DEFAULT NULL,
+  `MONTH_OF_YEAR_` int(11) DEFAULT NULL,
+  `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+# Dump of table COLA_JOB_CALENDAR_RELATION
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_JOB_CALENDAR_RELATION`;
+
+CREATE TABLE `COLA_JOB_CALENDAR_RELATION` (
+  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+  `CALENDAR_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `JOB_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+# Dump of table COLA_JOB_HISTORY
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_JOB_HISTORY`;
+
+CREATE TABLE `COLA_JOB_HISTORY` (
+  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+  `END_DATE` datetime DEFAULT NULL,
+  `EXCEPTION_MESSAGE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `JOB_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `START_DATE` datetime DEFAULT NULL,
+  `SUCCESSFUL_` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+# Dump of table COLA_JOB_PARAMETER
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_JOB_PARAMETER`;
+
+CREATE TABLE `COLA_JOB_PARAMETER` (
+  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+  `JOB_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `VALUE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+# Dump of table COLA_MESSAGE
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_MESSAGE`;
+
+CREATE TABLE `COLA_MESSAGE` (
+  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+  `CONTENT_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `READ_` bit(1) DEFAULT NULL,
+  `RECEIVER_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `REPLY_` bit(1) DEFAULT NULL,
+  `SEND_DATE_` datetime DEFAULT NULL,
+  `SENDER_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `TAGS_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `TITLE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `TYPE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+# Dump of table COLA_MESSAGE_TEMPLATE
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_MESSAGE_TEMPLATE`;
+
+CREATE TABLE `COLA_MESSAGE_TEMPLATE` (
+  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+  `COMPANY_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CONTENT_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `TYPE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+# Dump of table COLA_POSITION
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_POSITION`;
+
+CREATE TABLE `COLA_POSITION` (
+  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+  `COMPANY_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CREATE_DATE_` datetime DEFAULT NULL,
+  `DESC_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+# Dump of table COLA_PRODUCT
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_PRODUCT`;
+
+CREATE TABLE `COLA_PRODUCT` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `CATEGORY_ID` bigint(20) DEFAULT NULL,
+  `discontinued` bit(1) NOT NULL,
+  `PRODUCT_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `QUANTITY_PER_UNIT` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `REORDER_LEVEL` int(11) DEFAULT NULL,
+  `UNIT_PRICE` float DEFAULT NULL,
+  `UNITS_IN_STOCK` int(11) DEFAULT NULL,
+  `UNITS_ON_ORDER` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_6t6fwpoax5485lfta1ha89rlh` (`CATEGORY_ID`),
+  CONSTRAINT `FK_6t6fwpoax5485lfta1ha89rlh` FOREIGN KEY (`CATEGORY_ID`) REFERENCES `cola_category` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+LOCK TABLES `COLA_PRODUCT` WRITE;
+/*!40000 ALTER TABLE `COLA_PRODUCT` DISABLE KEYS */;
+
+INSERT INTO `COLA_PRODUCT` (`ID`, `CATEGORY_ID`, `discontinued`, `PRODUCT_NAME`, `QUANTITY_PER_UNIT`, `REORDER_LEVEL`, `UNIT_PRICE`, `UNITS_IN_STOCK`, `UNITS_ON_ORDER`)
+VALUES
+	(1,1,b'1',X'43686169',X'313020626F78657320782032302062616773',12,18,39,0),
+	(2,1,b'1',X'4368616E67',X'3234202D203132206F7A20626F74746C6573',25,19,17,40),
+	(3,2,b'0',X'416E6973656564205379727570',X'3132202D20353530206D6C20626F74746C6573',66,10,13,70),
+	(4,2,b'0',X'4368656620416E746F6E27732043616A756E20536561736F6E696E67',X'3438202D2036206F7A206A617273',0,22,53,0),
+	(5,2,b'1',X'4368656620416E746F6E27732047756D626F204D6978',X'333620626F786573',0,21.35,0,0),
+	(6,2,b'1',X'4772616E646D61277320426F7973656E626572727920537072656164',X'3132202D2038206F7A206A617273',25,25,120,0),
+	(7,7,b'0',X'556E636C6520426F622773204F7267616E6963204472696564205065617273',X'3132202D2031206C6220706B67732E',10,30,15,0),
+	(8,2,b'0',X'4E6F727468776F6F6473204372616E6265727279205361756365',X'3132202D203132206F7A206A617273',0,40,6,0),
+	(9,6,b'1',X'4D69736869204B6F6265204E696B75',X'3138202D20353030206720706B67732E',0,97,29,0),
+	(10,8,b'0',X'496B757261',X'3132202D20323030206D6C206A617273',0,31,31,0),
+	(11,4,b'0',X'517565736F2043616272616C6573',X'31206B6720706B672E',30,21,22,30),
+	(12,4,b'0',X'517565736F204D616E636865676F204C6120506173746F7261',X'3130202D20353030206720706B67732E',0,38,86,0),
+	(13,8,b'0',X'4B6F6E6275',X'32206B6720626F78',5,6,24,0),
+	(14,7,b'0',X'546F6675',X'3430202D20313030206720706B67732E',0,23.25,35,0),
+	(15,2,b'0',X'47656E656E2053686F757975',X'3234202D20323530206D6C20626F74746C6573',5,15.5,39,0),
+	(16,3,b'0',X'5061766C6F7661',X'3332202D20353030206720626F786573',10,17.45,29,0),
+	(17,6,b'1',X'416C696365204D7574746F6E',X'3230202D2031206B672074696E73',0,39,0,0),
+	(18,8,b'0',X'4361726E6172766F6E20546967657273',X'3136206B6720706B672E',0,62.5,42,0),
+	(19,3,b'0',X'54656174696D652043686F636F6C617465204269736375697473',X'313020626F786573207820313220706965636573',5,9.2,25,0),
+	(20,3,b'0',X'53697220526F646E65792773204D61726D616C616465',X'3330206769667420626F786573',0,81,40,0),
+	(21,3,b'0',X'53697220526F646E657927732053636F6E6573',X'323420706B67732E2078203420706965636573',5,10,3,40),
+	(22,5,b'0',X'4775737461662773204B6EC3A4636B656272C3B664',X'3234202D20353030206720706B67732E',25,21,104,0),
+	(23,5,b'0',X'54756E6E6272C3B664',X'3132202D20323530206720706B67732E',25,9,61,0),
+	(24,1,b'1',X'47756172616E3F46616E74C3A17374696361',X'3132202D20333535206D6C2063616E73',0,4.5,20,0),
+	(25,3,b'0',X'4E754E754361204E753F4E6F756761742D4372656D65',X'3230202D20343530206720676C6173736573',30,14,76,0),
+	(26,3,b'0',X'47756D62C3A4722047756D6D6962C3A4726368656E',X'313030202D2032353020672062616773',0,31.23,15,0),
+	(27,3,b'0',X'5363686F676769205363686F6B6F6C616465',X'313030202D20313030206720706965636573',30,43.9,49,0),
+	(28,7,b'1',X'52C3B673736C652053617565726B72617574',X'3235202D2038323520672063616E73',0,45.6,26,0),
+	(29,6,b'1',X'5468C3BC72696E67657220526F7374627261747775727374',X'353020626167732078203330207361757367732E',0,123.79,0,0),
+	(30,8,b'0',X'4E6F72642D4F7374204D61746A6573686572696E67',X'3130202D20323030206720676C6173736573',15,25.89,10,0),
+	(31,4,b'1',X'476F72676F6E7A6F6C612054656C696E6F',X'3132202D20313030206720706B6773',20,12.5,0,70),
+	(32,4,b'1',X'4D6173636172706F6E6520466162696F6C69',X'3234202D20323030206720706B67732E',25,32,9,40),
+	(33,4,b'1',X'476569746F7374',X'3530302067',20,2.5,112,0),
+	(34,1,b'1',X'53617371756174636820416C65',X'3234202D203132206F7A20626F74746C6573',15,14,111,0),
+	(35,1,b'0',X'537465656C6579652053746F7574',X'3234202D203132206F7A20626F74746C6573',15,18,20,0),
+	(36,8,b'0',X'496E6C6167642053696C6C',X'3234202D20323530206720206A617273',20,19,112,0),
+	(37,8,b'0',X'477261766164206C6178',X'3132202D20353030206720706B67732E',25,26,11,50),
+	(38,1,b'0',X'43C3B4746520646520426C617965',X'3132202D20373520636C20626F74746C6573',15,263.5,17,0),
+	(39,1,b'0',X'43686172747265757365207665727465',X'3735302063632070657220626F74746C65',5,18,69,0),
+	(40,8,b'0',X'426F73746F6E2043726162204D656174',X'3234202D2034206F7A2074696E73',30,18.4,123,0),
+	(41,8,b'0',X'4A61636B2773204E657720456E676C616E6420436C616D2043686F77646572',X'3132202D203132206F7A2063616E73',10,9.65,85,0),
+	(42,5,b'1',X'53696E6761706F7265616E20486F6B6B69656E204672696564204D6565',X'3332202D2031206B6720706B67732E',0,14,26,0),
+	(43,1,b'0',X'49706F6820436F66666565',X'3136202D2035303020672074696E73',25,46,17,10),
+	(44,2,b'0',X'47756C61204D616C61636361',X'3230202D2032206B672062616773',15,19.45,27,0),
+	(45,8,b'0',X'52C3B8676564652073696C64',X'316B20706B672E',15,9.5,5,70),
+	(46,8,b'0',X'537065676573696C64',X'34202D20343530206720676C6173736573',0,12,95,0),
+	(47,3,b'0',X'5A61616E7365206B6F656B656E',X'3130202D2034206F7A20626F786573',0,9.5,36,0),
+	(48,3,b'0',X'43686F636F6C616465',X'313020706B67732E',25,12.75,15,70),
+	(49,3,b'0',X'4D6178696C616B75',X'3234202D203530206720706B67732E',15,20,10,60),
+	(50,3,b'0',X'56616C6B6F696E656E2073756B6C6161',X'3132202D2031303020672062617273',30,16.25,65,0),
+	(51,7,b'0',X'4D616E6A696D7570204472696564204170706C6573',X'3530202D20333030206720706B67732E',10,53,20,0),
+	(52,5,b'0',X'46696C6F204D6978',X'3136202D2032206B6720626F786573',25,7,38,0),
+	(53,6,b'1',X'50657274682050617374696573',X'343820706965636573',0,32.8,0,0),
+	(54,6,b'0',X'546F75727469C3A87265',X'31362070696573',10,7.45,21,0),
+	(55,6,b'0',X'50C3A2743F6368696E6F6973',X'323420626F786573207820322070696573',20,24,115,0),
+	(56,5,b'0',X'476E6F63636869206469206E6F6E6E6120416C696365',X'3234202D20323530206720706B67732E',30,38,21,10),
+	(57,5,b'0',X'526176696F6C6920416E67656C6F',X'3234202D20323530206720706B67732E',20,19.5,36,0),
+	(58,8,b'0',X'4573636172676F747320646520426F7572676F676E65',X'323420706965636573',20,13.25,62,0),
+	(59,4,b'0',X'5261636C6574746520436F757264617661756C74',X'35206B6720706B672E',0,55,79,0),
+	(60,4,b'0',X'43616D656D626572742050696572726F74',X'3135202D20333030206720726F756E6473',0,34,19,0),
+	(61,2,b'0',X'5369726F70206427C3A97261626C65',X'3234202D20353030206D6C20626F74746C6573',25,28.5,113,0),
+	(62,3,b'0',X'5461727465206175207375637265',X'34382070696573',0,49.3,17,0),
+	(63,2,b'0',X'56656769652D737072656164',X'3135202D203632352067206A617273',5,43.9,24,0),
+	(64,5,b'0',X'57696D6D65727320677574652053656D6D656C6B6EC3B664656C',X'323020626167732078203420706965636573',30,33.25,22,80),
+	(65,2,b'0',X'4C6F75697369616E6120466965727920486F7420506570706572205361756365',X'3332202D2038206F7A20626F74746C6573',0,21.05,76,0),
+	(66,2,b'0',X'4C6F75697369616E6120486F7420537069636564204F6B7261',X'3234202D2038206F7A206A617273',20,17,4,100),
+	(67,1,b'0',X'4C61756768696E67204C756D6265726A61636B204C61676572',X'3234202D203132206F7A20626F74746C6573',10,14,52,0),
+	(68,3,b'0',X'53636F7474697368204C6F6E67627265616473',X'313020626F7865732078203820706965636573',15,12.5,6,10),
+	(69,4,b'0',X'4775646272616E647364616C736F7374',X'3130206B6720706B672E',15,36,26,0),
+	(70,1,b'0',X'4F75746261636B204C61676572',X'3234202D20333535206D6C20626F74746C6573',30,15,15,10),
+	(71,4,b'0',X'466CC3B874656D79736F7374',X'3130202D20353030206720706B67732E',0,21.5,26,0),
+	(72,4,b'0',X'4D6F7A7A6172656C6C612064692047696F76616E6E69',X'3234202D20323030206720706B67732E',0,34.8,14,0),
+	(73,8,b'0',X'52C3B664204B6176696172',X'3234202D203135302067206A617273',5,15,101,0),
+	(74,7,b'0',X'4C6F6E676C69666520546F6675',X'35206B6720706B672E',5,10,4,20),
+	(75,1,b'0',X'5268C3B66E6272C3A475204B6C6F7374657262696572',X'3234202D20302E35206C20626F74746C6573',25,7.75,125,0),
+	(76,1,b'0',X'4C616B6B616C696BC3B6C3B67269',X'353030206D6C',20,18,57,0),
+	(77,2,b'0',X'4F726967696E616C204672616E6B667572746572206772C3BC6E6520536FC39F65',X'313220626F786573',15,13,32,0),
+	(85250,1,b'0',X'537465656C6579652053746F7574',X'3234202D203132206F7A20626F74746C6573',15,18,20,0);
+
+/*!40000 ALTER TABLE `COLA_PRODUCT` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table COLA_ROLE
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_ROLE`;
+
+CREATE TABLE `COLA_ROLE` (
+  `ID_` varchar(60) NOT NULL,
+  `COMPANY_ID_` varchar(60) DEFAULT NULL,
+  `CREATE_DATE_` datetime DEFAULT NULL,
+  `CREATE_USER_` varchar(60) DEFAULT NULL,
+  `DESC_` varchar(120) DEFAULT NULL,
+  `ENABLED_` bit(1) DEFAULT NULL,
+  `NAME_` varchar(60) DEFAULT NULL,
+  `PARENT_ID_` varchar(60) DEFAULT NULL,
+  `TYPE_` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `COLA_ROLE` WRITE;
+/*!40000 ALTER TABLE `COLA_ROLE` DISABLE KEYS */;
+
+INSERT INTO `COLA_ROLE` (`ID_`, `COMPANY_ID_`, `CREATE_DATE_`, `CREATE_USER_`, `DESC_`, `ENABLED_`, `NAME_`, `PARENT_ID_`, `TYPE_`)
+VALUES
+	('8d95f77c-583c-4ca1-a433-f683ff66c44e','bstek02','2016-03-17 09:39:00',NULL,NULL,b'1','role01',NULL,'normal');
+
+/*!40000 ALTER TABLE `COLA_ROLE` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table COLA_ROLE_MEMBER
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_ROLE_MEMBER`;
+
+CREATE TABLE `COLA_ROLE_MEMBER` (
+  `ID_` varchar(60) NOT NULL,
+  `CREATE_DATE_` datetime DEFAULT NULL,
+  `DEPT_ID_` varchar(60) DEFAULT NULL,
+  `GRANTED_` bit(1) DEFAULT NULL,
+  `POSITION_ID_` varchar(60) DEFAULT NULL,
+  `ROLE_ID_` varchar(60) DEFAULT NULL,
+  `USERNAME_` varchar(60) DEFAULT NULL,
+  `GROUP_ID_` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`ID_`),
+  KEY `FK79BEE4326C254D1D` (`GROUP_ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `COLA_ROLE_MEMBER` WRITE;
+/*!40000 ALTER TABLE `COLA_ROLE_MEMBER` DISABLE KEYS */;
+
+INSERT INTO `COLA_ROLE_MEMBER` (`ID_`, `CREATE_DATE_`, `DEPT_ID_`, `GRANTED_`, `POSITION_ID_`, `ROLE_ID_`, `USERNAME_`, `GROUP_ID_`)
+VALUES
+	('63659caf-66d0-48e1-978f-04f07a9ed70e','2016-03-17 10:12:51',NULL,b'1',NULL,'8d95f77c-583c-4ca1-a433-f683ff66c44e','lds',NULL),
+	('a57b7b48-24c8-4115-9f2a-7800c4693a39','2016-03-17 13:45:34',NULL,b'0',NULL,'8d95f77c-583c-4ca1-a433-f683ff66c44e','ldscode',NULL);
+
+/*!40000 ALTER TABLE `COLA_ROLE_MEMBER` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table COLA_ROLE_RESOURCE
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_ROLE_RESOURCE`;
+
+CREATE TABLE `COLA_ROLE_RESOURCE` (
+  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+  `PACKAGE_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ROLE_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `URL_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+# Dump of table COLA_URL
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_URL`;
+
+CREATE TABLE `COLA_URL` (
+  `ID_` varchar(60) NOT NULL,
+  `COMPANY_ID_` varchar(60) NOT NULL,
+  `DESC_` varchar(120) DEFAULT NULL,
+  `FOR_NAVIGATION_` bit(1) NOT NULL,
+  `ICON_` varchar(120) DEFAULT NULL,
+  `LABEL_` varchar(60) NOT NULL,
+  `ORDER_` int(11) DEFAULT NULL,
+  `PARENT_ID_` varchar(60) DEFAULT NULL,
+  `SYSTEM_ID_` varchar(60) DEFAULT NULL,
+  `PATH_` varchar(120) DEFAULT NULL,
+  `CLOSEABLE_` bit(1) NOT NULL,
+  PRIMARY KEY (`ID_`),
+  KEY `FK_85tea98uf9b5foh5c921wvl12` (`PARENT_ID_`),
+  CONSTRAINT `FK_85tea98uf9b5foh5c921wvl12` FOREIGN KEY (`PARENT_ID_`) REFERENCES `COLA_URL` (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `COLA_URL` WRITE;
+/*!40000 ALTER TABLE `COLA_URL` DISABLE KEYS */;
+
+INSERT INTO `COLA_URL` (`ID_`, `COMPANY_ID_`, `DESC_`, `FOR_NAVIGATION_`, `ICON_`, `LABEL_`, `ORDER_`, `PARENT_ID_`, `SYSTEM_ID_`, `PATH_`, `CLOSEABLE_`)
+VALUES
+	('0334ebe7-bee2-4001-a5a8-6631b8a10136','bstek',NULL,b'1','icon edit','常用时间线',1,'76bb98a8-2e08-4604-ad87-548be2373841',NULL,'/example/widget/timeline/time_line.html',b'1'),
+	('100395ef-5e4c-4c3d-a62f-721e7e211152','bstek',NULL,b'1','icon edit','单表维护',1,'deb888d4-c336-40c4-922e-cdecc4048622',NULL,'/example/widget/table/employee.html',b'1'),
+	('164fb93e-9548-4dad-9807-9f33952f92dc','bstek','部门维护',b'1','icon empire','部门维护',3,'8e5f619d-14e6-4643-bdfc-73893c2d81ef',NULL,'/example/widget/table/employee.html',b'1'),
+	('20051efc-11ae-41f4-aeb2-b391adf82996','bstek',NULL,b'1','icon chevron circle down','DropDown(下拉框)',3,'356480fb-42bc-4ee1-a95a-633e6aed7f47',NULL,NULL,b'1'),
+	('274cbabd-43dd-4136-a604-434b57edeac1','bstek',NULL,b'1','icon user','用户维护',2,'8e5f619d-14e6-4643-bdfc-73893c2d81ef',NULL,'./example/widget/table/master_detail.html',b'1'),
+	('28dbf10b-3030-4c81-8a18-3b273c96702f','bstek',NULL,b'1','icon home','菜单维护',1,'8e5f619d-14e6-4643-bdfc-73893c2d81ef',NULL,'/frame/system/url/url.html',b'1'),
+	('29c485d8-e2e0-4fb8-bc00-a8207996107b','bstek',NULL,b'1','icon protect','岗位维护',4,'8e5f619d-14e6-4643-bdfc-73893c2d81ef',NULL,'./example/widget/table/order_table.html',b'1'),
+	('2e0a5319-7168-4ded-94a5-5ec7db4affcd','bstek',NULL,b'1','icon edit','节点维护',3,'a84da862-09c6-43ad-bdad-26c0b666db9d',NULL,'/example/widget/tree/maintain_tree.html',b'1'),
+	('308a801b-18b4-47f0-8d83-1623b15d0a3b','bstek',NULL,b'1','icon random','URL权限维护',2,'f5e9bb10-39ea-471f-aac6-9547f3ee3e78',NULL,'./example/widget/table/table.html',b'1'),
+	('356480fb-42bc-4ee1-a95a-633e6aed7f47','bstek','控件管理',b'1','icon steam square','控件管理',2,NULL,NULL,NULL,b'1'),
+	('3c025046-5bff-41a4-9bdf-eddde0ae7b74','bstek',NULL,b'1','icon mail','消息模版维护',5,'8e5f619d-14e6-4643-bdfc-73893c2d81ef',NULL,'./example/widget/table/roll_table.html',b'1'),
+	('4336492c-598e-482a-9be8-eed938816b37','bstek',NULL,b'1','icon bookmark','Tab(标签页)',4,'356480fb-42bc-4ee1-a95a-633e6aed7f47',NULL,NULL,b'1'),
+	('450c5ca4-62bf-41ed-a847-bba200d7f552','bstek',NULL,b'1','icon text telephone','群组维护',5,'f5e9bb10-39ea-471f-aac6-9547f3ee3e78',NULL,'./example/widget/table/edit_table.html',b'1'),
+	('5aac944a-f070-4f9b-bd91-61e56694f6dd','bstek',NULL,b'1','icon edit','递归树',1,'a84da862-09c6-43ad-bdad-26c0b666db9d',NULL,'/example/widget/tree/recursive_tree.html',b'1'),
+	('629e5fc0-eb79-43da-89c2-465bab528f65','bstek',NULL,b'1','icon edit','级联编辑',6,'deb888d4-c336-40c4-922e-cdecc4048622',NULL,'/example/widget/table/edit_table.html',b'1'),
+	('66779c09-e432-4c3c-a432-d93deb89efe0','bstek',NULL,b'1','icon edit','主从表维护',2,'deb888d4-c336-40c4-922e-cdecc4048622',NULL,'/example/widget/table/master_detail.html',b'1'),
+	('6b63c74b-bf55-4522-b65a-e572039be841','bstek',NULL,b'1','icon edit','常用下拉框',1,'20051efc-11ae-41f4-aeb2-b391adf82996',NULL,'/example/widget/dropdown/dropdown.html',b'1'),
+	('76bb98a8-2e08-4604-ad87-548be2373841','bstek',NULL,b'1','icon time','TimeLine(时间线)',5,'356480fb-42bc-4ee1-a95a-633e6aed7f47',NULL,NULL,b'1'),
+	('7ec576b5-0a88-4d79-9feb-c7d6b062fe2d','bstek',NULL,b'1','icon spy','角色成员维护',4,'f5e9bb10-39ea-471f-aac6-9547f3ee3e78',NULL,'./example/widget/table/dynamic_table.html',b'1'),
+	('8048fc88-6a00-4351-b194-4c91c843aeee','bstek',NULL,b'1','icon edit','滚动分页',4,'deb888d4-c336-40c4-922e-cdecc4048622',NULL,'/example/widget/table/roll_table.html',b'1'),
+	('815af19b4f504f859fe7e6bc18a676cd','bstek',NULL,b'1','icon edit','销量-柱形',3,'9071dc91525c46eb9edabcf5900536fb',NULL,'/example/echarts/sale.html',b'1'),
+	('88fe1ad4-a1b9-4303-b5d5-e4c1097e540b','bstek',NULL,b'1','icon puzzle','组件权限维护',3,'f5e9bb10-39ea-471f-aac6-9547f3ee3e78',NULL,'./example/widget/tree/recursive_tree.html',b'1'),
+	('8e5f619d-14e6-4643-bdfc-73893c2d81ef','bstek',NULL,b'1','icon comments','基本信息维护',1,'root-bstek',NULL,NULL,b'1'),
+	('8f11cc50d683481980cd5ad44ea4e2c7','bstek',NULL,b'1','icon map','地图',1,'9071dc91525c46eb9edabcf5900536fb',NULL,'/example/echarts/scatter_weibo.html',b'1'),
+	('9071dc91525c46eb9edabcf5900536fb','bstek',NULL,b'1','icon pie chart','图表',2,'356480fb-42bc-4ee1-a95a-633e6aed7f47',NULL,'',b'1'),
+	('93ef8d84-67d0-4f01-8025-b0275fa779c8','bstek',NULL,b'1','icon edit','常用标签页',1,'4336492c-598e-482a-9be8-eed938816b37',NULL,'/example/widget/tab/tab.html',b'1'),
+	('96dc98932789423cb9c46c0ad59bbffa','bstek',NULL,b'1','icon edit','站点访问-饼',2,'9071dc91525c46eb9edabcf5900536fb',NULL,'/example/echarts/website_visit.html',b'1'),
+	('a84da862-09c6-43ad-bdad-26c0b666db9d','bstek',NULL,b'1','icon tree','Tree(树)',2,'356480fb-42bc-4ee1-a95a-633e6aed7f47',NULL,NULL,b'1'),
+	('b638d18d-19f6-4f80-b695-48899a8e9184','bstek',NULL,b'1','icon doctor','角色维护',1,'f5e9bb10-39ea-471f-aac6-9547f3ee3e78',NULL,'/frame/system/role/role.html',b'1'),
+	('bbf7a59e-627b-4068-982f-4a139bb89b73','bstek',NULL,b'1','icon edit','动态渲染',4,'deb888d4-c336-40c4-922e-cdecc4048622',NULL,'/example/widget/table/dynamic_table.html',b'1'),
+	('d21432be-2929-480d-a762-b09b2c96d4fa','bstek',NULL,b'1','icon edit','主从树',2,'a84da862-09c6-43ad-bdad-26c0b666db9d',NULL,'/example/widget/tree/ms_tree.html',b'1'),
+	('deb888d4-c336-40c4-922e-cdecc4048622','bstek',NULL,b'1','icon table','Table(表格)',1,'356480fb-42bc-4ee1-a95a-633e6aed7f47',NULL,NULL,b'1'),
+	('e6731fb683174034ac90e1ac760ef8e7','bstek',NULL,b'1','icon edit','三级联动',2,'20051efc-11ae-41f4-aeb2-b391adf82996',NULL,'/example/widget/dropdown/area.html',b'1'),
+	('ebdb0303-f95f-417c-8483-01439682a0a5','bstek',NULL,b'1','icon edit','内嵌及编辑',5,'deb888d4-c336-40c4-922e-cdecc4048622',NULL,'/example/widget/table/table.html',b'1'),
+	('f5e9bb10-39ea-471f-aac6-9547f3ee3e78','bstek',NULL,b'1','icon power','权限管理维护',2,'root-bstek',NULL,NULL,b'1'),
+	('f872556d-aeea-4608-b748-a3aad50331b5','bstek',NULL,b'1','icon edit','表头排序',3,'deb888d4-c336-40c4-922e-cdecc4048622',NULL,'/example/widget/table/order_table.html',b'1'),
+	('root-bstek','bstek',NULL,b'1','icon setting','系统管理',11,NULL,NULL,NULL,b'1');
+
+/*!40000 ALTER TABLE `COLA_URL` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table COLA_URL_COMPONENT
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_URL_COMPONENT`;
+
+CREATE TABLE `COLA_URL_COMPONENT` (
+  `ID_` varchar(60) NOT NULL,
+  `AUTHORITY_TYPE_` varchar(10) NOT NULL,
+  `ROLE_ID_` varchar(60) DEFAULT NULL,
+  `URL_ID_` varchar(60) DEFAULT NULL,
+  `COMPONENT_ID_` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`ID_`),
+  KEY `FKFCFBDBDCD4C56CC` (`COMPONENT_ID_`),
+  CONSTRAINT `cola_url_component_ibfk_1` FOREIGN KEY (`COMPONENT_ID_`) REFERENCES `cola_component` (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `COLA_URL_COMPONENT` WRITE;
+/*!40000 ALTER TABLE `COLA_URL_COMPONENT` DISABLE KEYS */;
+
+INSERT INTO `COLA_URL_COMPONENT` (`ID_`, `AUTHORITY_TYPE_`, `ROLE_ID_`, `URL_ID_`, `COMPONENT_ID_`)
+VALUES
+	('4aa19167-7531-4bbb-9f0f-fc1627e89ba8','write','8d95f77c-583c-4ca1-a433-f683ff66c44e','20071dfe-0a3b-46f5-aaec-68bb9afbcaab','b62fbb13-d24a-43bf-9234-df4808990f83');
+
+/*!40000 ALTER TABLE `COLA_URL_COMPONENT` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table COLA_USER
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_USER`;
+
+CREATE TABLE `COLA_USER` (
+  `USERNAME_` varchar(60) NOT NULL,
+  `ADDRESS_` varchar(120) DEFAULT NULL,
+  `ADMINISTRATOR_` bit(1) NOT NULL,
+  `BIRTHDAY_` timestamp NULL DEFAULT NULL,
+  `CNAME_` varchar(60) NOT NULL,
+  `COMPANY_ID_` varchar(60) NOT NULL,
+  `CREATE_DATE_` timestamp NULL DEFAULT NULL,
+  `EMAIL_` varchar(60) DEFAULT NULL,
+  `ENABLED_` bit(1) NOT NULL,
+  `ENAME_` varchar(60) DEFAULT NULL,
+  `MALE_` bit(1) NOT NULL,
+  `MOBILE_` varchar(20) DEFAULT NULL,
+  `PASSWORD_` varchar(70) NOT NULL,
+  `SALT_` varchar(10) NOT NULL,
+  `AVATAR_` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`USERNAME_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `COLA_USER` WRITE;
+/*!40000 ALTER TABLE `COLA_USER` DISABLE KEYS */;
+
+INSERT INTO `COLA_USER` (`USERNAME_`, `ADDRESS_`, `ADMINISTRATOR_`, `BIRTHDAY_`, `CNAME_`, `COMPANY_ID_`, `CREATE_DATE_`, `EMAIL_`, `ENABLED_`, `ENAME_`, `MALE_`, `MOBILE_`, `PASSWORD_`, `SALT_`, `AVATAR_`)
+VALUES
+	('admin',NULL,b'1','2016-03-28 14:34:24','系统管理员','bstek02',NULL,'xxxx@xxxx.com',b'1','administrator',b'1','18917888888','6d3059ea4374411a4652e08fbfec92d4485b8ffc','523',NULL),
+	('lds','浦东',b'0','2013-06-17 00:00:00','冰城','bstek02',NULL,'1254814280@qq.com',b'1','lds',b'1','18253911171','8ca00772b67d47018ef3e5aab3e70cdde38e6ed0','3',NULL),
+	('ldscode','上海',b'0','2016-03-17 09:29:53','D冰城','bstek02',NULL,'ldscode@163.com',b'1','Carl',b'1','18255465896','2e884c670adc968e4419aed1f5dc24a704c4f204','67',NULL);
+
+/*!40000 ALTER TABLE `COLA_USER` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table COLA_USER_DEPT
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_USER_DEPT`;
+
+CREATE TABLE `COLA_USER_DEPT` (
+  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+  `DEPT_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `USERNAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+# Dump of table COLA_USER_POSITION
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `COLA_USER_POSITION`;
+
+CREATE TABLE `COLA_USER_POSITION` (
+  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+  `POSITION_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `USERNAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
