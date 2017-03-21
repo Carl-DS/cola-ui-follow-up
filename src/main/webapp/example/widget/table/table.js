@@ -13,9 +13,8 @@
         }
       },
       provider: {
-        name: "provider1",
         url: "/service/product/?categoryId=1",
-        pageSize: 10
+        pageSize: 8
       }
     });
     model.action({
@@ -30,7 +29,7 @@
         bind: "item in products",
         highlightCurrentItem: true,
         currentPageOnly: true,
-        height: "100%",
+        // height: "100%",
         columns: [
           {
             bind: ".id",
@@ -55,15 +54,7 @@
         renderCell: function(self, arg) {
           var caption;
           caption = arg.column.get("caption");
-          if (arg.column.get("caption") === "价格") {
-            $(arg.dom).addClass("product-price");
-            return $(arg.dom).on("click", function() {
-              var $input;
-              $fly(arg.dom).addClass("focus");
-              $input = $fly(arg.dom).find(".ui.input");
-              return cola.widget($input[0]).focus();
-            });
-          } else if (caption === "产品名称") {
+          if (caption === "产品名称") {
             return $(arg.dom).parent().addClass("product-name");
           }
         },
@@ -73,12 +64,13 @@
           rowDom = arg.dom;
           $fly(rowDom).addClass("product-item");
           return $(arg.dom).delegate(".product-name", "click", function() {
-            var $rowDom, innerDom, nextIsDetail, oldNodes;
+            var $rowDom, innerDom, nextIsDetail, oldNodes, context, setTable;
             $rowDom = $fly(rowDom);
             nextIsDetail = $rowDom.next().hasClass("row-detail");
             oldNodes = $rowDom.parent().find(">.row-detail");
             oldNodes.prev().find(".product-name.expanded").removeClass("expanded");
             oldNodes.find('>td>div').animate({
+              speed:10,
               height: "0px"
             }, function() {
               return oldNodes.remove();
@@ -86,6 +78,9 @@
             if (nextIsDetail) {
               return;
             }
+
+            context = {};
+            // $.xCreate() 的用法请参考http://cola-ui.com/api/$.html
             innerDom = $.xCreate({
               tagName: "tr",
               "class": "row-detail",
@@ -94,16 +89,50 @@
                   tagName: "td",
                   colspan: 6,
                   content: {
-                    tagName: "div"
+                    tagName: "div",
+                    contextKey:"tablePane"
                   }
                 }
               ]
+            }, context);
+
+            setTable = new cola.Table({
+                $type: "table",
+                showHeader: true,
+                bind: "item in products",
+                highlightCurrentItem: true,
+                currentPageOnly: true,
+                height: "100%",
+                columns: [
+                    {
+                        bind: ".id",
+                        caption: "产品编号"
+                    }, {
+                        caption: "产品名称",
+                        bind: ".productName"
+                    }, {
+                        bind: ".reorderLevel",
+                        caption: "订货量",
+                        align: "right"
+                    }, {
+                        bind: ".unitPrice",
+                        caption: "价格",
+                        align: "center",
+                        "class": "sss"
+                    }, {
+                        bind: ".quantityPerUnit",
+                        caption: "经营商"
+                    }
+                ]
             });
             $rowDom.after(innerDom);
             $rowDom.find(".product-name").addClass("expanded");
-            return $fly(innerDom).find(">td>div").animate({
-              height: "200px"
+            $fly(innerDom).find(">td>div").animate({
+                speed:10,
+                height: "200px"
             });
+            return setTable.appendTo(context.tablePane);
+
           });
         }
       }

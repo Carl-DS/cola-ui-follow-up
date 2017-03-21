@@ -16,15 +16,19 @@
   </head>
   <body>
     <script type="text/javascript">
-      NProgress.configure({showSpinner: false, minimum: 0.3})
+      NProgress.configure({showSpinner: false, minimum: 0.3});
       NProgress.start();
     </script>
-    <div style="height: 100%; " class="ui segment">
+    <div style="height: 98%; " class="ui segment">
+      <div class="secondary ui menu">
+        <div class="control item" style="margin: 0; padding-right: 0;">
+          <div style="width: 15px; height: 20px; background-color: #00ACED;margin: 0;"></div>
+        </div>
+        <div class="header item ui">表格单元格内嵌</div>
+      </div>
       <div id="productTable">
         <template name="price">
           <div>
-            <c-input bind="item.unitPrice" blur="blur" class="mini"></c-input>
-            <span class="btn"><i class="edit icon"></i></span>
             <span c-bind="formatNumber(item.unitPrice, '¥#,##0.00')"></span>
           </div>
         </template>

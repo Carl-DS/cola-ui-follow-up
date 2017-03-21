@@ -13,12 +13,11 @@
 				openMode: "drop",
 				items: "{{province in provinces}}",
 				textProperty: "name",
-				bind: "provinceValue",
 				post: function (self) {
-					debugger;
-					var city = model.get("cityValue");
-					if (city)
-						cola.widget("cityDropdown").set("value", "");
+					var city = cola.widget("cityDropdown").get("value");
+					if (city) {
+                        cola.widget("cityDropdown").set("value", "");
+                    }
 					model.set("cities", self.get("value").get("nodes"));
 				}
 			},
@@ -27,14 +26,15 @@
 				openMode: "drop",
 				items: "{{city in cities}}",
 				textProperty: "name",
-				bind: "cityValue",
 				post: function (self) {
-					var area = model.get("areaValue");
-					if (area)
-						cola.widget("areaDropdown").set("value", "");
+					var area = cola.widget("areaDropdown").get("value");
+					if (area) {
+                        cola.widget("areaDropdown").set("value", "");
+                    }
 					var value = self.get("value");
-					if (value)
-						model.set("areas", value.get("nodes"));
+					if (value) {
+                        model.set("areas", value.get("nodes"));
+                    }
 				}
 			},
 			areaDropdown: {
@@ -42,7 +42,6 @@
 				openMode: "drop",
 				items: "{{area in areas}}",
 				textProperty: "name",
-				bind: "areaValue",
 				dropdownHeight: 100 // dropdownHeight 不起作用
 			}
 		});

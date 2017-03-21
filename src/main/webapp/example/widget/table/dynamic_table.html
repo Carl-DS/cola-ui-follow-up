@@ -20,10 +20,17 @@
       NProgress.start();
     </script>
 
-      <c-panel caption="动态渲染" collapsible="false" height="inherit">
-        <div id="selectDropDown"></div>
+      <c-panel caption="动态添加列" collapsible="false" height="inherit">
+        <c-input placeholder="请输入列名" bind="columnName"></c-input>
+        <c-button caption="新添加一列" click="addTableColumn"></c-button>
         <hr>
-        <div id="dynamicTableContainer" style="overflow: auto;height: 90%;"></div>
+        <div class="dynamicTableContainer" style="overflow: auto;height: 90%;">
+          <div id="productTable">
+            <template name="checkStatus">
+              <div><i class="icon circle thin" c-class="red:item.checkStatus==0; green:item.checkStatus==1"></i></div>
+            </template>
+          </div>
+        </div>
       </c-panel>
 
   </body>

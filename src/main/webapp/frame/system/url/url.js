@@ -178,7 +178,7 @@
                     expanded: true,
                     child: {
                         recursive: true,
-                        expression: "url in url.menus",
+                        expression: "url in sort(url.menus, 'order')",
                         popup: "url.label", // disabled
                         expanded: true
                     }

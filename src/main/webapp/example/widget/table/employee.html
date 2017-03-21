@@ -72,23 +72,23 @@
                     <div class="ui segment basic">
                       <div class="ui form">
                         <div class="fields">
-                          <div class="field one wide">
+                          <div class="field four wide">
                             <label>姓</label>
                             <div c-widget="input; bind:editItem.lastName "></div>
                           </div>
-                          <div class="field two wide">
+                          <div class="field six wide">
                             <label>名</label>
                             <div c-widget="input; bind:editItem.firstName"></div>
                           </div>
                         </div>
                         <div class="fields">
-                          <div class="field three wide">
+                          <div class="field ten wide">
                             <label>性别</label>
                             <div id="radioGroup" c-widget="RadioGroup; name:brand; bind:editItem.sex"></div>
                           </div>
                         </div>
                         <div class="fields">
-                          <div class="field three wide">
+                          <div class="field ten wide">
                             <label>出生日期</label>
                             <div id="birthDatePicker"></div>
                           </div>
@@ -104,7 +104,7 @@
                     <div class="ui segment basic">
                       <div class="ui form">
                         <div class="fields">
-                          <div class="field three wide">
+                          <div class="field ten wide">
                             <label>电话</label>
                             <c-input bind="editItem.phone"></c-input>
                           </div>
@@ -120,17 +120,17 @@
                     <div class="ui segment basic">
                       <div class="ui form">
                         <div class="fields">
-                          <div class="field three wide">
+                          <div class="field four wide">
                             <label>称呼</label>
                             <c-input bind="editItem.titleOfCourtesy"></c-input>
                           </div>
-                          <div class="field three wide">
+                          <div class="field six wide">
                             <label>头衔</label>
                             <c-input bind="editItem.title"></c-input>
                           </div>
                         </div>
                         <div class="fields">
-                          <div class="field three wide">
+                          <div class="field ten wide">
                             <label>入职日期</label>
                             <div id="hireDatePicker"></div>
                           </div>
@@ -146,27 +146,30 @@
                     <div class="ui segment basic">
                       <div class="ui form">
                         <div class="fields">
-                          <div class="field two wide">
-                            <label>国家</label>
-                            <div id="countryDropDown"></div>
-                          </div>
-                          <div class="field two wide">
+                          <div class="field four wide">
                             <label>省份</label>
-                            <c-input bind="editItem.region"></c-input>
+                            <div id="provinceDropdown"></div>
+                            <!--<div id="countryDropDown"></div>-->
                           </div>
-                          <div class="field two wide">
-                            <label>市/区/县</label>
-                            <c-input bind="editItem.city"></c-input>
+                          <div class="field three wide">
+                            <label>市</label>
+                            <div id="cityDropdown" ></div>
+                            <!--<c-input bind="editItem.region"></c-input>-->
+                          </div>
+                          <div class="field three wide">
+                            <label>区/县</label>
+                            <div id="areaDropdown" ></div>
+                            <!--<c-input bind="editItem.city"></c-input>-->
                           </div>
                         </div>
                         <div class="fields">
-                          <div class="field two wide">
+                          <div class="field ten wide">
                             <label>邮政编码</label>
                             <c-input bind="editItem.postalCode"></c-input>
                           </div>
                         </div>
                         <div class="fields">
-                          <div class="field six wide">
+                          <div class="field ten wide">
                             <label>详细地址</label>
                             <c-textarea bind="editItem.address"></c-textarea>
                           </div>
@@ -182,7 +185,7 @@
                     <div class="ui segment basic">
                       <div class="ui form">
                         <div class="fields">
-                          <div class="six wide field">
+                          <div class="field ten wide">
                             <label>备注</label>
                             <c-textarea bind="editItem.extension"></c-textarea>
                           </div>
@@ -197,8 +200,8 @@
         </div>
         <div class="box">
           <div class="ui segment basic">
-            <c-button icon="remove" caption="取消" click="cancel" class="negative large"></c-button>
-            <c-button icon="checkmark" caption="提交" click="ok" class="positive large"></c-button>
+            <c-button icon="remove" caption="取消" click="cancel" class="negative mini"></c-button>
+            <c-button icon="checkmark" caption="提交" click="ok" class="positive mini"></c-button>
           </div>
         </div>
       </div>
@@ -211,4 +214,5 @@
   <script src="./resources/cola-ui/cola.js"></script>
   <script src="./common/common.js"></script>
   <script src="./example/widget/table/employee.js"></script>
+  <script src="./example/widget/dropdown/area.js"></script>
 </html>

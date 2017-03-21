@@ -3,11 +3,6 @@
  */
 (function () {
     cola(function (model) {
-        model.set("provinces", {nodes: [{name: "中国", nodes: [
-            {name: "上海", nodes: [{name: "浦东新区"}, {name: "杨浦"}, {name: "松江"}, {name: "徐汇区"}] },
-            {name: "内蒙古", nodes: [{name: "兴安盟"}, {name: "通辽"}, {name: "锡林郭勒"}, {name: "呼伦贝尔"}, {name: "赤峰"}]}
-            ] }] });
-
         model.describe("categories", {
             provider: {
                 url: "/service/category/",
@@ -52,7 +47,7 @@
                 content: { // 此处内部可写不同形式的数据展现
                     $type: "table",
                     bind: "category in categories",
-                    width: "180px",
+                    width: "174px",
                     columns: [{ caption: "分类名", bind: ".categoryName"},
                         {caption: "描述", bind: ".description"} ],
                     itemClick: function (self, arg) {
@@ -83,36 +78,6 @@
                 textProperty: "productName",
                 items: "{{product in products}}",
                 bind: "productId"
-            },
-            // 三级联动
-            provinceDropdown: {
-                $type: "dropdown",
-                openMode: "drop",
-                items: "{{province in provinces.nodes}}",
-                textProperty: "name",
-                bind: "provinceValue",
-                post: function (self) {
-                    model.set("cities", self.get("value").get("nodes"));
-                }
-            },
-            // 三级联动
-            cityDropdown: {
-                $type: "dropdown",
-                openMode: "drop",
-                items: "{{city in cities}}",
-                textProperty: "name",
-                bind: "cityValue",
-                post: function (self) {
-                    model.set("areas", self.get("value").get("nodes"));
-                }
-            },
-            // 三级联动
-            areaDropdown: {
-                $type: "dropdown",
-                openMode: "drop",
-                items: "{{area in areas}}",
-                textProperty: "name",
-                bind: "areaValue"
             }
         });
 

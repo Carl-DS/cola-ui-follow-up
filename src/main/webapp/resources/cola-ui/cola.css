@@ -1,4 +1,4 @@
-/*! Cola UI - 0.9.8
+/*! Cola UI - 0.9.7
  * Copyright (c) 2002-2016 BSTEK Corp. All rights reserved.
  *
  * This file is dual-licensed under the AGPLv3 (http://www.gnu.org/licenses/agpl-3.0.html)
@@ -184,11 +184,6 @@
 template {
   display: none;
 }
-*:focus {
-  outline: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-user-modify: read-write-plaintext-only;
-}
 .mobile {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
@@ -204,9 +199,6 @@ template {
 }
 .mobile ::-webkit-scrollbar-thumb {
   background: #888;
-}
-.show-on-ready {
-  visibility: hidden;
 }
 .display-none {
   display: none !important;
@@ -396,66 +388,6 @@ template {
 .ui.fragment.grey:before {
   background-color: rgba(118, 118, 118, 0.8);
 }
-.ui.city-selector {
-  width: 320px;
-  height: 280px;
-  display: inline-block;
-  overflow: hidden;
-  border: 1px solid #2185d0;
-}
-.ui.city-selector .content .province,
-.ui.city-selector .content .cities,
-.ui.city-selector .content .hot {
-  display: none;
-}
-.ui.city-selector .content .province .name,
-.ui.city-selector .content .cities .name,
-.ui.city-selector .content .hot .name {
-  width: 25%;
-  cursor: pointer;
-  display: inline-block;
-}
-.ui.city-selector .content .province .name:hover,
-.ui.city-selector .content .cities .name:hover,
-.ui.city-selector .content .hot .name:hover {
-  color: #2185d0;
-}
-.ui.city-selector .content .province.active,
-.ui.city-selector .content .cities.active,
-.ui.city-selector .content .hot.active {
-  display: block;
-}
-.ui.city-selector .content .city.active {
-  display: block;
-}
-.ui.city-selector .tab-buttons {
-  width: 100%;
-  display: table;
-}
-.ui.city-selector .tab-buttons > .item {
-  display: table-cell;
-  text-align: center;
-  width: 33.33%;
-  cursor: pointer;
-}
-.ui.city-selector .tab-buttons > .item.active,
-.ui.city-selector .tab-buttons > .item:active {
-  background-color: #2185d0;
-  color: #fff;
-}
-.ui.city-selector .tab-buttons > .item:hover {
-  background-color: rgba(33, 133, 208, 0.8);
-  color: #fff;
-}
-c-segment {
-  display: block;
-}
-c-divider {
-  display: block;
-}
-c-form {
-  display: block;
-}
 
 .mobile .v-box,
 .mobile .h-box {
@@ -465,8 +397,8 @@ c-form {
   display: -webkit-flex;
   display: flex;
 }
-.mobile .v-box > .flex-box,
-.mobile .h-box > .flex-box {
+.mobile .v-box .flex-box,
+.mobile .h-box .flex-box {
   display: -webkit-box;
   display: -moz-box;
 }
@@ -510,8 +442,8 @@ c-form {
   -ms-flex-item-align: auto;
   align-self: auto;
 }
-.v-box > .flex-box,
-.h-box > .flex-box {
+.v-box .flex-box,
+.h-box .flex-box {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -webkit-flex: 1 1 auto;
@@ -521,8 +453,8 @@ c-form {
   -ms-flex-item-align: auto;
   align-self: auto;
 }
-.v-box > .flex-box > *,
-.h-box > .flex-box > * {
+.v-box .flex-box > *,
+.h-box .flex-box > * {
   position: absolute !important;
   left: 0;
   right: 0;
@@ -566,1146 +498,6 @@ c-form {
   justify-content: flex-end;
 }
 
-.form > field {
-  width: 100%;
-}
-.form > fields > field {
-  width: 100%;
-}
-.form > fields,
-.form > [class*="fields-"] {
-  display: block;
-  padding: 0;
-  *zoom: 1;
-  margin: 0;
-}
-.form > fields:before,
-.form > [class*="fields-"]:before,
-.form > fields:after,
-.form > [class*="fields-"]:after {
-  display: table;
-  content: "";
-}
-.form > fields:after,
-.form > [class*="fields-"]:after {
-  clear: both;
-}
-.form > fields > field,
-.form > [class*="fields-"] > field {
-  display: block;
-  float: left;
-  height: auto;
-}
-.form > fields > field,
-.form > [class*="fields-"] > field {
-  padding: 0 0.375rem 0.75rem;
-}
-.form > field {
-  padding: 0 0.375rem 0.75rem;
-}
-.form > field,
-.form > fields > field,
-.form > [class*="fields-"] > field {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-.form > field > label,
-.form > fields > field > label,
-.form > [class*="fields-"] > field > label {
-  padding-right: 1em;
-  width: 6em;
-  text-align: right;
-}
-.form > field.required > label,
-.form > fields > field.required > label,
-.form > [class*="fields-"] > field.required > label {
-  position: relative;
-}
-.form > field.required > label:after,
-.form > fields > field.required > label:after,
-.form > [class*="fields-"] > field.required > label:after {
-  content: '*';
-  color: #DB2828;
-  position: absolute;
-  right: 0em;
-  line-height: 1rem;
-  top: 50%;
-  margin-top: -0.5rem;
-  width: 1rem;
-  text-align: center;
-}
-.form > field .ui.input,
-.form > fields > field .ui.input,
-.form > [class*="fields-"] > field .ui.input,
-.form > field .ui.textarea,
-.form > fields > field .ui.textarea,
-.form > [class*="fields-"] > field .ui.textarea {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1 0 auto;
-  -ms-flex: 1 0 auto;
-  flex: 1 0 auto;
-  width: inherit;
-}
-.form > field > .ui.textarea,
-.form > fields > field > .ui.textarea,
-.form > [class*="fields-"] > field > .ui.textarea {
-  width: auto;
-}
-.form fields-2 > field {
-  width: 50%;
-}
-.form fields-2 > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields-2 > field:nth-of-type(2n + 1) {
-  clear: both;
-}
-.form fields-3 > field {
-  width: 33.33333333%;
-}
-.form fields-3 > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields-3 > field:nth-of-type(3n + 1) {
-  clear: both;
-}
-.form fields-4 > field {
-  width: 25%;
-}
-.form fields-4 > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields-4 > field:nth-of-type(4n + 1) {
-  clear: both;
-}
-.form fields-5 > field {
-  width: 20%;
-}
-.form fields-5 > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields-5 > field:nth-of-type(5n + 1) {
-  clear: both;
-}
-.form fields-6 > field {
-  width: 16.66666667%;
-}
-.form fields-6 > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields-6 > field:nth-of-type(6n + 1) {
-  clear: both;
-}
-.form fields-7 > field {
-  width: 14.28571429%;
-}
-.form fields-7 > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields-7 > field:nth-of-type(7n + 1) {
-  clear: both;
-}
-.form fields-8 > field {
-  width: 12.5%;
-}
-.form fields-8 > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields-8 > field:nth-of-type(8n + 1) {
-  clear: both;
-}
-.form fields-9 > field {
-  width: 11.11111111%;
-}
-.form fields-9 > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields-9 > field:nth-of-type(9n + 1) {
-  clear: both;
-}
-.form fields-10 > field {
-  width: 10%;
-}
-.form fields-10 > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields-10 > field:nth-of-type(10n + 1) {
-  clear: both;
-}
-.form fields-11 > field {
-  width: 9.09090909%;
-}
-.form fields-11 > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields-11 > field:nth-of-type(11n + 1) {
-  clear: both;
-}
-.form fields-12 > field {
-  width: 8.33333333%;
-}
-.form fields-12 > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields-12 > field:nth-of-type(12n + 1) {
-  clear: both;
-}
-.form > fields-2 > field.colspan-2 {
-  width: 100%;
-}
-.form > fields-3 > field.colspan-2 {
-  width: 66.66666667%;
-}
-.form > fields-3 > field.colspan-3 {
-  width: 100%;
-}
-.form > fields-4 > field.colspan-2 {
-  width: 50%;
-}
-.form > fields-4 > field.colspan-3 {
-  width: 75%;
-}
-.form > fields-4 > field.colspan-4 {
-  width: 100%;
-}
-.form > fields-5 > field.colspan-2 {
-  width: 40%;
-}
-.form > fields-5 > field.colspan-3 {
-  width: 60%;
-}
-.form > fields-5 > field.colspan-4 {
-  width: 80%;
-}
-.form > fields-5 > field.colspan-5 {
-  width: 100%;
-}
-.form > fields-6 > field.colspan-2 {
-  width: 33.33333333%;
-}
-.form > fields-6 > field.colspan-3 {
-  width: 50%;
-}
-.form > fields-6 > field.colspan-4 {
-  width: 66.66666667%;
-}
-.form > fields-6 > field.colspan-5 {
-  width: 83.33333333%;
-}
-.form > fields-6 > field.colspan-6 {
-  width: 100%;
-}
-.form > fields-7 > field.colspan-2 {
-  width: 28.57142857%;
-}
-.form > fields-7 > field.colspan-3 {
-  width: 42.85714286%;
-}
-.form > fields-7 > field.colspan-4 {
-  width: 57.14285714%;
-}
-.form > fields-7 > field.colspan-5 {
-  width: 71.42857143%;
-}
-.form > fields-7 > field.colspan-6 {
-  width: 85.71428571%;
-}
-.form > fields-7 > field.colspan-7 {
-  width: 100%;
-}
-.form > fields-8 > field.colspan-2 {
-  width: 25%;
-}
-.form > fields-8 > field.colspan-3 {
-  width: 37.5%;
-}
-.form > fields-8 > field.colspan-4 {
-  width: 50%;
-}
-.form > fields-8 > field.colspan-5 {
-  width: 62.5%;
-}
-.form > fields-8 > field.colspan-6 {
-  width: 75%;
-}
-.form > fields-8 > field.colspan-7 {
-  width: 87.5%;
-}
-.form > fields-8 > field.colspan-8 {
-  width: 100%;
-}
-.form > fields-9 > field.colspan-2 {
-  width: 22.22222222%;
-}
-.form > fields-9 > field.colspan-3 {
-  width: 33.33333333%;
-}
-.form > fields-9 > field.colspan-4 {
-  width: 44.44444444%;
-}
-.form > fields-9 > field.colspan-5 {
-  width: 55.55555556%;
-}
-.form > fields-9 > field.colspan-6 {
-  width: 66.66666667%;
-}
-.form > fields-9 > field.colspan-7 {
-  width: 77.77777778%;
-}
-.form > fields-9 > field.colspan-8 {
-  width: 88.88888889%;
-}
-.form > fields-9 > field.colspan-9 {
-  width: 100%;
-}
-.form > fields-10 > field.colspan-2 {
-  width: 20%;
-}
-.form > fields-10 > field.colspan-3 {
-  width: 30%;
-}
-.form > fields-10 > field.colspan-4 {
-  width: 40%;
-}
-.form > fields-10 > field.colspan-5 {
-  width: 50%;
-}
-.form > fields-10 > field.colspan-6 {
-  width: 60%;
-}
-.form > fields-10 > field.colspan-7 {
-  width: 70%;
-}
-.form > fields-10 > field.colspan-8 {
-  width: 80%;
-}
-.form > fields-10 > field.colspan-9 {
-  width: 90%;
-}
-.form > fields-10 > field.colspan-10 {
-  width: 100%;
-}
-.form > fields-11 > field.colspan-2 {
-  width: 18.18181818%;
-}
-.form > fields-11 > field.colspan-3 {
-  width: 27.27272727%;
-}
-.form > fields-11 > field.colspan-4 {
-  width: 36.36363636%;
-}
-.form > fields-11 > field.colspan-5 {
-  width: 45.45454545%;
-}
-.form > fields-11 > field.colspan-6 {
-  width: 54.54545455%;
-}
-.form > fields-11 > field.colspan-7 {
-  width: 63.63636364%;
-}
-.form > fields-11 > field.colspan-8 {
-  width: 72.72727273%;
-}
-.form > fields-11 > field.colspan-9 {
-  width: 81.81818182%;
-}
-.form > fields-11 > field.colspan-10 {
-  width: 90.90909091%;
-}
-.form > fields-11 > field.colspan-11 {
-  width: 100%;
-}
-.form > fields-12 > field.colspan-2 {
-  width: 16.66666667%;
-}
-.form > fields-12 > field.colspan-3 {
-  width: 25%;
-}
-.form > fields-12 > field.colspan-4 {
-  width: 33.33333333%;
-}
-.form > fields-12 > field.colspan-5 {
-  width: 41.66666667%;
-}
-.form > fields-12 > field.colspan-6 {
-  width: 50%;
-}
-.form > fields-12 > field.colspan-7 {
-  width: 58.33333333%;
-}
-.form > fields-12 > field.colspan-8 {
-  width: 66.66666667%;
-}
-.form > fields-12 > field.colspan-9 {
-  width: 75%;
-}
-.form > fields-12 > field.colspan-10 {
-  width: 83.33333333%;
-}
-.form > fields-12 > field.colspan-11 {
-  width: 91.66666667%;
-}
-.form > fields-12 > field.colspan-12 {
-  width: 100%;
-}
-@media only screen and (min-width: 0em ) and (max-width: 42.5em ) {
-  .form > field,
-  .form > fields > field,
-  .form > [class*="fields-"] > field {
-    width: 100% !important;
-  }
-  .form > field > label,
-  .form > fields > field > label,
-  .form > [class*="fields-"] > field > label {
-    display: block;
-  }
-  .form > field > .ui.input,
-  .form > fields > field > .ui.input,
-  .form > [class*="fields-"] > field > .ui.input,
-  .form > field .ui.textarea,
-  .form > fields > field .ui.textarea,
-  .form > [class*="fields-"] > field .ui.textarea {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1 0 auto;
-    -ms-flex: 1 0 auto;
-    flex: 1 0 auto;
-    width: initial;
-  }
-}
-.form fields.two > field {
-  width: 50%;
-}
-.form fields.two > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields.two > field:nth-of-type(2n + 1) {
-  clear: both;
-}
-.form fields.three > field {
-  width: 33.33333333%;
-}
-.form fields.three > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields.three > field:nth-of-type(3n + 1) {
-  clear: both;
-}
-.form fields.four > field {
-  width: 25%;
-}
-.form fields.four > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields.four > field:nth-of-type(4n + 1) {
-  clear: both;
-}
-.form fields.five > field {
-  width: 20%;
-}
-.form fields.five > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields.five > field:nth-of-type(5n + 1) {
-  clear: both;
-}
-.form fields.six > field {
-  width: 16.66666667%;
-}
-.form fields.six > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields.six > field:nth-of-type(6n + 1) {
-  clear: both;
-}
-.form fields.seven > field {
-  width: 14.28571429%;
-}
-.form fields.seven > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields.seven > field:nth-of-type(7n + 1) {
-  clear: both;
-}
-.form fields.eight > field {
-  width: 12.5%;
-}
-.form fields.eight > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields.eight > field:nth-of-type(8n + 1) {
-  clear: both;
-}
-.form fields.nine > field {
-  width: 11.11111111%;
-}
-.form fields.nine > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields.nine > field:nth-of-type(9n + 1) {
-  clear: both;
-}
-.form fields.ten > field {
-  width: 10%;
-}
-.form fields.ten > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields.ten > field:nth-of-type(10n + 1) {
-  clear: both;
-}
-.form fields.eleven > field {
-  width: 9.09090909%;
-}
-.form fields.eleven > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields.eleven > field:nth-of-type(11n + 1) {
-  clear: both;
-}
-.form fields.twelve > field {
-  width: 8.33333333%;
-}
-.form fields.twelve > field:nth-of-type(1n) {
-  clear: none;
-}
-.form fields.twelve > field:nth-of-type(12n + 1) {
-  clear: both;
-}
-.form > fields.two > field.colspan-2 {
-  width: 100%;
-}
-.form > fields.three > field.colspan-2 {
-  width: 66.66666667%;
-}
-.form > fields.three > field.colspan-3 {
-  width: 100%;
-}
-.form > fields.four > field.colspan-2 {
-  width: 50%;
-}
-.form > fields.four > field.colspan-3 {
-  width: 75%;
-}
-.form > fields.four > field.colspan-4 {
-  width: 100%;
-}
-.form > fields.five > field.colspan-2 {
-  width: 40%;
-}
-.form > fields.five > field.colspan-3 {
-  width: 60%;
-}
-.form > fields.five > field.colspan-4 {
-  width: 80%;
-}
-.form > fields.five > field.colspan-5 {
-  width: 100%;
-}
-.form > fields.six > field.colspan-2 {
-  width: 33.33333333%;
-}
-.form > fields.six > field.colspan-3 {
-  width: 50%;
-}
-.form > fields.six > field.colspan-4 {
-  width: 66.66666667%;
-}
-.form > fields.six > field.colspan-5 {
-  width: 83.33333333%;
-}
-.form > fields.six > field.colspan-6 {
-  width: 100%;
-}
-.form > fields.seven > field.colspan-2 {
-  width: 28.57142857%;
-}
-.form > fields.seven > field.colspan-3 {
-  width: 42.85714286%;
-}
-.form > fields.seven > field.colspan-4 {
-  width: 57.14285714%;
-}
-.form > fields.seven > field.colspan-5 {
-  width: 71.42857143%;
-}
-.form > fields.seven > field.colspan-6 {
-  width: 85.71428571%;
-}
-.form > fields.seven > field.colspan-7 {
-  width: 100%;
-}
-.form > fields.eight > field.colspan-2 {
-  width: 25%;
-}
-.form > fields.eight > field.colspan-3 {
-  width: 37.5%;
-}
-.form > fields.eight > field.colspan-4 {
-  width: 50%;
-}
-.form > fields.eight > field.colspan-5 {
-  width: 62.5%;
-}
-.form > fields.eight > field.colspan-6 {
-  width: 75%;
-}
-.form > fields.eight > field.colspan-7 {
-  width: 87.5%;
-}
-.form > fields.eight > field.colspan-8 {
-  width: 100%;
-}
-.form > fields.nine > field.colspan-2 {
-  width: 22.22222222%;
-}
-.form > fields.nine > field.colspan-3 {
-  width: 33.33333333%;
-}
-.form > fields.nine > field.colspan-4 {
-  width: 44.44444444%;
-}
-.form > fields.nine > field.colspan-5 {
-  width: 55.55555556%;
-}
-.form > fields.nine > field.colspan-6 {
-  width: 66.66666667%;
-}
-.form > fields.nine > field.colspan-7 {
-  width: 77.77777778%;
-}
-.form > fields.nine > field.colspan-8 {
-  width: 88.88888889%;
-}
-.form > fields.nine > field.colspan-9 {
-  width: 100%;
-}
-.form > fields.ten > field.colspan-2 {
-  width: 20%;
-}
-.form > fields.ten > field.colspan-3 {
-  width: 30%;
-}
-.form > fields.ten > field.colspan-4 {
-  width: 40%;
-}
-.form > fields.ten > field.colspan-5 {
-  width: 50%;
-}
-.form > fields.ten > field.colspan-6 {
-  width: 60%;
-}
-.form > fields.ten > field.colspan-7 {
-  width: 70%;
-}
-.form > fields.ten > field.colspan-8 {
-  width: 80%;
-}
-.form > fields.ten > field.colspan-9 {
-  width: 90%;
-}
-.form > fields.ten > field.colspan-10 {
-  width: 100%;
-}
-.form > fields.eleven > field.colspan-2 {
-  width: 18.18181818%;
-}
-.form > fields.eleven > field.colspan-3 {
-  width: 27.27272727%;
-}
-.form > fields.eleven > field.colspan-4 {
-  width: 36.36363636%;
-}
-.form > fields.eleven > field.colspan-5 {
-  width: 45.45454545%;
-}
-.form > fields.eleven > field.colspan-6 {
-  width: 54.54545455%;
-}
-.form > fields.eleven > field.colspan-7 {
-  width: 63.63636364%;
-}
-.form > fields.eleven > field.colspan-8 {
-  width: 72.72727273%;
-}
-.form > fields.eleven > field.colspan-9 {
-  width: 81.81818182%;
-}
-.form > fields.eleven > field.colspan-10 {
-  width: 90.90909091%;
-}
-.form > fields.eleven > field.colspan-11 {
-  width: 100%;
-}
-.form > fields.twelve > field.colspan-2 {
-  width: 16.66666667%;
-}
-.form > fields.twelve > field.colspan-3 {
-  width: 25%;
-}
-.form > fields.twelve > field.colspan-4 {
-  width: 33.33333333%;
-}
-.form > fields.twelve > field.colspan-5 {
-  width: 41.66666667%;
-}
-.form > fields.twelve > field.colspan-6 {
-  width: 50%;
-}
-.form > fields.twelve > field.colspan-7 {
-  width: 58.33333333%;
-}
-.form > fields.twelve > field.colspan-8 {
-  width: 66.66666667%;
-}
-.form > fields.twelve > field.colspan-9 {
-  width: 75%;
-}
-.form > fields.twelve > field.colspan-10 {
-  width: 83.33333333%;
-}
-.form > fields.twelve > field.colspan-11 {
-  width: 91.66666667%;
-}
-.form > fields.twelve > field.colspan-12 {
-  width: 100%;
-}
-/*******************************
-            Message
-*******************************/
-/*-------------------
-       Elements
---------------------*/
-/* Header */
-/* Paragraph */
-/* List */
-/* Icon */
-/* Close Icon */
-/*-------------------
-        Types
---------------------*/
-/* Icon Message */
-/* Attached */
-/* Floating */
-/* Warning / Positive / Negative / Info */
-/*******************************
-            Message
-*******************************/
-message,
-messages {
-  position: relative;
-  min-height: 1em;
-  margin: 1em 0em;
-  background: #f8f8f9;
-  padding: 1em 1.5em;
-  line-height: 1.4285em;
-  color: rgba(0, 0, 0, 0.87);
-  transition: opacity 0.1s ease, color 0.1s ease, background 0.1s ease, box-shadow 0.1s ease;
-  border-radius: 0.28571429rem;
-  box-shadow: 0px 0px 0px 1px rgba(34, 36, 38, 0.22) inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
-}
-message:first-child,
-messages:first-child {
-  margin-top: 0em;
-}
-message:last-child,
-messages:last-child {
-  margin-bottom: 0em;
-}
-/*--------------
-     Content
----------------*/
-message,
-messages {
-  /* Header */
-  /* Default font size */
-  /* Paragraph */
-  /* List */
-  /* Icon */
-  /* Close Icon */
-  /* First / Last Element */
-}
-message .header,
-messages .header {
-  display: block;
-  font-family: 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  margin: -0.14285em 0em 0rem 0em;
-}
-message .header:not(.ui),
-messages .header:not(.ui) {
-  font-size: 1.14285714em;
-}
-message p,
-messages p {
-  opacity: 0.85;
-  margin: 0.75em 0em;
-}
-message p:first-child,
-messages p:first-child {
-  margin-top: 0em;
-}
-message p:last-child,
-messages p:last-child {
-  margin-bottom: 0em;
-}
-message .header + p,
-messages .header + p {
-  margin-top: 0.25em;
-}
-message .list:not(.ui),
-messages .list:not(.ui) {
-  text-align: left;
-  padding: 0em;
-  opacity: 0.85;
-  list-style-position: inside;
-  margin: 0.5em 0em 0em;
-}
-message .list:not(.ui):first-child,
-messages .list:not(.ui):first-child {
-  margin-top: 0em;
-}
-message .list:not(.ui):last-child,
-messages .list:not(.ui):last-child {
-  margin-bottom: 0em;
-}
-message .list:not(.ui) li,
-messages .list:not(.ui) li {
-  position: relative;
-  list-style-type: none;
-  margin: 0em 0em 0.3em 1em;
-  padding: 0em;
-}
-message .list:not(.ui) li:before,
-messages .list:not(.ui) li:before {
-  position: absolute;
-  content: '•';
-  left: -1em;
-  height: 100%;
-  vertical-align: baseline;
-}
-message .list:not(.ui) li:last-child,
-messages .list:not(.ui) li:last-child {
-  margin-bottom: 0em;
-}
-message > .icon,
-messages > .icon {
-  margin-right: 0.6em;
-}
-message > .close.icon,
-messages > .close.icon {
-  cursor: pointer;
-  position: absolute;
-  margin: 0em;
-  top: 0.78575em;
-  right: 0.5em;
-  opacity: 0.7;
-  transition: opacity 0.1s ease;
-}
-message > .close.icon:hover,
-messages > .close.icon:hover {
-  opacity: 1;
-}
-message > :first-child,
-messages > :first-child {
-  margin-top: 0em;
-}
-message > :last-child,
-messages > :last-child {
-  margin-bottom: 0em;
-}
-/*******************************
-            States
-*******************************/
-/*--------------
-    Visible
----------------*/
-message.visible,
-messages.visible {
-  display: block;
-}
-message.icon.visible,
-messages.icon.visible {
-  display: flex;
-}
-/*--------------
-     Hidden
----------------*/
-message.hidden,
-messages.hidden {
-  display: none;
-}
-/*******************************
-            Variations
-*******************************/
-/*--------------
-    Compact
----------------*/
-message.compact,
-messages.compact {
-  display: inline-block;
-}
-/*--------------
-      Icon
----------------*/
-message.icon,
-messages.icon {
-  display: flex;
-  width: 100%;
-  align-items: center;
-}
-message.icon > .icon:not(.close),
-messages.icon > .icon:not(.close) {
-  display: block;
-  flex: 0 0 auto;
-  width: auto;
-  line-height: 1;
-  vertical-align: middle;
-  font-size: 3em;
-  opacity: 0.8;
-}
-message.icon > .content,
-messages.icon > .content {
-  display: block;
-  flex: 1 1 auto;
-  vertical-align: middle;
-}
-message.icon .icon:not(.close) + .content,
-messages.icon .icon:not(.close) + .content {
-  padding-left: 0rem;
-}
-message.icon .circular.icon,
-messages.icon .circular.icon {
-  width: 1em;
-}
-/*--------------
-     Types
----------------*/
-/* Info */
-message.info,
-messages.info {
-  background-color: #f8ffff;
-  color: #276f86;
-}
-message.info,
-messages.info,
-message.attached.info,
-messages.attached.info {
-  box-shadow: 0px 0px 0px 1px #a9d5de inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
-}
-message.info .header,
-messages.info .header {
-  color: #0e566c;
-}
-/* Warning */
-message.warning,
-messages.warning {
-  background-color: #fffaf3;
-  color: #573a08;
-}
-message.warning,
-messages.warning,
-message.attached.warning,
-messages.attached.warning {
-  box-shadow: 0px 0px 0px 1px #c9ba9b inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
-}
-message.warning .header,
-messages.warning .header {
-  color: #794b02;
-}
-/* Error */
-message.error,
-messages.error {
-  background-color: #fff6f6;
-  color: #9f3a38;
-}
-message.error,
-messages.error,
-message.attached.error,
-messages.attached.error {
-  box-shadow: 0px 0px 0px 1px #e0b4b4 inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
-}
-message.error .header,
-messages.error .header {
-  color: #912d2b;
-}
-/* Success */
-message.success,
-messages.success {
-  background-color: #fcfff5;
-  color: #2c662d;
-}
-message.success,
-messages.success,
-message.attached.success,
-messages.attached.success {
-  box-shadow: 0px 0px 0px 1px #a3c293 inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
-}
-message.success .header,
-messages.success .header {
-  color: #1a531b;
-}
-/*--------------
-     Sizes
----------------*/
-message,
-messages {
-  font-size: 1em;
-}
-message.mini,
-messages.mini {
-  font-size: 0.71428571em;
-}
-message.tiny,
-messages.tiny {
-  font-size: 0.85714286em;
-}
-message.small,
-messages.small {
-  font-size: 0.92857143em;
-}
-message.large,
-messages.large {
-  font-size: 1.14285714em;
-}
-message.big,
-messages.big {
-  font-size: 1.28571429em;
-}
-message.huge,
-messages.huge {
-  font-size: 1.42857143em;
-}
-message.massive,
-messages.massive {
-  font-size: 1.71428571em;
-}
-messages {
-  width: 100%;
-}
-/*--------------------
-   Types of Messages
----------------------*/
-.form messages,
-.form message.info,
-.form message.warning,
-.form message.error {
-  display: none;
-}
-/* Assumptions */
-.form message:first-child {
-  margin-top: 0px;
-}
-/*--------------------
-        Info
----------------------*/
-/* On Form */
-.form.success message.info:not(:empty),
-.form.success messages.info:not(:empty) {
-  display: block;
-}
-.form.success message.icon.success:not(:empty),
-.form.success messages.icon.success:not(:empty) {
-  display: flex;
-}
-/*--------------------
-        Warning
----------------------*/
-/* On Form */
-.form.warning message.warning:not(:empty),
-.form.warning messages.warning:not(:empty) {
-  display: block;
-}
-.form.warning message.icon.warning:not(:empty),
-.form.warning messages.icon.warning:not(:empty) {
-  display: flex;
-}
-/*--------------------
-        Error
----------------------*/
-/* On Form */
-.form.error message.error:not(:empty),
-.form.error messages.error:not(:empty) {
-  display: block;
-}
-.form.error message.icon.error:not(:empty) .form.error messages.icon.error:not(:empty) {
-  display: flex;
-}
-/* On Field(s) */
-.form fields.error field label,
-.form field.error label,
-.form fields.error field .input,
-.form field.error input {
-  color: #9f3a38;
-}
-.form fields.error field .corner.label,
-.form field.error .corner.label {
-  border-color: #9f3a38;
-  color: #ffffff;
-}
-/*--------------------
-       Disabled
----------------------*/
-.form fields.disabled field,
-.form field.disabled,
-.form field :disabled {
-  pointer-events: none;
-  opacity: 0.45;
-}
-.form field.disabled label {
-  opacity: 0.45;
-}
-.form field.disabled :disabled {
-  opacity: 1;
-}
-/*--------------
-    Loading
----------------*/
-.loading.form {
-  position: relative;
-  cursor: default;
-  point-events: none;
-}
-.loading.form:before {
-  position: absolute;
-  content: '';
-  top: 0%;
-  left: 0%;
-  background: rgba(255, 255, 255, 0.8);
-  width: 100%;
-  height: 100%;
-  z-index: 100;
-}
-.loading.form:after {
-  position: absolute;
-  content: '';
-  top: 50%;
-  left: 50%;
-  margin: -0.64285714em 0em 0em -0.64285714em;
-  width: 1.28571429em;
-  height: 1.28571429em;
-  animation: form-spin 0.6s linear;
-  animation-iteration-count: infinite;
-  border-radius: 500rem;
-  border-color: #767676 rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1);
-  border-style: solid;
-  border-width: 0.2em;
-  box-shadow: 0px 0px 0px 1px transparent;
-  visibility: visible;
-  z-index: 101;
-}
-@keyframes form-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 [class*="block-grid-"] {
   display: block;
@@ -1855,7 +647,7 @@ messages {
     clear: both;
   }
 }
-@media only screen and (min-width: 42.5625em ) {
+@media only screen and (min-width: 48.0625em ) {
   .medium-row-list > li {
     list-style: none;
     width: 100%;
@@ -2670,7 +1462,7 @@ messages {
     padding-right: 0rem;
   }
 }
-@media only screen and (min-width: 42.5625em ) {
+@media only screen and (min-width: 48.0625em ) {
   .medium-push-0 {
     position: relative;
     left: 0%;
@@ -4311,8 +3103,8 @@ messages {
   overflow: hidden;
   padding: 0.6em 0.4em;
 }
-.ui.widget-table table thead tr:first-child th {
-  border-bottom: 2px solid #edf0f3;
+.ui.widget-table table tbody tr:first-child td {
+  border-top: 2px solid #edf0f3;
 }
 .ui.widget-table table tbody tr:last-child td {
   border-bottom: 2px solid #edf0f3;
@@ -4381,9 +3173,6 @@ messages {
 .ui.widget-table.inverted table thead th {
   background: #474a4d;
   border-color: #65696c;
-}
-.ui.widget-table.inverted table thead tr:last-child th {
-  border-bottom-color: #65696c;
 }
 .ui.widget-table.inverted table tbody tr:last-child td {
   border-bottom-color: #65696c;
@@ -4584,7 +3373,6 @@ messages {
   pointer-events: inherit !important;
 }
 .ui.input.drop > .value-content {
-  display: none;
   position: absolute;
   left: 0;
   top: 0;
@@ -4599,10 +3387,10 @@ messages {
   opacity: 0.3 !important;
   filter: alpha(opacity=30) !important;
 }
-.ui.input.drop.filterable.opened input {
+.ui.input.drop.opened input {
   border-color: rgba(0, 0, 0, 0.3);
 }
-.ui.input.drop.filterable.opened > .value-content {
+.ui.input.drop.opened > .value-content {
   opacity: 0.5;
   filter: alpha(opacity=50);
 }
@@ -4864,9 +3652,7 @@ messages {
 }
 .ui.message-box {
   width: auto;
-  max-width: 90%;
   height: auto;
-  max-height: 90%;
   position: fixed !important;
 }
 .ui.message-box .close-btn.hidden,
@@ -5277,12 +4063,16 @@ messages {
   right: -1.25rem;
   z-index: 1;
   border-radius: 50%;
+  opacity: 0.8;
   font-size: 1.25em;
   color: #ffffff;
   line-height: 2rem;
   width: 2rem;
   height: 2rem;
   padding: 0;
+}
+.ui.dialog .close-btn:hover {
+  opacity: 1;
 }
 /*--------------
      Header
@@ -5848,15 +4638,13 @@ messages {
 }
 .ui.c-tab.right-tab > .tab-bar,
 .ui.c-tab.bottom-tab > .tab-bar {
-  -webkit-order: 2;
-  -ms-flex-order: 2;
-  order: 2;
+  -webkit-box-ordinal-group: 2;
+  -moz-box-ordinal-group: 2;
 }
 .ui.c-tab.right-tab > .contents,
 .ui.c-tab.bottom-tab > .contents {
-  -webkit-order: 1;
-  -ms-flex-order: 1;
-  order: 1;
+  -webkit-box-ordinal-group: 1;
+  -moz-box-ordinal-group: 1;
 }
 .ui.c-tab.bottom-tab {
   -webkit-box-orient: vertical;
@@ -6239,32 +5027,20 @@ html.ios body {
   overflow: hidden !important;
 }
 
-.ui.menu.pager .page-item > .ui.input > input {
-  width: 4em;
+.ui.menu.pager .goto.ui.input {
+  width: 6.25em;
+}
+.ui.menu.pager .goto.ui.input > input {
+  width: 3em;
   padding-left: 0.5em;
   padding-right: 0.5em;
 }
-.ui.menu.pager .page-item > .ui.input .ui.button {
+.ui.menu.pager .goto.ui.input .ui.button {
   padding-left: 0.8em;
   padding-right: 0.8em;
 }
 .ui.menu.pager .item.disabled:hover {
   color: rgba(40, 40, 40, 0.3);
-}
-.ui.menu.pager .page-size-desc {
-  white-space: nowrap;
-  margin-right: 0.5em;
-}
-.ui.menu.pager .desc.page-item {
-  padding-right: 2px;
-  padding-left: 2px;
-}
-.ui.menu.pager .page-item > i.icon {
-  -webkit-transform: scale(1.25);
-  -moz-transform: scale(1.25);
-  -ms-transform: scale(1.25);
-  -o-transform: scale(1.25);
-  transform: scale(1.25);
 }
 
 /*******************************
@@ -7064,14 +5840,17 @@ html.ios body {
 /*---  Dark Tones  ---*/
 /*---  Light Tones  ---*/
 .ui.panel {
+  box-shadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12), 0 2px 10px 0 rgba(34, 36, 38, 0.08);
+  padding: 0.6em;
   display: block;
+  margin-bottom: 0.8em;
   overflow: hidden;
 }
 .ui.panel:last-child {
   margin-bottom: 0;
 }
-.ui.panel .content {
-  padding: 0.4em;
+.ui.panel > .header {
+  margin: -0.6em -0.6em 0.6em -0.6em;
 }
 .ui.panel > .header > .content {
   padding: 0 1rem;
@@ -7092,15 +5871,8 @@ html.ios body {
   float: right;
   height: 2.8rem;
 }
-.ui.panel > .header > .content > .tools > *:not(i) {
-  float: left;
-  line-height: 2.8rem;
+.ui.panel > .header > .content > .tools > * {
   display: inline-block;
-}
-.ui.panel > .header > .content > .tools > *:not(i) .ui.button,
-.ui.panel > .header > .content > .tools > *:not(i) .ui.input > input {
-  padding: 0.6em 1em;
-  font-size: 0.9rem;
 }
 .ui.panel > .header > .content > .tools > i {
   height: inherit;
@@ -7122,6 +5894,7 @@ html.ios body {
 .ui.panel.fieldset,
 .ui.panel.groupbox {
   position: relative;
+  box-shadow: none;
 }
 .ui.panel.fieldset.basic,
 .ui.panel.groupbox.basic {
@@ -7135,7 +5908,7 @@ html.ios body {
   border-radius: 2px;
   top: 1.4rem;
   z-index: -1;
-  margin-left: -0.4em;
+  margin-left: -0.6em;
 }
 .ui.panel.fieldset > .header > .content,
 .ui.panel.groupbox > .header > .content {
@@ -7169,17 +5942,14 @@ html.ios body {
   border: 1px solid #d8d8dc;
   bottom: 0;
 }
-.ui.panel.crowded > .content {
-  padding: 0;
+.ui.panel.crowded {
+  padding: 0.6em 0 0 0 !important;
+}
+.ui.panel.crowded > .header {
+  margin-bottom: 0;
 }
 .ui.panel.basic {
-  box-shadow: inset 0px 0px 0px 1px #e7eaec;
-}
-.ui.panel.basic > .header {
-  box-shadow: inset 0px 0px 0px 1px #e7eaec;
-}
-.ui.panel.basic > .header > .content {
-  background-color: transparent;
+  box-shadow: none;
 }
 .ui.panel.basic > .header > .content:before {
   border: none;
@@ -7504,381 +6274,4 @@ textarea.error {
   right: 1em;
   bottom: 4em;
   width: auto;
-}
-
-c-split-pane,
-.ui.split-pane {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-c-split-pane > .pane,
-.ui.split-pane > .pane {
-  position: absolute;
-}
-c-split-pane.fixed-left > .splitter,
-.ui.split-pane.fixed-left > .splitter,
-c-split-pane.fixed-right > .splitter,
-.ui.split-pane.fixed-right > .splitter {
-  width: 4px;
-  height: 100%;
-  top: 0;
-  cursor: col-resize;
-}
-c-split-pane.fixed-left > .splitter:before,
-.ui.split-pane.fixed-left > .splitter:before,
-c-split-pane.fixed-right > .splitter:before,
-.ui.split-pane.fixed-right > .splitter:before {
-  width: 4px;
-  height: 48px;
-  left: 0;
-  top: 50%;
-  margin: -24px 0;
-}
-c-split-pane.fixed-left > .pane,
-.ui.split-pane.fixed-left > .pane,
-c-split-pane.fixed-right > .pane,
-.ui.split-pane.fixed-right > .pane {
-  height: 100% !important;
-  top: 0;
-}
-c-split-pane.fixed-left > c-split-pane.main-pane,
-.ui.split-pane.fixed-left > c-split-pane.main-pane,
-c-split-pane.fixed-right > c-split-pane.main-pane,
-.ui.split-pane.fixed-right > c-split-pane.main-pane,
-c-split-pane.fixed-left > .ui.split-pane.main-pane,
-.ui.split-pane.fixed-left > .ui.split-pane.main-pane,
-c-split-pane.fixed-right > .ui.split-pane.main-pane,
-.ui.split-pane.fixed-right > .ui.split-pane.main-pane {
-  width: auto;
-}
-c-split-pane.fixed-top > .splitter,
-.ui.split-pane.fixed-top > .splitter,
-c-split-pane.fixed-bottom > .splitter,
-.ui.split-pane.fixed-bottom > .splitter {
-  left: 0;
-  height: 4px;
-  width: 100%;
-  cursor: row-resize;
-}
-c-split-pane.fixed-top > .splitter:before,
-.ui.split-pane.fixed-top > .splitter:before,
-c-split-pane.fixed-bottom > .splitter:before,
-.ui.split-pane.fixed-bottom > .splitter:before {
-  height: 4px;
-  width: 48px;
-  top: 0;
-  left: 50%;
-  margin: 0 -24px;
-}
-c-split-pane.fixed-top > .pane,
-.ui.split-pane.fixed-top > .pane,
-c-split-pane.fixed-bottom > .pane,
-.ui.split-pane.fixed-bottom > .pane {
-  width: 100% !important;
-  left: 0;
-}
-c-split-pane.fixed-top > c-split-pane.main-pane,
-.ui.split-pane.fixed-top > c-split-pane.main-pane,
-c-split-pane.fixed-bottom > c-split-pane.main-pane,
-.ui.split-pane.fixed-bottom > c-split-pane.main-pane,
-c-split-pane.fixed-top > .ui.split-pane.main-pane,
-.ui.split-pane.fixed-top > .ui.split-pane.main-pane,
-c-split-pane.fixed-bottom > .ui.split-pane.main-pane,
-.ui.split-pane.fixed-bottom > .ui.split-pane.main-pane {
-  height: auto;
-}
-c-split-pane.fixed-left > .side-pane,
-.ui.split-pane.fixed-left > .side-pane {
-  left: 0;
-}
-c-split-pane.fixed-left > .main-pane,
-.ui.split-pane.fixed-left > .main-pane {
-  right: 0;
-}
-c-split-pane.fixed-right > .side-pane,
-.ui.split-pane.fixed-right > .side-pane {
-  right: 0;
-}
-c-split-pane.fixed-right > .main-pane,
-.ui.split-pane.fixed-right > .main-pane {
-  left: 0;
-}
-c-split-pane.fixed-top > .side-pane,
-.ui.split-pane.fixed-top > .side-pane {
-  top: 0;
-}
-c-split-pane.fixed-top > .main-pane,
-.ui.split-pane.fixed-top > .main-pane {
-  bottom: 0;
-}
-c-split-pane.fixed-bottom > .side-pane,
-.ui.split-pane.fixed-bottom > .side-pane {
-  bottom: 0;
-}
-c-split-pane.fixed-bottom > .main-pane,
-.ui.split-pane.fixed-bottom > .main-pane {
-  top: 0;
-}
-c-split-pane > .splitter,
-.ui.split-pane > .splitter {
-  background-color: #ededed;
-  position: absolute;
-}
-c-split-pane > .splitter:before,
-.ui.split-pane > .splitter:before {
-  position: absolute;
-  content: "";
-  background-color: #d9d9d9;
-}
-c-split-pane > .splitter:hover:before,
-.ui.split-pane > .splitter:hover:before {
-  background-color: #2185d0;
-}
-
-/*******************************
-         Site Settings
-*******************************/
-/*-------------------
-       Fonts
---------------------*/
-/*-------------------
-      Base Sizes
---------------------*/
-/* This is the single variable that controls them all */
-/* The size of page text  */
-/*-------------------
-    Border Radius
---------------------*/
-/* See Power-user section below
-   for explanation of @px variables
-*/
-/*-------------------
-    Brand Colors
---------------------*/
-/*--------------
-  Page Heading
----------------*/
-/*--------------
-   Form Input
----------------*/
-/* This adjusts the default form input across all elements */
-/* Line Height Default For Inputs in Browser */
-/*-------------------
-        Sizes
---------------------*/
-/*
-  Sizes are all expressed in terms of 14px/em (default em)
-  This ensures these "ratios" remain constant despite changes in EM
-*/
-/*-------------------
-        Page
---------------------*/
-/*-------------------
-      Paragraph
---------------------*/
-/*-------------------
-       Links
---------------------*/
-/*-------------------
-  Highlighted Text
---------------------*/
-/*-------------------
-       Loader
---------------------*/
-/*-------------------
-        Grid
---------------------*/
-/*-------------------
-     Transitions
---------------------*/
-/*-------------------
-     Breakpoints
---------------------*/
-/*-------------------
-      Site Colors
---------------------*/
-/*---  Colors  ---*/
-/*---  Light Colors  ---*/
-/*---   Neutrals  ---*/
-/*--- Colored Backgrounds ---*/
-/*--- Colored Headers ---*/
-/*--- Colored Text ---*/
-/*-------------------
-     Alpha Colors
---------------------*/
-/*-------------------
-       Accents
---------------------*/
-/* Differentiating Neutrals */
-/* Differentiating Layers */
-/*******************************
-           Power-User
-*******************************/
-/*-------------------
-    Emotive Colors
---------------------*/
-/* Positive */
-/* Negative */
-/* Info */
-/* Warning */
-/*-------------------
-        Paths
---------------------*/
-/*-------------------
-       Em Sizes
---------------------*/
-/*
-  This rounds @size values to the closest pixel then expresses that value in (r)em.
-  This ensures all size values round to exact pixels
-*/
-/* em */
-/* rem */
-/*-------------------
-  Exact Pixel Values
---------------------*/
-/*
-  These are used to specify exact pixel values in em
-  for things like borders that remain constantly
-  sized as emSize adjusts
-
-  Since there are many more sizes than names for sizes,
-  these are named by their original pixel values.
-
-*/
-/*-------------------
-       Icons
---------------------*/
-/* Maximum Glyph Width of Icon */
-/*-------------------
-     Neutral Text
---------------------*/
-/*-------------------
-     Brand Colors
---------------------*/
-/*-------------------
-      Borders
---------------------*/
-/*-------------------
-    Derived Values
---------------------*/
-/* Loaders Position Offset */
-/* Rendered Scrollbar Width */
-/* Maximum Single Character Glyph Width, aka Capital "W" */
-/* Used to match floats with text */
-/* Header Spacing */
-/* Minimum Mobile Width */
-/* Positive / Negative Dupes */
-/* Responsive */
-/* Columns */
-/*******************************
-             States
-*******************************/
-/*-------------------
-      Disabled
---------------------*/
-/*-------------------
-        Hover
---------------------*/
-/*---  Colors  ---*/
-/*---  Emotive  ---*/
-/*---  Brand   ---*/
-/*---  Dark Tones  ---*/
-/*---  Light Tones  ---*/
-/*-------------------
-        Focus
---------------------*/
-/*---  Colors  ---*/
-/*---  Emotive  ---*/
-/*---  Brand   ---*/
-/*---  Dark Tones  ---*/
-/*---  Light Tones  ---*/
-/*-------------------
-    Down (:active)
---------------------*/
-/*---  Colors  ---*/
-/*---  Emotive  ---*/
-/*---  Brand   ---*/
-/*---  Dark Tones  ---*/
-/*---  Light Tones  ---*/
-/*-------------------
-        Active
---------------------*/
-/*---  Colors  ---*/
-/*---  Emotive  ---*/
-/*---  Brand   ---*/
-/*---  Dark Tones  ---*/
-/*---  Light Tones  ---*/
-c-toolbar,
-.ui.toolbar {
-  padding: 0.25em 0.05em;
-  background-color: #e6e6e6;
-}
-c-toolbar > .item,
-.ui.toolbar > .item,
-c-toolbar > .toolbar-button,
-.ui.toolbar > .toolbar-button,
-c-toolbar > .right.box,
-.ui.toolbar > .right.box {
-  margin: 0 0.2em;
-}
-c-toolbar.transparent,
-.ui.toolbar.transparent {
-  background-color: transparent;
-}
-c-toolbar > .item .ui.input input,
-.ui.toolbar > .item .ui.input input,
-c-toolbar > .toolbar-button .ui.input input,
-.ui.toolbar > .toolbar-button .ui.input input,
-c-toolbar > .right.box .ui.input input,
-.ui.toolbar > .right.box .ui.input input {
-  padding-top: .57142857em;
-  padding-bottom: .57142857em;
-}
-c-toolbar > .ui.toolbar-button .ui.button,
-.ui.toolbar > .ui.toolbar-button .ui.button {
-  margin-right: 0;
-  padding: .78571429em .92857143em;
-  background-color: transparent;
-}
-c-toolbar > .ui.toolbar-button .ui.button:hover,
-.ui.toolbar > .ui.toolbar-button .ui.button:hover,
-c-toolbar > .ui.toolbar-button .ui.button:focus,
-.ui.toolbar > .ui.toolbar-button .ui.button:focus {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-c-toolbar > .ui.toolbar-button .ui.button:focus,
-.ui.toolbar > .ui.toolbar-button .ui.button:focus,
-c-toolbar > .ui.toolbar-button .ui.button:active,
-.ui.toolbar > .ui.toolbar-button .ui.button:active {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-c-toolbar > .item .ui.button,
-.ui.toolbar > .item .ui.button,
-c-toolbar > .right.box .ui.button,
-.ui.toolbar > .right.box .ui.button {
-  margin-right: 0;
-  padding: .78571429em .92857143em;
-}
-c-toolbar,
-.ui.toolbar,
-.box-layout {
-  display: -moz-box;
-  display: -webkit-box;
-  display: box;
-  display: -ms-flexbox;
-  -moz-box-align: center;
-  -webkit-box-align: center;
-  -o-box-align: center;
-  box-align: center;
-}
-c-toolbar > .right.box,
-.ui.toolbar > .right.box,
-.box-layout > .right.box {
-  text-align: end;
-  -moz-box-flex: 1;
-  -webkit-box-flex: 1;
-  box-flex: 1;
-  -ms-flex: 1;
 }

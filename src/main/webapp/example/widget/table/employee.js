@@ -134,8 +134,10 @@
                 ]
             },
             editLayer: {
-                $type: "layer",
-                width: "100%",
+                $type: "Sidebar",
+                size: "60%",
+                direction: "right",
+                modalOpacity:0.3,
                 onShow: function () {
                     return $("#mainView").hide();
                 },
