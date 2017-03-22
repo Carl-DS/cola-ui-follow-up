@@ -20,7 +20,7 @@
       NProgress.start();
     </script>
     <div class="ui segment">
-      <div id="categoryPager" class="secondary">
+      <c-pager id="categoryPager" bind="categories" class="secondary">
         <div class="header item">产品分类</div>
         <div class="control item">
           <c-button con="plus" caption="添加" click="addCategory" class="teal"></c-button>
@@ -28,11 +28,11 @@
         <div class="right menu">
           <div page-code="pages" class="item"></div>
         </div>
-      </div>
+      </c-pager>
       <div id="categoryList"></div>
     </div>
     <div class="ui segment">
-      <div id="productPager" class="secondary">
+      <c-pager id="productPager" bind="categories.products" class="secondary">
         <div class="header item">产品列表</div>
         <div class="control item">
           <c-button icon="plus" caption="添加" click="addProduct" class="teal"></c-button>
@@ -40,7 +40,7 @@
         <div class="right menu">
           <div page-code="pages" class="item"></div>
         </div>
-      </div>
+      </c-pager>
       <div id="productList"></div>
     </div>
     <div id="categoryLayer" class="content-background">
@@ -66,7 +66,7 @@
         </div>
       </div>
       <div class="ui segment basic">
-        <c-button caption=save" icon="checkmark" click="categorySave" class="big positive circular"></c-button>
+        <c-button caption=save" icon="checkmark" click="categoriesave" class="big positive circular"></c-button>
         <c-button caption="cancel" icon="remove" click="categoryCancel" class="big negative circular"></c-button>
       </div>
     </div>
@@ -87,11 +87,11 @@
                   <div class="fields">
                     <div class="field three wide">
                       <label>Category ID</label>
-                      <c-input bind="categorys.id" readOnly="true"></c-input>
+                      <c-input bind="categories.id" readOnly="true"></c-input>
                     </div>
                     <div class="field three wide">
                       <label>Category Name</label>
-                      <c-input bind="categorys.categoryName" readOnly="true"></c-input>
+                      <c-input bind="categories.categoryName" readOnly="true"></c-input>
                     </div>
                   </div>
                 </div>

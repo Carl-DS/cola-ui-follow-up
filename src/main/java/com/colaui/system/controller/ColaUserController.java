@@ -25,8 +25,8 @@ public class ColaUserController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    public void save(@RequestBody ColaUser employee) {
-        colaUserService.save(employee);
+    public void save(@RequestBody ColaUser colaUser) {
+        colaUserService.save(colaUser);
     }
 
     @RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)
@@ -35,8 +35,8 @@ public class ColaUserController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
-    public void update(@RequestBody ColaUser employee) {
-        colaUserService.update(employee);
+    public void update(@RequestBody ColaUser colaUser) {
+        colaUserService.update(colaUser);
     }
 
     @RequestMapping(value = "/{id}/", method = RequestMethod.GET)

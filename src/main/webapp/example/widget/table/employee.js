@@ -52,28 +52,8 @@
                 }
             }
         });
-        model.set("countries", [
-            {
-                name: "中国"
-            }, {
-                name: "美国"
-            }, {
-                name: "加拿大"
-            }, {
-                name: "印度尼西亚"
-            }, {
-                name: "马来西亚"
-            }, {
-                name: "英国"
-            }, {
-                name: "韩国"
-            }, {
-                name: "蒙古国"
-            }, {
-                name: "俄罗斯"
-            }
-        ]);
         model.describe("editItem", "Employee");
+
         model.action({
             getColor: function (status) {
                 if (status === "完成") {
@@ -99,11 +79,9 @@
                 return cola.widget("editLayer").hide();
             },
             ok: function () {
-                debugger;
                 var data, editItem, id, validate;
                 editItem = model.get("editItem");
                 validate = editItem.validate();
-                console.log(validate);
                 if (validate) {
                     id = editItem.get("id");
                     data = editItem.toJSON();
@@ -152,14 +130,6 @@
                 items: "{{shop in shops}}",
                 valueProperty: "name",
                 bind: "editItem.shop"
-            },
-            birthDatePicker: {
-                $type: "datePicker",
-                bind: "editItem.birthDate"
-            },
-            hireDatePicker: {
-                $type: "datePicker",
-                bind: "editItem.hireDate"
             },
             countryDropDown: {
                 $type: "dropdown",

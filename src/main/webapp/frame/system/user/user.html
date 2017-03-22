@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta charset="UTF-8">
+    <title>Cola-UI 客户端框架</title>
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="./resources/nprogress/nprogress.css">
+    <script src="./resources/nprogress/nprogress.js"></script>
+    <link rel="stylesheet" type="text/css" href="./resources/cola-ui/semantic.css">
+    <link rel="stylesheet" type="text/css" href="./resources/cola-ui/cola.css">
+    <link rel="stylesheet" type="text/css" href="./common/common.css">
+    <link rel="stylesheet" type="text/css" href="./frame/system/user/user.css">
+</head>
+<body>
+<script type="text/javascript">
+    NProgress.configure({showSpinner: false, minimum: 0.3});
+    NProgress.start();
+</script>
+
+<div class="ui segment">
+    <c-pager bind="users" class="secondary">
+        <div class="control item">
+            <div>
+                <c-button icon="plus" caption="添加" click="editUser" class="mini teal"></c-button>
+            </div>
+        </div>
+        <div class="right menu">
+            <div page-code="pages" class="item"></div>
+        </div>
+    </c-pager>
+    <div id="userTable">
+        <template name="operation">
+            <div>
+                <i c-onclick="editUser(user)" class="icon edit"></i>
+                <i c-onclick="deleteUser(user)" class="icon trash"></i>
+            </div>
+        </template>
+    </div>
+
+    <div id="addUserSidebar" class="default-background">
+        <div class="v-box">
+            <div class="caption-bar box"><i class="edit icon"></i><span class="caption">用户维护</span>
+                <div class="tools">
+                    <c-button icon="angle right" iconPosition="right" caption="返回" click="cancel" class="basic circular"></c-button>
+                </div>
+            </div>
+            <div class="content content-background flex-box">
+                <div class="ui padded segment basic">
+                    <div class="ui time-line circular">
+                        <div class="items">
+                            <div class="item">
+                                <div class="icon"><i class="icon home"></i></div>
+                                <div class="label">基本信息</div>
+                                <div class="content">
+                                    <div class="ui segment basic">
+                                        <div class="ui form">
+                                            <div class="fields">
+                                                <div class="field eight wide">
+                                                    <label>用户名</label>
+                                                    <c-input bind="editItem.username"></c-input>
+                                                </div>
+                                                <div class="field eight wide">
+                                                    <label>中文名</label>
+                                                    <c-input bind="editItem.cname"></c-input>
+                                                </div>
+                                            </div>
+                                            <div class="fields">
+                                                <div class="field eight wide">
+                                                    <label>英文名</label>
+                                                    <c-input bind="editItem.ename"></c-input>
+                                                </div>
+                                                <div class="field eight wide">
+                                                    <label>性别</label>
+                                                    <c-radiogroup id="genderRadioGroup" name="genderBrand" type="toggle" bind="editItem.male"></c-radiogroup>
+                                                </div>
+                                            </div>
+                                            <div class="fields">
+                                                <div class="field eight wide">
+                                                    <label>密码</label>
+                                                    <c-input bind="editItem.password"></c-input>
+                                                </div>
+                                                <div class="field eight wide">
+                                                    <label>确认密码</label>
+                                                    <c-input bind="editItem.confirmpwd"></c-input>
+                                                </div>
+                                            </div>
+                                            <div class="fields">
+                                                <div class="field eight wide">
+                                                    <label>出生日期</label>
+                                                    <c-datepicker bind="editItem.birthday"></c-datepicker>
+                                                </div>
+                                                <div class="field eight wide">
+                                                    <label>是否管理员</label>
+                                                    <c-radiogroup id="adminRadioGroup" name="adminBrand" type="toggle" bind="editItem.administrator"></c-radiogroup>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="icon"><i class="icon fax"></i></div>
+                                <div class="label">联系方式</div>
+                                <div class="content">
+                                    <div class="ui segment basic">
+                                        <div class="ui form">
+                                            <div class="fields">
+                                                <div class="field eight wide">
+                                                    <label>手机</label>
+                                                    <c-input bind="editItem.mobile"></c-input>
+                                                </div>
+                                                <div class="field eight wide">
+                                                    <label>邮箱</label>
+                                                    <c-input bind="editItem.email"></c-input>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="icon"><i class="icon lab"></i></div>
+                                <div class="label">职位信息</div>
+                                <div class="content">
+                                    <div class="ui segment basic">
+                                        <div class="ui form">
+                                            <div class="fields">
+                                                <div class="field eight wide">
+                                                    <label>部门</label>
+                                                    <c-input bind="editItem.dept"></c-input>
+                                                </div>
+                                                <div class="field eight wide">
+                                                    <label>岗位</label>
+                                                    <c-input bind="editItem.component"></c-input>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="icon"><i class="icon disk outline"></i></div>
+                                <div class="label">家庭住址</div>
+                                <div class="content">
+                                    <div class="ui segment basic">
+                                        <div class="ui form">
+                                            <div class="fields">
+                                                <div class="field five wide">
+                                                    <label>省份</label>
+                                                    <div id="provinceDropdown"></div>
+                                                </div>
+                                                <div class="field six wide">
+                                                    <label>市</label>
+                                                    <div id="cityDropdown"></div>
+                                                </div>
+                                                <div class="field five wide">
+                                                    <label>区/县</label>
+                                                    <div id="areaDropdown"></div>
+                                                </div>
+                                            </div>
+                                            <div class="fields">
+                                                <div class="field sixteen wide">
+                                                    <label>邮政编码</label>
+                                                    <c-input bind="editItem.postalCode"></c-input>
+                                                </div>
+                                            </div>
+                                            <div class="fields">
+                                                <div class="field sixteen wide">
+                                                    <label>详细地址</label>
+                                                    <c-textarea bind="editItem.address" rows="3"></c-textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="ui segment basic">
+                    <c-button icon="remove" caption="取消" click="cancel" class="negative mini"></c-button>
+                    <c-button icon="checkmark" caption="提交" click="userSave" class="positive mini"></c-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="./resources/jquery/jquery-2.1.3.js"></script>
+<script src="./resources/jquery/jquery.cookie.js"></script>
+<script src="./resources/cola-ui/3rd.js"></script>
+<script src="./resources/cola-ui/semantic.js"></script>
+<script src="./resources/cola-ui/cola.js" charset="UTF-8"></script>
+<script src="./common/common.js"></script>
+<script src="./frame/system/user/user.js"></script>
+<script src="./example/widget/dropdown/area.js"></script>
+</html>

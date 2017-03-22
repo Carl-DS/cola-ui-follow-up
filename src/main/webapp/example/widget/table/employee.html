@@ -31,7 +31,7 @@
       </div>
       <div class="flex-box">
         <div class="ui fragment">
-          <div c-widget="pager; bind:employees;" class="secondary">
+          <c-pager bind="employees" class="secondary">
             <div class="control item">
               <div>
                 <c-button icon="plus" caption="添加" click="add" class="mini teal"></c-button>
@@ -40,7 +40,7 @@
             <div class="right menu">
               <div page-code="pages" class="item"></div>
             </div>
-          </div>
+          </c-pager>
           <div id="employeeTable">
             <template name="operations">
               <div>
@@ -74,23 +74,23 @@
                         <div class="fields">
                           <div class="field four wide">
                             <label>姓</label>
-                            <div c-widget="input; bind:editItem.lastName "></div>
+                            <c-input bind="editItem.lastName"></c-input>
                           </div>
                           <div class="field six wide">
                             <label>名</label>
-                            <div c-widget="input; bind:editItem.firstName"></div>
+                            <c-input bind="editItem.firstName"></c-input>
                           </div>
                         </div>
                         <div class="fields">
                           <div class="field ten wide">
                             <label>性别</label>
-                            <div id="radioGroup" c-widget="RadioGroup; name:brand; bind:editItem.sex"></div>
+                            <c-radiogroup id="radioGroup" name="brand" bind="editItem.sex"></c-radiogroup>
                           </div>
                         </div>
                         <div class="fields">
                           <div class="field ten wide">
                             <label>出生日期</label>
-                            <div id="birthDatePicker"></div>
+                            <c-datepicker bind="editItem.birthDate"></c-datepicker>
                           </div>
                         </div>
                       </div>
@@ -132,7 +132,7 @@
                         <div class="fields">
                           <div class="field ten wide">
                             <label>入职日期</label>
-                            <div id="hireDatePicker"></div>
+                            <c-datepicker bind="editItem.hireDate"></c-datepicker>
                           </div>
                         </div>
                       </div>

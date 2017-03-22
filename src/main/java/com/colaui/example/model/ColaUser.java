@@ -1,6 +1,7 @@
 package com.colaui.example.model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.sql.Timestamp;
 
 /**
@@ -12,7 +13,7 @@ public class ColaUser {
     private String username;
     private String address;
     private boolean administrator;
-    private Timestamp birthday;
+    private Date birthday;
     private String cname;
     private String companyId;
     private Timestamp createDate;
@@ -53,12 +54,13 @@ public class ColaUser {
         this.administrator = administrator;
     }
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "BIRTHDAY_")
-    public Timestamp getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Timestamp birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
