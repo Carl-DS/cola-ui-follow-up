@@ -1,4 +1,4 @@
-package com.colaui.system.utils;
+package com.colaui.utils;
 
 import java.util.UUID;
 

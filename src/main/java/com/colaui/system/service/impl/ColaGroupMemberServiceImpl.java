@@ -1,7 +1,11 @@
 package com.colaui.system.service.impl;
 
+import com.colaui.system.service.ColaGroupMemberService;
+import org.springframework.stereotype.Service;
+
 /**
  * Created by carl.li on 2017/3/3.
  */
-public class ColaGroupMemberServiceImpl {
+@Service
+public class ColaGroupMemberServiceImpl implements ColaGroupMemberService{
 }
