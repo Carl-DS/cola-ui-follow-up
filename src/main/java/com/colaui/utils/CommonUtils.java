@@ -7,7 +7,7 @@ import java.util.UUID;
  */
 public class CommonUtils {
 
-    /**获得随机的字符串*/
+    /**生成uuid*/
     public static String uuid() {
         return UUID.randomUUID().toString().replace("-", "");
     }
