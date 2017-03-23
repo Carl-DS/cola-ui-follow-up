@@ -1,7 +1,14 @@
 package com.colaui.system.service;
 
-/**
- * Created by carl.li on 2017/3/3.
- */
+import com.colaui.example.model.ColaComponent;
+import com.colaui.provider.Page;
+
+import java.util.List;
 public interface ColaComponentService {
+    Page<ColaComponent> getPage(int pageSize,int pageNo,String contain);
+    void save(ColaComponent component);
+    void delete(long id);
+    void update(ColaComponent component);
+    ColaComponent find(long id);
+    List<ColaComponent> find(int from,int limit);
 }

@@ -16,7 +16,8 @@ public class ColaCategoryController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public Page<ColaCategory> paging(@RequestParam int pageSize,
-									 @RequestParam int pageNo, @RequestParam(required=false) String contain) {
+									 @RequestParam int pageNo,
+									 @RequestParam(required=false) String contain) {
 		return categoryService.getPage(pageSize, pageNo, contain);
 	}
 

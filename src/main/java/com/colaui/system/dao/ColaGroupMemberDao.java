@@ -1,12 +1,10 @@
 package com.colaui.system.dao;
 
-import com.colaui.example.model.ColaGroupMember;
-import com.colaui.hibernate.HibernateDao;
 import org.springframework.stereotype.Repository;
 
-/**
- * Created by carl.li on 2017/3/3.
- */
+import com.colaui.example.model.ColaGroupMember;
+import com.colaui.hibernate.HibernateDao;
+
 @Repository
 public class ColaGroupMemberDao extends HibernateDao<ColaGroupMember, Long> {
 }

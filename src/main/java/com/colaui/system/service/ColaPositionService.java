@@ -1,7 +1,14 @@
 package com.colaui.system.service;
 
-/**
- * Created by carl.li on 2017/3/3.
- */
+import com.colaui.example.model.ColaPosition;
+import com.colaui.provider.Page;
+
+import java.util.List;
 public interface ColaPositionService {
+    Page<ColaPosition> getPage(int pageSize,int pageNo,String contain);
+    void save(ColaPosition position);
+    void delete(long id);
+    void update(ColaPosition position);
+    ColaPosition find(long id);
+    List<ColaPosition> find(int from,int limit);
 }
