@@ -1,7 +1,7 @@
 # Cola-UI Follow Up
 
 [![Endpoint coverage](http://progressed.io/bar/10?title=progress)](#progress)
-[![Build Status](https://travis-ci.org/Carl-DS/cola-ui-follow-up.svg?branch=master)](https://travis-ci.org/Carl-DS/cola-ui-follow-up)
+[![Build Status](https://travis-ci.org/Carl-DS/cola-ui-follow-up.svg?branch=followcola)](https://travis-ci.org/Carl-DS/cola-ui-follow-up)
 
 ## 技术选型
 
