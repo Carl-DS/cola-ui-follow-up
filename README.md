@@ -1,5 +1,6 @@
 # Cola-UI Follow Up
 
+[![Build Status](https://travis-ci.org/Carl-DS/cola-ui-follow-up.svg?branch=master)](https://travis-ci.org/Carl-DS/cola-ui-follow-up)
 
 
 ## 技术选型
