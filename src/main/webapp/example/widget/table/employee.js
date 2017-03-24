@@ -65,6 +65,12 @@
             search: function () {
                 return model.flush("employees");
             },
+            enterSearch: function () {
+                var keycode = event.keyCode == null ? event.which : event.keyCode;
+                if (keycode === 13) { // 回车查询
+                    model.action.search();
+                }
+            },
             add: function () {
                 model.set("editItem", {
                     sex: true

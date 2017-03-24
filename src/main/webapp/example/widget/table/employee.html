@@ -14,23 +14,21 @@
     <link rel="stylesheet" type="text/css" href="./common/common.css">
     <link rel="stylesheet" type="text/css" href="./example/widget/table/employee.css">
   </head>
-  <body>
+  <body c-onkeyup="enterSearch()">
     <script type="text/javascript">
       NProgress.configure({showSpinner: false, minimum: 0.3});
       NProgress.start();
     </script>
     <div id="mainView" class="v-box">
-      <div class="boxul ui blue fragment fluid-layout">
-        <li>
-          <label>姓名</label>
-          <c-input bind="contain" class="mini"></c-input>
-        </li>
-        <li>
-          <c-button icon="search" caption="查询" click="search" class="blue"></c-button>
-        </li>
+      <div class="ui segment">
+        <div class="ui left icon input">
+          <c-input bind="contain" placeholder="姓名..." style="width:200px;"/>
+          <i class="inverted circular search link icon"></i>
+        </div>
+        <c-button caption="查询" click="search"></c-button>
       </div>
       <div class="flex-box">
-        <div class="ui fragment">
+        <div class="ui segment">
           <c-pager bind="employees" class="secondary">
             <div class="control item">
               <div>
@@ -44,9 +42,9 @@
           <div id="employeeTable">
             <template name="operations">
               <div>
-                <div class="ui buttons icon mini">
-                  <div c-onclick="edit(item)" class="ui teal basic button"><i class="icon edit"></i></div>
-                  <div c-onclick="del(item)" class="ui orange basic button"><i class="icon trash outline"></i></div>
+                <div class="ui buttons icon mini" style="height: 26px;">
+                  <c-button c-onclick="edit(item)" popup="修改" class="ui teal basic button"><i class="icon edit"></i></c-button>
+                  <c-button c-onclick="del(item)" popup="删除" class="ui orange basic button"><i class="icon trash outline"></i></c-button>
                 </div>
               </div>
             </template>

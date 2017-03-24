@@ -184,6 +184,11 @@
 template {
   display: none;
 }
+*:focus {
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-user-modify: read-write-plaintext-only;
+}
 .mobile {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
@@ -199,6 +204,9 @@ template {
 }
 .mobile ::-webkit-scrollbar-thumb {
   background: #888;
+}
+.show-on-ready {
+  visibility: hidden;
 }
 .display-none {
   display: none !important;
@@ -388,6 +396,66 @@ template {
 .ui.fragment.grey:before {
   background-color: rgba(118, 118, 118, 0.8);
 }
+.ui.city-selector {
+  width: 320px;
+  height: 280px;
+  display: inline-block;
+  overflow: hidden;
+  border: 1px solid #2185d0;
+}
+.ui.city-selector .content .province,
+.ui.city-selector .content .cities,
+.ui.city-selector .content .hot {
+  display: none;
+}
+.ui.city-selector .content .province .name,
+.ui.city-selector .content .cities .name,
+.ui.city-selector .content .hot .name {
+  width: 25%;
+  cursor: pointer;
+  display: inline-block;
+}
+.ui.city-selector .content .province .name:hover,
+.ui.city-selector .content .cities .name:hover,
+.ui.city-selector .content .hot .name:hover {
+  color: #2185d0;
+}
+.ui.city-selector .content .province.active,
+.ui.city-selector .content .cities.active,
+.ui.city-selector .content .hot.active {
+  display: block;
+}
+.ui.city-selector .content .city.active {
+  display: block;
+}
+.ui.city-selector .tab-buttons {
+  width: 100%;
+  display: table;
+}
+.ui.city-selector .tab-buttons > .item {
+  display: table-cell;
+  text-align: center;
+  width: 33.33%;
+  cursor: pointer;
+}
+.ui.city-selector .tab-buttons > .item.active,
+.ui.city-selector .tab-buttons > .item:active {
+  background-color: #2185d0;
+  color: #fff;
+}
+.ui.city-selector .tab-buttons > .item:hover {
+  background-color: rgba(33, 133, 208, 0.8);
+  color: #fff;
+}
+c-segment {
+  display: block;
+}
+c-divider {
+  display: block;
+}
+c-form {
+  display: block;
+}
 
 .mobile .v-box,
 .mobile .h-box {
@@ -397,8 +465,8 @@ template {
   display: -webkit-flex;
   display: flex;
 }
-.mobile .v-box .flex-box,
-.mobile .h-box .flex-box {
+.mobile .v-box > .flex-box,
+.mobile .h-box > .flex-box {
   display: -webkit-box;
   display: -moz-box;
 }
@@ -442,8 +510,8 @@ template {
   -ms-flex-item-align: auto;
   align-self: auto;
 }
-.v-box .flex-box,
-.h-box .flex-box {
+.v-box > .flex-box,
+.h-box > .flex-box {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -webkit-flex: 1 1 auto;
@@ -453,8 +521,8 @@ template {
   -ms-flex-item-align: auto;
   align-self: auto;
 }
-.v-box .flex-box > *,
-.h-box .flex-box > * {
+.v-box > .flex-box > *,
+.h-box > .flex-box > * {
   position: absolute !important;
   left: 0;
   right: 0;
@@ -647,7 +715,7 @@ template {
     clear: both;
   }
 }
-@media only screen and (min-width: 48.0625em ) {
+@media only screen and (min-width: 42.5625em ) {
   .medium-row-list > li {
     list-style: none;
     width: 100%;
@@ -1462,7 +1530,7 @@ template {
     padding-right: 0rem;
   }
 }
-@media only screen and (min-width: 48.0625em ) {
+@media only screen and (min-width: 42.5625em ) {
   .medium-push-0 {
     position: relative;
     left: 0%;
@@ -3103,8 +3171,8 @@ template {
   overflow: hidden;
   padding: 0.6em 0.4em;
 }
-.ui.widget-table table tbody tr:first-child td {
-  border-top: 2px solid #edf0f3;
+.ui.widget-table table thead tr:first-child th {
+  border-bottom: 2px solid #edf0f3;
 }
 .ui.widget-table table tbody tr:last-child td {
   border-bottom: 2px solid #edf0f3;
@@ -3173,6 +3241,9 @@ template {
 .ui.widget-table.inverted table thead th {
   background: #474a4d;
   border-color: #65696c;
+}
+.ui.widget-table.inverted table thead tr:last-child th {
+  border-bottom-color: #65696c;
 }
 .ui.widget-table.inverted table tbody tr:last-child td {
   border-bottom-color: #65696c;
@@ -3373,6 +3444,7 @@ template {
   pointer-events: inherit !important;
 }
 .ui.input.drop > .value-content {
+  display: none;
   position: absolute;
   left: 0;
   top: 0;
@@ -3387,10 +3459,10 @@ template {
   opacity: 0.3 !important;
   filter: alpha(opacity=30) !important;
 }
-.ui.input.drop.opened input {
+.ui.input.drop.filterable.opened input {
   border-color: rgba(0, 0, 0, 0.3);
 }
-.ui.input.drop.opened > .value-content {
+.ui.input.drop.filterable.opened > .value-content {
   opacity: 0.5;
   filter: alpha(opacity=50);
 }
@@ -3652,7 +3724,9 @@ template {
 }
 .ui.message-box {
   width: auto;
+  max-width: 90%;
   height: auto;
+  max-height: 90%;
   position: fixed !important;
 }
 .ui.message-box .close-btn.hidden,
@@ -4063,16 +4137,12 @@ template {
   right: -1.25rem;
   z-index: 1;
   border-radius: 50%;
-  opacity: 0.8;
   font-size: 1.25em;
   color: #ffffff;
   line-height: 2rem;
   width: 2rem;
   height: 2rem;
   padding: 0;
-}
-.ui.dialog .close-btn:hover {
-  opacity: 1;
 }
 /*--------------
      Header
@@ -4638,13 +4708,15 @@ template {
 }
 .ui.c-tab.right-tab > .tab-bar,
 .ui.c-tab.bottom-tab > .tab-bar {
-  -webkit-box-ordinal-group: 2;
-  -moz-box-ordinal-group: 2;
+  -webkit-order: 2;
+  -ms-flex-order: 2;
+  order: 2;
 }
 .ui.c-tab.right-tab > .contents,
 .ui.c-tab.bottom-tab > .contents {
-  -webkit-box-ordinal-group: 1;
-  -moz-box-ordinal-group: 1;
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 1;
 }
 .ui.c-tab.bottom-tab {
   -webkit-box-orient: vertical;
@@ -5027,20 +5099,32 @@ html.ios body {
   overflow: hidden !important;
 }
 
-.ui.menu.pager .goto.ui.input {
-  width: 6.25em;
-}
-.ui.menu.pager .goto.ui.input > input {
-  width: 3em;
+.ui.menu.pager .page-item > .ui.input > input {
+  width: 4em;
   padding-left: 0.5em;
   padding-right: 0.5em;
 }
-.ui.menu.pager .goto.ui.input .ui.button {
+.ui.menu.pager .page-item > .ui.input .ui.button {
   padding-left: 0.8em;
   padding-right: 0.8em;
 }
 .ui.menu.pager .item.disabled:hover {
   color: rgba(40, 40, 40, 0.3);
+}
+.ui.menu.pager .page-size-desc {
+  white-space: nowrap;
+  margin-right: 0.5em;
+}
+.ui.menu.pager .desc.page-item {
+  padding-right: 2px;
+  padding-left: 2px;
+}
+.ui.menu.pager .page-item > i.icon {
+  -webkit-transform: scale(1.25);
+  -moz-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  -o-transform: scale(1.25);
+  transform: scale(1.25);
 }
 
 /*******************************
@@ -5244,7 +5328,7 @@ html.ios body {
 }
 .ui.time-line > .items > .item .label {
   position: absolute;
-  top: 0em;
+  /*top: 0em;*/
   width: 8em;
   display: inline-block;
   text-align: right;
@@ -6274,4 +6358,381 @@ textarea.error {
   right: 1em;
   bottom: 4em;
   width: auto;
+}
+
+c-split-pane,
+.ui.split-pane {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+c-split-pane > .pane,
+.ui.split-pane > .pane {
+  position: absolute;
+}
+c-split-pane.fixed-left > .splitter,
+.ui.split-pane.fixed-left > .splitter,
+c-split-pane.fixed-right > .splitter,
+.ui.split-pane.fixed-right > .splitter {
+  width: 4px;
+  height: 100%;
+  top: 0;
+  cursor: col-resize;
+}
+c-split-pane.fixed-left > .splitter:before,
+.ui.split-pane.fixed-left > .splitter:before,
+c-split-pane.fixed-right > .splitter:before,
+.ui.split-pane.fixed-right > .splitter:before {
+  width: 4px;
+  height: 48px;
+  left: 0;
+  top: 50%;
+  margin: -24px 0;
+}
+c-split-pane.fixed-left > .pane,
+.ui.split-pane.fixed-left > .pane,
+c-split-pane.fixed-right > .pane,
+.ui.split-pane.fixed-right > .pane {
+  height: 100% !important;
+  top: 0;
+}
+c-split-pane.fixed-left > c-split-pane.main-pane,
+.ui.split-pane.fixed-left > c-split-pane.main-pane,
+c-split-pane.fixed-right > c-split-pane.main-pane,
+.ui.split-pane.fixed-right > c-split-pane.main-pane,
+c-split-pane.fixed-left > .ui.split-pane.main-pane,
+.ui.split-pane.fixed-left > .ui.split-pane.main-pane,
+c-split-pane.fixed-right > .ui.split-pane.main-pane,
+.ui.split-pane.fixed-right > .ui.split-pane.main-pane {
+  width: auto;
+}
+c-split-pane.fixed-top > .splitter,
+.ui.split-pane.fixed-top > .splitter,
+c-split-pane.fixed-bottom > .splitter,
+.ui.split-pane.fixed-bottom > .splitter {
+  left: 0;
+  height: 4px;
+  width: 100%;
+  cursor: row-resize;
+}
+c-split-pane.fixed-top > .splitter:before,
+.ui.split-pane.fixed-top > .splitter:before,
+c-split-pane.fixed-bottom > .splitter:before,
+.ui.split-pane.fixed-bottom > .splitter:before {
+  height: 4px;
+  width: 48px;
+  top: 0;
+  left: 50%;
+  margin: 0 -24px;
+}
+c-split-pane.fixed-top > .pane,
+.ui.split-pane.fixed-top > .pane,
+c-split-pane.fixed-bottom > .pane,
+.ui.split-pane.fixed-bottom > .pane {
+  width: 100% !important;
+  left: 0;
+}
+c-split-pane.fixed-top > c-split-pane.main-pane,
+.ui.split-pane.fixed-top > c-split-pane.main-pane,
+c-split-pane.fixed-bottom > c-split-pane.main-pane,
+.ui.split-pane.fixed-bottom > c-split-pane.main-pane,
+c-split-pane.fixed-top > .ui.split-pane.main-pane,
+.ui.split-pane.fixed-top > .ui.split-pane.main-pane,
+c-split-pane.fixed-bottom > .ui.split-pane.main-pane,
+.ui.split-pane.fixed-bottom > .ui.split-pane.main-pane {
+  height: auto;
+}
+c-split-pane.fixed-left > .side-pane,
+.ui.split-pane.fixed-left > .side-pane {
+  left: 0;
+}
+c-split-pane.fixed-left > .main-pane,
+.ui.split-pane.fixed-left > .main-pane {
+  right: 0;
+}
+c-split-pane.fixed-right > .side-pane,
+.ui.split-pane.fixed-right > .side-pane {
+  right: 0;
+}
+c-split-pane.fixed-right > .main-pane,
+.ui.split-pane.fixed-right > .main-pane {
+  left: 0;
+}
+c-split-pane.fixed-top > .side-pane,
+.ui.split-pane.fixed-top > .side-pane {
+  top: 0;
+}
+c-split-pane.fixed-top > .main-pane,
+.ui.split-pane.fixed-top > .main-pane {
+  bottom: 0;
+}
+c-split-pane.fixed-bottom > .side-pane,
+.ui.split-pane.fixed-bottom > .side-pane {
+  bottom: 0;
+}
+c-split-pane.fixed-bottom > .main-pane,
+.ui.split-pane.fixed-bottom > .main-pane {
+  top: 0;
+}
+c-split-pane > .splitter,
+.ui.split-pane > .splitter {
+  background-color: #ededed;
+  position: absolute;
+}
+c-split-pane > .splitter:before,
+.ui.split-pane > .splitter:before {
+  position: absolute;
+  content: "";
+  background-color: #d9d9d9;
+}
+c-split-pane > .splitter:hover:before,
+.ui.split-pane > .splitter:hover:before {
+  background-color: #2185d0;
+}
+
+/*******************************
+         Site Settings
+*******************************/
+/*-------------------
+       Fonts
+--------------------*/
+/*-------------------
+      Base Sizes
+--------------------*/
+/* This is the single variable that controls them all */
+/* The size of page text  */
+/*-------------------
+    Border Radius
+--------------------*/
+/* See Power-user section below
+   for explanation of @px variables
+*/
+/*-------------------
+    Brand Colors
+--------------------*/
+/*--------------
+  Page Heading
+---------------*/
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
+/* Line Height Default For Inputs in Browser */
+/*-------------------
+        Sizes
+--------------------*/
+/*
+  Sizes are all expressed in terms of 14px/em (default em)
+  This ensures these "ratios" remain constant despite changes in EM
+*/
+/*-------------------
+        Page
+--------------------*/
+/*-------------------
+      Paragraph
+--------------------*/
+/*-------------------
+       Links
+--------------------*/
+/*-------------------
+  Highlighted Text
+--------------------*/
+/*-------------------
+       Loader
+--------------------*/
+/*-------------------
+        Grid
+--------------------*/
+/*-------------------
+     Transitions
+--------------------*/
+/*-------------------
+     Breakpoints
+--------------------*/
+/*-------------------
+      Site Colors
+--------------------*/
+/*---  Colors  ---*/
+/*---  Light Colors  ---*/
+/*---   Neutrals  ---*/
+/*--- Colored Backgrounds ---*/
+/*--- Colored Headers ---*/
+/*--- Colored Text ---*/
+/*-------------------
+     Alpha Colors
+--------------------*/
+/*-------------------
+       Accents
+--------------------*/
+/* Differentiating Neutrals */
+/* Differentiating Layers */
+/*******************************
+           Power-User
+*******************************/
+/*-------------------
+    Emotive Colors
+--------------------*/
+/* Positive */
+/* Negative */
+/* Info */
+/* Warning */
+/*-------------------
+        Paths
+--------------------*/
+/*-------------------
+       Em Sizes
+--------------------*/
+/*
+  This rounds @size values to the closest pixel then expresses that value in (r)em.
+  This ensures all size values round to exact pixels
+*/
+/* em */
+/* rem */
+/*-------------------
+  Exact Pixel Values
+--------------------*/
+/*
+  These are used to specify exact pixel values in em
+  for things like borders that remain constantly
+  sized as emSize adjusts
+
+  Since there are many more sizes than names for sizes,
+  these are named by their original pixel values.
+
+*/
+/*-------------------
+       Icons
+--------------------*/
+/* Maximum Glyph Width of Icon */
+/*-------------------
+     Neutral Text
+--------------------*/
+/*-------------------
+     Brand Colors
+--------------------*/
+/*-------------------
+      Borders
+--------------------*/
+/*-------------------
+    Derived Values
+--------------------*/
+/* Loaders Position Offset */
+/* Rendered Scrollbar Width */
+/* Maximum Single Character Glyph Width, aka Capital "W" */
+/* Used to match floats with text */
+/* Header Spacing */
+/* Minimum Mobile Width */
+/* Positive / Negative Dupes */
+/* Responsive */
+/* Columns */
+/*******************************
+             States
+*******************************/
+/*-------------------
+      Disabled
+--------------------*/
+/*-------------------
+        Hover
+--------------------*/
+/*---  Colors  ---*/
+/*---  Emotive  ---*/
+/*---  Brand   ---*/
+/*---  Dark Tones  ---*/
+/*---  Light Tones  ---*/
+/*-------------------
+        Focus
+--------------------*/
+/*---  Colors  ---*/
+/*---  Emotive  ---*/
+/*---  Brand   ---*/
+/*---  Dark Tones  ---*/
+/*---  Light Tones  ---*/
+/*-------------------
+    Down (:active)
+--------------------*/
+/*---  Colors  ---*/
+/*---  Emotive  ---*/
+/*---  Brand   ---*/
+/*---  Dark Tones  ---*/
+/*---  Light Tones  ---*/
+/*-------------------
+        Active
+--------------------*/
+/*---  Colors  ---*/
+/*---  Emotive  ---*/
+/*---  Brand   ---*/
+/*---  Dark Tones  ---*/
+/*---  Light Tones  ---*/
+c-toolbar,
+.ui.toolbar {
+  padding: 0.25em 0.05em;
+  background-color: #e6e6e6;
+}
+c-toolbar > .item,
+.ui.toolbar > .item,
+c-toolbar > .toolbar-button,
+.ui.toolbar > .toolbar-button,
+c-toolbar > .right.box,
+.ui.toolbar > .right.box {
+  margin: 0 0.2em;
+}
+c-toolbar.transparent,
+.ui.toolbar.transparent {
+  background-color: transparent;
+}
+c-toolbar > .item .ui.input input,
+.ui.toolbar > .item .ui.input input,
+c-toolbar > .toolbar-button .ui.input input,
+.ui.toolbar > .toolbar-button .ui.input input,
+c-toolbar > .right.box .ui.input input,
+.ui.toolbar > .right.box .ui.input input {
+  padding-top: .57142857em;
+  padding-bottom: .57142857em;
+}
+c-toolbar > .ui.toolbar-button .ui.button,
+.ui.toolbar > .ui.toolbar-button .ui.button {
+  margin-right: 0;
+  padding: .78571429em .92857143em;
+  background-color: transparent;
+}
+c-toolbar > .ui.toolbar-button .ui.button:hover,
+.ui.toolbar > .ui.toolbar-button .ui.button:hover,
+c-toolbar > .ui.toolbar-button .ui.button:focus,
+.ui.toolbar > .ui.toolbar-button .ui.button:focus {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+c-toolbar > .ui.toolbar-button .ui.button:focus,
+.ui.toolbar > .ui.toolbar-button .ui.button:focus,
+c-toolbar > .ui.toolbar-button .ui.button:active,
+.ui.toolbar > .ui.toolbar-button .ui.button:active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+c-toolbar > .item .ui.button,
+.ui.toolbar > .item .ui.button,
+c-toolbar > .right.box .ui.button,
+.ui.toolbar > .right.box .ui.button {
+  margin-right: 0;
+  padding: .78571429em .92857143em;
+}
+c-toolbar,
+.ui.toolbar,
+.box-layout {
+  display: -moz-box;
+  display: -webkit-box;
+  display: box;
+  display: -ms-flexbox;
+  -moz-box-align: center;
+  -webkit-box-align: center;
+  -o-box-align: center;
+  box-align: center;
+}
+c-toolbar > .right.box,
+.ui.toolbar > .right.box,
+.box-layout > .right.box {
+  text-align: end;
+  -moz-box-flex: 1;
+  -webkit-box-flex: 1;
+  box-flex: 1;
+  -ms-flex: 1;
 }
