@@ -15,4 +15,6 @@ public interface ColaUserService {
     void update(ColaUser colaUser);
     ColaUser find(String id);
     List<ColaUser> find(int from, int limit);
+
+    boolean check(String username);
 }

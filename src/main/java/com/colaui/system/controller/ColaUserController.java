@@ -49,4 +49,9 @@ public class ColaUserController {
                                @PathVariable("limit") int limit) {
         return colaUserService.find(from, limit);
     }
+
+    @RequestMapping(value="/check", method = RequestMethod.GET)
+    public boolean check(String username) {
+        return colaUserService.check(username);
+    }
 }

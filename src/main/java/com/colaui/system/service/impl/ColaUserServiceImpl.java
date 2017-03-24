@@ -25,9 +25,10 @@ public class ColaUserServiceImpl implements ColaUserService{
     public Page<ColaUser> getPage(int pageSize, int pageNo, String contain) {
         Criteria criteria = colaUserDao.createCriteria();
         if (StringUtils.isNotEmpty(contain)) {
-            Criterion lastRest= Restrictions.like("lastName", contain, MatchMode.ANYWHERE);
-            Criterion firstRest= Restrictions.like("firstName", contain, MatchMode.ANYWHERE);
-            criteria.add(Restrictions.or(lastRest, firstRest));
+            Criterion username= Restrictions.like("username", contain, MatchMode.ANYWHERE);
+            Criterion cname= Restrictions.like("cname", contain, MatchMode.ANYWHERE);
+            Criterion ename= Restrictions.like("ename", contain, MatchMode.ANYWHERE);
+            criteria.add(Restrictions.or(username, cname, ename));
         }
         return colaUserDao.getPage(pageSize, pageNo, criteria);
     }
@@ -50,5 +51,12 @@ public class ColaUserServiceImpl implements ColaUserService{
 
     public List<ColaUser> find(int from, int limit) {
         return colaUserDao.find(from, limit);
+    }
+
+    public boolean check(String username) {
+        Criteria criteria = colaUserDao.createCriteria();
+        criteria.add(Restrictions.eq("username", username));
+        int result = colaUserDao.find(criteria).size();
+        return result < 1;
     }
 }

@@ -4,7 +4,25 @@
             name: "User",
             properties: {
                 username: {
-                    validators: ["required"]
+                    validators: ["required", {
+                        $type: "custom",
+                        async: true,
+                        message: "该用户名已被使用",
+                        func: function (value, callback) {
+                            debugger;
+                            $.ajax({
+                                url: "/service/frame/user/check",
+                                data: {username:value},
+                                success: function(message) {
+                                    debugger;
+                                    cola.callback(callback, true, message);
+                                },
+                                error: function(xhr, status, ex) {
+                                    cola.callback(callback, false, ex);
+                                }
+                            })
+                        }
+                    }],
                 },
                 cname: {
                     validators: ["required"]
@@ -24,7 +42,29 @@
                     validators: ["required"]
                 },
                 email: {
-                    validators: ["required"]
+                    validators: [{
+                        $type: "email",
+                        message: "格式错误"
+                    }]
+                },
+                password: {
+                    validators: ["required", {
+                        $type: "custom",
+                        message: "应为8-30位字母数字符号组合",
+                        func:function(value) {
+                            if(value && value.length>20){
+                                return true;
+                            }else{
+                                var reg = new RegExp('(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,20}');
+                                var result =reg.test(value);
+                                if(result){
+                                    return true;
+                                }else{
+                                    return false;
+                                }
+                            }
+                        }
+                    }]
                 }
             }
         });
@@ -33,12 +73,29 @@
             dataType: "User",
             provider: {
                 url: "/service/frame/user/",
-                pageSize: 2
+                pageSize: 2,
+                beforeSend: function (self, arg) {
+                    debugger;
+                    var contain = model.get("contain");
+                    if (cola.defaultAction.isNotEmpty(contain)) {
+                        arg.options.data.contain = contain;
+                    }
+                }
             }
         });
         model.describe("editItem", "User");
 
         model.action({
+            search: function () {
+                debugger;
+                model.flush("users");
+            },
+            enterSearch: function () {
+                var keycode = event.keyCode==null?event.which:event.keyCode;
+                if (keycode===13) { // 回车查询
+                    model.action.search();
+                }
+            },
             editUser: function (user) {
                 debugger;
                 if (user.dataType) { // 修改
@@ -56,13 +113,19 @@
             },
             deleteUser: function (user) {
                 debugger;
-                user.remove();
-                $.ajax("./service/frame/user/"+user.get("username")+"/", {
-                    type: "DELETE",
-                    success: function () {
-                        debugger;
+                cola.confirm("确认删除吗?",{
+                    title: "消息提示",
+                    level: "info",
+                    onApprove: function () { // 确认时触发的回调
+                        user.remove();
+                        $.ajax("./service/frame/user/"+user.get("username")+"/", {
+                            type: "DELETE",
+                            success: function () {
+                                debugger;
+                            }
+                        })
                     }
-                })
+                });
             },
             cancel: function () {
                 model.set("editItem", {});
@@ -94,7 +157,8 @@
                 $type: "sidebar",
                 size: "60%",
                 direction: "right",
-                modalOpacity: 0.3
+                modalOpacity: 0.3,
+                dimmerClose: false
             },
             genderRadioGroup: {
                 items: [{label: "男", value: true}, {label: "女", value: false}]
