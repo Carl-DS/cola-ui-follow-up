@@ -78,7 +78,8 @@
                     debugger;
                     var contain = model.get("contain");
                     if (cola.defaultAction.isNotEmpty(contain)) {
-                        arg.options.data.contain = contain;
+                        // 使用encodeURI() 为了解决GET下传递中文出现的乱码
+                        arg.options.data.contain = encodeURI(contain);
                     }
                 }
             }

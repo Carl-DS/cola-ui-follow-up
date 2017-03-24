@@ -6,6 +6,8 @@ import com.colaui.system.service.ColaUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 
 /**
@@ -21,7 +23,16 @@ public class ColaUserController {
     public Page<ColaUser> paging(@RequestParam int pageSize,
                                  @RequestParam int pageNo,
                                  @RequestParam(required = false) String contain) {
-        return colaUserService.getPage(pageSize, pageNo, contain);
+        String containDecode = null;
+        if (null != contain) {
+            try {
+                // 对前台使用的encodeURI() 进行解码
+                containDecode = URLDecoder.decode(contain, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+        return colaUserService.getPage(pageSize, pageNo, containDecode);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
@@ -51,7 +62,7 @@ public class ColaUserController {
     }
 
     @RequestMapping(value="/check", method = RequestMethod.GET)
-    public boolean check(String username) {
+    public boolean check(@RequestParam String username) {
         return colaUserService.check(username);
     }
 }
