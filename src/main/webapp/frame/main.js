@@ -249,6 +249,22 @@
       $("#frameworkSidebar").find(".menu-item.current-item").removeClass("current-item");
       return $fly(this).addClass("current-item");
     });
+    // 菜单提示tip
+    tipLabel=function($dom,event) {
+      // 当菜单收缩后启用提示功能
+      if (!$("#frameworkSidebarBox").hasClass("collapsed")) return;
+      var _this = $($dom);
+      var _parentDom = $($dom).parent();
+      var tooltip = $("<div class='just-tooltip'><div class='just-con'>" + _this.text() + "</div>" + "<span class='just-right'></span></div>");
+      $("body").append(tooltip);
+      var div = $("div.just-tooltip");
+      div.css({"top":(_this.offset().top)+"px","left":(_parentDom.outerWidth()+10)+"px","opacity":0.6});
+      div.animate({left:(_parentDom.outerWidth())+"px",opacity:'0.9'},"normal");
+    };
+    tipLabelOut=function() {
+      $("div.just-tooltip").remove();
+    };
+
     return $("#rightContainer>.layer-dimmer").on("click", function() {
       return cola.widget("subMenuLayer").hide();
     });

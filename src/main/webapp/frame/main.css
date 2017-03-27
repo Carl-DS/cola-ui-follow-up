@@ -423,3 +423,12 @@ html body {
     margin-left: 1.8em;
     font-size: 0.95em
 }
+
+.just-tooltip{position:absolute;left:0;top:0;border-radius:5px;background:#000;/*display:inline-block;*/z-index:9999;}
+.just-tooltip .just-con{padding:8px 10px;color:#fff;}
+.just-tooltip .just-right{content:"";position:absolute;width:0;height:0;overflow:hidden;border-style:solid;}
+.just-tooltip .just-right{ left:-7px; top:50%;border-width: 5px 7px 5px 0;margin-top:-5px;
+    border-color: transparent #1B1E24 transparent transparent;
+    _border-color:#000000 #000000 #000000 #1B1E24;
+    _filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+}

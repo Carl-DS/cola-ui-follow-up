@@ -104,6 +104,7 @@
                         order : order,
                         icon : "icon edit",
                         forNavigation : true,
+                        closeable: true,
                         companyId : "bstek"
                     });
 

@@ -35,9 +35,9 @@
               <div c-onclick="toggleSidebar()" class="bar"><i class="iconfont icon-sidebar"></i></div>
               <div id="frameworkSidebar" class="ui accordion">
                 <div c-repeat="menu in menus" class="item active">
-                  <div class="title menu-item"><i c-class="menu.icon"></i><span c-bind="menu.label"></span><i c-display="dropdownIconVisible(menu)" class="icon angle left dropdown-icon"></i></div>
+                  <div class="title menu-item" onMouseOver="tipLabel(this,event)" onMouseOut="tipLabelOut()"><i c-class="menu.icon"></i><span c-bind="menu.label"></span><i c-display="dropdownIconVisible(menu)" class="icon angle left dropdown-icon"></i></div>
                   <div class="content">
-                    <div c-repeat="item in sort(menu.menus, 'order')" c-onclick="menuItemClick(item)" class="menu-item"><i c-class="item.icon"></i><span c-bind="item.label"></span><i c-display="dropdownIconVisible(item)" class="icon angle left dropdown-icon"></i></div>
+                    <div c-repeat="item in sort(menu.menus, 'order')" c-onclick="menuItemClick(item)" onMouseOver="tipLabel(this,event)" onMouseOut="tipLabelOut()" class="menu-item"><i c-class="item.icon"></i><span c-bind="item.label"></span><i c-display="dropdownIconVisible(item)" class="icon angle left dropdown-icon"></i></div>
                   </div>
                 </div>
               </div>
