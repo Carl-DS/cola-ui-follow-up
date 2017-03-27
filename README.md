@@ -5,11 +5,11 @@
 
 ## 技术选型
 
-1、前端
+> 前端
 
 * UI框架：Cola-UI + jQuery 2.1.3。
 
-2、后端
+> 后端
 
 * 核心框架：Spring Framework 4.2.0.RELEASE
 * 视图框架：Spring MVC 4.2.0.RELEASE
@@ -17,14 +17,14 @@
 * 持久层框架：Hibernate 4.3.6.Final
 * 工具类：Apache Commons、Jackson 2.5.3
 
-3、数据库
+> 数据库
 
 * MySQL
 
 
 ## 如何启动
 
-1、修改 src/main/resources/configure.properties
+> 修改 src/main/resources/configure.properties
 
 ```
 jdbc.username = username
@@ -33,13 +33,15 @@ jdbc.url = jdbc:mysql://localhost:3306/dbname?useUnicode=true&characterEncoding=
 jdbc.driver = com.mysql.jdbc.Driver
 ```
 
-2、启动服务
+> 启动服务
+* 配置服务: jetty/tomcat
+* maven方式: `mvn jetty:run` ; `mvn tomcat:run`
 
-3、初始化数据
+> 初始化数据
 
 * 此文件为初始化数据，表结构将服务启动时自动创建
 * 初始化文件在/src/main/resources/init-data.sql
 
-4、浏览器访问
+> 浏览器访问
 
-http://localhost:port/context
+http://localhost:8080/
