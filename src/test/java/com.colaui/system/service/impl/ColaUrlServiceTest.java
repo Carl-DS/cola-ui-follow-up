@@ -1,4 +1,4 @@
-package com.colaui.system.service;
+package com.colaui.system.service.impl;
 
 import com.colaui.example.model.ColaUrl;
 import org.junit.Assert;
@@ -11,8 +11,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by Carl on 2017/3/10.
  */
@@ -20,7 +18,7 @@ import static org.junit.Assert.*;
 @ContextConfiguration(locations = {"classpath*:application-context.xml", "classpath*:rest-servlet.xml"})
 public class ColaUrlServiceTest {
     @Autowired
-    private ColaUrlService colaUrlService;
+    private ColaUrlServiceImpl colaUrlService;
 
     @Test
     public void getUrls() throws Exception {

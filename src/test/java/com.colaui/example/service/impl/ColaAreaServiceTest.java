@@ -1,4 +1,4 @@
-package com.colaui.example.service;
+package com.colaui.example.service.impl;
 
 import com.colaui.example.model.ColaArea;
 import com.colaui.provider.Page;
@@ -20,7 +20,7 @@ import java.util.List;
 public class ColaAreaServiceTest {
 
     @Autowired
-    private ColaAreaService colaAreaService;
+    private ColaAreaServiceImpl colaAreaService;
 
     @Before
     public void setUp() throws Exception {
