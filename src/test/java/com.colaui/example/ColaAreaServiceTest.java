@@ -43,7 +43,7 @@ public class ColaAreaServiceTest {
     public void recursionTree() throws Exception {
         List<ColaArea> colaAreas = colaAreaService.recursionTree("1");
         //Assert.assertEquals(34,colaAreas.size());
-        System.out.print("recursionTree(): "+colaAreas.size());
+        System.out.println("recursionTree(): "+colaAreas.size());
     }
 
 }
