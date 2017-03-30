@@ -1,0 +1,5 @@
+test:
+  adapter: mysql2
+  database: cola_ui
+  username: root
+  encoding: utf8
