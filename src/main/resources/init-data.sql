@@ -6,7 +6,7 @@
 # https://github.com/sequelpro/sequelpro
 #
 # Host: 127.0.0.1 (MySQL 5.7.10)
-# Database: cola-ui
+# Database: cola_ui
 # Generation Time: 2017-03-20 02:52:58 +0000
 # ************************************************************
 
