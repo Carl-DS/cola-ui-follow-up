@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("role")
+@RequestMapping("frame/role")
 public class ColaRoleController {
     @Autowired
     private ColaRoleService roleService;
@@ -26,7 +26,7 @@ public class ColaRoleController {
     }
 
     @RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)
-    public void delete(@PathVariable("id") long id) {
+    public void delete(@PathVariable("id") String id) {
         roleService.delete(id);
     }
 
@@ -36,7 +36,7 @@ public class ColaRoleController {
     }
 
     @RequestMapping(value = "/{id}/", method = RequestMethod.GET)
-    public ColaRole find(@PathVariable("id") long id) {
+    public ColaRole find(@PathVariable("id") String id) {
         return roleService.find(id);
     }
 

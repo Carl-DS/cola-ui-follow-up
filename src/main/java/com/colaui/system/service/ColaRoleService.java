@@ -10,11 +10,11 @@ public interface ColaRoleService {
 
     void save(ColaRole role);
 
-    void delete(long id);
+    void delete(String id);
 
     void update(ColaRole role);
 
-    ColaRole find(long id);
+    ColaRole find(String id);
 
     List<ColaRole> find(int from, int limit);
 }

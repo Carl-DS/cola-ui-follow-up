@@ -25,8 +25,8 @@ public class ColaRoleServiceImpl implements ColaRoleService {
     public Page<ColaRole> getPage(int pageSize, int pageNo, String contain) {
         Criteria criteria = roleDao.createCriteria();
         if (StringUtils.isNotEmpty(contain)) {
-            Criterion lastRest= Restrictions.like("lastName", contain, MatchMode.ANYWHERE);
-            Criterion firstRest= Restrictions.like("firstName", contain, MatchMode.ANYWHERE);
+            Criterion lastRest= Restrictions.like("name", contain, MatchMode.ANYWHERE);
+            Criterion firstRest= Restrictions.like("desc", contain, MatchMode.ANYWHERE);
             criteria.add(Restrictions.or(lastRest, firstRest));
         }
         return roleDao.getPage(pageSize, pageNo, criteria);
@@ -36,7 +36,7 @@ public class ColaRoleServiceImpl implements ColaRoleService {
         roleDao.save(role);
     }
 
-    public void delete(long id) {
+    public void delete(String id) {
         roleDao.delete(id);
     }
 
@@ -44,7 +44,7 @@ public class ColaRoleServiceImpl implements ColaRoleService {
         roleDao.update(role);
     }
 
-    public ColaRole find(long id) {
+    public ColaRole find(String id) {
         return roleDao.get(id);
     }
 

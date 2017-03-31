@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta charset="UTF-8">
+    <title>Cola-UI 客户端框架</title>
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="./resources/nprogress/nprogress.css">
+    <script src="./resources/nprogress/nprogress.js"></script>
+    <link rel="stylesheet" type="text/css" href="./resources/cola-ui/semantic.css">
+    <link rel="stylesheet" type="text/css" href="./resources/cola-ui/cola.css">
+    <link rel="stylesheet" type="text/css" href="./common/common.css">
+    <link rel="stylesheet" type="text/css" href="./frame/system/role/role.css">
+    <style>
+        #detailSegment .ui.panel > .header > .content {
+            background-color: initial;
+        }
+        #powerDetailTable tr .current-property .ui.input {
+            display: none;
+        }
+        #powerDetailTable tr .current-property.focus .ui.input {
+            display: inline-block;
+        }
+        #powerDetailTable tr .current-property.focus .ui.input input {
+            text-align: center;
+            border-radius: 0px;
+        }
+        #powerDetailTable tr .current-property.focus span {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+<div class="h-box" style="height: inherit;">
+    <div style="width:40%;display: inline-flex;" class="box">
+        <c-panel caption="角色" collapsible="false" icon="spy">
+            <div style="overflow: auto; height: 95%">
+            <div id="roleTable"></div>
+            </div>
+        </c-panel>
+    </div>
+    <div style="width:100%; margin-left: 10px;" class="box">
+        <c-panel caption="功能" collapsible="false" icon="power" height="100%">
+            <template name="tools">
+                <div>
+                    <a><i c-onclick="savePower()" class="icon save blue"></i></a>
+                    <a><i c-onclick="refreshPower()" class="icon refresh blue"></i></a>
+                </div>
+            </template>
+            <div class="v-box">
+                <div style="height:40%" class="box">
+                    <div id="powerTree"></div>
+                </div>
+                <div style="height:60%" class="box">
+                    <div c-widget="divider"></div>
+                    <div id="detailSegment" style="height: 85%">
+                        <c-panel collapsible="false" class="basic crowded" style="height: 100%;">
+                            <template name="tools">
+                                <div>
+                                    <a><i c-onclick="savePowerDetail()" class="icon save blue"></i></a>
+                                    <a><i c-onclick="addPowerDetail()" class="icon add blue"></i></a>
+                                </div>
+                            </template>
+                            <div style="overflow: auto;height: 90%">
+                            <div id="powerDetailTable">
+                                <template name="propNameColumn">
+                                    <div>
+                                        <c-input bind="powerDetail.propName" blur="blur" placeholder="请输入属性名" class="mini"></c-input>
+                                        <span c-bind="powerDetail.propName"></span>
+                                    </div>
+                                </template>
+                                <template name="propValueColumn">
+                                    <div>
+                                        <c-input bind="powerDetail.propValue" blur="blur" placeholder="请输入属性值" class="mini"></c-input>
+                                        <span c-bind="powerDetail.propValue"></span>
+                                    </div>
+                                </template>
+                                <template name="operation">
+                                    <div>
+                                        <i c-onclick="deletePowerDetail(powerDetail)" class="icon delete blue"></i>
+                                    </div>
+                                </template>
+                            </div>
+                            </div>
+                        </c-panel>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+    </div>
+</div>
+
+
+
+  <script src="./resources/jquery/jquery-2.1.3.js"></script>
+  <script src="./resources/jquery/jquery.cookie.js"></script>
+  <script src="./resources/cola-ui/3rd.js"></script>
+  <script src="./resources/cola-ui/semantic.js"></script>
+  <script src="./resources/cola-ui/cola.js"></script>
+  <script src="./common/common.js"></script>
+  <script src="./frame/system/role/oldrole.js"></script>
+</body>
+</html>
