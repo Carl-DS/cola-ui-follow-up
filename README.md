@@ -34,8 +34,8 @@ jdbc.driver = com.mysql.jdbc.Driver
 ```
 
 > 启动服务
-* 配置服务: jetty/tomcat
-* maven方式: `mvn jetty:run` ; `mvn tomcat:run`
+* 配置服务方式: jetty/tomcat, 设置context path 为`/`
+* maven方式: `mvn jetty:run` ; `mvn tomcat7:run`
 
 > 初始化数据
 

@@ -14,6 +14,32 @@
         <fastjson.version>1.2.24</fastjson.version>
 		<hibernate.version>4.3.6.Final</hibernate.version>
 		<mysql.connector.version>5.1.31</mysql.connector.version>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+
+		<!--插件版本变量 start-->
+		<maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+		<maven-war-plugin.version>2.3</maven-war-plugin.version>
+		<maven-resources-plugin.version>2.6</maven-resources-plugin.version>
+		<maven-install-plugin.version>2.4</maven-install-plugin.version>
+		<maven-clean-plugin.version>2.5</maven-clean-plugin.version>
+		<maven-antrun-plugin.version>1.7</maven-antrun-plugin.version>
+		<maven-dependency-plugin.version>2.5.1</maven-dependency-plugin.version>
+		<maven-source-plugin.version>2.2.1</maven-source-plugin.version>
+		<!--插件版本变量 end-->
+
+		<!--其他变量 start-->
+		<war-name.version>cola-ui-follow-up</war-name.version>
+		<jdk.version>1.7</jdk.version>
+		<tomcat7-maven-plugin.version>2.2</tomcat7-maven-plugin.version>
+        <jetty-plugin.version>8.1.16.v20140903</jetty-plugin.version>
+        <tomcat-port.version>8080</tomcat-port.version>
+        <tomcat-uri-encoding.version>UTF-8</tomcat-uri-encoding.version>
+        <tomcat-path.version>/</tomcat-path.version>
+        <jetty-port.version>8080</jetty-port.version>
+        <jetty-path.version>/</jetty-path.version>
+		<!--其他变量 end-->
 	</properties>
 
 	<dependencies>
@@ -78,6 +104,7 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
@@ -122,15 +149,112 @@
 		<finalName>cola-ui-follow-up</finalName>
 		<pluginManagement>
 			<plugins>
+				<!-- Compiler 插件, 设定JDK版本 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler-plugin.version}</version>
+					<configuration>
+						<source>${jdk.version}</source>
+						<target>${jdk.version}</target>
+						<encoding>UTF-8</encoding>
+						<showWarnings>true</showWarnings>
+					</configuration>
+				</plugin>
+
+				<!-- war 打包插件, 设定war包名称不带版本号 -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
-					<version>2.5</version>
+					<version>${maven-war-plugin.version}</version>
 					<configuration>
+						<warName>${war-name.version}</warName>
 						<warSourceDirectory>src/main/webapp</warSourceDirectory>
-						<warName>cola-ui-follow-up</warName>
 						<failOnMissingWebXml>false</failOnMissingWebXml>
 					</configuration>
+				</plugin>
+
+				<!--tomcat7插件-->
+				<!--https://tomcat.apache.org/maven-plugin-2.0/tomcat7-maven-plugin/run-mojo.html-->
+				<plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>${tomcat7-maven-plugin.version}</version>
+                    <configuration>
+						<port>${tomcat-port.version}</port>
+						<path>${tomcat-path.version}</path>
+                        <uriEncoding>${tomcat-uri-encoding.version}</uriEncoding>
+                        <url>http://localhost:8080/manager/text</url>
+                        <server>tomcat7</server>
+                        <username>admin</username>
+                        <password>admin</password>
+                    </configuration>
+                </plugin>
+
+				<!--jetty插件-->
+				<!--http://www.eclipse.org/jetty/documentation/9.0.0.M3/jetty-maven-plugin.html-->
+				<plugin>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>${jetty-plugin.version}</version>
+                    <configuration>
+                        <stopKey>foo</stopKey>
+                        <stopPort>9999</stopPort>
+                        <connectors>
+                            <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                                <port>${jetty-port.version}</port>
+                            </connector>
+                        </connectors>
+                        <webApp>
+                            <!--访问地址：http://localhost:8080/index.jsp-->
+                            <!--如果不带index.jsp会直接报404，这个一直没找到原因-->
+                            <contextPath>${jetty-path.version}</contextPath>
+                        </webApp>
+                        <!--scanIntervalSeconds 可选[秒]。在很短的时间间隔内在扫描web应用检查是否有改变，如果发觉有任何改变则自动热部署。默认为0，表示禁用热部署检查。任何一个大于0的数字都将表示启用。-->
+                        <scanIntervalSeconds>10</scanIntervalSeconds>
+                    </configuration>
+                </plugin>
+
+				<!-- resource插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${maven-resources-plugin.version}</version>
+				</plugin>
+
+				<!-- source插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${maven-source-plugin.version}</version>
+				</plugin>
+
+				<!-- install插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>${maven-install-plugin.version}</version>
+				</plugin>
+
+				<!-- clean插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>${maven-clean-plugin.version}</version>
+				</plugin>
+
+				<!-- ant插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>${maven-antrun-plugin.version}</version>
+				</plugin>
+
+				<!-- dependency插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>${maven-dependency-plugin.version}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
