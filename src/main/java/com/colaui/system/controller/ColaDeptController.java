@@ -1,18 +1,24 @@
 package com.colaui.system.controller;
 
 import com.colaui.example.model.ColaDept;
-import com.colaui.system.service.ColaDeptService;
 import com.colaui.provider.Page;
+import com.colaui.system.service.ColaDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/frame/dept")
 public class ColaDeptController {
     @Autowired
     private ColaDeptService deptService;
+
+    @RequestMapping(value = "/depts", method = RequestMethod.GET)
+    public List<ColaDept> getDepts(@RequestParam(required = false) Map<String, Object> params) {
+        return deptService.getDepts(params);
+    }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public Page<ColaDept> paging(@RequestParam int pageSize,
@@ -25,8 +31,8 @@ public class ColaDeptController {
         deptService.save(dept);
     }
 
-    @RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)
-    public void delete(@PathVariable("id") long id) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable("id") String id) {
         deptService.delete(id);
     }
 
@@ -36,7 +42,7 @@ public class ColaDeptController {
     }
 
     @RequestMapping(value = "/{id}/", method = RequestMethod.GET)
-    public ColaDept find(@PathVariable("id") long id) {
+    public ColaDept find(@PathVariable("id") String id) {
         return deptService.find(id);
     }
 

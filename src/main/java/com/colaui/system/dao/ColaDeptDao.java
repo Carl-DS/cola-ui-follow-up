@@ -6,5 +6,5 @@ import com.colaui.example.model.ColaDept;
 import com.colaui.hibernate.HibernateDao;
 
 @Repository
-public class ColaDeptDao extends HibernateDao<ColaDept, Long> {
+public class ColaDeptDao extends HibernateDao<ColaDept, String> {
 }

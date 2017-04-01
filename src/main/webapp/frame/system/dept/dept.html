@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta charset="UTF-8">
+<title></title>
+<base href="/">
+<link rel="stylesheet" type="text/css" href="./resources/nprogress/nprogress.css">
+<script src="./resources/nprogress/nprogress.js"></script>
+<link rel="stylesheet" type="text/css" href="./resources/cola-ui/semantic.css">
+<link rel="stylesheet" type="text/css" href="./resources/cola-ui/cola.css">
+<link rel="stylesheet" type="text/css" href="./common/common.css">
+<link rel="stylesheet" type="text/css" href="./frame/system/dept/dept.css">
+</head>
+<body>
+	<script type="text/javascript">
+		NProgress.configure({ showSpinner : false, minimum : 0.3 });
+		NProgress.start();
+	</script>
+
+<div class="h-box" style="height: inherit;">
+	<div class="box" style="width: 50%;height: inherit;">
+		<c-panel caption="部门维护" collapsible="false" icon="empire" height="inherit">
+			<template name="tools">
+				<c-button class="mini" click="addRootNode">添加根节点</c-button>
+			</template>
+			<div style="height: 95%;overflow: auto;">
+			<div id="deptTree">
+				<template name="node-default">
+					<div>
+						<i c-classname="dept.icon"></i>
+						<span c-bind="dept.name"></span>
+						<div class="node-operation">
+							<i c-onclick="add()" class="positive icon plus"></i>
+							<i c-onclick="remove(dept)" class="positive icon trash outline"></i>
+						</div>
+					</div>
+				</template>
+			</div>
+			</div>
+		</c-panel>
+	</div>
+	<div style="width:100%; margin-left: 10px;" class="box">
+		<c-panel caption="部门节点维护" collapsible="false" icon="sitemap" height="inherit">
+			<c-form style="max-width:400px">
+				<div class="ui message error"></div>
+				<div class="field">
+					<c-input bind="currentEditItem.name" placeholder="名称"><c-label>名称</c-label></c-input>
+				</div>
+				<div class="field">
+					<c-input bind="currentEditItem.icon" placeholder="图标"><c-label>图标</c-label></c-input>
+				</div>
+				<div class="field">
+					<c-input bind="currentEditItem.order" inputType="number"><c-label>顺序</c-label></c-input>
+				</div>
+				<div class="field">
+					<c-textarea bind="currentEditItem.desc" placeholder="描述"><c-label>描述</c-label></c-textarea>
+				</div>
+				<div class="field">
+					<c-button caption="保存" icon="save" click="{{saveDept(currentEditItem)}}"></c-button>
+				</div>
+			</c-form>
+		</c-panel>
+	</div>
+</div>
+</body>
+<script src="./resources/jquery/jquery-2.1.3.js"></script>
+<script src="./resources/jquery/jquery.cookie.js"></script>
+<script src="./resources/cola-ui/3rd.js"></script>
+<script src="./resources/cola-ui/semantic.js"></script>
+<script src="./resources/cola-ui/cola.js"></script>
+<script src="./common/common.js"></script>
+<script src="./frame/system/dept/dept.js"></script>
+</html>
