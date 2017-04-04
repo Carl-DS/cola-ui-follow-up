@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.10)
 # Database: cola_ui
-# Generation Time: 2017-03-20 02:52:58 +0000
+# Generation Time: 2017-04-04 03:30:03 +0000
 # ************************************************************
 
 
@@ -26,11 +26,11 @@
 DROP TABLE IF EXISTS `COLA_AREA`;
 
 CREATE TABLE `COLA_AREA` (
-  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
-  `AREA_NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `LEVEL_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `PARENT_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`ID_`)
+	`ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+	`AREA_NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`LEVEL_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`PARENT_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 LOCK TABLES `COLA_AREA` WRITE;
@@ -3574,13 +3574,13 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `COLA_CATEGORY`;
 
 CREATE TABLE `COLA_CATEGORY` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `CATEGORY_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `PARENT_ID` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_by5aj5to9lgmfvlhn4fb5b242` (`PARENT_ID`),
-  CONSTRAINT `FK_by5aj5to9lgmfvlhn4fb5b242` FOREIGN KEY (`PARENT_ID`) REFERENCES `cola_category` (`ID`)
+	`ID` bigint(20) NOT NULL AUTO_INCREMENT,
+	`CATEGORY_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`description` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`PARENT_ID` bigint(20) DEFAULT NULL,
+	PRIMARY KEY (`ID`),
+	KEY `FK_by5aj5to9lgmfvlhn4fb5b242` (`PARENT_ID`),
+	CONSTRAINT `FK_by5aj5to9lgmfvlhn4fb5b242` FOREIGN KEY (`PARENT_ID`) REFERENCES `cola_category` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 LOCK TABLES `COLA_CATEGORY` WRITE;
@@ -3607,10 +3607,10 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `COLA_COMPANY`;
 
 CREATE TABLE `COLA_COMPANY` (
-  `ID_` varchar(60) NOT NULL,
-  `DESC_` varchar(120) DEFAULT NULL,
-  `NAME_` varchar(60) DEFAULT NULL,
-  PRIMARY KEY (`ID_`)
+	`ID_` varchar(60) NOT NULL,
+	`DESC_` varchar(120) DEFAULT NULL,
+	`NAME_` varchar(60) DEFAULT NULL,
+	PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `COLA_COMPANY` WRITE;
@@ -3631,10 +3631,10 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `COLA_COMPONENT`;
 
 CREATE TABLE `COLA_COMPONENT` (
-  `ID_` varchar(60) NOT NULL,
-  `COMPONENT_ID_` varchar(60) NOT NULL,
-  `DESC_` varchar(120) DEFAULT NULL,
-  PRIMARY KEY (`ID_`)
+	`ID_` varchar(60) NOT NULL,
+	`COMPONENT_ID_` varchar(60) NOT NULL,
+	`DESC_` varchar(120) DEFAULT NULL,
+	PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `COLA_COMPONENT` WRITE;
@@ -3654,15 +3654,32 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `COLA_DEPT`;
 
 CREATE TABLE `COLA_DEPT` (
-  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
-  `COMPANY_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `CREATE_DATE_` datetime DEFAULT NULL,
-  `DESC_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `PARENT_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`ID_`)
+	`ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+	`COMPANY_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`CREATE_DATE_` datetime DEFAULT NULL,
+	`DESC_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`PARENT_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`ICON_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`ORDER_` int(11) DEFAULT NULL,
+	PRIMARY KEY (`ID_`),
+	KEY `FK_b8sb98ic0hct80s19v2wbympi` (`PARENT_ID_`),
+	CONSTRAINT `FK_b8sb98ic0hct80s19v2wbympi` FOREIGN KEY (`PARENT_ID_`) REFERENCES `COLA_DEPT` (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+LOCK TABLES `COLA_DEPT` WRITE;
+/*!40000 ALTER TABLE `COLA_DEPT` DISABLE KEYS */;
+
+INSERT INTO `COLA_DEPT` (`ID_`, `COMPANY_ID_`, `CREATE_DATE_`, `DESC_`, `NAME_`, `PARENT_ID_`, `ICON_`, `ORDER_`)
+VALUES
+	(X'3235626535323864623036623465303939646362393263306264663737616532',X'627374656B',NULL,X'E4BAA7E59381E983A8',X'E4BAA7E59381E983A8',NULL,X'69636F6E20656D70697265',2),
+	(X'3435636339376532373634383463616139356438653038363737373463313866',X'627374656B',NULL,X'E98791E89E8DE4BA8CE58886E983A8',X'E98791E89E8DE4BA8CE58886E983A8',X'533130303031',X'69636F6E20656D70697265',21),
+	(X'533130303031',X'627374656B3032','2017-04-01 09:08:48',X'E98791E89E8DE983A8',X'E98791E89E8DE983A8',NULL,X'69636F6E20656D70697265',1),
+	(X'53313030303130',X'627374656B3032','2017-04-01 09:11:09',X'E98791E89E8DE4B880E58886E983A8',X'E98791E89E8DE4B880E58886E983A8',X'533130303031',X'69636F6E20656D70697265',2),
+	(X'6464623337383365353133303466666262336462353265313932343231306239',X'627374656B',NULL,X'E4BAA7E59381E4B880E983A8',X'E4BAA7E59381E4B880E983A8',X'3235626535323864623036623465303939646362393263306264663737616532',X'69636F6E20656D70697265',1);
+
+/*!40000 ALTER TABLE `COLA_DEPT` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table COLA_EMPLOYEE
@@ -3671,27 +3688,27 @@ CREATE TABLE `COLA_DEPT` (
 DROP TABLE IF EXISTS `COLA_EMPLOYEE`;
 
 CREATE TABLE `COLA_EMPLOYEE` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `address` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `BIRTH_DATE` datetime DEFAULT NULL,
-  `city` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `country` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `extension` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `FIRST_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `HIRE_DATE` datetime DEFAULT NULL,
-  `LAST_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `NOTES` varchar(500) COLLATE utf8_bin DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `PHOTO_PATH` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `POSTAL_CODE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `region` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `REPORTS_TO` bigint(20) DEFAULT NULL,
-  `sex` bit(1) DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `TITLE_OF_COURTESY` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_9ff8w46s3dndfcc6l4j8r844f` (`REPORTS_TO`),
-  CONSTRAINT `FK_9ff8w46s3dndfcc6l4j8r844f` FOREIGN KEY (`REPORTS_TO`) REFERENCES `COLA_EMPLOYEE` (`ID`)
+	`ID` bigint(20) NOT NULL AUTO_INCREMENT,
+	`address` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`BIRTH_DATE` datetime DEFAULT NULL,
+	`city` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`country` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`extension` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`FIRST_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`HIRE_DATE` datetime DEFAULT NULL,
+	`LAST_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`NOTES` varchar(500) COLLATE utf8_bin DEFAULT NULL,
+	`phone` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`PHOTO_PATH` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`POSTAL_CODE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`region` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`REPORTS_TO` bigint(20) DEFAULT NULL,
+	`sex` bit(1) DEFAULT NULL,
+	`title` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`TITLE_OF_COURTESY` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	PRIMARY KEY (`ID`),
+	KEY `FK_9ff8w46s3dndfcc6l4j8r844f` (`REPORTS_TO`),
+	CONSTRAINT `FK_9ff8w46s3dndfcc6l4j8r844f` FOREIGN KEY (`REPORTS_TO`) REFERENCES `cola_employee` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 LOCK TABLES `COLA_EMPLOYEE` WRITE;
@@ -3719,13 +3736,13 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `COLA_GROUP`;
 
 CREATE TABLE `COLA_GROUP` (
-  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
-  `COMPANY_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `CREATE_DATE_` datetime DEFAULT NULL,
-  `DESC_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `PARENT_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`ID_`)
+	`ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+	`COMPANY_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`CREATE_DATE_` datetime DEFAULT NULL,
+	`DESC_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`PARENT_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
@@ -3736,12 +3753,12 @@ CREATE TABLE `COLA_GROUP` (
 DROP TABLE IF EXISTS `COLA_GROUP_MEMBER`;
 
 CREATE TABLE `COLA_GROUP_MEMBER` (
-  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
-  `DEPT_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `GROUP_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `POSITION_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `USERNAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`ID_`)
+	`ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+	`DEPT_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`GROUP_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`POSITION_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`USERNAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
@@ -3752,16 +3769,16 @@ CREATE TABLE `COLA_GROUP_MEMBER` (
 DROP TABLE IF EXISTS `COLA_JOB`;
 
 CREATE TABLE `COLA_JOB` (
-  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
-  `BEAN_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `COMPANY_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `CRON_EXPRESSION_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `DESC_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `END_DATE` datetime DEFAULT NULL,
-  `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `START_DATE` datetime DEFAULT NULL,
-  `STATE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`ID_`)
+	`ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+	`BEAN_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`COMPANY_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`CRON_EXPRESSION_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`DESC_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`END_DATE` datetime DEFAULT NULL,
+	`NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`START_DATE` datetime DEFAULT NULL,
+	`STATE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
@@ -3772,12 +3789,12 @@ CREATE TABLE `COLA_JOB` (
 DROP TABLE IF EXISTS `COLA_JOB_CALENDAR`;
 
 CREATE TABLE `COLA_JOB_CALENDAR` (
-  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
-  `COMPANY_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `DESC_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `TYPE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`ID_`)
+	`ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+	`COMPANY_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`DESC_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`TYPE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
@@ -3788,14 +3805,14 @@ CREATE TABLE `COLA_JOB_CALENDAR` (
 DROP TABLE IF EXISTS `COLA_JOB_CALENDAR_DATE`;
 
 CREATE TABLE `COLA_JOB_CALENDAR_DATE` (
-  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
-  `CALENDAR_DATE_` datetime DEFAULT NULL,
-  `CALENDAR_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `DAY_OF_MONTH_` int(11) DEFAULT NULL,
-  `DAY_OF_WEEK_` int(11) DEFAULT NULL,
-  `MONTH_OF_YEAR_` int(11) DEFAULT NULL,
-  `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`ID_`)
+	`ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+	`CALENDAR_DATE_` datetime DEFAULT NULL,
+	`CALENDAR_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`DAY_OF_MONTH_` int(11) DEFAULT NULL,
+	`DAY_OF_WEEK_` int(11) DEFAULT NULL,
+	`MONTH_OF_YEAR_` int(11) DEFAULT NULL,
+	`NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
@@ -3806,10 +3823,10 @@ CREATE TABLE `COLA_JOB_CALENDAR_DATE` (
 DROP TABLE IF EXISTS `COLA_JOB_CALENDAR_RELATION`;
 
 CREATE TABLE `COLA_JOB_CALENDAR_RELATION` (
-  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
-  `CALENDAR_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `JOB_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`ID_`)
+	`ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+	`CALENDAR_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`JOB_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
@@ -3820,13 +3837,13 @@ CREATE TABLE `COLA_JOB_CALENDAR_RELATION` (
 DROP TABLE IF EXISTS `COLA_JOB_HISTORY`;
 
 CREATE TABLE `COLA_JOB_HISTORY` (
-  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
-  `END_DATE` datetime DEFAULT NULL,
-  `EXCEPTION_MESSAGE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `JOB_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `START_DATE` datetime DEFAULT NULL,
-  `SUCCESSFUL_` bit(1) DEFAULT NULL,
-  PRIMARY KEY (`ID_`)
+	`ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+	`END_DATE` datetime DEFAULT NULL,
+	`EXCEPTION_MESSAGE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`JOB_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`START_DATE` datetime DEFAULT NULL,
+	`SUCCESSFUL_` bit(1) DEFAULT NULL,
+	PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
@@ -3837,11 +3854,11 @@ CREATE TABLE `COLA_JOB_HISTORY` (
 DROP TABLE IF EXISTS `COLA_JOB_PARAMETER`;
 
 CREATE TABLE `COLA_JOB_PARAMETER` (
-  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
-  `JOB_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `VALUE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`ID_`)
+	`ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+	`JOB_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`VALUE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
@@ -3852,17 +3869,17 @@ CREATE TABLE `COLA_JOB_PARAMETER` (
 DROP TABLE IF EXISTS `COLA_MESSAGE`;
 
 CREATE TABLE `COLA_MESSAGE` (
-  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
-  `CONTENT_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `READ_` bit(1) DEFAULT NULL,
-  `RECEIVER_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `REPLY_` bit(1) DEFAULT NULL,
-  `SEND_DATE_` datetime DEFAULT NULL,
-  `SENDER_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `TAGS_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `TITLE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `TYPE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`ID_`)
+	`ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+	`CONTENT_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`READ_` bit(1) DEFAULT NULL,
+	`RECEIVER_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`REPLY_` bit(1) DEFAULT NULL,
+	`SEND_DATE_` datetime DEFAULT NULL,
+	`SENDER_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`TAGS_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`TITLE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`TYPE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
@@ -3873,12 +3890,12 @@ CREATE TABLE `COLA_MESSAGE` (
 DROP TABLE IF EXISTS `COLA_MESSAGE_TEMPLATE`;
 
 CREATE TABLE `COLA_MESSAGE_TEMPLATE` (
-  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
-  `COMPANY_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `CONTENT_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `TYPE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`ID_`)
+	`ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+	`COMPANY_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`CONTENT_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`TYPE_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
@@ -3889,14 +3906,25 @@ CREATE TABLE `COLA_MESSAGE_TEMPLATE` (
 DROP TABLE IF EXISTS `COLA_POSITION`;
 
 CREATE TABLE `COLA_POSITION` (
-  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
-  `COMPANY_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `CREATE_DATE_` datetime DEFAULT NULL,
-  `DESC_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`ID_`)
+	`ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+	`COMPANY_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`CREATE_DATE_` datetime DEFAULT NULL,
+	`DESC_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`NAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+LOCK TABLES `COLA_POSITION` WRITE;
+/*!40000 ALTER TABLE `COLA_POSITION` DISABLE KEYS */;
+
+INSERT INTO `COLA_POSITION` (`ID_`, `COMPANY_ID_`, `CREATE_DATE_`, `DESC_`, `NAME_`)
+VALUES
+	(X'3139346139653134373334343436643538613137396531633433306533363431',X'627374656B3032',NULL,X'E4BB8EE4BA8BE4BABAE4BA8B',X'E4BABAE4BA8BE5B297'),
+	(X'47303031',X'627374656B3032','2017-04-01 09:11:57',X'E98791E89E8DE5B297',X'E98791E89E8DE5B297'),
+	(X'47303032',X'627374656B3032','2017-04-01 09:13:06',X'E4BA8BE4B89AE5B297',X'E4BA8BE4B89AE5B297');
+
+/*!40000 ALTER TABLE `COLA_POSITION` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table COLA_PRODUCT
@@ -3905,18 +3933,18 @@ CREATE TABLE `COLA_POSITION` (
 DROP TABLE IF EXISTS `COLA_PRODUCT`;
 
 CREATE TABLE `COLA_PRODUCT` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `CATEGORY_ID` bigint(20) DEFAULT NULL,
-  `discontinued` bit(1) NOT NULL,
-  `PRODUCT_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `QUANTITY_PER_UNIT` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `REORDER_LEVEL` int(11) DEFAULT NULL,
-  `UNIT_PRICE` float DEFAULT NULL,
-  `UNITS_IN_STOCK` int(11) DEFAULT NULL,
-  `UNITS_ON_ORDER` int(11) DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_6t6fwpoax5485lfta1ha89rlh` (`CATEGORY_ID`),
-  CONSTRAINT `FK_6t6fwpoax5485lfta1ha89rlh` FOREIGN KEY (`CATEGORY_ID`) REFERENCES `cola_category` (`ID`)
+	`ID` bigint(20) NOT NULL AUTO_INCREMENT,
+	`CATEGORY_ID` bigint(20) DEFAULT NULL,
+	`discontinued` bit(1) NOT NULL,
+	`PRODUCT_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`QUANTITY_PER_UNIT` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`REORDER_LEVEL` int(11) DEFAULT NULL,
+	`UNIT_PRICE` float DEFAULT NULL,
+	`UNITS_IN_STOCK` int(11) DEFAULT NULL,
+	`UNITS_ON_ORDER` int(11) DEFAULT NULL,
+	PRIMARY KEY (`ID`),
+	KEY `FK_6t6fwpoax5485lfta1ha89rlh` (`CATEGORY_ID`),
+	CONSTRAINT `FK_6t6fwpoax5485lfta1ha89rlh` FOREIGN KEY (`CATEGORY_ID`) REFERENCES `cola_category` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 LOCK TABLES `COLA_PRODUCT` WRITE;
@@ -4013,16 +4041,16 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `COLA_ROLE`;
 
 CREATE TABLE `COLA_ROLE` (
-  `ID_` varchar(60) NOT NULL,
-  `COMPANY_ID_` varchar(60) DEFAULT NULL,
-  `CREATE_DATE_` datetime DEFAULT NULL,
-  `CREATE_USER_` varchar(60) DEFAULT NULL,
-  `DESC_` varchar(120) DEFAULT NULL,
-  `ENABLED_` bit(1) DEFAULT NULL,
-  `NAME_` varchar(60) DEFAULT NULL,
-  `PARENT_ID_` varchar(60) DEFAULT NULL,
-  `TYPE_` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`ID_`)
+	`ID_` varchar(60) NOT NULL,
+	`COMPANY_ID_` varchar(60) DEFAULT NULL,
+	`CREATE_DATE_` datetime DEFAULT NULL,
+	`CREATE_USER_` varchar(60) DEFAULT NULL,
+	`DESC_` varchar(120) DEFAULT NULL,
+	`ENABLED_` bit(1) DEFAULT NULL,
+	`NAME_` varchar(60) DEFAULT NULL,
+	`PARENT_ID_` varchar(60) DEFAULT NULL,
+	`TYPE_` varchar(10) DEFAULT NULL,
+	PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `COLA_ROLE` WRITE;
@@ -4030,7 +4058,9 @@ LOCK TABLES `COLA_ROLE` WRITE;
 
 INSERT INTO `COLA_ROLE` (`ID_`, `COMPANY_ID_`, `CREATE_DATE_`, `CREATE_USER_`, `DESC_`, `ENABLED_`, `NAME_`, `PARENT_ID_`, `TYPE_`)
 VALUES
-	('8d95f77c-583c-4ca1-a433-f683ff66c44e','bstek02','2016-03-17 09:39:00',NULL,NULL,b'1','role01',NULL,'normal');
+	('3c294be36945411aa1e651a23e71ff97','bstek02',NULL,NULL,'销售角色',NULL,'销售',NULL,NULL),
+	('8d95f77c-583c-4ca1-a433-f683ff66c44e','bstek02','2016-03-17 09:39:00',NULL,'开发角色',b'1','开发',NULL,'normal'),
+	('e462ea67d700436888d1148bdfd8cffc','bstek02',NULL,NULL,'用于测试数据的角色',NULL,'测试',NULL,NULL);
 
 /*!40000 ALTER TABLE `COLA_ROLE` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -4042,16 +4072,16 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `COLA_ROLE_MEMBER`;
 
 CREATE TABLE `COLA_ROLE_MEMBER` (
-  `ID_` varchar(60) NOT NULL,
-  `CREATE_DATE_` datetime DEFAULT NULL,
-  `DEPT_ID_` varchar(60) DEFAULT NULL,
-  `GRANTED_` bit(1) DEFAULT NULL,
-  `POSITION_ID_` varchar(60) DEFAULT NULL,
-  `ROLE_ID_` varchar(60) DEFAULT NULL,
-  `USERNAME_` varchar(60) DEFAULT NULL,
-  `GROUP_ID_` varchar(60) DEFAULT NULL,
-  PRIMARY KEY (`ID_`),
-  KEY `FK79BEE4326C254D1D` (`GROUP_ID_`)
+	`ID_` varchar(60) NOT NULL,
+	`CREATE_DATE_` datetime DEFAULT NULL,
+	`DEPT_ID_` varchar(60) DEFAULT NULL,
+	`GRANTED_` bit(1) DEFAULT NULL,
+	`POSITION_ID_` varchar(60) DEFAULT NULL,
+	`ROLE_ID_` varchar(60) DEFAULT NULL,
+	`USERNAME_` varchar(60) DEFAULT NULL,
+	`GROUP_ID_` varchar(60) DEFAULT NULL,
+	PRIMARY KEY (`ID_`),
+	KEY `FK79BEE4326C254D1D` (`GROUP_ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `COLA_ROLE_MEMBER` WRITE;
@@ -4072,11 +4102,11 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `COLA_ROLE_RESOURCE`;
 
 CREATE TABLE `COLA_ROLE_RESOURCE` (
-  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
-  `PACKAGE_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `ROLE_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `URL_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`ID_`)
+	`ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+	`PACKAGE_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`ROLE_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`URL_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
@@ -4087,20 +4117,20 @@ CREATE TABLE `COLA_ROLE_RESOURCE` (
 DROP TABLE IF EXISTS `COLA_URL`;
 
 CREATE TABLE `COLA_URL` (
-  `ID_` varchar(60) NOT NULL,
-  `COMPANY_ID_` varchar(60) NOT NULL,
-  `DESC_` varchar(120) DEFAULT NULL,
-  `FOR_NAVIGATION_` bit(1) NOT NULL,
-  `ICON_` varchar(120) DEFAULT NULL,
-  `LABEL_` varchar(60) NOT NULL,
-  `ORDER_` int(11) DEFAULT NULL,
-  `PARENT_ID_` varchar(60) DEFAULT NULL,
-  `SYSTEM_ID_` varchar(60) DEFAULT NULL,
-  `PATH_` varchar(120) DEFAULT NULL,
-  `CLOSEABLE_` bit(1) NOT NULL,
-  PRIMARY KEY (`ID_`),
-  KEY `FK_85tea98uf9b5foh5c921wvl12` (`PARENT_ID_`),
-  CONSTRAINT `FK_85tea98uf9b5foh5c921wvl12` FOREIGN KEY (`PARENT_ID_`) REFERENCES `COLA_URL` (`ID_`)
+	`ID_` varchar(60) NOT NULL,
+	`COMPANY_ID_` varchar(60) NOT NULL,
+	`DESC_` varchar(120) DEFAULT NULL,
+	`FOR_NAVIGATION_` bit(1) NOT NULL,
+	`ICON_` varchar(120) DEFAULT NULL,
+	`LABEL_` varchar(60) NOT NULL,
+	`ORDER_` int(11) DEFAULT NULL,
+	`PARENT_ID_` varchar(60) DEFAULT NULL,
+	`SYSTEM_ID_` varchar(60) DEFAULT NULL,
+	`PATH_` varchar(120) DEFAULT NULL,
+	`CLOSEABLE_` bit(1) NOT NULL,
+	PRIMARY KEY (`ID_`),
+	KEY `FK_85tea98uf9b5foh5c921wvl12` (`PARENT_ID_`),
+	CONSTRAINT `FK_85tea98uf9b5foh5c921wvl12` FOREIGN KEY (`PARENT_ID_`) REFERENCES `cola_url` (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `COLA_URL` WRITE;
@@ -4110,41 +4140,44 @@ INSERT INTO `COLA_URL` (`ID_`, `COMPANY_ID_`, `DESC_`, `FOR_NAVIGATION_`, `ICON_
 VALUES
 	('0334ebe7-bee2-4001-a5a8-6631b8a10136','bstek',NULL,b'1','icon edit','常用时间线',1,'76bb98a8-2e08-4604-ad87-548be2373841',NULL,'/example/widget/timeline/time_line.html',b'1'),
 	('100395ef-5e4c-4c3d-a62f-721e7e211152','bstek',NULL,b'1','icon edit','单表维护',1,'deb888d4-c336-40c4-922e-cdecc4048622',NULL,'/example/widget/table/employee.html',b'1'),
-	('164fb93e-9548-4dad-9807-9f33952f92dc','bstek','部门维护',b'1','icon empire','部门维护',3,'8e5f619d-14e6-4643-bdfc-73893c2d81ef',NULL,'/example/widget/table/employee.html',b'1'),
-	('20051efc-11ae-41f4-aeb2-b391adf82996','bstek',NULL,b'1','icon chevron circle down','DropDown(下拉框)',3,'356480fb-42bc-4ee1-a95a-633e6aed7f47',NULL,NULL,b'1'),
-	('274cbabd-43dd-4136-a604-434b57edeac1','bstek',NULL,b'1','icon user','用户维护',2,'8e5f619d-14e6-4643-bdfc-73893c2d81ef',NULL,'./example/widget/table/master_detail.html',b'1'),
+	('164fb93e-9548-4dad-9807-9f33952f92dc','bstek','部门维护',b'1','icon empire','部门维护',3,'8e5f619d-14e6-4643-bdfc-73893c2d81ef',NULL,'/frame/system/dept/dept.html',b'1'),
+	('20051efc-11ae-41f4-aeb2-b391adf82996','bstek',NULL,b'1','icon chevron circle down','DropDown(下拉框)',30,'356480fb-42bc-4ee1-a95a-633e6aed7f47',NULL,NULL,b'1'),
+	('274cbabd-43dd-4136-a604-434b57edeac1','bstek',NULL,b'1','icon user','用户维护',2,'8e5f619d-14e6-4643-bdfc-73893c2d81ef',NULL,'/frame/system/user/user.html',b'1'),
 	('28dbf10b-3030-4c81-8a18-3b273c96702f','bstek',NULL,b'1','icon home','菜单维护',1,'8e5f619d-14e6-4643-bdfc-73893c2d81ef',NULL,'/frame/system/url/url.html',b'1'),
-	('29c485d8-e2e0-4fb8-bc00-a8207996107b','bstek',NULL,b'1','icon protect','岗位维护',4,'8e5f619d-14e6-4643-bdfc-73893c2d81ef',NULL,'./example/widget/table/order_table.html',b'1'),
+	('29c485d8-e2e0-4fb8-bc00-a8207996107b','bstek',NULL,b'1','icon protect','岗位维护',4,'8e5f619d-14e6-4643-bdfc-73893c2d81ef',NULL,'/frame/system/position/position.html',b'1'),
 	('2e0a5319-7168-4ded-94a5-5ec7db4affcd','bstek',NULL,b'1','icon edit','节点维护',3,'a84da862-09c6-43ad-bdad-26c0b666db9d',NULL,'/example/widget/tree/maintain_tree.html',b'1'),
 	('308a801b-18b4-47f0-8d83-1623b15d0a3b','bstek',NULL,b'1','icon random','URL权限维护',2,'f5e9bb10-39ea-471f-aac6-9547f3ee3e78',NULL,'./example/widget/table/table.html',b'1'),
 	('356480fb-42bc-4ee1-a95a-633e6aed7f47','bstek','控件管理',b'1','icon steam square','控件管理',2,NULL,NULL,NULL,b'1'),
-	('3c025046-5bff-41a4-9bdf-eddde0ae7b74','bstek',NULL,b'1','icon mail','消息模版维护',5,'8e5f619d-14e6-4643-bdfc-73893c2d81ef',NULL,'./example/widget/table/roll_table.html',b'1'),
-	('4336492c-598e-482a-9be8-eed938816b37','bstek',NULL,b'1','icon bookmark','Tab(标签页)',4,'356480fb-42bc-4ee1-a95a-633e6aed7f47',NULL,NULL,b'1'),
+	('3c025046-5bff-41a4-9bdf-eddde0ae7b74','bstek',NULL,b'1','icon mail','消息模版维护',5,'8e5f619d-14e6-4643-bdfc-73893c2d81ef',NULL,'/example/widget/table/roll_table.html',b'1'),
+	('4336492c-598e-482a-9be8-eed938816b37','bstek',NULL,b'1','icon bookmark','Tab(标签页)',40,'356480fb-42bc-4ee1-a95a-633e6aed7f47',NULL,NULL,b'1'),
 	('450c5ca4-62bf-41ed-a847-bba200d7f552','bstek',NULL,b'1','icon text telephone','群组维护',5,'f5e9bb10-39ea-471f-aac6-9547f3ee3e78',NULL,'./example/widget/table/edit_table.html',b'1'),
 	('5aac944a-f070-4f9b-bd91-61e56694f6dd','bstek',NULL,b'1','icon edit','递归树',1,'a84da862-09c6-43ad-bdad-26c0b666db9d',NULL,'/example/widget/tree/recursive_tree.html',b'1'),
 	('629e5fc0-eb79-43da-89c2-465bab528f65','bstek',NULL,b'1','icon edit','级联编辑',6,'deb888d4-c336-40c4-922e-cdecc4048622',NULL,'/example/widget/table/edit_table.html',b'1'),
 	('66779c09-e432-4c3c-a432-d93deb89efe0','bstek',NULL,b'1','icon edit','主从表维护',2,'deb888d4-c336-40c4-922e-cdecc4048622',NULL,'/example/widget/table/master_detail.html',b'1'),
 	('6b63c74b-bf55-4522-b65a-e572039be841','bstek',NULL,b'1','icon edit','常用下拉框',1,'20051efc-11ae-41f4-aeb2-b391adf82996',NULL,'/example/widget/dropdown/dropdown.html',b'1'),
-	('76bb98a8-2e08-4604-ad87-548be2373841','bstek',NULL,b'1','icon time','TimeLine(时间线)',5,'356480fb-42bc-4ee1-a95a-633e6aed7f47',NULL,NULL,b'1'),
+	('72691663368947f78d7b32390f475512','bstek',NULL,b'1','icon list layout','栅格系统',1,'c36cd16653cc40979a22306c99681c3a',NULL,'/example/layout/grid.html',b'1'),
+	('76bb98a8-2e08-4604-ad87-548be2373841','bstek',NULL,b'1','icon time','TimeLine(时间线)',135,'356480fb-42bc-4ee1-a95a-633e6aed7f47',NULL,NULL,b'1'),
 	('7ec576b5-0a88-4d79-9feb-c7d6b062fe2d','bstek',NULL,b'1','icon spy','角色成员维护',4,'f5e9bb10-39ea-471f-aac6-9547f3ee3e78',NULL,'./example/widget/table/dynamic_table.html',b'1'),
 	('8048fc88-6a00-4351-b194-4c91c843aeee','bstek',NULL,b'1','icon edit','滚动分页',4,'deb888d4-c336-40c4-922e-cdecc4048622',NULL,'/example/widget/table/roll_table.html',b'1'),
 	('815af19b4f504f859fe7e6bc18a676cd','bstek',NULL,b'1','icon edit','销量-柱形',3,'9071dc91525c46eb9edabcf5900536fb',NULL,'/example/echarts/sale.html',b'1'),
 	('88fe1ad4-a1b9-4303-b5d5-e4c1097e540b','bstek',NULL,b'1','icon puzzle','组件权限维护',3,'f5e9bb10-39ea-471f-aac6-9547f3ee3e78',NULL,'./example/widget/tree/recursive_tree.html',b'1'),
 	('8e5f619d-14e6-4643-bdfc-73893c2d81ef','bstek',NULL,b'1','icon comments','基本信息维护',1,'root-bstek',NULL,NULL,b'1'),
 	('8f11cc50d683481980cd5ad44ea4e2c7','bstek',NULL,b'1','icon map','地图',1,'9071dc91525c46eb9edabcf5900536fb',NULL,'/example/echarts/scatter_weibo.html',b'1'),
-	('9071dc91525c46eb9edabcf5900536fb','bstek',NULL,b'1','icon pie chart','图表',2,'356480fb-42bc-4ee1-a95a-633e6aed7f47',NULL,'',b'1'),
+	('9071dc91525c46eb9edabcf5900536fb','bstek',NULL,b'1','icon pie chart','图表',50,'356480fb-42bc-4ee1-a95a-633e6aed7f47',NULL,'',b'1'),
 	('93ef8d84-67d0-4f01-8025-b0275fa779c8','bstek',NULL,b'1','icon edit','常用标签页',1,'4336492c-598e-482a-9be8-eed938816b37',NULL,'/example/widget/tab/tab.html',b'1'),
 	('96dc98932789423cb9c46c0ad59bbffa','bstek',NULL,b'1','icon edit','站点访问-饼',2,'9071dc91525c46eb9edabcf5900536fb',NULL,'/example/echarts/website_visit.html',b'1'),
-	('a84da862-09c6-43ad-bdad-26c0b666db9d','bstek',NULL,b'1','icon tree','Tree(树)',2,'356480fb-42bc-4ee1-a95a-633e6aed7f47',NULL,NULL,b'1'),
+	('a84da862-09c6-43ad-bdad-26c0b666db9d','bstek',NULL,b'1','icon tree','Tree(树)',20,'356480fb-42bc-4ee1-a95a-633e6aed7f47',NULL,NULL,b'1'),
 	('b638d18d-19f6-4f80-b695-48899a8e9184','bstek',NULL,b'1','icon doctor','角色维护',1,'f5e9bb10-39ea-471f-aac6-9547f3ee3e78',NULL,'/frame/system/role/role.html',b'1'),
-	('bbf7a59e-627b-4068-982f-4a139bb89b73','bstek',NULL,b'1','icon edit','动态渲染',4,'deb888d4-c336-40c4-922e-cdecc4048622',NULL,'/example/widget/table/dynamic_table.html',b'1'),
+	('bbf7a59e-627b-4068-982f-4a139bb89b73','bstek',NULL,b'1','icon edit','动态添加',4,'deb888d4-c336-40c4-922e-cdecc4048622',NULL,'/example/widget/table/dynamic_table.html',b'1'),
+	('c36cd16653cc40979a22306c99681c3a','bstek',NULL,b'1','icon maximize','布局管理',6,NULL,NULL,NULL,b'0'),
 	('d21432be-2929-480d-a762-b09b2c96d4fa','bstek',NULL,b'1','icon edit','主从树',2,'a84da862-09c6-43ad-bdad-26c0b666db9d',NULL,'/example/widget/tree/ms_tree.html',b'1'),
-	('deb888d4-c336-40c4-922e-cdecc4048622','bstek',NULL,b'1','icon table','Table(表格)',1,'356480fb-42bc-4ee1-a95a-633e6aed7f47',NULL,NULL,b'1'),
-	('e6731fb683174034ac90e1ac760ef8e7','bstek',NULL,b'1','icon edit','三级联动',2,'20051efc-11ae-41f4-aeb2-b391adf82996',NULL,'/example/widget/dropdown/area.html',b'1'),
-	('ebdb0303-f95f-417c-8483-01439682a0a5','bstek',NULL,b'1','icon edit','内嵌及编辑',5,'deb888d4-c336-40c4-922e-cdecc4048622',NULL,'/example/widget/table/table.html',b'1'),
+	('deb888d4-c336-40c4-922e-cdecc4048622','bstek',NULL,b'1','icon table','Table(表格)',10,'356480fb-42bc-4ee1-a95a-633e6aed7f47',NULL,NULL,b'1'),
+	('e6731fb683174034ac90e1ac760ef8e7','bstek',NULL,b'1','icon edit','地区三级联动',2,'20051efc-11ae-41f4-aeb2-b391adf82996',NULL,'/example/widget/dropdown/area.html',b'1'),
+	('ebdb0303-f95f-417c-8483-01439682a0a5','bstek',NULL,b'1','icon edit','内嵌',5,'deb888d4-c336-40c4-922e-cdecc4048622',NULL,'/example/widget/table/table.html',b'1'),
 	('f5e9bb10-39ea-471f-aac6-9547f3ee3e78','bstek',NULL,b'1','icon power','权限管理维护',2,'root-bstek',NULL,NULL,b'1'),
 	('f872556d-aeea-4608-b748-a3aad50331b5','bstek',NULL,b'1','icon edit','表头排序',3,'deb888d4-c336-40c4-922e-cdecc4048622',NULL,'/example/widget/table/order_table.html',b'1'),
-	('root-bstek','bstek',NULL,b'1','icon setting','系统管理',11,NULL,NULL,NULL,b'1');
+	('root-bstek','bstek',NULL,b'1','icon setting','系统管理',11,NULL,NULL,NULL,b'1'),
+	('S001','bstek',NULL,b'0',NULL,'新菜单',NULL,NULL,NULL,NULL,b'0');
 
 /*!40000 ALTER TABLE `COLA_URL` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -4156,14 +4189,14 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `COLA_URL_COMPONENT`;
 
 CREATE TABLE `COLA_URL_COMPONENT` (
-  `ID_` varchar(60) NOT NULL,
-  `AUTHORITY_TYPE_` varchar(10) NOT NULL,
-  `ROLE_ID_` varchar(60) DEFAULT NULL,
-  `URL_ID_` varchar(60) DEFAULT NULL,
-  `COMPONENT_ID_` varchar(60) DEFAULT NULL,
-  PRIMARY KEY (`ID_`),
-  KEY `FKFCFBDBDCD4C56CC` (`COMPONENT_ID_`),
-  CONSTRAINT `cola_url_component_ibfk_1` FOREIGN KEY (`COMPONENT_ID_`) REFERENCES `cola_component` (`ID_`)
+	`ID_` varchar(60) NOT NULL,
+	`AUTHORITY_TYPE_` varchar(10) NOT NULL,
+	`ROLE_ID_` varchar(60) DEFAULT NULL,
+	`URL_ID_` varchar(60) DEFAULT NULL,
+	`COMPONENT_ID_` varchar(60) DEFAULT NULL,
+	PRIMARY KEY (`ID_`),
+	KEY `FKFCFBDBDCD4C56CC` (`COMPONENT_ID_`),
+	CONSTRAINT `cola_url_component_ibfk_1` FOREIGN KEY (`COMPONENT_ID_`) REFERENCES `cola_component` (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `COLA_URL_COMPONENT` WRITE;
@@ -4183,22 +4216,22 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `COLA_USER`;
 
 CREATE TABLE `COLA_USER` (
-  `USERNAME_` varchar(60) NOT NULL,
-  `ADDRESS_` varchar(120) DEFAULT NULL,
-  `ADMINISTRATOR_` bit(1) NOT NULL,
-  `BIRTHDAY_` timestamp NULL DEFAULT NULL,
-  `CNAME_` varchar(60) NOT NULL,
-  `COMPANY_ID_` varchar(60) NOT NULL,
-  `CREATE_DATE_` timestamp NULL DEFAULT NULL,
-  `EMAIL_` varchar(60) DEFAULT NULL,
-  `ENABLED_` bit(1) NOT NULL,
-  `ENAME_` varchar(60) DEFAULT NULL,
-  `MALE_` bit(1) NOT NULL,
-  `MOBILE_` varchar(20) DEFAULT NULL,
-  `PASSWORD_` varchar(70) NOT NULL,
-  `SALT_` varchar(10) NOT NULL,
-  `AVATAR_` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`USERNAME_`)
+	`USERNAME_` varchar(60) NOT NULL,
+	`ADDRESS_` varchar(120) DEFAULT NULL,
+	`ADMINISTRATOR_` bit(1) NOT NULL,
+	`BIRTHDAY_` timestamp NULL DEFAULT NULL,
+	`CNAME_` varchar(60) NOT NULL,
+	`COMPANY_ID_` varchar(60) NOT NULL,
+	`CREATE_DATE_` timestamp NULL DEFAULT NULL,
+	`EMAIL_` varchar(60) DEFAULT NULL,
+	`ENABLED_` bit(1) NOT NULL,
+	`ENAME_` varchar(60) DEFAULT NULL,
+	`MALE_` bit(1) NOT NULL,
+	`MOBILE_` varchar(20) DEFAULT NULL,
+	`PASSWORD_` varchar(70) NOT NULL,
+	`SALT_` varchar(10) NOT NULL,
+	`AVATAR_` varchar(255) DEFAULT NULL,
+	PRIMARY KEY (`USERNAME_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `COLA_USER` WRITE;
@@ -4206,7 +4239,7 @@ LOCK TABLES `COLA_USER` WRITE;
 
 INSERT INTO `COLA_USER` (`USERNAME_`, `ADDRESS_`, `ADMINISTRATOR_`, `BIRTHDAY_`, `CNAME_`, `COMPANY_ID_`, `CREATE_DATE_`, `EMAIL_`, `ENABLED_`, `ENAME_`, `MALE_`, `MOBILE_`, `PASSWORD_`, `SALT_`, `AVATAR_`)
 VALUES
-	('admin',NULL,b'1','2016-03-28 14:34:24','系统管理员','bstek02',NULL,'xxxx@xxxx.com',b'1','administrator',b'1','18917888888','6d3059ea4374411a4652e08fbfec92d4485b8ffc','523',NULL),
+	('admin','上海',b'1','2000-03-08 00:00:00','系统管理员','bstek02',NULL,'xxxx@xxxx.com',b'1','administrator',b'1','18917888888','6d3059ea4374411a4652e08fbfec92d4485b8ffc','523',NULL),
 	('lds','浦东',b'0','2013-06-17 00:00:00','冰城','bstek02',NULL,'1254814280@qq.com',b'1','lds',b'1','18253911171','8ca00772b67d47018ef3e5aab3e70cdde38e6ed0','3',NULL),
 	('ldscode','上海',b'0','2016-03-17 09:29:53','D冰城','bstek02',NULL,'ldscode@163.com',b'1','Carl',b'1','18255465896','2e884c670adc968e4419aed1f5dc24a704c4f204','67',NULL);
 
@@ -4220,10 +4253,10 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `COLA_USER_DEPT`;
 
 CREATE TABLE `COLA_USER_DEPT` (
-  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
-  `DEPT_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `USERNAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`ID_`)
+	`ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+	`DEPT_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`USERNAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
@@ -4234,10 +4267,10 @@ CREATE TABLE `COLA_USER_DEPT` (
 DROP TABLE IF EXISTS `COLA_USER_POSITION`;
 
 CREATE TABLE `COLA_USER_POSITION` (
-  `ID_` varchar(255) COLLATE utf8_bin NOT NULL,
-  `POSITION_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `USERNAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`ID_`)
+	`ID_` varchar(255) COLLATE utf8_bin NOT NULL,
+	`POSITION_ID_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	`USERNAME_` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+	PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 

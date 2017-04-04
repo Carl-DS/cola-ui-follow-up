@@ -116,10 +116,10 @@
                 columns: [
                     {
                         bind: ".name",
-                        caption: "角色名"
+                        caption: "岗位名称"
                     }, {
                         bind: ".desc",
-                        caption: "描述"
+                        caption: "岗位描述"
                     }, {
                         caption: "操作",
                         template: "operation"
