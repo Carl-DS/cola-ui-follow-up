@@ -1,9 +1,9 @@
 package com.colaui.system.service.impl;
 
-import com.colaui.system.dao.ColaComponentDao;
 import com.colaui.example.model.ColaComponent;
-import com.colaui.system.service.ColaComponentService;
 import com.colaui.provider.Page;
+import com.colaui.system.dao.ColaComponentDao;
+import com.colaui.system.service.ColaComponentService;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Criterion;
@@ -11,12 +11,10 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service("componentService")
-@Transactional
+@Service
 public class ColaComponentServiceImpl implements ColaComponentService {
     @Autowired
     private ColaComponentDao componentDao;

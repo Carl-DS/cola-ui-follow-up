@@ -1,9 +1,9 @@
 package com.colaui.system.service.impl;
 
-import com.colaui.system.dao.ColaGroupDao;
 import com.colaui.example.model.ColaGroup;
-import com.colaui.system.service.ColaGroupService;
 import com.colaui.provider.Page;
+import com.colaui.system.dao.ColaGroupDao;
+import com.colaui.system.service.ColaGroupService;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Criterion;
@@ -11,12 +11,10 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service("groupService")
-@Transactional
+@Service
 public class ColaGroupServiceImpl implements ColaGroupService {
     @Autowired
     private ColaGroupDao groupDao;

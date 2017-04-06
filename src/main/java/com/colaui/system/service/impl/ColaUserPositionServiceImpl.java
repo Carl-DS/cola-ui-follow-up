@@ -1,9 +1,9 @@
 package com.colaui.system.service.impl;
 
-import com.colaui.system.dao.ColaUserPositionDao;
 import com.colaui.example.model.ColaUserPosition;
-import com.colaui.system.service.ColaUserPositionService;
 import com.colaui.provider.Page;
+import com.colaui.system.dao.ColaUserPositionDao;
+import com.colaui.system.service.ColaUserPositionService;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Criterion;
@@ -11,12 +11,10 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service("userpositionService")
-@Transactional
+@Service
 public class ColaUserPositionServiceImpl implements ColaUserPositionService {
     @Autowired
     private ColaUserPositionDao userpositionDao;

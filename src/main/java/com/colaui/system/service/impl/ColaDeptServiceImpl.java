@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
-@Service("deptService")
+@Service
 public class ColaDeptServiceImpl implements ColaDeptService {
     @Autowired
     private ColaDeptDao deptDao;

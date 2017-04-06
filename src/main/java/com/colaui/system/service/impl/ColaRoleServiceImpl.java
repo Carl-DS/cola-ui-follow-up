@@ -11,13 +11,11 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 
-@Service("roleService")
-@Transactional
+@Service
 public class ColaRoleServiceImpl implements ColaRoleService {
     @Autowired
     private ColaRoleDao roleDao;

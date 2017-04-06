@@ -1,9 +1,9 @@
 package com.colaui.system.service.impl;
 
-import com.colaui.system.dao.ColaRoleMemberDao;
 import com.colaui.example.model.ColaRoleMember;
-import com.colaui.system.service.ColaRoleMemberService;
 import com.colaui.provider.Page;
+import com.colaui.system.dao.ColaRoleMemberDao;
+import com.colaui.system.service.ColaRoleMemberService;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Criterion;
@@ -11,12 +11,10 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service("rolememberService")
-@Transactional
+@Service
 public class ColaRoleMemberServiceImpl implements ColaRoleMemberService {
     @Autowired
     private ColaRoleMemberDao rolememberDao;
