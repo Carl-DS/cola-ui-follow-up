@@ -86,7 +86,7 @@ public class Autogeneration {
             "\n" +
             "import java.util.List;\n" +
             "\n" +
-            "@Service(\"{1}Service\")\n" +
+            "@Service\n" +
             "@Transactional\n" +
             "public class {0}ServiceImpl implements {0}Service {\n" +
             "\t@Autowired\n" +
@@ -131,15 +131,15 @@ public class Autogeneration {
             "import com.colaui.hibernate.HibernateDao;\n" +
             "\n" +
             "@Repository\n" +
-            "public class {0}Dao extends HibernateDao<{0}, Long> {\n" +
+            "public class {0}Dao extends HibernateDao<{0}, {2}> {\n" +
             "}\n";
 
 
     private static final int PREFIX_INDEX_ = 4; // 需要截取前缀的位数
-    private static final String MODEL_ = "ColaCompany"; // {0} 需要替换的model
+    private static final String MODEL_ = "ColaMessageTemplate"; // {0} 需要替换的model
     // {1} 移除前缀的小写model名作为属性名
     private static final String REMOVE_PREFIX_MODEL_ = StringUtils.lowerCase(MODEL_.substring(PREFIX_INDEX_));
-    private static final String MODEL_INDEX_ = "long"; // {2} 需要替换的model主键
+    private static final String MODEL_INDEX_ = "String"; // {2} 需要替换的model主键
 
     /**
      * {0} 表示全文匹配model名
