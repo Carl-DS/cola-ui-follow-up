@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta charset="UTF-8">
+    <title>Cola-UI 客户端框架</title>
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="./resources/nprogress/nprogress.css">
+    <script src="./resources/nprogress/nprogress.js"></script>
+    <link rel="stylesheet" type="text/css" href="./resources/cola-ui/semantic.css">
+    <link rel="stylesheet" type="text/css" href="./resources/cola-ui/cola.css">
+    <link rel="stylesheet" type="text/css" href="./common/common.css">
+    <link rel="stylesheet" type="text/css" href="./frame/system/messagetemplate/messageTemplate.css">
+    <style>
+    </style>
+</head>
+<body c-onkeyup="enterSearch()">
+
+<div class="ui segment">
+    <div class="ui left icon input">
+        <c-input bind="contain" placeholder="模板名/内容..." style="width:200px;"/>
+        <i class="inverted circular search link icon"></i>
+    </div>
+    <c-button caption="查询" click="search"></c-button>
+</div>
+<div class="ui segment">
+    <div class="ui menu secondary">
+        <div class="control item">
+            <div>
+                <c-button icon="plus" caption="添加" click="editMessageTemplate" class="mini teal"></c-button>
+            </div>
+        </div>
+    </div>
+    <div id="messageTemplateTable">
+        <template name="operation">
+            <div>
+                <i c-onclick="editMessageTemplate(messageTemplate)" class="icon teal edit"></i>
+                <i c-onclick="deleteMessageTemplate(messageTemplate)" class="icon orange trash"></i>
+            </div>
+        </template>
+    </div>
+    <c-pager bind="messageTemplates" class="secondary">
+        <div class="right menu">
+            <div page-code="goto" class="item"></div>
+        </div>
+    </c-pager>
+
+    <div id="addMessageTemplateSidebar" class="default-background">
+        <div class="v-box">
+            <div class="caption-bar box"><i class="edit icon"></i><span class="caption">消息模板维护</span>
+                <div class="tools">
+                    <c-button icon="angle right" iconPosition="right" caption="返回" click="cancel" class="basic circular"></c-button>
+                </div>
+            </div>
+            <div class="content content-background flex-box">
+                <div class="ui padded segment basic">
+                    <div class="ui time-line circular">
+                        <div class="items">
+                            <div class="item">
+                                <div class="icon"><i class="icon home"></i></div>
+                                <div class="label">基本信息</div>
+                                <div class="content">
+                                    <div class="ui segment basic">
+                                        <c-form>
+                                            <div class="fields">
+                                                <div class="field eight wide">
+                                                    <label>模板名</label>
+                                                    <c-input bind="editItem.name"></c-input>
+                                                </div>
+                                                <div class="field eight wide">
+                                                    <label>类型</label>
+                                                    <c-input bind="editItem.type"></c-input>
+                                                </div>
+
+                                                <div class="field eight wide">
+                                                    <label>内容</label>
+                                                    <c-textarea bind="editItem.content" rows="3"></c-textarea>
+                                                </div>
+                                            </div>
+                                        </c-form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="ui segment basic">
+                    <c-button icon="remove" caption="取消" click="cancel" class="negative mini"></c-button>
+                    <c-button icon="checkmark" caption="提交" click="saveMessageTemplate" class="positive mini"></c-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+  <script src="./resources/jquery/jquery-2.1.3.js"></script>
+  <script src="./resources/jquery/jquery.cookie.js"></script>
+  <script src="./resources/cola-ui/3rd.js"></script>
+  <script src="./resources/cola-ui/semantic.js"></script>
+  <script src="./resources/cola-ui/cola.js"></script>
+  <script src="./common/common.js"></script>
+  <script src="./frame/system/messagetemplate/messageTemplate.js"></script>
+</body>
+</html>
