@@ -31,6 +31,9 @@
 
 		<!--其他变量 start-->
 		<war-name.version>cola-ui-follow-up</war-name.version>
+		<slf4j.version>1.7.7</slf4j.version>
+		<log4j.version>1.2.17</log4j.version>
+
 		<jdk.version>1.7</jdk.version>
 		<tomcat7-maven-plugin.version>2.2</tomcat7-maven-plugin.version>
         <jetty-plugin.version>8.1.16.v20140903</jetty-plugin.version>
@@ -111,6 +114,55 @@
 			<artifactId>javax.servlet.jsp-api</artifactId>
 			<version>2.3.1</version>
 		</dependency>
+
+		<!--日志工具包-->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+
+		<!-- 日志文件管理包 start -->
+		<!--下面这三个是配套使用：http://blog.csdn.net/woshiwxw765/article/details/7624556-->
+		<!--使用log4j start-->
+		<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>${log4j.version}</version>
+		</dependency>
+
+		<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-api</artifactId>
+		<version>${slf4j.version}</version>
+		</dependency>
+
+		<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-log4j12</artifactId>
+		<version>${slf4j.version}</version>
+		</dependency>
+		<!--使用log4j end-->
+
+		<!--使用logback start-->
+		<!--导入这个的时候会自动导入：slf4j-api、logback-core，所以我们还需要导入：log4j和logback-ext-spring-->
+		<!--<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.logback-extensions</groupId>
+			<artifactId>logback-ext-spring</artifactId>
+			<version>0.1.4</version>
+		</dependency>-->
+		<!--使用logback end-->
+		<!-- 日志文件管理包 end -->
 
 		<!-- Json -->
 		<dependency>
