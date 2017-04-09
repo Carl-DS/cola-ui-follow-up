@@ -12,7 +12,9 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ColaComponentServiceImpl implements ColaComponentService {
@@ -47,6 +49,15 @@ public class ColaComponentServiceImpl implements ColaComponentService {
 
     public List<ColaComponent> find(int from, int limit) {
         return componentDao.find(from, limit);
+    }
+
+    @Override
+    public Map<String, Boolean> getComponentAuth(String url, String componentId) {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("url", url);
+        params.put("componentId", componentId);
+        Map<String, Boolean> rs = componentDao.getComponentAuth(params);
+        return rs;
     }
 
 }

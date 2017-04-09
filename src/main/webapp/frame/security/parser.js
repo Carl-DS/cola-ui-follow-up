@@ -58,7 +58,8 @@
       return body;
     };
     model.set("nodeList", []);
-    $.ajax("./service/cola/load-body", {}).done(function(result) {
+    $.ajax("./service/cola/load/html/body", {}).done(function(result) {
+      debugger;
       var body, components, findComponent, i, len, n, nodes, ref;
       nodes = jQuery.parseHTML(result);
       body = makeBody(nodes);
@@ -140,8 +141,8 @@
       },
       save: function() {
         var body, childNode, i, index, item, j, len, len1, list, pushElement, recursiveMakeList, ref, ref1;
-        index = cola.widget("cardBookDataView").getCurrentIndex();
-        list = [];
+        index = cola.widget("cardBookDataView").get("currentIndex");
+        list = new Array();
         pushElement = function(el) {
           return list.push({
             id: el.id,
@@ -176,6 +177,14 @@
             pushElement(item);
           }
         }
+        $.ajax("./service/cola/save", {
+            data: JSON.stringify(list),
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                debugger;
+            }
+        });
         return console.log(list);
       },
       getNodeName: function(node) {
@@ -216,7 +225,6 @@
         textProperty: "id"
       }
     });
-    return NProgress.done();
   });
 
 }).call(this);

@@ -173,6 +173,14 @@
                 showHeader: true,
                 currentPageOnly: true,
                 highlightCurrentItem: true,
+                renderHeaderCell: function(self, arg) {
+                    var caption;
+                    debugger;
+                    caption = arg.column.get("caption");
+                    if (caption === "岗位") {
+                        return $(arg.dom).parent().attr("id","positionName-header");
+                    }
+                },
                 columns: [
                     {
                         bind: ".username",
@@ -203,7 +211,8 @@
                         caption: "岗位"
                     }, {
                         bind: ".component",
-                        caption: "部门"
+                        caption: "部门",
+                        visible: false // 是否可见
                     }, {
                         bind: "formatDate(user.birthday,'yyyy-MM-dd')",
                         caption: "出生日期"
@@ -218,5 +227,13 @@
             }
         });
 
+
+        var url="/frame/system/user/user.html";
+        var data={
+            url:url,
+            ids:['containInput', 'searchBtn', 'addLayerBtn']
+        };
+        /*  如果ids为空，则设置页面中所有具有id组件的权限,默认无权限；推荐传入url参数 */
+        App.resetComponentAuth(data);
     });
 }).call(this);

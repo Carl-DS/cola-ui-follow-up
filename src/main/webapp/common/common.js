@@ -171,6 +171,29 @@
           return properties[key] = value;
         }
       }
+    },
+    resetComponentAuth: function (params) {
+        $.ajax("./service/frame/component/auth", {data: params}).success(function (result) {
+          debugger;
+            if (result) {
+                for (var i = 0; i < result.length; i++) {
+                    var auth = result[i];
+                    if (!auth.visible) {
+                        $("#" + auth.id).css('display', 'none');
+                        continue;
+                    }
+                    var widget = cola.widget(auth.id);
+                    if (widget) {
+                        var type = widget.constructor.CLASS_NAME;
+                        if (type == 'button') {
+                            widget.set('disabled', auth.disabled);
+                        } else if (type.indexOf("input") >= 0) {
+                            widget.set('readOnly', auth.disabled);
+                        }
+                    }
+                }
+            }
+        });
     }
   };
 

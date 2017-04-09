@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta charset="UTF-8">
+    <title></title>
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="./resources/nprogress/nprogress.css">
+    <script src="./resources/nprogress/nprogress.js"></script>
+    <link rel="stylesheet" type="text/css" href="./resources/cola-ui/semantic.css">
+    <link rel="stylesheet" type="text/css" href="./resources/cola-ui/cola.css">
+  </head>
+  <body style="padding: 0.8em">
+
+  <!--输入框1-->
+  输入框1: <c-input id="input1"></c-input>
+  <!--按钮1-->
+  <c-button id="oneBtn" caption="按钮1"></c-button>
+  <br>
+  <br>
+  <br>
+  <!--输入框2-->
+  输入框2: <c-input id="input2"></c-input>
+  <!--按钮2-->
+  <c-button id="twoBtn" caption="按钮2"></c-button>
+  <br>
+  <br>
+  <br>
+
+  </body>
+  <script src="../resources/jquery/jquery-2.1.3.js"></script>
+  <script src="../resources/jquery/jquery.cookie.js"></script>
+  <script src="../resources/cola-ui/3rd.js"></script>
+  <script src="../resources/cola-ui/semantic.js"></script>
+  <script src="../resources/cola-ui/cola.js" charset="UTF-8"></script>
+  <script src="../common/common.js"></script>
+  <script type="text/javascript">
+	  cola(function(model) {
+		  var url="/frame/security/auth1.html";
+		  var data={
+				url:url,
+				user: "A"
+		  };
+
+          $.ajax("./service/cola/auth", {data: data}).success(function (result) {
+              debugger;
+              if (result) {
+                  for (var i = 0; i < result.length; i++) {
+                      var auth = result[i];
+                      if (!auth.visible) {
+                          $("#" + auth.id).css('display', 'none');
+                          continue;
+                      }
+                      var widget = cola.widget(auth.id);
+                      if (widget) {
+                          var type = widget.constructor.CLASS_NAME;
+                          if (type == 'button') {
+                              widget.set('disabled', auth.disabled);
+                          } else if (type.indexOf("input") >= 0) {
+                              widget.set('readOnly', auth.disabled);
+                          }
+                      }
+                  }
+              }
+          });
+	  });
+  </script>
+</html>
