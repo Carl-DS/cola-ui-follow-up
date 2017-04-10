@@ -22,14 +22,17 @@
       return nodes;
     };
     makeNode = function(element, comment) {
+      debugger;
       var result;
+      var visible = element.getAttribute('visible')=="true";
+      var editable = element.getAttribute('editable')=="true";
       result = {
         tagName: element.nodeName,
         comment: comment,
         nodes: recursive(element),
         id: element.id,
-        visible: true,
-        editable: true,
+        visible: visible,
+        editable: editable,
         nodeType: element.nodeType
       };
       if (result.tagName === "TEMPLATE") {
@@ -57,39 +60,53 @@
       console.log();
       return body;
     };
+    model.set("currentUser", "A");
     model.set("nodeList", []);
-    $.ajax("./service/cola/load/html/body", {}).done(function(result) {
-      debugger;
-      var body, components, findComponent, i, len, n, nodes, ref;
-      nodes = jQuery.parseHTML(result);
-      body = makeBody(nodes);
-      model.set("node", body);
-      components = [];
-      findComponent = function(el) {
-        var i, len, n, ref, results;
-        if (el.id) {
-          components.push(el);
-        }
-        ref = el.nodes;
-        results = [];
-        for (i = 0, len = ref.length; i < len; i++) {
-          n = ref[i];
-          results.push(findComponent(n));
-        }
-        return results;
-      };
-      ref = body.nodes;
-      for (i = 0, len = ref.length; i < len; i++) {
-        n = ref[i];
-        findComponent(n);
-      }
-      return model.set("nodeList", components);
-    });
+    var loadParser = function(currentUser) {
+        $.ajax("./service/cola/load/html/body", {data:{"user":currentUser}}).done(function(result) {
+            debugger;
+            var body, components, findComponent, i, len, n, nodes, ref;
+            nodes = jQuery.parseHTML(result);
+            body = makeBody(nodes);
+            model.set("node", body);
+            components = [];
+            findComponent = function(el) {
+                var i, len, n, ref, results;
+                if (el.id) {
+                    components.push(el);
+                }
+                ref = el.nodes;
+                results = [];
+                for (i = 0, len = ref.length; i < len; i++) {
+                    n = ref[i];
+                    results.push(findComponent(n));
+                }
+                return results;
+            };
+            ref = body.nodes;
+            for (i = 0, len = ref.length; i < len; i++) {
+                n = ref[i];
+                findComponent(n);
+            }
+            return model.set("nodeList", components);
+        });
+    };
+    loadParser(model.get("currentUser"));
     model.set("node", {
       tagName: "body",
       nodes: []
     });
     model.action({
+      switchUser: function() {
+        var currentUser = model.get("currentUser");
+        if (currentUser === "A") {
+            model.set("currentUser", "B");
+            loadParser(model.get("currentUser"));
+        } else {
+            model.set("currentUser", "A");
+            loadParser(model.get("currentUser"));
+        }
+      },
       switchView: function(self, arg) {
         var body, findComponent, handler, index, mapping, nodeList;
         index = parseInt(self.get("userData"));
@@ -145,9 +162,10 @@
         list = new Array();
         pushElement = function(el) {
           return list.push({
-            id: el.id,
+            id: model.get("currentUser") + el.id,
             visible: el.visible,
-            editable: el.editable
+            editable: el.editable,
+            user: model.get("currentUser")
           });
         };
         if (index === 0) {

@@ -20,19 +20,21 @@
       NProgress.start();
     </script>
     <div class="html-parser v-box">
-      <div c-widget="menu" class="box secondary">
+      <c-menu class="box secondary">
         <div c-widget="controlItem;">
-          <div c-widget="buttonGroup;">
-            <div c-widget="button; icon:sitemap; click:switchView; states:active; userData:0"></div>
-            <div c-widget="button; icon:sidebar; click:switchView; userData:1"></div>
-          </div>
+          <c-buttongroup>
+            <c-button icon="sitemap" click="switchView" states="active" userData="0"></c-button>
+            <c-button icon="sidebar" click="switchView" userData="1"></c-button>
+          </c-buttongroup>
         </div>
         <div class="right menu">
           <div c-widget="controlItem;">
-            <div c-widget="button; caption:保存; click:save" class="primary"></div>
+            当前用户:<h2 c-bind="currentUser"></h2>
+            <c-button caption="保存" click="save" class="primary"></c-button>
+            <c-button caption="切换用户" click="switchUser" class="primary"></c-button>
           </div>
         </div>
-      </div>
+      </c-menu>
       <div class="flex-box">
         <div id="cardBookDataView" c-widget="cardBook;">
           <div class="item active">
@@ -40,8 +42,8 @@
               <template name="node-default">
                 <div><span c-bind="getNodeName(node)"></span>
                   <div c-display="node.id" class="operation">
-                    <div c-widget="checkbox; bind:node.visible; label:可读"></div>
-                    <div c-widget="checkbox; bind:node.editable; label:可操作"></div>
+                    <c-checkbox bind="node.visible" label="可读"></c-checkbox>
+                    <c-checkbox bind="node.editable" label="可操作"></c-checkbox>
                   </div>
                 </div>
               </template>
@@ -52,8 +54,8 @@
               <template>
                 <div><span c-bind="getNodeName(node)"></span>
                   <div c-display="node.id" class="operation">
-                    <div c-widget="checkbox; bind:node.visible; label:可见"></div>
-                    <div c-widget="checkbox; bind:node.editable; label:可操作"></div>
+                    <c-checkbox bind="node.visible" label="可见"></c-checkbox>
+                    <c-checkbox bind="node.editable" label="可操作"></c-checkbox>
                   </div>
                 </div>
               </template>

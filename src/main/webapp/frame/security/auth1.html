@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="./resources/cola-ui/semantic.css">
     <link rel="stylesheet" type="text/css" href="./resources/cola-ui/cola.css">
   </head>
+  <script src="../resources/jquery/jquery-2.1.3.js"></script>
   <body style="padding: 0.8em">
 
   <!--输入框1-->
@@ -29,8 +30,14 @@
   <br>
   <br>
 
+  当前用户:<h2 c-bind="currentUser"></h2>
+  <!--按钮3-->
+  <c-button id="threeBtn" caption="切换用户" click="switchUser"></c-button>
+  <br>
+  <br>
+  <br>
+
   </body>
-  <script src="../resources/jquery/jquery-2.1.3.js"></script>
   <script src="../resources/jquery/jquery.cookie.js"></script>
   <script src="../resources/cola-ui/3rd.js"></script>
   <script src="../resources/cola-ui/semantic.js"></script>
@@ -39,32 +46,57 @@
   <script type="text/javascript">
 	  cola(function(model) {
 		  var url="/frame/security/auth1.html";
+          model.set("currentUser", "A");
 		  var data={
 				url:url,
-				user: "A"
+				user: model.get("currentUser")
 		  };
 
-          $.ajax("./service/cola/auth", {data: data}).success(function (result) {
-              debugger;
-              if (result) {
-                  for (var i = 0; i < result.length; i++) {
-                      var auth = result[i];
-                      if (!auth.visible) {
-                          $("#" + auth.id).css('display', 'none');
-                          continue;
-                      }
-                      var widget = cola.widget(auth.id);
-                      if (widget) {
-                          var type = widget.constructor.CLASS_NAME;
-                          if (type == 'button') {
-                              widget.set('disabled', auth.disabled);
-                          } else if (type.indexOf("input") >= 0) {
-                              widget.set('readOnly', auth.disabled);
-                          }
-                      }
+		  model.action({
+              switchUser: function() {
+                  var currentUser = model.get("currentUser");
+                  debugger;
+                  if (currentUser === "A") {
+                      model.set("currentUser", "B");
+                      data={
+                          url:url,
+                          user: model.get("currentUser")
+                      };
+                      loadAuth(data);
+                  } else {
+                      model.set("currentUser", "A");
+                      data={
+                          url:url,
+                          user: model.get("currentUser")
+                      };
+                      loadAuth(data);
                   }
               }
           });
+          var loadAuth = function(currentData) {
+              $.ajax("./service/cola/auth", {data: currentData}).success(function (result) {
+                  debugger;
+                  if (result) {
+                      for (var i = 0; i < result.length; i++) {
+                          var auth = result[i];
+                          if (!auth.visible) {
+                              $("#" + auth.id).css('display', 'none');
+                              continue;
+                          }
+                          var widget = cola.widget(auth.id);
+                          if (widget) {
+                              var type = widget.constructor.CLASS_NAME;
+                              if (type == 'button') {
+                                  widget.set('disabled', auth.disabled);
+                              } else if (type.indexOf("input") >= 0) {
+                                  widget.set('readOnly', auth.disabled);
+                              }
+                          }
+                      }
+                  }
+              });
+          };
+          loadAuth(data);
 	  });
   </script>
 </html>

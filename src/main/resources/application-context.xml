@@ -71,7 +71,7 @@
 	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
 
 	<!-- 一种方式:注解方式配置事物,扫描@Transactional注解的类定义事务，配置上service实现类(下面还有一个方法名拦截方式,两个同时配置也是可以使用的，但是不建议两者一起使用) -->
-	<!--<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>-->
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 
 	<!-- 一种方式:拦截器方式配置事物start 配置了该方式之后,在方法里面使用注解方式配置事务也是没有作用的 -->
 	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">

@@ -1,10 +1,7 @@
 package com.colaui.example.controller;
 
-import com.colaui.example.dao.ColaAuthDao;
 import com.colaui.example.model.ColaAuth;
 import com.colaui.example.service.ColaAuthService;
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -28,11 +25,9 @@ public class LoadHtmlController {
 
     @Autowired
     private ColaAuthService colaAuthService;
-    @Autowired
-    private ColaAuthDao colaAuthDao;
 
     @RequestMapping(value = "/load/html/body", method = RequestMethod.GET, produces = "text/plain; charset=utf-8")
-    public @ResponseBody String loadBody(HttpServletRequest request) {
+    public @ResponseBody String loadBody(@RequestParam String user, HttpServletRequest request) {
         String filePath = "/Users/Carl/workspace/IdeaProjects/cola-ui-follow-up/src/main/webapp/frame/security/auth1.html";
         File file = new File(filePath);
         Document document;
@@ -44,6 +39,15 @@ public class LoadHtmlController {
                     script.remove();
                 }
             }
+            for (Element element : document.body().getAllElements()) {
+                if (element.hasAttr("id")) {
+                    Map<String, Boolean> auth = getComponentAuth(user,element.attr("id"));
+                    if (null != auth && auth.size() > 0) {
+                        element.attr("visible", auth.get("visible") + "");
+                        element.attr("editable", auth.get("editable") + "");
+                    }
+                }
+            }
             return document.body().html();
         } catch (IOException e) {
             e.printStackTrace();
@@ -51,6 +55,20 @@ public class LoadHtmlController {
         return null;
     }
 
+    public Map<String, Boolean> getComponentAuth(String user, String id) {
+        Map<String, Boolean> authMap = null;
+        List<ColaAuth> auths = colaAuthService.getAuths(user);
+        String authIdStr = null;
+        for (ColaAuth auth : auths) {
+            authIdStr = user + id;
+            if (auth.getId().equals(authIdStr)) {
+                authMap = new HashMap<String, Boolean>();
+                authMap.put("editable", auth.getEditable());
+                authMap.put("visible", auth.getVisible());
+            }
+        }
+        return authMap;
+    }
     /**
      * /service/frame/component/auth?url=/frame/url/urls.html
      * url visible:false表示不可见，disabled为true表示只读
@@ -71,16 +89,16 @@ public class LoadHtmlController {
 
         Map<String, Object> ucAuth = null;
         Map<String, Boolean> authMap = null;
-        Criteria criteria = colaAuthDao.createCriteria();
-        criteria.add(Restrictions.eq("user", user));
-        List<ColaAuth> auths = criteria.list();
+        String ucIdStr = null;
+        List<ColaAuth> auths = colaAuthService.getAuths(user);
 
         for (String ucId : ucIds) {
             ucAuth = new HashMap<String, Object>();
             authMap = new HashMap<String, Boolean>();
             ucAuth.put("id", ucId);
+            ucIdStr = user + ucId;
             for(ColaAuth colaAuth:auths) {
-                if (ucId.equals(colaAuth.getId())) {
+                if (ucIdStr.equals(colaAuth.getId())) {
                     authMap.put("disabled", colaAuth.getDisabled());
                     authMap.put("editable", colaAuth.getEditable());
                     authMap.put("visible", colaAuth.getVisible());
@@ -116,12 +134,18 @@ public class LoadHtmlController {
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     public void saveAuth(@RequestBody ArrayList<Map<String,Object>> colaAuths) throws IOException {
         ColaAuth auth = null;
+        boolean editable = false;
         for (Map<String, Object> colaAuth:colaAuths) {
             auth = new ColaAuth();
+            editable = (Boolean) colaAuth.get("editable");
             auth.setId((String) colaAuth.get("id"));
-            //auth.setDisabled((Boolean) colaAuth.get("disabled"));
-            auth.setEditable((Boolean) colaAuth.get("editable"));
-            //auth.setUser((String) colaAuth.get("user"));
+            if (editable) {
+                auth.setDisabled(false);
+            } else {
+                auth.setDisabled(true);
+            }
+            auth.setEditable(editable);
+            auth.setUser((String) colaAuth.get("user"));
             auth.setVisible((Boolean) colaAuth.get("visible"));
             colaAuthService.save(auth);
         }
