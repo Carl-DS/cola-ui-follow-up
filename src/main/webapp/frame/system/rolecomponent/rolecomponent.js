@@ -337,7 +337,6 @@
                 highlightCurrentItem: true,
                 bind: {
                     expression: "url in urls",
-                    checkedProperty: "checked",
                     popup: "url.label", // disabled
                     valueProperty: "id",
                     textProperty: "label",
@@ -348,7 +347,6 @@
                         popup: "url.label", // disabled
                         valueProperty: "id",
                         textProperty: "label",
-                        checkedProperty: "checked",
                         expanded: true
                     }
                 },
