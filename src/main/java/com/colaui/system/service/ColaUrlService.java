@@ -15,4 +15,6 @@ public interface ColaUrlService {
     void saveUrl(ColaUrl url);
 
     void deleteUrl(String id);
+
+    List<ColaUrl> findUrlByRoleId(String roleId, String companyId, String parentId);
 }

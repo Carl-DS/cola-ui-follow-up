@@ -36,4 +36,11 @@ public class ColaUrlController {
     public void deleteUrl(@PathVariable String id) {
         colaUrlService.deleteUrl(id);
     }
+
+    @RequestMapping(value = "/resource/{roleId}", method = RequestMethod.GET)
+    public List<ColaUrl> findUrlByRoleId(@PathVariable("roleId") String roleId,
+                                         @RequestParam(required = false) String companyId,
+                                         @RequestParam(required = false) String parentId) {
+        return colaUrlService.findUrlByRoleId(roleId, companyId, parentId);
+    }
 }
