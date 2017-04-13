@@ -1,0 +1,27 @@
+/* 主色调定义 */
+/* 文字内容色调定义 */
+/* 背景色调定义 */
+/* 边框色调定义 */
+/* 主题色定义 */
+/* Input */
+/* main page */
+body {
+  background-color: #f3f3f4;
+  padding: 0.8em;
+}
+#detailSegment .ui.panel > .header > .content {
+  background-color: initial;
+}
+#powerDetailTable tr .current-property .ui.input {
+  display: none;
+}
+#powerDetailTable tr .current-property.focus .ui.input {
+  display: inline-block;
+}
+#powerDetailTable tr .current-property.focus .ui.input input {
+  text-align: center;
+  border-radius: 0px;
+}
+#powerDetailTable tr .current-property.focus span {
+  display: none !important;
+}

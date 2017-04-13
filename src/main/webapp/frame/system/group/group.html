@@ -12,19 +12,26 @@
     <link rel="stylesheet" type="text/css" href="./resources/cola-ui/semantic.css">
     <link rel="stylesheet" type="text/css" href="./resources/cola-ui/cola.css">
     <link rel="stylesheet" type="text/css" href="./common/common.css">
-    <link rel="stylesheet" type="text/css" href="./frame/system/rolemember/rolemember.css">
+    <link rel="stylesheet" type="text/css" href="./frame/system/group/group.css">
 </head>
 <body>
 
 <div class="h-box" style="height: inherit;">
-    <div style="width:40%;display: inline-flex;" class="box">
-        <c-panel caption="角色" collapsible="false" class="crowded" icon="spy">
+    <div style="width:50%;display: inline-flex;" class="box">
+        <c-panel caption="群组" collapsible="false" class="crowded" icon="text telephone">
             <template name="tools">
-                <c-button class="mini" click="refresh()">刷新缓存</c-button>
+                <c-button class="mini" click="addGroup">添加</c-button>
             </template>
             <div style="overflow: auto; height: 95%">
-                <div id="roleTable"></div>
-                <c-pager bind="roles" class="secondary">
+                <div id="groupTable">
+                    <template name="operation">
+                        <div>
+                            <i c-onclick="editUser(user)" class="icon teal edit"></i>
+                            <i c-onclick="deleteUser(user)" class="icon orange trash"></i>
+                        </div>
+                    </template>
+                </div>
+                <c-pager bind="groups" class="secondary">
                     <div class="menu">
                         <div page-code="pages" class="item"></div>
                     </div>
@@ -34,12 +41,6 @@
     </div>
     <div style="width:100%; margin-left: 10px;" class="box">
         <c-panel caption="成员" collapsible="false" class="crowded" icon="users mini" height="100%">
-            <template name="tools">
-                <div>
-                    <a><i c-onclick="savePower()" class="icon save blue"></i></a>
-                    <a><i c-onclick="refreshPower()" class="icon refresh blue"></i></a>
-                </div>
-            </template>
             <div class="content">
                 <c-tab height="220" direction="top">
                     <nav class="tab-bar">
@@ -47,7 +48,6 @@
                             <c-tabButton name="tabOne" caption="用户" icon="user"></c-tabButton>
                             <c-tabButton name="tabTwo" caption="岗位" icon="protect"></c-tabButton>
                             <c-tabButton name="tabThree" caption="部门" icon="empire"></c-tabButton>
-                            <c-tabButton name="tabFour" caption="群组" icon="text telephone"></c-tabButton>
                         </ul>
                     </nav>
                     <ul class="contents">
@@ -66,7 +66,6 @@
                             <div id="userTable">
                                 <template name="operation">
                                     <div>
-                                        <i c-onclick="editUser(user)" class="icon teal edit"></i>
                                         <i c-onclick="deleteUser(user)" class="icon orange trash"></i>
                                     </div>
                                 </template>
@@ -87,7 +86,6 @@
                             <div id="positionTable">
                                 <template name="operation">
                                     <div>
-                                        <i c-onclick="editPosition(position)" class="icon teal edit"></i>
                                         <i c-onclick="deletePosition(position)" class="icon orange trash"></i>
                                     </div>
                                 </template>
@@ -108,29 +106,7 @@
                             <div id="deptTable">
                                 <template name="operation">
                                     <div>
-                                        <i c-onclick="editPosition(position)" class="icon teal edit"></i>
-                                        <i c-onclick="deletePosition(position)" class="icon orange trash"></i>
-                                    </div>
-                                </template>
-                            </div>
-                        </li>
-                        <li name="tabFour">
-                            <c-pager bind="groups" class="secondary">
-                                <div class="control item">
-                                    <div>
-                                        <!--显示添加页面-->
-                                        <c-button id="addLayerBtn" icon="plus" caption="" click="editUser" class="mini teal">添加</c-button>
-                                    </div>
-                                </div>
-                                <div class="right menu">
-                                    <div page-code="pages" class="item"></div>
-                                </div>
-                            </c-pager>
-                            <div id="groupTable">
-                                <template name="operation">
-                                    <div>
-                                        <i c-onclick="editPosition(position)" class="icon teal edit"></i>
-                                        <i c-onclick="deletePosition(position)" class="icon orange trash"></i>
+                                        <i c-onclick="deleteDept(dept)" class="icon orange trash"></i>
                                     </div>
                                 </template>
                             </div>
@@ -150,6 +126,6 @@
   <script src="./resources/cola-ui/semantic.js"></script>
   <script src="./resources/cola-ui/cola.js"></script>
   <script src="./common/common.js"></script>
-  <script src="./frame/system/rolemember/rolemember.js"></script>
+  <script src="./frame/system/group/group.js"></script>
 </body>
 </html>

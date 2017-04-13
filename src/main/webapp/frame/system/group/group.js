@@ -3,29 +3,6 @@
  */
 (function () {
     cola(function (model) {
-        model.describe("roles", {
-            provider: {
-                url: "/service/frame/role/",
-                pageSize: 2,
-                beforeSend: function (self, arg) {
-                    var contain = model.get("contain");
-                    if (cola.defaultAction.isNotEmpty(contain)) {
-                        // 使用encodeURI() 为了解决GET下传递中文出现的乱码
-                        arg.options.data.contain = encodeURI(contain);
-                    }
-                },
-                complete: function () {
-                    // 生成序号
-                    var serialNo = 1;
-                    model.get("roles").each(function(role){
-                        role.set("serialNo",serialNo++);
-                    });
-                    if (!model.get("roleId")) {
-                        model.set("roleId",model.get("roles").current.get("id"));
-                    }
-                }
-            }
-        });
         model.describe("users", {
             provider: {
                 url: "/service/frame/user/",
@@ -76,28 +53,24 @@
         });
 
         model.widgetConfig({
-            roleTable: {
+            groupTable: {
                 $type: "table",
-                bind: "role in roles",
+                bind: "group in groups",
                 showHeader: true,
-                changeCurrentItem: true,
-                highlightCurrentItem: true,
                 currentPageOnly: true,
-                columns: [{
-                    caption: "序号",
-                    bind: ".serialNo",
-                    width: 25
-                },{
-                    caption: "角色名称",
-                    bind: ".name"
-                },{
-                    caption: "角色描述",
-                    bind: ".desc"
-                }],
-                itemClick: function (self, arg) {
-                    // 拿到当前行id,根据id获取后台功能数据
-                    //var roleId = self.get("currentItem").get("roleCode");
-                }
+                highlightCurrentItem: true,
+                columns: [
+                    {
+                        bind: ".name",
+                        caption: "名称"
+                    }, {
+                        bind: ".desc",
+                        caption: "描述"
+                    }, {
+                        caption: "操作",
+                        template: "operation"
+                    }
+                ]
             },
             userTable: {
                 $type: "table",
@@ -109,10 +82,13 @@
                     {
                         bind: ".username",
                         caption: "用户名",
-                        visible: false // 是否可见
+                        visible: true // 是否可见
                     }, {
                         bind: ".cname",
-                        caption: "用户"
+                        caption: "中文名"
+                    }, {
+                        bind: ".ename",
+                        caption: "英文名"
                     }, {
                         caption: "操作",
                         template: "operation"
@@ -145,22 +121,6 @@
                     {
                         bind: ".name",
                         caption: "部门"
-                    }, {
-                        caption: "操作",
-                        template: "operation"
-                    }
-                ]
-            },
-            groupTable: {
-                $type: "table",
-                bind: "group in groups",
-                showHeader: true,
-                currentPageOnly: true,
-                highlightCurrentItem: true,
-                columns: [
-                    {
-                        bind: ".name",
-                        caption: "群组"
                     }, {
                         caption: "操作",
                         template: "operation"
