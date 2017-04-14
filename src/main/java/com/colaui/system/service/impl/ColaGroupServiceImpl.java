@@ -33,7 +33,7 @@ public class ColaGroupServiceImpl implements ColaGroupService {
         groupDao.save(group);
     }
 
-    public void delete(long id) {
+    public void delete(String id) {
         groupDao.delete(id);
     }
 
@@ -41,7 +41,7 @@ public class ColaGroupServiceImpl implements ColaGroupService {
         groupDao.update(group);
     }
 
-    public ColaGroup find(long id) {
+    public ColaGroup find(String id) {
         return groupDao.get(id);
     }
 

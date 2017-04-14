@@ -6,7 +6,9 @@ import com.colaui.provider.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/frame/groupmember")
@@ -21,13 +23,20 @@ public class ColaGroupMemberController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    public void save(@RequestBody ColaGroupMember groupmember) {
-        groupmemberService.save(groupmember);
+    public void save(@RequestBody Map<String, Object> params) {
+        String groupId = (String) params.get("groupId");
+        ArrayList<String> groupUserIds = (ArrayList<String>) params.get("groupUserIds");
+        groupmemberService.save(groupId, groupUserIds);
     }
 
     @RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") long id) {
         groupmemberService.delete(id);
+    }
+
+    @RequestMapping(value = "/username/", method = RequestMethod.GET)
+    public void deleteByUsername(@RequestParam String groupId,@RequestParam String username) {
+        groupmemberService.deleteByUsername(groupId, username);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")

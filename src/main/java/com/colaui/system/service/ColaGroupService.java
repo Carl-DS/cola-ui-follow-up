@@ -7,8 +7,8 @@ import java.util.List;
 public interface ColaGroupService {
     Page<ColaGroup> getPage(int pageSize,int pageNo,String contain);
     void save(ColaGroup group);
-    void delete(long id);
+    void delete(String id);
     void update(ColaGroup group);
-    ColaGroup find(long id);
+    ColaGroup find(String id);
     List<ColaGroup> find(int from,int limit);
 }

@@ -4,6 +4,7 @@ import com.colaui.example.model.ColaGroupMember;
 import com.colaui.provider.Page;
 import com.colaui.system.dao.ColaGroupMemberDao;
 import com.colaui.system.service.ColaGroupMemberService;
+import com.colaui.utils.CommonUtils;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Criterion;
@@ -12,6 +13,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,8 +31,20 @@ public class ColaGroupMemberServiceImpl implements ColaGroupMemberService {
         return groupmemberDao.getPage(pageSize, pageNo, criteria);
     }
 
-    public void save(ColaGroupMember groupmember) {
-        groupmemberDao.save(groupmember);
+    public void save(String groupId, ArrayList<String> groupUserIds) {
+        ColaGroupMember groupmember = null;
+        for (String groupUserId : groupUserIds) {
+            groupmember = new ColaGroupMember();
+            groupmember.setId(CommonUtils.uuid());
+            groupmember.setGroupId(groupId);
+            groupmember.setUsername(groupUserId);
+            groupmemberDao.save(groupmember);
+        }
+    }
+
+    @Override
+    public void deleteByUsername(String groupId, String username) {
+        groupmemberDao.deleteByUsername(groupId, username);
     }
 
     public void delete(long id) {

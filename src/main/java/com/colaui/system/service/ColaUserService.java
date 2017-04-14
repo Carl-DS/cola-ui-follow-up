@@ -17,4 +17,6 @@ public interface ColaUserService {
     List<ColaUser> find(int from, int limit);
 
     boolean check(String username);
+
+    Page<ColaUser> groupUsers(int pageSize, int pageNo, String groupId);
 }

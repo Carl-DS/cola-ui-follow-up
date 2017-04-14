@@ -26,7 +26,7 @@ public class ColaGroupController {
     }
 
     @RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)
-    public void delete(@PathVariable("id") long id) {
+    public void delete(@PathVariable("id") String id) {
         groupService.delete(id);
     }
 
@@ -36,7 +36,7 @@ public class ColaGroupController {
     }
 
     @RequestMapping(value = "/{id}/", method = RequestMethod.GET)
-    public ColaGroup find(@PathVariable("id") long id) {
+    public ColaGroup find(@PathVariable("id") String id) {
         return groupService.find(id);
     }
 

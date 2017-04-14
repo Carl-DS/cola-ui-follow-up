@@ -2,6 +2,7 @@ package com.colaui.system.service.impl;
 
 import com.colaui.example.model.ColaUser;
 import com.colaui.provider.Page;
+import com.colaui.system.dao.ColaGroupMemberDao;
 import com.colaui.system.dao.ColaUserDao;
 import com.colaui.system.service.ColaUserService;
 import org.apache.commons.lang.StringUtils;
@@ -12,6 +13,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +23,8 @@ import java.util.List;
 public class ColaUserServiceImpl implements ColaUserService{
     @Autowired
     private ColaUserDao colaUserDao;
+    @Autowired
+    private ColaGroupMemberDao groupMemberDao;
 
     public Page<ColaUser> getPage(int pageSize, int pageNo, String contain) {
         Criteria criteria = colaUserDao.createCriteria();
@@ -58,5 +62,14 @@ public class ColaUserServiceImpl implements ColaUserService{
         criteria.add(Restrictions.eq("username", username));
         int result = colaUserDao.find(criteria).size();
         return result < 1;
+    }
+
+    public Page<ColaUser> groupUsers(int pageSize, int pageNo, String groupId) {
+        Criteria criteria = colaUserDao.createCriteria();
+        if (StringUtils.isNotEmpty(groupId)) {
+            ArrayList usernames = groupMemberDao.getUsernames(groupId);
+            criteria.add(Restrictions.in("username", usernames));
+        }
+        return colaUserDao.getPage(pageSize, pageNo, criteria);
     }
 }
