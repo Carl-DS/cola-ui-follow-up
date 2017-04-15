@@ -118,7 +118,7 @@
                                     </template>
                                 </div>
                             </div>
-                            <!--添加页面 start-->
+                            <!--选择用户页面 start-->
                             <c-sidebar id="userSidebar" size="60%" direction="right" modalOpacity="0.3" dimmerClose="false" class="default-background">
                                 <div class="v-box">
                                     <div class="caption-bar box"><i class="edit icon"></i><span class="caption">选择用户</span>
@@ -171,33 +171,87 @@
                                     </div>
                                 </div>
                             </c-sidebar>
-                            <!--添加页面 end-->
+                            <!--选择用户页面 end-->
                         </li>
                         <li name="tabTwo">
-                            <c-pager bind="positions" class="secondary">
+                            <c-pager bind="groupPositions" class="secondary">
                                 <div class="control item">
                                     <div>
                                         <!--显示添加页面-->
-                                        <c-button id="addLayerBtn" icon="plus" caption="" click="editPosition" class="mini teal">添加</c-button>
+                                        <c-button id="showPositionSidebar" icon="plus" caption="" click="editPosition" class="mini teal">添加</c-button>
                                     </div>
                                 </div>
                                 <div class="right menu">
                                     <div page-code="pages" class="item"></div>
                                 </div>
                             </c-pager>
-                            <div id="positionTable">
+                            <div id="groupPositionTable">
                                 <template name="operation">
                                     <div>
                                         <i c-onclick="deletePosition(position)" class="icon orange trash"></i>
                                     </div>
                                 </template>
                             </div>
+                            <!--选择岗位页面 start-->
+                            <c-sidebar id="positionSidebar" size="60%" direction="right" modalOpacity="0.3" dimmerClose="false" class="default-background">
+                                <div class="v-box">
+                                    <div class="caption-bar box"><i class="edit icon"></i><span class="caption">选择用户</span>
+                                        <div class="tools">
+                                            <c-button icon="angle right" iconPosition="right" caption="返回" click="{{cancel('position')}}" class="basic circular"></c-button>
+                                        </div>
+                                    </div>
+                                    <c-pager bind="groupPositions" class="secondary">
+                                        <div class="menu">
+                                            <div page-code="pages" class="item"></div>
+                                        </div>
+                                    </c-pager>
+                                    <!--选择岗位 start-->
+                                    <div class="content content-background flex-box">
+                                        <div class="h-box">
+                                            <!--待选岗位-->
+                                            <div class="box">
+                                                <div id="positionTable">
+                                                    <template name="operation">
+                                                        <div>
+                                                            <i c-onclick="deletePosition(position)" class="icon orange trash"></i>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                            </div>
+                                            <div class="box" style="width: 60px;margin: 10px;padding-top: 18px;">
+                                                <!--选中岗位-->
+                                                <c-button click="selectPosition" icon="angle double right" class="basic"></c-button>
+                                                <!--移除选中的岗位-->
+                                                <c-button click="removePosition" icon="angle double left" class="basic"></c-button>
+                                            </div>
+                                            <!--选中岗位列表-->
+                                            <div class="box">
+                                                <div id="selectedPositionTable">
+                                                    <template name="operation">
+                                                        <div>
+                                                            <i c-onclick="deletePosition(selectedPosition)" class="icon orange trash"></i>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--选择岗位 end-->
+                                    <div class="box">
+                                        <div class="ui segment basic">
+                                            <c-button icon="remove" caption="取消" click="{{cancel('position')}}" class="negative mini"></c-button>
+                                            <c-button icon="checkmark" caption="确认" click="saveGroupPosition" class="positive mini"></c-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c-sidebar>
+                            <!--选择岗位页面 end-->
                         </li>
                         <li name="tabThree">
-                            <c-pager bind="depts" class="secondary">
+                            <c-pager bind="groupDepts" class="secondary">
                                 <div class="control item">
                                     <div>
-                                        <!--显示添加页面-->
+                                        <!--显示部门页面-->
                                         <c-button id="addLayerBtn" icon="plus" caption="" click="editDept" class="mini teal">添加</c-button>
                                     </div>
                                 </div>
@@ -205,13 +259,67 @@
                                     <div page-code="pages" class="item"></div>
                                 </div>
                             </c-pager>
-                            <div id="deptTable">
+                            <div id="groupDeptTable">
                                 <template name="operation">
                                     <div>
                                         <i c-onclick="deleteDept(dept)" class="icon orange trash"></i>
                                     </div>
                                 </template>
                             </div>
+                            <!--选择部门页面 start-->
+                            <c-sidebar id="deptSidebar" size="60%" direction="right" modalOpacity="0.3" dimmerClose="false" class="default-background">
+                                <div class="v-box">
+                                    <div class="caption-bar box"><i class="edit icon"></i><span class="caption">选择用户</span>
+                                        <div class="tools">
+                                            <c-button icon="angle right" iconPosition="right" caption="返回" click="{{cancel('dept')}}" class="basic circular"></c-button>
+                                        </div>
+                                    </div>
+                                    <c-pager bind="depts" class="secondary">
+                                        <div class="menu">
+                                            <div page-code="pages" class="item"></div>
+                                        </div>
+                                    </c-pager>
+                                    <!--选择部门 start-->
+                                    <div class="content content-background flex-box">
+                                        <div class="h-box">
+                                            <!--待选部门-->
+                                            <div class="box">
+                                                <div id="deptTable">
+                                                    <template name="operation">
+                                                        <div>
+                                                            <i c-onclick="deleteDept(dept)" class="icon orange trash"></i>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                            </div>
+                                            <div class="box" style="width: 60px;margin: 10px;padding-top: 18px;">
+                                                <!--选中部门-->
+                                                <c-button click="selectDept" icon="angle double right" class="basic"></c-button>
+                                                <!--移除选中的部门-->
+                                                <c-button click="removeDept" icon="angle double left" class="basic"></c-button>
+                                            </div>
+                                            <!--选中部门列表-->
+                                            <div class="box">
+                                                <div id="selectedDeptTable">
+                                                    <template name="operation">
+                                                        <div>
+                                                            <i c-onclick="deleteDept(dept)" class="icon orange trash"></i>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--选择部门 end-->
+                                    <div class="box">
+                                        <div class="ui segment basic">
+                                            <c-button icon="remove" caption="取消" click="{{cancel('dept')}}" class="negative mini"></c-button>
+                                            <c-button icon="checkmark" caption="确认" click="saveGroupDept" class="positive mini"></c-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c-sidebar>
+                            <!--选择部门页面 end-->
                         </li>
                     </ul>
                 </c-tab>

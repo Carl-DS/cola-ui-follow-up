@@ -54,4 +54,9 @@ public class ColaGroupMemberController {
                                       @PathVariable("limit") int limit) {
         return groupmemberService.find(from, limit);
     }
+
+    @RequestMapping(value = "/checksame/", method = RequestMethod.GET)
+    public List<ColaGroupMember> checkSame(@RequestParam String groupId, @RequestParam String username) {
+        return groupmemberService.checkSame(groupId, username);
+    }
 }

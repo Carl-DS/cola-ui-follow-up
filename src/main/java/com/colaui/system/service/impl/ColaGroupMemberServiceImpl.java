@@ -47,6 +47,17 @@ public class ColaGroupMemberServiceImpl implements ColaGroupMemberService {
         groupmemberDao.deleteByUsername(groupId, username);
     }
 
+    @Override
+    public List<ColaGroupMember> checkSame(String groupId, String username) {
+        Criteria criteria = groupmemberDao.createCriteria();
+        if (StringUtils.isNotEmpty(groupId) && StringUtils.isNotEmpty(username)) {
+            Criterion lastRest= Restrictions.eq("groupId", groupId);
+            Criterion firstRest= Restrictions.eq("username", username);
+            criteria.add(Restrictions.and(lastRest, firstRest));
+        }
+        return groupmemberDao.find(criteria);
+    }
+
     public void delete(long id) {
         groupmemberDao.delete(id);
     }

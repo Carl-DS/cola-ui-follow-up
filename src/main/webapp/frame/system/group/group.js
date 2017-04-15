@@ -47,8 +47,6 @@
                 }
             }
         });
-        // 声明已选择的用户的EntityList
-        model.set("selectedUsers", []);
         // 声明群组成员用户的EntityList
         model.describe("groupUsers", {
             provider: {
@@ -64,8 +62,10 @@
                 }
             }
         });
+        // 声明已选择的用户的EntityList
+        model.set("selectedUsers", []);
 
-
+        // 待选择的岗位
         model.describe("positions", {
             provider: {
                 url: "/service/frame/position/",
@@ -79,11 +79,37 @@
                 }
             }
         });
+        // 声明群组成员岗位的EntityList
+        model.describe("groupPositions", {
+            provider: {
+                url: "/service/frame/position/",
+                pageSize: 2,
+                beforeSend: function (self, arg) {
+                    var contain = model.get("contain");
+                    if (cola.defaultAction.isNotEmpty(contain)) {
+                        // 使用encodeURI() 为了解决GET下传递中文出现的乱码
+                        arg.options.data.contain = encodeURI(contain);
+                    }
+                }
+            }
+        });
+        // 声明已选择的岗位的EntityList
+        model.set("selectedPositions", []);
+
+        // 待选择的部门
         model.describe("depts", {
             provider: {
                 url: "service/frame/dept/depts"
             }
         });
+        // 声明群组成员部门的EntityList
+        model.describe("groupDepts", {
+            provider: {
+                url: "service/frame/dept/depts"
+            }
+        });
+        // 声明已选择的岗位的EntityList
+        model.set("selectedDepts", []);
 
 
 
@@ -156,6 +182,20 @@
                 model.set("selectedUsers", []);
                 cola.widget("userSidebar").show();
             },
+            editPosition: function () {
+                // 刷新待选用户
+                model.flush("positions");
+                // 重置已选择用户
+                model.set("selectedPositions", []);
+                cola.widget("positionSidebar").show();
+            },
+            editDept: function () {
+                // 刷新待选用户
+                model.flush("depts");
+                // 重置已选择用户
+                model.set("selectedDepts", []);
+                cola.widget("deptSidebar").show();
+            },
             deleteUser: function(user) {
                 user.remove();
             },
@@ -181,18 +221,21 @@
             selectUser: function() {
                 debugger;
                 var currentUser = cola.widget("userTable").get("currentItem");
-                var checkSame = 0;
-                model.get("groupUsers").each(function (groupUser) {
-                    if (currentUser.get("username") === groupUser.get("username")) {
-                        checkSame = 1;
+                var groupId = cola.widget("groupTable").get("currentItem").get("id");
+                var username = currentUser.get("username");
+                $.ajax("./service/frame/groupmember/checksame/", {
+                    type: "GET",
+                    data: {"groupId": groupId, "username": username},
+                    contentType: "application/json; charset=utf-8",
+                    success: function (self, arg) {
+                        if (self.length > 0) {
+                            cola.alert("当前选择的[" + currentUser.get("cname") + "]已添加, 请重新选择");
+                        } else {
+                            model.get("selectedUsers").insert(currentUser.toJSON());
+                            currentUser.remove();
+                        }
                     }
                 });
-                if (checkSame === 1) {
-                    cola.alert("当前选择的[" + currentUser.get("cname") + "]已添加, 请重新选择");
-                } else {
-                    model.get("selectedUsers").insert(currentUser.toJSON());
-                    currentUser.remove();
-                }
             },
             removeUser: function () {
                 var currentSelectedUser = cola.widget("selectedUserTable").get("currentItem");
@@ -317,6 +360,23 @@
                     }
                 ]
             },
+            groupPositionTable: {
+                $type: "table",
+                bind: "groupPosition in groupPositions",
+                changeCurrentItem: true,
+                showHeader: true,
+                currentPageOnly: true,
+                highlightCurrentItem: true,
+                columns: [
+                    {
+                        bind: ".name",
+                        caption: "岗位名称"
+                    }, {
+                        caption: "操作",
+                        template: "operation"
+                    }
+                ]
+            },
             positionTable: {
                 $type: "table",
                 bind: "position in positions",
@@ -334,7 +394,58 @@
                     }
                 ]
             },
+            selectedPositionTable: {
+                $type: "table",
+                bind: "selectedPosition in selectedPositions",
+                changeCurrentItem: true,
+                showHeader: true,
+                currentPageOnly: true,
+                highlightCurrentItem: true,
+                columns: [
+                    {
+                        bind: ".name",
+                        caption: "岗位名称"
+                    }, {
+                        caption: "操作",
+                        template: "operation"
+                    }
+                ]
+            },
+            groupDeptTable: {
+                $type: "table",
+                bind: "dept in depts",
+                showHeader: true,
+                changeCurrentItem: true,
+                currentPageOnly: true,
+                highlightCurrentItem: true,
+                columns: [
+                    {
+                        bind: ".name",
+                        caption: "部门"
+                    }, {
+                        caption: "操作",
+                        template: "operation"
+                    }
+                ]
+            },
             deptTable: {
+                $type: "table",
+                bind: "dept in depts",
+                showHeader: true,
+                changeCurrentItem: true,
+                currentPageOnly: true,
+                highlightCurrentItem: true,
+                columns: [
+                    {
+                        bind: ".name",
+                        caption: "部门"
+                    }, {
+                        caption: "操作",
+                        template: "operation"
+                    }
+                ]
+            },
+            selectedDeptTable: {
                 $type: "table",
                 bind: "dept in depts",
                 showHeader: true,

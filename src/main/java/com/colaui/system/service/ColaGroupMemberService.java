@@ -15,4 +15,6 @@ public interface ColaGroupMemberService {
     void save(String groupId, ArrayList<String> groupUserIds);
 
     void deleteByUsername(String groupId, String username);
+
+    List<ColaGroupMember> checkSame(String groupId, String username);
 }
