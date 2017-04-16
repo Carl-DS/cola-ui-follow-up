@@ -68,7 +68,9 @@ public class ColaUserServiceImpl implements ColaUserService{
         Criteria criteria = colaUserDao.createCriteria();
         if (StringUtils.isNotEmpty(groupId)) {
             ArrayList usernames = groupMemberDao.getUsernames(groupId);
-            criteria.add(Restrictions.in("username", usernames));
+            if (usernames.size() > 0) {
+                criteria.add(Restrictions.in("username", usernames));
+            }
         }
         return colaUserDao.getPage(pageSize, pageNo, criteria);
     }

@@ -12,9 +12,15 @@ public interface ColaGroupMemberService {
     ColaGroupMember find(long id);
     List<ColaGroupMember> find(int from,int limit);
 
-    void save(String groupId, ArrayList<String> groupUserIds);
+    void saveGroupUser(String groupId, ArrayList<String> groupUserIds);
 
     void deleteByUsername(String groupId, String username);
 
     List<ColaGroupMember> checkSame(String groupId, String username);
+
+    void deleteByPositionId(String groupId, String positionId);
+
+    void saveGroupPosition(String groupId, ArrayList<String> groupPositionIds);
+
+    List<ColaGroupMember> checkSamePosition(String groupId, String positionId);
 }

@@ -53,7 +53,6 @@
                 url: "/service/frame/user/groupusers/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
-                    debugger;
                     var groupId = cola.widget("groupTable").get("currentItem").get("id");
                     if (cola.defaultAction.isNotEmpty(groupId)) {
                         // 使用encodeURI() 为了解决GET下传递中文出现的乱码
@@ -82,13 +81,13 @@
         // 声明群组成员岗位的EntityList
         model.describe("groupPositions", {
             provider: {
-                url: "/service/frame/position/",
+                url: "/service/frame/position/grouppositions/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
-                    var contain = model.get("contain");
-                    if (cola.defaultAction.isNotEmpty(contain)) {
+                    var groupId = cola.widget("groupTable").get("currentItem").get("id");
+                    if (cola.defaultAction.isNotEmpty(groupId)) {
                         // 使用encodeURI() 为了解决GET下传递中文出现的乱码
-                        arg.options.data.contain = encodeURI(contain);
+                        arg.options.data.groupId = encodeURI(groupId);
                     }
                 }
             }
@@ -199,8 +198,18 @@
             deleteUser: function(user) {
                 user.remove();
             },
-            deletePosition: function(position) {
-                position.remove();
+            deletePosition: function(model) {
+                debugger;
+                var data = model.toJSON();
+                data.groupId = cola.widget("groupTable").get("currentItem").get("id");
+                $.ajax("./service/frame/groupmember/position/", {
+                    type: "GET",
+                    data: {"groupId": data.groupId, "positionId": data.id},
+                    contentType: "application/json; charset=utf-8",
+                    success: function (self, arg) {
+                        model.remove();
+                    }
+                });
             },
             deleteDept: function(dept) {
                 dept.remove();
@@ -209,7 +218,7 @@
                 debugger;
                 var data = model.toJSON();
                 data.groupId = cola.widget("groupTable").get("currentItem").get("id");
-                $.ajax("./service/frame/groupmember/username/", {
+                $.ajax("./service/frame/groupmember/user/", {
                     type: "GET",
                     data: {"groupId": data.groupId, "username": data.username},
                     contentType: "application/json; charset=utf-8",
@@ -237,10 +246,34 @@
                     }
                 });
             },
+            selectPosition: function() {
+                debugger;
+                var groupId = cola.widget("groupTable").get("currentItem").get("id");
+                var currentPosition = cola.widget("positionTable").get("currentItem");
+                var positionId = currentPosition.get("id");
+                $.ajax("./service/frame/groupmember/checksame/position/", {
+                    type: "GET",
+                    data: {"groupId": groupId, "positionId": positionId},
+                    contentType: "application/json; charset=utf-8",
+                    success: function (self, arg) {
+                        if (self.length > 0) {
+                            cola.alert("当前选择的[" + currentPosition.get("name") + "]已添加, 请重新选择");
+                        } else {
+                            model.get("selectedPositions").insert(currentPosition.toJSON());
+                            currentPosition.remove();
+                        }
+                    }
+                });
+            },
             removeUser: function () {
                 var currentSelectedUser = cola.widget("selectedUserTable").get("currentItem");
                 model.get("users").insert(currentSelectedUser.toJSON());
                 currentSelectedUser.remove();
+            },
+            removePosition: function () {
+                var currentSelectedPosition = cola.widget("selectedPositionTable").get("currentItem");
+                model.get("positions").insert(currentSelectedPosition.toJSON());
+                currentSelectedPosition.remove();
             },
             saveGroupUser: function () {
                 debugger;
@@ -260,6 +293,27 @@
                     success: function (self, arg) {
                         model.flush("groupUsers");
                         cola.widget("userSidebar").hide();
+                    }
+                })
+            },
+            saveGroupPosition: function () {
+                debugger;
+                var selectedPositions = model.get("selectedPositions");
+                var groupPositionIds = [];
+                if (selectedPositions.entityCount > 0) {
+                    selectedPositions.each(function (selectedPosition) {
+                        groupPositionIds.push(selectedPosition.get("id"));
+                    });
+                }
+                var currentGroupId = cola.widget("groupTable").get("currentItem").get("id");
+                var data = {"groupId":currentGroupId,"groupPositionIds":groupPositionIds};
+                $.ajax("./service/frame/groupmember/position/", {
+                    type: "POST",
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (self, arg) {
+                        model.flush("groupPositions");
+                        cola.widget("positionSidebar").hide();
                     }
                 })
             }
@@ -388,9 +442,6 @@
                     {
                         bind: ".name",
                         caption: "岗位名称"
-                    }, {
-                        caption: "操作",
-                        template: "operation"
                     }
                 ]
             },
@@ -405,9 +456,6 @@
                     {
                         bind: ".name",
                         caption: "岗位名称"
-                    }, {
-                        caption: "操作",
-                        template: "operation"
                     }
                 ]
             },

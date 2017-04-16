@@ -23,10 +23,17 @@ public class ColaGroupMemberController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    public void save(@RequestBody Map<String, Object> params) {
+    public void saveGroupUser(@RequestBody Map<String, Object> params) {
         String groupId = (String) params.get("groupId");
         ArrayList<String> groupUserIds = (ArrayList<String>) params.get("groupUserIds");
-        groupmemberService.save(groupId, groupUserIds);
+        groupmemberService.saveGroupUser(groupId, groupUserIds);
+    }
+
+    @RequestMapping(value = "/position/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    public void saveGroupPosition(@RequestBody Map<String, Object> params) {
+        String groupId = (String) params.get("groupId");
+        ArrayList<String> groupPositionIds = (ArrayList<String>) params.get("groupPositionIds");
+        groupmemberService.saveGroupPosition(groupId, groupPositionIds);
     }
 
     @RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)
@@ -34,9 +41,14 @@ public class ColaGroupMemberController {
         groupmemberService.delete(id);
     }
 
-    @RequestMapping(value = "/username/", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/", method = RequestMethod.GET)
     public void deleteByUsername(@RequestParam String groupId,@RequestParam String username) {
         groupmemberService.deleteByUsername(groupId, username);
+    }
+
+    @RequestMapping(value = "/position/", method = RequestMethod.GET)
+    public void deleteByPositionId(@RequestParam String groupId,@RequestParam String positionId) {
+        groupmemberService.deleteByPositionId(groupId, positionId);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
@@ -58,5 +70,10 @@ public class ColaGroupMemberController {
     @RequestMapping(value = "/checksame/", method = RequestMethod.GET)
     public List<ColaGroupMember> checkSame(@RequestParam String groupId, @RequestParam String username) {
         return groupmemberService.checkSame(groupId, username);
+    }
+
+    @RequestMapping(value = "/checksame/position/", method = RequestMethod.GET)
+    public List<ColaGroupMember> checkSamePosition(@RequestParam String groupId, @RequestParam String positionId) {
+        return groupmemberService.checkSamePosition(groupId, positionId);
     }
 }

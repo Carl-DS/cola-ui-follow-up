@@ -188,7 +188,7 @@
                             <div id="groupPositionTable">
                                 <template name="operation">
                                     <div>
-                                        <i c-onclick="deletePosition(position)" class="icon orange trash"></i>
+                                        <i c-onclick="deletePosition(groupPosition)" class="icon orange trash"></i>
                                     </div>
                                 </template>
                             </div>
@@ -200,7 +200,7 @@
                                             <c-button icon="angle right" iconPosition="right" caption="返回" click="{{cancel('position')}}" class="basic circular"></c-button>
                                         </div>
                                     </div>
-                                    <c-pager bind="groupPositions" class="secondary">
+                                    <c-pager bind="positions" class="secondary">
                                         <div class="menu">
                                             <div page-code="pages" class="item"></div>
                                         </div>
@@ -210,13 +210,7 @@
                                         <div class="h-box">
                                             <!--待选岗位-->
                                             <div class="box">
-                                                <div id="positionTable">
-                                                    <template name="operation">
-                                                        <div>
-                                                            <i c-onclick="deletePosition(position)" class="icon orange trash"></i>
-                                                        </div>
-                                                    </template>
-                                                </div>
+                                                <div id="positionTable"></div>
                                             </div>
                                             <div class="box" style="width: 60px;margin: 10px;padding-top: 18px;">
                                                 <!--选中岗位-->
@@ -226,13 +220,7 @@
                                             </div>
                                             <!--选中岗位列表-->
                                             <div class="box">
-                                                <div id="selectedPositionTable">
-                                                    <template name="operation">
-                                                        <div>
-                                                            <i c-onclick="deletePosition(selectedPosition)" class="icon orange trash"></i>
-                                                        </div>
-                                                    </template>
-                                                </div>
+                                                <div id="selectedPositionTable"></div>
                                             </div>
                                         </div>
                                     </div>

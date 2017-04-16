@@ -11,4 +11,6 @@ public interface ColaPositionService {
     void update(ColaPosition position);
     ColaPosition find(long id);
     List<ColaPosition> find(int from,int limit);
+
+    Page<ColaPosition> groupPositions(int pageSize, int pageNo, String groupId);
 }
