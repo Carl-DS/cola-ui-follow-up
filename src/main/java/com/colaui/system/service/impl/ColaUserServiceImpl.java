@@ -70,8 +70,9 @@ public class ColaUserServiceImpl implements ColaUserService{
             ArrayList usernames = groupMemberDao.getUsernames(groupId);
             if (usernames.size() > 0) {
                 criteria.add(Restrictions.in("username", usernames));
+                return colaUserDao.getPage(pageSize, pageNo, criteria);
             }
         }
-        return colaUserDao.getPage(pageSize, pageNo, criteria);
+        return null;
     }
 }

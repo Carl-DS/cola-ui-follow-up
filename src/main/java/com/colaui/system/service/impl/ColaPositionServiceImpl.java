@@ -60,9 +60,10 @@ public class ColaPositionServiceImpl implements ColaPositionService {
             ArrayList positionIds = groupMemberDao.getPositionIds(groupId);
             if (positionIds.size() > 0) {
                 criteria.add(Restrictions.in("id", positionIds));
+                return positionDao.getPage(pageSize, pageNo, criteria);
             }
         }
-        return positionDao.getPage(pageSize, pageNo, criteria);
+        return null;
     }
 
 }

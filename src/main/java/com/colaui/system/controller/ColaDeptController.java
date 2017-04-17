@@ -26,6 +26,13 @@ public class ColaDeptController {
         return deptService.getPage(pageSize, pageNo, contain);
     }
 
+    @RequestMapping(value = "/groupdepts/", method = RequestMethod.GET)
+    public Page<ColaDept> groupDepts(@RequestParam int pageSize,
+                                     @RequestParam int pageNo,
+                                     @RequestParam(required=false) String groupId) {
+        return deptService.groupDepts(pageSize, pageNo, groupId);
+    }
+
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     public void save(@RequestBody ColaDept dept) {
         deptService.save(dept);

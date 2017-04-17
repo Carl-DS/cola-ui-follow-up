@@ -22,7 +22,7 @@ public class ColaGroupMemberController {
         return groupmemberService.getPage(pageSize, pageNo, contain);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "/user/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     public void saveGroupUser(@RequestBody Map<String, Object> params) {
         String groupId = (String) params.get("groupId");
         ArrayList<String> groupUserIds = (ArrayList<String>) params.get("groupUserIds");
@@ -34,6 +34,13 @@ public class ColaGroupMemberController {
         String groupId = (String) params.get("groupId");
         ArrayList<String> groupPositionIds = (ArrayList<String>) params.get("groupPositionIds");
         groupmemberService.saveGroupPosition(groupId, groupPositionIds);
+    }
+
+    @RequestMapping(value = "/dept/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    public void saveGroupDept(@RequestBody Map<String, Object> params) {
+        String groupId = (String) params.get("groupId");
+        ArrayList<String> groupDeptIds = (ArrayList<String>) params.get("groupDeptIds");
+        groupmemberService.saveGroupDept(groupId, groupDeptIds);
     }
 
     @RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)
@@ -49,6 +56,11 @@ public class ColaGroupMemberController {
     @RequestMapping(value = "/position/", method = RequestMethod.GET)
     public void deleteByPositionId(@RequestParam String groupId,@RequestParam String positionId) {
         groupmemberService.deleteByPositionId(groupId, positionId);
+    }
+
+    @RequestMapping(value = "/dept/", method = RequestMethod.GET)
+    public void deleteByDeptId(@RequestParam String groupId,@RequestParam String deptId) {
+        groupmemberService.deleteByDeptId(groupId, deptId);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
@@ -67,13 +79,18 @@ public class ColaGroupMemberController {
         return groupmemberService.find(from, limit);
     }
 
-    @RequestMapping(value = "/checksame/", method = RequestMethod.GET)
-    public List<ColaGroupMember> checkSame(@RequestParam String groupId, @RequestParam String username) {
-        return groupmemberService.checkSame(groupId, username);
+    @RequestMapping(value = "/checksame/user/", method = RequestMethod.GET)
+    public List<ColaGroupMember> checkSameUser(@RequestParam String groupId, @RequestParam String username) {
+        return groupmemberService.checkSameUser(groupId, username);
     }
 
     @RequestMapping(value = "/checksame/position/", method = RequestMethod.GET)
     public List<ColaGroupMember> checkSamePosition(@RequestParam String groupId, @RequestParam String positionId) {
         return groupmemberService.checkSamePosition(groupId, positionId);
+    }
+
+    @RequestMapping(value = "/checksame/dept/", method = RequestMethod.GET)
+    public List<ColaGroupMember> checkSameDept(@RequestParam String groupId, @RequestParam String deptId) {
+        return groupmemberService.checkSameDept(groupId, deptId);
     }
 }

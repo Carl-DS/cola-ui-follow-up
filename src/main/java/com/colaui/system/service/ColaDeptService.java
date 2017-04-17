@@ -15,4 +15,6 @@ public interface ColaDeptService {
     List<ColaDept> find(int from,int limit);
 
     List<ColaDept> getDepts(Map<String, Object> params);
+
+    Page<ColaDept> groupDepts(int pageSize, int pageNo, String groupId);
 }

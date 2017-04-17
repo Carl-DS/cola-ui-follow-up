@@ -16,18 +16,6 @@ import java.util.Map;
 @Repository
 public class ColaGroupMemberDao extends HibernateDao<ColaGroupMember, Long> {
 
-    public ArrayList getUsernames(String groupId) {
-        Criteria criteria = this.createCriteria();
-        criteria.add(Restrictions.eq("groupId", groupId));
-        criteria.add(Restrictions.isNotNull("username"));
-        List<ColaGroupMember> groupList = this.find(criteria);
-        ArrayList<String> usernames = new ArrayList<>();
-        for (ColaGroupMember group : groupList) {
-            usernames.add(group.getUsername());
-        }
-        return usernames;
-    }
-
     public void deleteByUsername(String groupId, String username) {
         Map<String, Object> param = new HashMap<>();
         StringBuffer sql = new StringBuffer("delete from ColaGroupMember where 1=1");
@@ -56,6 +44,31 @@ public class ColaGroupMemberDao extends HibernateDao<ColaGroupMember, Long> {
         query.executeUpdate();
     }
 
+    public void deleteByDeptId(String groupId, String deptId) {
+        Map<String, Object> param = new HashMap<>();
+        StringBuffer sql = new StringBuffer("delete from ColaGroupMember where 1=1");
+        if (StringUtils.isNotEmpty(deptId) && StringUtils.isNotEmpty(groupId)) {
+            sql.append(" and deptId=:deptId");
+            param.put("deptId", deptId);
+            sql.append(" and groupId=:groupId");
+            param.put("groupId", groupId);
+        }
+        Query query = this.createQuery(sql.toString(), param);
+        query.executeUpdate();
+    }
+
+    public ArrayList getUsernames(String groupId) {
+        Criteria criteria = this.createCriteria();
+        criteria.add(Restrictions.eq("groupId", groupId));
+        criteria.add(Restrictions.isNotNull("username"));
+        List<ColaGroupMember> groupList = this.find(criteria);
+        ArrayList<String> usernames = new ArrayList<>();
+        for (ColaGroupMember group : groupList) {
+            usernames.add(group.getUsername());
+        }
+        return usernames;
+    }
+
     public ArrayList getPositionIds(String groupId) {
         Criteria criteria = this.createCriteria();
         criteria.add(Restrictions.eq("groupId", groupId));
@@ -67,4 +80,17 @@ public class ColaGroupMemberDao extends HibernateDao<ColaGroupMember, Long> {
         }
         return positionIds;
     }
+
+    public ArrayList getDeptIds(String groupId) {
+        Criteria criteria = this.createCriteria();
+        criteria.add(Restrictions.eq("groupId", groupId));
+        criteria.add(Restrictions.isNotNull("deptId"));
+        List<ColaGroupMember> groupList = this.find(criteria);
+        ArrayList<String> deptIds = new ArrayList<>();
+        for (ColaGroupMember group : groupList) {
+            deptIds.add(group.getDeptId());
+        }
+        return deptIds;
+    }
+
 }

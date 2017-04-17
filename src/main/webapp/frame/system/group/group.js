@@ -104,13 +104,19 @@
         // 声明群组成员部门的EntityList
         model.describe("groupDepts", {
             provider: {
-                url: "service/frame/dept/depts"
+                url: "service/frame/dept/groupdepts/",
+                pageSize: 2,
+                beforeSend: function (self, arg) {
+                    var groupId = cola.widget("groupTable").get("currentItem").get("id");
+                    if (cola.defaultAction.isNotEmpty(groupId)) {
+                        // 使用encodeURI() 为了解决GET下传递中文出现的乱码
+                        arg.options.data.groupId = encodeURI(groupId);
+                    }
+                }
             }
         });
         // 声明已选择的岗位的EntityList
         model.set("selectedDepts", []);
-
-
 
         model.action({
             uuid:function () {
@@ -120,7 +126,6 @@
                 });
             },
             editGroup: function (group) {
-                debugger;
                 if (group.dataType) { // 修改
                     model.set("editItem", group.toJSON());
                 } else { // 新增
@@ -133,29 +138,20 @@
                 return cola.widget("groupSidebar").show();
             },
             deleteGroup: function (group) {
-                debugger;
                 cola.confirm("确认删除吗?",{
                     title: "消息提示",
                     level: "info",
                     onApprove: function () { // 确认时触发的回调
-                        group.remove();
                         $.ajax("./service/frame/group/"+group.get("id")+"/", {
                             type: "DELETE",
                             success: function () {
-                                debugger;
+                                group.remove();
                             }
                         })
                     }
                 });
             },
-            cancel: function (type) {
-                debugger;
-                model.set("editItem", {});
-                var widgetId = type + "Sidebar";
-                return cola.widget(widgetId).hide();
-            },
             saveGroup: function () {
-                debugger;
                 var group, state, data;
                 group = model.get("editItem");
                 state = group.state;
@@ -166,13 +162,17 @@
                         type: state==="new" ? "POST" : "PUT",
                         contentType: "application/json",
                         success: function () {
-                            debugger;
                             model.flush("groups");
                             model.get("editItem").setState("none");
                             cola.widget("groupSidebar").hide();
                         }
                     });
                 }
+            },
+            cancel: function (type) {
+                model.set("editItem", {});
+                var widgetId = type + "Sidebar";
+                return cola.widget(widgetId).hide();
             },
             editUser: function () {
                 // 刷新待选用户
@@ -182,40 +182,16 @@
                 cola.widget("userSidebar").show();
             },
             editPosition: function () {
-                // 刷新待选用户
+                // 刷新待选岗位
                 model.flush("positions");
-                // 重置已选择用户
+                // 重置已选择岗位
                 model.set("selectedPositions", []);
                 cola.widget("positionSidebar").show();
             },
             editDept: function () {
-                // 刷新待选用户
-                model.flush("depts");
-                // 重置已选择用户
-                model.set("selectedDepts", []);
                 cola.widget("deptSidebar").show();
             },
-            deleteUser: function(user) {
-                user.remove();
-            },
-            deletePosition: function(model) {
-                debugger;
-                var data = model.toJSON();
-                data.groupId = cola.widget("groupTable").get("currentItem").get("id");
-                $.ajax("./service/frame/groupmember/position/", {
-                    type: "GET",
-                    data: {"groupId": data.groupId, "positionId": data.id},
-                    contentType: "application/json; charset=utf-8",
-                    success: function (self, arg) {
-                        model.remove();
-                    }
-                });
-            },
-            deleteDept: function(dept) {
-                dept.remove();
-            },
-            delete: function (model) {
-                debugger;
+            deleteUser: function(model) {
                 var data = model.toJSON();
                 data.groupId = cola.widget("groupTable").get("currentItem").get("id");
                 $.ajax("./service/frame/groupmember/user/", {
@@ -227,12 +203,36 @@
                     }
                 });
             },
-            selectUser: function() {
+            deletePosition: function(model) {
+                var data = model.toJSON();
+                data.groupId = cola.widget("groupTable").get("currentItem").get("id");
+                $.ajax("./service/frame/groupmember/position/", {
+                    type: "GET",
+                    data: {"groupId": data.groupId, "positionId": data.id},
+                    contentType: "application/json; charset=utf-8",
+                    success: function (self, arg) {
+                        model.remove();
+                    }
+                });
+            },
+            deleteDept: function(model) {
                 debugger;
+                var data = model.toJSON();
+                data.groupId = cola.widget("groupTable").get("currentItem").get("id");
+                $.ajax("./service/frame/groupmember/dept/", {
+                    type: "GET",
+                    data: {"groupId": data.groupId, "deptId": data.id},
+                    contentType: "application/json; charset=utf-8",
+                    success: function (self, arg) {
+                        model.remove();
+                    }
+                });
+            },
+            selectUser: function() {
                 var currentUser = cola.widget("userTable").get("currentItem");
                 var groupId = cola.widget("groupTable").get("currentItem").get("id");
                 var username = currentUser.get("username");
-                $.ajax("./service/frame/groupmember/checksame/", {
+                $.ajax("./service/frame/groupmember/checksame/user/", {
                     type: "GET",
                     data: {"groupId": groupId, "username": username},
                     contentType: "application/json; charset=utf-8",
@@ -247,7 +247,6 @@
                 });
             },
             selectPosition: function() {
-                debugger;
                 var groupId = cola.widget("groupTable").get("currentItem").get("id");
                 var currentPosition = cola.widget("positionTable").get("currentItem");
                 var positionId = currentPosition.get("id");
@@ -265,6 +264,24 @@
                     }
                 });
             },
+            selectDept: function() {
+                var groupId = cola.widget("groupTable").get("currentItem").get("id");
+                var currentDept = cola.widget("deptTable").get("currentItem");
+                var deptId = currentDept.get("id");
+                $.ajax("./service/frame/groupmember/checksame/dept/", {
+                    type: "GET",
+                    data: {"groupId": groupId, "deptId": deptId},
+                    contentType: "application/json; charset=utf-8",
+                    success: function (self, arg) {
+                        if (self.length > 0) {
+                            cola.alert("当前选择的[" + currentDept.get("name") + "]已添加, 请重新选择");
+                        } else {
+                            model.get("selectedPositions").insert(currentDept.toJSON());
+                            // currentDept.remove();
+                        }
+                    }
+                });
+            },
             removeUser: function () {
                 var currentSelectedUser = cola.widget("selectedUserTable").get("currentItem");
                 model.get("users").insert(currentSelectedUser.toJSON());
@@ -276,7 +293,6 @@
                 currentSelectedPosition.remove();
             },
             saveGroupUser: function () {
-                debugger;
                 var selectedUsers = model.get("selectedUsers");
                 var groupUserIds = [];
                 if (selectedUsers.entityCount > 0) {
@@ -286,7 +302,7 @@
                 }
                 var currentGroupId = cola.widget("groupTable").get("currentItem").get("id");
                 var data = {"groupId":currentGroupId,"groupUserIds":groupUserIds};
-                $.ajax("./service/frame/groupmember/", {
+                $.ajax("./service/frame/groupmember/user/", {
                     type: "POST",
                     data: JSON.stringify(data),
                     contentType: "application/json; charset=utf-8",
@@ -297,7 +313,6 @@
                 })
             },
             saveGroupPosition: function () {
-                debugger;
                 var selectedPositions = model.get("selectedPositions");
                 var groupPositionIds = [];
                 if (selectedPositions.entityCount > 0) {
@@ -314,6 +329,28 @@
                     success: function (self, arg) {
                         model.flush("groupPositions");
                         cola.widget("positionSidebar").hide();
+                    }
+                })
+            },
+            saveGroupDept: function () {
+                debugger;
+                var selectedDepts = model.get("selectedDepts");
+                var groupDeptIds = [];
+                if (selectedDepts.entityCount > 0) {
+                    selectedDepts.each(function (selectedDept) {
+                        groupDeptIds.push(selectedDept.get("id"));
+                    });
+                }
+                var currentGroupId = cola.widget("groupTable").get("currentItem").get("id");
+                var data = {"groupId":currentGroupId,"groupDeptIds":groupDeptIds};
+                $.ajax("./service/frame/groupmember/dept/", {
+                    type: "POST",
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (self, arg) {
+                        model.flush("groupDepts");
+                        model.set("selectedDepts", []);
+                        cola.widget("deptSidebar").hide();
                     }
                 })
             }
@@ -461,7 +498,7 @@
             },
             groupDeptTable: {
                 $type: "table",
-                bind: "dept in depts",
+                bind: "groupDept in groupDepts",
                 showHeader: true,
                 changeCurrentItem: true,
                 currentPageOnly: true,
@@ -469,46 +506,58 @@
                 columns: [
                     {
                         bind: ".name",
-                        caption: "部门"
+                        caption: "部门名称"
                     }, {
                         caption: "操作",
                         template: "operation"
                     }
                 ]
             },
-            deptTable: {
-                $type: "table",
-                bind: "dept in depts",
-                showHeader: true,
-                changeCurrentItem: true,
-                currentPageOnly: true,
+            deptTree: {
+                $type: "tree",
+                lazyRenderChildNodes: true,
+                autoExpand: false,
+                autoCollapse: false,
                 highlightCurrentItem: true,
-                columns: [
-                    {
-                        bind: ".name",
-                        caption: "部门"
-                    }, {
-                        caption: "操作",
-                        template: "operation"
+                bind: {
+                    expression: "dept in depts",
+                    expanded: false,
+                    checkedProperty: "checked",
+                    valueProperty: "id",
+                    textProperty: "name",
+                    child: {
+                        recursive: true,
+                        expression: "dept in sort(dept.depts, 'order')",
+                        expanded: false,
+                        checkedProperty: "checked",
+                        valueProperty: "id",
+                        textProperty: "name"
                     }
-                ]
-            },
-            selectedDeptTable: {
-                $type: "table",
-                bind: "dept in depts",
-                showHeader: true,
-                changeCurrentItem: true,
-                currentPageOnly: true,
-                highlightCurrentItem: true,
-                columns: [
-                    {
-                        bind: ".name",
-                        caption: "部门"
-                    }, {
-                        caption: "操作",
-                        template: "operation"
+                },
+                itemClick: function (self, arg) {
+                    debugger;
+                    var currentData = self.get("currentNode").get("data");
+                    if (cola.defaultAction.isNotEmpty(currentData)) {
+                        if (currentData.get("checked")) {
+                            var groupId = cola.widget("groupTable").get("currentItem").get("id");
+                            var deptId = currentData.get("id");
+                            $.ajax("./service/frame/groupmember/checksame/dept/", {
+                                type: "GET",
+                                data: {"groupId": groupId, "deptId": deptId},
+                                contentType: "application/json; charset=utf-8",
+                                success: function (self, arg) {
+                                    if (self.length > 0) {
+                                        cola.alert("当前选择的[" + currentData.get("name") + "]已添加, 请重新选择");
+                                    } else {
+                                        model.get("selectedDepts").insert(currentData.toJSON());
+                                    }
+                                }
+                            });
+
+                        }
+
                     }
-                ]
+                }
             }
 
         });

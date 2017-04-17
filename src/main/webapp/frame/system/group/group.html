@@ -113,7 +113,7 @@
                                 <div id="groupUserTable">
                                     <template name="operation">
                                         <div>
-                                            <i c-onclick="delete(groupUser)" class="icon orange trash"></i>
+                                            <i c-onclick="deleteUser(groupUser)" class="icon orange trash"></i>
                                         </div>
                                     </template>
                                 </div>
@@ -240,7 +240,7 @@
                                 <div class="control item">
                                     <div>
                                         <!--显示部门页面-->
-                                        <c-button id="addLayerBtn" icon="plus" caption="" click="editDept" class="mini teal">添加</c-button>
+                                        <c-button id="showDeptSidebar" icon="plus" caption="" click="editDept" class="mini teal">添加</c-button>
                                     </div>
                                 </div>
                                 <div class="right menu">
@@ -250,7 +250,7 @@
                             <div id="groupDeptTable">
                                 <template name="operation">
                                     <div>
-                                        <i c-onclick="deleteDept(dept)" class="icon orange trash"></i>
+                                        <i c-onclick="deleteDept(groupDept)" class="icon orange trash"></i>
                                     </div>
                                 </template>
                             </div>
@@ -262,36 +262,16 @@
                                             <c-button icon="angle right" iconPosition="right" caption="返回" click="{{cancel('dept')}}" class="basic circular"></c-button>
                                         </div>
                                     </div>
-                                    <c-pager bind="depts" class="secondary">
-                                        <div class="menu">
-                                            <div page-code="pages" class="item"></div>
-                                        </div>
-                                    </c-pager>
                                     <!--选择部门 start-->
                                     <div class="content content-background flex-box">
                                         <div class="h-box">
                                             <!--待选部门-->
-                                            <div class="box">
-                                                <div id="deptTable">
-                                                    <template name="operation">
+                                            <div class="box" style="width: 100%;">
+                                                <div id="deptTree">
+                                                    <template name="node-default">
                                                         <div>
-                                                            <i c-onclick="deleteDept(dept)" class="icon orange trash"></i>
-                                                        </div>
-                                                    </template>
-                                                </div>
-                                            </div>
-                                            <div class="box" style="width: 60px;margin: 10px;padding-top: 18px;">
-                                                <!--选中部门-->
-                                                <c-button click="selectDept" icon="angle double right" class="basic"></c-button>
-                                                <!--移除选中的部门-->
-                                                <c-button click="removeDept" icon="angle double left" class="basic"></c-button>
-                                            </div>
-                                            <!--选中部门列表-->
-                                            <div class="box">
-                                                <div id="selectedDeptTable">
-                                                    <template name="operation">
-                                                        <div>
-                                                            <i c-onclick="deleteDept(dept)" class="icon orange trash"></i>
+                                                            <i c-classname="dept.icon"></i>
+                                                            <span c-bind="dept.name"></span>
                                                         </div>
                                                     </template>
                                                 </div>

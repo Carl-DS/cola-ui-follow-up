@@ -42,17 +42,6 @@ public class ColaGroupMemberServiceImpl implements ColaGroupMemberService {
         }
     }
 
-    //private void saveGroupMember(String groupId, ArrayList<String> members) {
-    //    ColaGroupMember groupmember = null;
-    //    for (String member : members) {
-    //        groupmember = new ColaGroupMember();
-    //        groupmember.setId(CommonUtils.uuid());
-    //        groupmember.setGroupId(groupId);
-    //        groupmember.setUsername(member);
-    //        groupmemberDao.save(groupmember);
-    //    }
-    //}
-
     public void saveGroupPosition(String groupId, ArrayList<String> groupPositionIds) {
         ColaGroupMember groupmember = null;
         for (String groupPositionId : groupPositionIds) {
@@ -60,6 +49,18 @@ public class ColaGroupMemberServiceImpl implements ColaGroupMemberService {
             groupmember.setId(CommonUtils.uuid());
             groupmember.setGroupId(groupId);
             groupmember.setPositionId(groupPositionId);
+            groupmemberDao.save(groupmember);
+        }
+    }
+
+    @Override
+    public void saveGroupDept(String groupId, ArrayList<String> groupDeptIds) {
+        ColaGroupMember groupmember = null;
+        for (String groupDeptId : groupDeptIds) {
+            groupmember = new ColaGroupMember();
+            groupmember.setId(CommonUtils.uuid());
+            groupmember.setGroupId(groupId);
+            groupmember.setDeptId(groupDeptId);
             groupmemberDao.save(groupmember);
         }
     }
@@ -75,7 +76,12 @@ public class ColaGroupMemberServiceImpl implements ColaGroupMemberService {
     }
 
     @Override
-    public List<ColaGroupMember> checkSame(String groupId, String username) {
+    public void deleteByDeptId(String groupId, String deptId) {
+        groupmemberDao.deleteByDeptId(groupId, deptId);
+    }
+
+    @Override
+    public List<ColaGroupMember> checkSameUser(String groupId, String username) {
         Criteria criteria = groupmemberDao.createCriteria();
         if (StringUtils.isNotEmpty(groupId) && StringUtils.isNotEmpty(username)) {
             Criterion lastRest= Restrictions.eq("groupId", groupId);
@@ -91,6 +97,17 @@ public class ColaGroupMemberServiceImpl implements ColaGroupMemberService {
         if (StringUtils.isNotEmpty(groupId) && StringUtils.isNotEmpty(positionId)) {
             Criterion lastRest= Restrictions.eq("groupId", groupId);
             Criterion firstRest= Restrictions.eq("positionId", positionId);
+            criteria.add(Restrictions.and(lastRest, firstRest));
+        }
+        return groupmemberDao.find(criteria);
+    }
+
+    @Override
+    public List<ColaGroupMember> checkSameDept(String groupId, String deptId) {
+        Criteria criteria = groupmemberDao.createCriteria();
+        if (StringUtils.isNotEmpty(groupId) && StringUtils.isNotEmpty(deptId)) {
+            Criterion lastRest= Restrictions.eq("groupId", groupId);
+            Criterion firstRest= Restrictions.eq("deptId", deptId);
             criteria.add(Restrictions.and(lastRest, firstRest));
         }
         return groupmemberDao.find(criteria);
