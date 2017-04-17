@@ -382,6 +382,8 @@
                     if (groupId!=model.get("groupId")) {
                         model.set("groupId", groupId);
                         model.flush("groupUsers");
+                        model.flush("groupPositions");
+                        model.flush("groupDepts");
                     }
                 }
             },
@@ -536,24 +538,36 @@
                 },
                 itemClick: function (self, arg) {
                     debugger;
+                    var isSame = false;
                     var currentData = self.get("currentNode").get("data");
                     if (cola.defaultAction.isNotEmpty(currentData)) {
                         if (currentData.get("checked")) {
                             var groupId = cola.widget("groupTable").get("currentItem").get("id");
                             var deptId = currentData.get("id");
-                            $.ajax("./service/frame/groupmember/checksame/dept/", {
-                                type: "GET",
-                                data: {"groupId": groupId, "deptId": deptId},
-                                contentType: "application/json; charset=utf-8",
-                                success: function (self, arg) {
-                                    if (self.length > 0) {
-                                        cola.alert("当前选择的[" + currentData.get("name") + "]已添加, 请重新选择");
-                                    } else {
-                                        model.get("selectedDepts").insert(currentData.toJSON());
-                                    }
-                                }
-                            });
 
+                            var selectedDepts = model.get("selectedDepts");
+                            if (selectedDepts.entityCount > 0) {
+                                selectedDepts.each(function (selectedDept) {
+                                    if (deptId === selectedDept.get("id")) {
+                                        return isSame = true;
+                                    }
+                                });
+                            }
+                            if (!isSame) {
+                                $.ajax("./service/frame/groupmember/checksame/dept/", {
+                                    type: "GET",
+                                    data: {"groupId": groupId, "deptId": deptId},
+                                    contentType: "application/json; charset=utf-8",
+                                    success: function (self, arg) {
+                                        if (self.length > 0) {
+                                            currentData.set("checked", false);
+                                            cola.alert("当前选择的[" + currentData.get("name") + "]已添加, 请重新选择");
+                                        } else {
+                                            model.get("selectedDepts").insert(currentData.toJSON());
+                                        }
+                                    }
+                                });
+                            }
                         }
 
                     }
