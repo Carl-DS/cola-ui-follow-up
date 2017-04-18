@@ -20,60 +20,26 @@
                 url: "/service/frame/role/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
-                    debugger;
                     var contain = model.get("contain");
                     if (cola.defaultAction.isNotEmpty(contain)) {
                         // 使用encodeURI() 为了解决GET下传递中文出现的乱码
                         arg.options.data.contain = encodeURI(contain);
                     }
-                },
-                complete: function () {
-                    // 生成序号
-                    var serialNo = 1;
-                    model.get("roles").each(function(role){
-                        role.set("serialNo",serialNo++);
-                    });
                 }
             }
         });
-        model.dataType({
-            name: "Url",
-            properties: {
-                label: {
-                    validators: ["required", {
-                        $type: "length",
-                        min: 0,
-                        max: 30
-                    }]
-                },
-                path: {
-                    validators: [{
-                        $type: "length",
-                        min: 0,
-                        max: 60
-                    }]
-                },
-                icon: {
-                    validators: ["required", {
-                        $type: "length",
-                        min: 0,
-                        max: 120
-                    }]
-                },
-                desc: {
-                    validators: [{
-                        $type: "length",
-                        min: 0,
-                        max: 60
-                    }]
-                }
-            }
-        });
+        model.get("roles", "sync");
 
         model.describe("urls", {
-            dataType: "Url",
             provider: {
-                url: parent.App.prop("service.menus")
+                url: "./service/frame/url/roleurls",
+                beforeSend: function (self, arg) {
+                    var roleId = cola.widget("roleTable").get("currentItem").get("id");
+                    if (cola.defaultAction.isNotEmpty(roleId)) {
+                        // 使用encodeURI() 为了解决GET下传递中文出现的乱码
+                        arg.options.data.roleId = encodeURI(roleId);
+                    }
+                }
             }
         });
 
@@ -138,37 +104,11 @@
             return body;
         };
         model.set("nodeList", []);
-        $.ajax("./service/frame/component/load", {data:{"url":"/frame/system/user/user.html"}}).done(function(result) {
-            debugger;
-            var body, components, findComponent, i, len, n, nodes, ref;
-            nodes = jQuery.parseHTML(result);
-            body = makeBody(nodes);
-            model.set("node", body);
-            components = [];
-            findComponent = function(el) {
-                var i, len, n, ref, results;
-                if (el.id) {
-                    components.push(el);
-                }
-                ref = el.nodes;
-                results = [];
-                for (i = 0, len = ref.length; i < len; i++) {
-                    n = ref[i];
-                    results.push(findComponent(n));
-                }
-                return results;
-            };
-            ref = body.nodes;
-            for (i = 0, len = ref.length; i < len; i++) {
-                n = ref[i];
-                findComponent(n);
-            }
-            return model.set("nodeList", components);
-        });
         model.set("node", {
             tagName: "body",
             nodes: []
         });
+
         model.action({
             showPageDomTree: function(url){
                 $.ajax("./service/frame/component/load", {data:{"url":url}}).done(function(result) {
@@ -176,7 +116,7 @@
                     var body, components, findComponent, i, len, n, nodes, ref;
                     nodes = jQuery.parseHTML(result);
                     body = makeBody(nodes);
-                    model.set("pageBodyNode", body);
+                    model.set("node", body);
                     components = [];
                     findComponent = function(el) {
                         var i, len, n, ref, results;
@@ -315,9 +255,6 @@
                 highlightCurrentItem: true,
                 currentPageOnly: true,
                 columns: [{
-                    caption: "序号",
-                    bind: ".serialNo"
-                },{
                     caption: "角色名",
                     bind: ".name"
                 },{
@@ -325,40 +262,33 @@
                     bind: ".desc"
                 }],
                 itemClick: function (self, arg) {
-                    // 拿到当前行id,根据id获取后台功能数据
-                    //var roleId = self.get("currentItem").get("roleCode");
+                    if (self.get("currentItem").get("id") != model.get("roleId")) {
+                        model.set("roleId", self.get("currentItem").get("id"));
+                        model.flush("urls");
+                    }
                 }
             },
             urlTree: {
                 $type: "tree",
-                lazyRenderChildNodes: true,
-                autoExpand: true,
-                autoCollapse: false,
                 highlightCurrentItem: true,
+                autoExpand: true,
                 bind: {
                     expression: "url in urls",
-                    popup: "url.label", // disabled
-                    valueProperty: "id",
                     textProperty: "label",
-                    expanded: true,
                     child: {
                         recursive: true,
                         expression: "url in sort(url.menus, 'order')",
-                        popup: "url.label", // disabled
-                        valueProperty: "id",
-                        textProperty: "label",
-                        expanded: true
+                        textProperty: "label"
                     }
                 },
                 itemClick: function(self, arg) {
-                    debugger;
                     var use=arg.item.get('data.forNavigation');
                     var url=arg.item.get('data.path');
                     if(use&&url){
                         model.action.showPageDomTree(url);
                     }else{
-                        model.set("pageNodeList", []);
-                        model.set("pageBodyNode", {
+                        model.set("nodeList", []);
+                        model.set("node", {
                             tagName: "body",
                             nodes: []
                         });

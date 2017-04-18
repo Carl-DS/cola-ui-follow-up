@@ -18,7 +18,7 @@
         model.describe("roles", {
             provider: {
                 url: "/service/frame/role/",
-                pageSize: 2,
+                pageSize: 10,
                 beforeSend: function (self, arg) {
                     var contain = model.get("contain");
                     if (cola.defaultAction.isNotEmpty(contain)) {
@@ -114,7 +114,6 @@
                     bind: ".desc"
                 }],
                 itemClick: function (self, arg) {
-                    // 拿到当前行id,根据id获取后台功能数据
                     if (self.get("currentItem").get("id") != model.get("roleId")) {
                         model.set("roleId", self.get("currentItem").get("id"));
                         model.flush("urls");
@@ -123,25 +122,16 @@
             },
             urlTree: {
                 $type: "tree",
-                lazyRenderChildNodes: false, // 懒装载子节点
-                autoExpand: false, // 是否在用户点击某个树节点时自动展开该节点
-                autoCollapse: false, // 是否在展开某个树节点时自动收缩与其同层的其他树节点
                 highlightCurrentItem: true,
                 bind: {
-                    expression: "url in urls",
-                    popup: "url.label", // disabled
-                    valueProperty: "id",
-                    textProperty: "label",
                     checkedProperty: "forNavigation",
-                    expanded: true,
+                    expression: "url in urls",
+                    textProperty: "label",
                     child: {
                         recursive: true,
-                        expression: "url in sort(url.menus, 'order')",
-                        popup: "url.label", // disabled
-                        valueProperty: "id",
-                        textProperty: "label",
                         checkedProperty: "forNavigation",
-                        expanded: true
+                        expression: "url in url.menus",
+                        textProperty: "label"
                     }
                 }
             }

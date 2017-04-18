@@ -1,11 +1,13 @@
 package com.colaui.system.controller;
 
 import com.colaui.example.model.ColaMessageTemplate;
-import com.colaui.system.service.ColaMessageTemplateService;
 import com.colaui.provider.Page;
+import com.colaui.system.service.ColaMessageTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 
 @RestController
@@ -17,7 +19,16 @@ public class ColaMessageTemplateController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public Page<ColaMessageTemplate> paging(@RequestParam int pageSize,
                                             @RequestParam int pageNo, @RequestParam(required=false) String contain) {
-        return messageTemplateService.getPage(pageSize, pageNo, contain);
+        String containDecode = null;
+        if (null != contain) {
+            try {
+                // 对前台使用的encodeURI() 进行解码
+                containDecode = URLDecoder.decode(contain, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+        return messageTemplateService.getPage(pageSize, pageNo, containDecode);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")

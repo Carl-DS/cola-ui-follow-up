@@ -54,13 +54,11 @@ cola(function (model) {
             bind: {
                 checkedProperty: "checked",
                 textProperty: "areaName",
-                valueProperty: "id",
                 expression: "area in areas",
                 child: {
                     recursive: true,
                     checkedProperty: "checked",
                     textProperty: "areaName",
-                    valueProperty: "id",
                     expression: "area in area.areas"
                 }
             }

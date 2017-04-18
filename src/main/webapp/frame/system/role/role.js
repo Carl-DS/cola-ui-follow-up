@@ -56,7 +56,7 @@
                     });
                     model.get("editItem").setState("new");
                 }
-                return cola.widget("addGroupSidebar").show();
+                return cola.widget("addRoleSidebar").show();
             },
             deleteRole: function (role) {
                 debugger;
@@ -76,7 +76,7 @@
             },
             cancel: function () {
                 model.set("editItem", {});
-                return cola.widget("addGroupSidebar").hide();
+                return cola.widget("addRoleSidebar").hide();
             },
             saveRole: function () {
                 debugger;
@@ -93,14 +93,14 @@
                             debugger;
                             model.flush("roles");
                             model.get("editItem").setState("none");
-                            cola.widget("addGroupSidebar").hide();
+                            cola.widget("addRoleSidebar").hide();
                         }
                     });
                 }
             }
         });
         model.widgetConfig({
-            addGroupSidebar: {
+            addRoleSidebar: {
                 $type: "sidebar",
                 size: "60%",
                 direction: "bottom",

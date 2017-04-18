@@ -75,6 +75,34 @@ public class ColaUrlServiceImpl implements ColaUrlService {
         return urls;
     }
 
+    @Override
+    public List<ColaUrl> getRoleUrls(Map<String, Object> params) {
+        params.put("companyId", "bstek");
+        List<ColaUrl> urls = getUrls(params);
+        List<ColaRoleResource> roleResources = roleResourceDao.getRoleUrls(params);
+        List<String> roleUrls = new ArrayList<>();
+        // 取出角色对应的资源id
+        for (ColaRoleResource resource : roleResources) {
+            roleUrls.add(resource.getUrlId());
+        }
+        checkForNavigation(urls,roleUrls);
+        recursiveMenus(urls);
+        return urls;
+    }
+
+    private void recursiveMenus(List<ColaUrl> urls) {
+        Iterator it = urls.iterator();
+        while(it.hasNext()) {
+            ColaUrl url = (ColaUrl) it.next();
+            if (!url.isForNavigation()) {
+                it.remove();
+            }
+            if (url.getMenus() != null && url.getMenus().size() > 0) {
+                recursiveMenus((List<ColaUrl>) url.getMenus());
+            }
+        }
+    }
+
     private void checkForNavigation(Collection<ColaUrl> urls, List<String> roleUrls) {
         if (urls.size() > 0) {
             for (ColaUrl url:urls) {

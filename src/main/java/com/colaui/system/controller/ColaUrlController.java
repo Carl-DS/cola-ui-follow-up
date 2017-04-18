@@ -23,8 +23,13 @@ public class ColaUrlController {
 
     @RequestMapping(value = "/menus", method = RequestMethod.GET)
     public List<ColaUrl> getUrls(@RequestParam(required = false) Map<String, Object> params) {
-        log.info("getUrls()=>", params);
+        log.info("getUrls()===>", params);
         return colaUrlService.getUrls(params);
+    }
+
+    @RequestMapping(value = "/roleurls", method = RequestMethod.GET)
+    public List<ColaUrl> getRoleUrls(@RequestParam(required = false) Map<String, Object> params) {
+        return colaUrlService.getRoleUrls(params);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
