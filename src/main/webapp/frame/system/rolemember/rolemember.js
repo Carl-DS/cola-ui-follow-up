@@ -57,10 +57,10 @@
                 url: "/service/frame/position/rolepositions/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
-                    var groupId = cola.widget("roleTable").get("currentItem").get("id");
-                    if (cola.defaultAction.isNotEmpty(groupId)) {
+                    var roleId = cola.widget("roleTable").get("currentItem").get("id");
+                    if (cola.defaultAction.isNotEmpty(roleId)) {
                         // 使用encodeURI() 为了解决GET下传递中文出现的乱码
-                        arg.options.data.groupId = encodeURI(groupId);
+                        arg.options.data.roleId = encodeURI(roleId);
                     }
                 }
             }
@@ -88,10 +88,10 @@
                 url: "service/frame/dept/roledepts/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
-                    var groupId = cola.widget("roleTable").get("currentItem").get("id");
-                    if (cola.defaultAction.isNotEmpty(groupId)) {
+                    var roleId = cola.widget("roleTable").get("currentItem").get("id");
+                    if (cola.defaultAction.isNotEmpty(roleId)) {
                         // 使用encodeURI() 为了解决GET下传递中文出现的乱码
-                        arg.options.data.groupId = encodeURI(groupId);
+                        arg.options.data.roleId = encodeURI(roleId);
                     }
                 }
             }
@@ -108,13 +108,13 @@
         // 声明角色成员群组的EntityList
         model.describe("roleGroups", {
             provider: {
-                url: "service/frame/dept/rolegroups/",
+                url: "service/frame/group/rolegroups/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
-                    var groupId = cola.widget("roleTable").get("currentItem").get("id");
-                    if (cola.defaultAction.isNotEmpty(groupId)) {
+                    var roleId = cola.widget("roleTable").get("currentItem").get("id");
+                    if (cola.defaultAction.isNotEmpty(roleId)) {
                         // 使用encodeURI() 为了解决GET下传递中文出现的乱码
-                        arg.options.data.groupId = encodeURI(groupId);
+                        arg.options.data.roleId = encodeURI(roleId);
                     }
                 }
             }
@@ -142,6 +142,7 @@
                     title: "消息提示",
                     level: "info",
                     onApprove: function () { // 确认时触发的回调
+                        model.flush("roles");
                         cola.alert("刷新成功!");
                     }
                 });
@@ -171,10 +172,229 @@
                 cola.widget("deptSidebar").show();
             },
             editGroup: function () {
+                // 刷新待选群组
+                model.flush("groups");
                 // 重置已选择群组
                 model.set("selectedGroups", []);
                 cola.widget("groupSidebar").show();
             },
+            deleteUser: function(model) {
+                var data = model.toJSON();
+                data.roleId = cola.widget("roleTable").get("currentItem").get("id");
+                $.ajax("./service/frame/rolemember/user/", {
+                    type: "GET",
+                    data: {"roleId": data.roleId, "username": data.username},
+                    contentType: "application/json; charset=utf-8",
+                    success: function (self, arg) {
+                        model.remove();
+                    }
+                });
+            },
+            deletePosition: function(model) {
+                var data = model.toJSON();
+                data.roleId = cola.widget("roleTable").get("currentItem").get("id");
+                $.ajax("./service/frame/rolemember/position/", {
+                    type: "GET",
+                    data: {"roleId": data.roleId, "positionId": data.id},
+                    contentType: "application/json; charset=utf-8",
+                    success: function (self, arg) {
+                        model.remove();
+                    }
+                });
+            },
+            deleteDept: function(model) {
+                var data = model.toJSON();
+                data.roleId = cola.widget("roleTable").get("currentItem").get("id");
+                $.ajax("./service/frame/rolemember/dept/", {
+                    type: "GET",
+                    data: {"roleId": data.roleId, "deptId": data.id},
+                    contentType: "application/json; charset=utf-8",
+                    success: function (self, arg) {
+                        model.remove();
+                    }
+                });
+            },
+            deleteGroup: function(model) {
+                var data = model.toJSON();
+                data.roleId = cola.widget("roleTable").get("currentItem").get("id");
+                $.ajax("./service/frame/rolemember/group/", {
+                    type: "GET",
+                    data: {"roleId": data.roleId, "groupId": data.id},
+                    contentType: "application/json; charset=utf-8",
+                    success: function (self, arg) {
+                        model.remove();
+                    }
+                });
+            },
+            selectUser: function() {
+                var roleId = cola.widget("roleTable").get("currentItem").get("id");
+                var currentUser = cola.widget("userTable").get("currentItem");
+                var username = currentUser.get("username");
+                $.ajax("./service/frame/rolemember/checksame/user/", {
+                    type: "GET",
+                    data: {"roleId": roleId, "username": username},
+                    contentType: "application/json; charset=utf-8",
+                    success: function (self, arg) {
+                        if (self.length > 0) {
+                            cola.alert("当前选择的[" + currentUser.get("cname") + "]已添加, 请重新选择");
+                        } else {
+                            model.get("selectedUsers").insert(currentUser.toJSON());
+                            currentUser.remove();
+                        }
+                    }
+                });
+            },
+            selectPosition: function() {
+                var roleId = cola.widget("roleTable").get("currentItem").get("id");
+                var currentPosition = cola.widget("positionTable").get("currentItem");
+                var positionId = currentPosition.get("id");
+                $.ajax("./service/frame/rolemember/checksame/position/", {
+                    type: "GET",
+                    data: {"roleId": roleId, "positionId": positionId},
+                    contentType: "application/json; charset=utf-8",
+                    success: function (self, arg) {
+                        if (self.length > 0) {
+                            cola.alert("当前选择的[" + currentPosition.get("name") + "]已添加, 请重新选择");
+                        } else {
+                            model.get("selectedPositions").insert(currentPosition.toJSON());
+                            currentPosition.remove();
+                        }
+                    }
+                });
+            },
+            selectDept: function() {
+                var roleId = cola.widget("roleTable").get("currentItem").get("id");
+                var currentDept = cola.widget("deptTable").get("currentItem");
+                var deptId = currentDept.get("id");
+                $.ajax("./service/frame/rolemember/checksame/dept/", {
+                    type: "GET",
+                    data: {"roleId": roleId, "deptId": deptId},
+                    contentType: "application/json; charset=utf-8",
+                    success: function (self, arg) {
+                        if (self.length > 0) {
+                            cola.alert("当前选择的[" + currentDept.get("name") + "]已添加, 请重新选择");
+                        } else {
+                            model.get("selectedPositions").insert(currentDept.toJSON());
+                            // currentDept.remove();
+                        }
+                    }
+                });
+            },
+            selectGroup: function() {
+                var roleId = cola.widget("roleTable").get("currentItem").get("id");
+                var currentGroup = cola.widget("groupTable").get("currentItem");
+                var groupId = currentGroup.get("id");
+                $.ajax("./service/frame/rolemember/checksame/group/", {
+                    type: "GET",
+                    data: {"roleId": roleId, "groupId": groupId},
+                    contentType: "application/json; charset=utf-8",
+                    success: function (self, arg) {
+                        if (self.length > 0) {
+                            cola.alert("当前选择的[" + currentGroup.get("name") + "]已添加, 请重新选择");
+                        } else {
+                            model.get("selectedGroups").insert(currentGroup.toJSON());
+                            currentGroup.remove();
+                        }
+                    }
+                });
+            },
+            removeUser: function () {
+                var currentSelectedUser = cola.widget("selectedUserTable").get("currentItem");
+                model.get("users").insert(currentSelectedUser.toJSON());
+                currentSelectedUser.remove();
+            },
+            removePosition: function () {
+                var currentSelectedPosition = cola.widget("selectedPositionTable").get("currentItem");
+                model.get("positions").insert(currentSelectedPosition.toJSON());
+                currentSelectedPosition.remove();
+            },
+            removeGroup: function () {
+                var currentSelectedGroup = cola.widget("selectedGroupTable").get("currentItem");
+                model.get("groups").insert(currentSelectedGroup.toJSON());
+                currentSelectedGroup.remove();
+            },
+            saveRoleUser: function () {
+                debugger;
+                var selectedUsers = model.get("selectedUsers");
+                var roleUserIds = [];
+                if (selectedUsers.entityCount > 0) {
+                    selectedUsers.each(function (selectedUser) {
+                        roleUserIds.push(selectedUser.get("username"));
+                    });
+                }
+                var currentRoleId = cola.widget("roleTable").get("currentItem").get("id");
+                var data = {"roleId":currentRoleId,"roleUserIds":roleUserIds};
+                $.ajax("./service/frame/rolemember/user/", {
+                    type: "POST",
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (self, arg) {
+                        model.flush("roleUsers");
+                        cola.widget("userSidebar").hide();
+                    }
+                })
+            },
+            saveRolePosition: function () {
+                var selectedPositions = model.get("selectedPositions");
+                var rolePositionIds = [];
+                if (selectedPositions.entityCount > 0) {
+                    selectedPositions.each(function (selectedPosition) {
+                        rolePositionIds.push(selectedPosition.get("id"));
+                    });
+                }
+                var currentRoleId = cola.widget("roleTable").get("currentItem").get("id");
+                var data = {"roleId":currentRoleId,"rolePositionIds":rolePositionIds};
+                $.ajax("./service/frame/rolemember/position/", {
+                    type: "POST",
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (self, arg) {
+                        model.flush("rolePositions");
+                        cola.widget("positionSidebar").hide();
+                    }
+                })
+            },
+            saveRoleDept: function () {
+                var selectedDepts = model.get("selectedDepts");
+                var roleDeptIds = [];
+                if (selectedDepts.entityCount > 0) {
+                    selectedDepts.each(function (selectedDept) {
+                        roleDeptIds.push(selectedDept.get("id"));
+                    });
+                }
+                var currentRoleId = cola.widget("roleTable").get("currentItem").get("id");
+                var data = {"roleId":currentRoleId,"roleDeptIds":roleDeptIds};
+                $.ajax("./service/frame/rolemember/dept/", {
+                    type: "POST",
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (self, arg) {
+                        model.flush("roleDepts");
+                        model.set("selectedDepts", []);
+                        cola.widget("deptSidebar").hide();
+                    }
+                })
+            },
+            saveRoleGroup: function () {
+                var selectedGroups = model.get("selectedGroups");
+                var roleGroupIds = [];
+                if (selectedGroups.entityCount > 0) {
+                    selectedGroups.each(function (selectedGroup) {
+                        roleGroupIds.push(selectedGroup.get("id"));
+                    });
+                }
+                var currentRoleId = cola.widget("roleTable").get("currentItem").get("id");
+                var data = {"roleId":currentRoleId,"roleGroupIds":roleGroupIds};
+                $.ajax("./service/frame/rolemember/group/", {
+                    type: "POST",
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (self, arg) {
+                        model.flush("roleGroups");
+                        cola.widget("groupSidebar").hide();
+                    }
+                })
+            }
         });
 
         model.widgetConfig({
@@ -273,8 +493,8 @@
             rolePositionTable: {
                 $type: "table",
                 bind: "rolePosition in rolePositions",
-                changeCurrentItem: true,
                 showHeader: true,
+                changeCurrentItem: true,
                 currentPageOnly: true,
                 highlightCurrentItem: true,
                 columns: [
@@ -290,8 +510,8 @@
             positionTable: {
                 $type: "table",
                 bind: "position in positions",
-                changeCurrentItem: true,
                 showHeader: true,
+                changeCurrentItem: true,
                 currentPageOnly: true,
                 highlightCurrentItem: true,
                 columns: [
@@ -304,8 +524,8 @@
             selectedPositionTable: {
                 $type: "table",
                 bind: "selectedPosition in selectedPositions",
-                changeCurrentItem: true,
                 showHeader: true,
+                changeCurrentItem: true,
                 currentPageOnly: true,
                 highlightCurrentItem: true,
                 columns: [
@@ -317,7 +537,7 @@
             },
             roleDeptTable: {
                 $type: "table",
-                bind: "groupDept in groupDepts",
+                bind: "roleDept in roleDepts",
                 showHeader: true,
                 changeCurrentItem: true,
                 currentPageOnly: true,
@@ -359,7 +579,7 @@
                     var currentData = self.get("currentNode").get("data");
                     if (cola.defaultAction.isNotEmpty(currentData)) {
                         if (currentData.get("checked")) {
-                            var groupId = cola.widget("groupTable").get("currentItem").get("id");
+                            var roleId = cola.widget("roleTable").get("currentItem").get("id");
                             var deptId = currentData.get("id");
 
                             var selectedDepts = model.get("selectedDepts");
@@ -371,9 +591,9 @@
                                 });
                             }
                             if (!isSame) {
-                                $.ajax("./service/frame/groupmember/checksame/dept/", {
+                                $.ajax("./service/frame/rolemember/checksame/dept/", {
                                     type: "GET",
-                                    data: {"groupId": groupId, "deptId": deptId},
+                                    data: {"roleId": roleId, "deptId": deptId},
                                     contentType: "application/json; charset=utf-8",
                                     success: function (self, arg) {
                                         if (self.length > 0) {
@@ -394,6 +614,7 @@
                 $type: "table",
                 bind: "roleGroup in roleGroups",
                 showHeader: true,
+                changeCurrentItem: true,
                 currentPageOnly: true,
                 highlightCurrentItem: true,
                 columns: [
@@ -410,6 +631,7 @@
                 $type: "table",
                 bind: "group in groups",
                 showHeader: true,
+                changeCurrentItem: true,
                 currentPageOnly: true,
                 highlightCurrentItem: true,
                 columns: [
@@ -423,6 +645,7 @@
                 $type: "table",
                 bind: "selectedGroup in selectedGroups",
                 showHeader: true,
+                changeCurrentItem: true,
                 currentPageOnly: true,
                 highlightCurrentItem: true,
                 columns: [

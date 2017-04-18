@@ -216,7 +216,6 @@
                 });
             },
             deleteDept: function(model) {
-                debugger;
                 var data = model.toJSON();
                 data.groupId = cola.widget("groupTable").get("currentItem").get("id");
                 $.ajax("./service/frame/groupmember/dept/", {
@@ -569,7 +568,6 @@
                                 });
                             }
                         }
-
                     }
                 }
             }

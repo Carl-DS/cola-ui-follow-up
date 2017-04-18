@@ -68,6 +68,13 @@ public class ColaUserController {
         return colaUserService.groupUsers(pageSize, pageNo, groupId);
     }
 
+    @RequestMapping(value = "/roleusers/", method = RequestMethod.GET)
+    public Page<ColaUser> roleUsers(@RequestParam int pageSize,
+                                     @RequestParam int pageNo,
+                                     @RequestParam String roleId) {
+        return colaUserService.roleUsers(pageSize, pageNo, roleId);
+    }
+
     @RequestMapping(value="/check", method = RequestMethod.GET)
     public boolean check(@RequestParam String username) {
         return colaUserService.check(username);

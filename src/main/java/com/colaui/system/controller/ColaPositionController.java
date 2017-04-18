@@ -27,6 +27,13 @@ public class ColaPositionController {
         return positionService.groupPositions(pageSize, pageNo, groupId);
     }
 
+    @RequestMapping(value = "/rolepositions/", method = RequestMethod.GET)
+    public Page<ColaPosition> rolePositions(@RequestParam int pageSize,
+                                             @RequestParam int pageNo,
+                                             @RequestParam(required=false) String roleId) {
+        return positionService.rolePositions(pageSize, pageNo, roleId);
+    }
+
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     public void save(@RequestBody ColaPosition position) {
         positionService.save(position);

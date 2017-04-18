@@ -11,4 +11,6 @@ public interface ColaGroupService {
     void update(ColaGroup group);
     ColaGroup find(String id);
     List<ColaGroup> find(int from,int limit);
+
+    Page<ColaGroup> roleGroups(int pageSize, int pageNo, String roleId);
 }

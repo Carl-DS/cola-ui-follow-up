@@ -3,6 +3,7 @@ package com.colaui.system.service.impl;
 import com.colaui.example.model.ColaGroup;
 import com.colaui.provider.Page;
 import com.colaui.system.dao.ColaGroupDao;
+import com.colaui.system.dao.ColaRoleMemberDao;
 import com.colaui.system.service.ColaGroupService;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
@@ -12,12 +13,15 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ColaGroupServiceImpl implements ColaGroupService {
     @Autowired
     private ColaGroupDao groupDao;
+    @Autowired
+    private ColaRoleMemberDao roleMemberDao;
 
     public Page<ColaGroup> getPage(int pageSize, int pageNo, String contain) {
         Criteria criteria = groupDao.createCriteria();
@@ -47,6 +51,19 @@ public class ColaGroupServiceImpl implements ColaGroupService {
 
     public List<ColaGroup> find(int from, int limit) {
         return groupDao.find(from, limit);
+    }
+
+    public Page<ColaGroup> roleGroups(int pageSize, int pageNo, String roleId) {
+        Criteria criteria = groupDao.createCriteria();
+        ArrayList groupIds = null;
+        if (StringUtils.isNotEmpty(roleId)) {
+            groupIds = roleMemberDao.getGroupIds(roleId);
+            if (groupIds.size() > 0) {
+                criteria.add(Restrictions.in("id", groupIds));
+                return groupDao.getPage(pageSize, pageNo, criteria);
+            }
+        }
+        return null;
     }
 
 }

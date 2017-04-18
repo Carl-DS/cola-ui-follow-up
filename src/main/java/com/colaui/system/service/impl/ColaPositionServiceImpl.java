@@ -4,6 +4,7 @@ import com.colaui.example.model.ColaPosition;
 import com.colaui.provider.Page;
 import com.colaui.system.dao.ColaGroupMemberDao;
 import com.colaui.system.dao.ColaPositionDao;
+import com.colaui.system.dao.ColaRoleMemberDao;
 import com.colaui.system.service.ColaPositionService;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
@@ -22,6 +23,8 @@ public class ColaPositionServiceImpl implements ColaPositionService {
     private ColaPositionDao positionDao;
     @Autowired
     private ColaGroupMemberDao groupMemberDao;
+    @Autowired
+    private ColaRoleMemberDao roleMemberDao;
 
     public Page<ColaPosition> getPage(int pageSize, int pageNo, String contain) {
         Criteria criteria = positionDao.createCriteria();
@@ -55,9 +58,23 @@ public class ColaPositionServiceImpl implements ColaPositionService {
 
     @Override
     public Page<ColaPosition> groupPositions(int pageSize, int pageNo, String groupId) {
+        return extractGetPositions(pageSize, pageNo, groupId, "group");
+    }
+
+    @Override
+    public Page<ColaPosition> rolePositions(int pageSize, int pageNo, String roleId) {
+        return extractGetPositions(pageSize, pageNo, roleId, "role");
+    }
+
+    private Page<ColaPosition> extractGetPositions(int pageSize, int pageNo, String id, String type) {
         Criteria criteria = positionDao.createCriteria();
-        if (StringUtils.isNotEmpty(groupId)) {
-            ArrayList positionIds = groupMemberDao.getPositionIds(groupId);
+        ArrayList positionIds = null;
+        if (StringUtils.isNotEmpty(id)) {
+            if (type.equals("group")) {
+                positionIds = groupMemberDao.getPositionIds(id);
+            } else if (type.equals("role")) {
+                positionIds = roleMemberDao.getPositionIds(id);
+            }
             if (positionIds.size() > 0) {
                 criteria.add(Restrictions.in("id", positionIds));
                 return positionDao.getPage(pageSize, pageNo, criteria);

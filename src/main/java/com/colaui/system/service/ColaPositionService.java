@@ -13,4 +13,6 @@ public interface ColaPositionService {
     List<ColaPosition> find(int from,int limit);
 
     Page<ColaPosition> groupPositions(int pageSize, int pageNo, String groupId);
+
+    Page<ColaPosition> rolePositions(int pageSize, int pageNo, String roleId);
 }

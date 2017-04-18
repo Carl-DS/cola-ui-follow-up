@@ -4,6 +4,7 @@ import com.colaui.example.model.ColaDept;
 import com.colaui.provider.Page;
 import com.colaui.system.dao.ColaDeptDao;
 import com.colaui.system.dao.ColaGroupMemberDao;
+import com.colaui.system.dao.ColaRoleMemberDao;
 import com.colaui.system.service.ColaDeptService;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
@@ -23,6 +24,8 @@ public class ColaDeptServiceImpl implements ColaDeptService {
     private ColaDeptDao deptDao;
     @Autowired
     private ColaGroupMemberDao groupMemberDao;
+    @Autowired
+    private ColaRoleMemberDao roleMemberDao;
 
     public Page<ColaDept> getPage(int pageSize, int pageNo, String contain) {
         Criteria criteria = deptDao.createCriteria();
@@ -79,9 +82,23 @@ public class ColaDeptServiceImpl implements ColaDeptService {
 
     @Override
     public Page<ColaDept> groupDepts(int pageSize, int pageNo, String groupId) {
+        return extractGetDepts(pageSize, pageNo, groupId, "group");
+    }
+
+    @Override
+    public Page<ColaDept> roleDepts(int pageSize, int pageNo, String roleId) {
+        return extractGetDepts(pageSize, pageNo, roleId, "role");
+    }
+
+    private Page<ColaDept> extractGetDepts(int pageSize, int pageNo, String id, String type) {
         Criteria criteria = deptDao.createCriteria();
-        if (StringUtils.isNotEmpty(groupId)) {
-            ArrayList deptIds = groupMemberDao.getDeptIds(groupId);
+        ArrayList deptIds = null;
+        if (StringUtils.isNotEmpty(id)) {
+            if (type.equals("group")) {
+                deptIds = groupMemberDao.getDeptIds(id);
+            } else if (type.equals("role")) {
+                deptIds = roleMemberDao.getDeptIds(id);
+            }
             if (deptIds.size() > 0) {
                 criteria.add(Restrictions.in("id", deptIds));
                 return deptDao.getPage(pageSize, pageNo, criteria);

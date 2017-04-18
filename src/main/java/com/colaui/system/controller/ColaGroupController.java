@@ -20,6 +20,13 @@ public class ColaGroupController {
         return groupService.getPage(pageSize, pageNo, contain);
     }
 
+    @RequestMapping(value = "/rolegroups/", method = RequestMethod.GET)
+    public Page<ColaGroup> roleGroups(@RequestParam int pageSize,
+                                      @RequestParam int pageNo,
+                                      @RequestParam(required=false) String roleId) {
+        return groupService.roleGroups(pageSize, pageNo, roleId);
+    }
+
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     public void save(@RequestBody ColaGroup group) {
         groupService.save(group);

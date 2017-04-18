@@ -110,7 +110,7 @@
                             <!--选择用户页面 end-->
                         </li>
                         <li name="tabTwo">
-                            <c-pager bind="groupPositions" class="secondary">
+                            <c-pager bind="rolePositions" class="secondary">
                                 <div class="control item">
                                     <div>
                                         <!--显示添加页面-->
@@ -218,7 +218,7 @@
                                     <div class="box">
                                         <div class="ui segment basic">
                                             <c-button icon="remove" caption="取消" click="{{cancel('dept')}}" class="negative mini"></c-button>
-                                            <c-button icon="checkmark" caption="确认" click="saveGroupDept" class="positive mini"></c-button>
+                                            <c-button icon="checkmark" caption="确认" click="saveRoleDept" class="positive mini"></c-button>
                                         </div>
                                     </div>
                                 </div>
@@ -266,9 +266,9 @@
                                             </div>
                                             <div class="box" style="width: 60px;margin: 10px;padding-top: 18px;">
                                                 <!--选中群组-->
-                                                <c-button click="selectPosition" icon="angle double right" class="basic"></c-button>
+                                                <c-button click="selectGroup" icon="angle double right" class="basic"></c-button>
                                                 <!--移除选中的群组-->
-                                                <c-button click="removePosition" icon="angle double left" class="basic"></c-button>
+                                                <c-button click="removeGroup" icon="angle double left" class="basic"></c-button>
                                             </div>
                                             <!--选中群组列表-->
                                             <div class="box">
