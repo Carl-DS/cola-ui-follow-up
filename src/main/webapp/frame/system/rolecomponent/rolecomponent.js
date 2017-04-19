@@ -17,7 +17,7 @@
         model.describe("roles", {
             dataType: "Role",
             provider: {
-                url: "/service/frame/role/",
+                url: "./service/frame/role/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var contain = model.get("contain");
@@ -194,12 +194,14 @@
                 list = [];
                 pushElement = function(el) {
                     return list.push({
-                        id: el.id,
+                        componentId: el.id,
                         visible: el.visible,
-                        editable: el.editable
+                        editable: el.editable,
+                        roleId: cola.widget("roleTable").get("currentItem").get("id"),
+                        urlId: model.get("urlId")
                     });
                 };
-                if (index === 0) {
+                if (index === 1) {
                     body = model.get("node").toJSON();
                     recursiveMakeList = function(el) {
                         var childNode, i, len, ref, results;
@@ -226,7 +228,21 @@
                         pushElement(item);
                     }
                 }
-                return console.log(list);
+
+                console.log(list);
+                // var data={
+                //
+                //     urlComponents:list
+                // };
+                return $.ajax("./service/frame/urlcomponent/", {
+                    data: JSON.stringify(list),
+                    contentType: "application/json",
+                    type: "POST",
+                    success:function(){
+                        cola.alert("保存成功!")
+                    }
+                });
+
             },
             getNodeName: function(node) {
                 var comment, id, nodeName, tagName;
@@ -284,7 +300,9 @@
                 itemClick: function(self, arg) {
                     var use=arg.item.get('data.forNavigation');
                     var url=arg.item.get('data.path');
+                    var urlId=arg.item.get('data.id');
                     if(use&&url){
+                        model.set("urlId", urlId);
                         model.action.showPageDomTree(url);
                     }else{
                         model.set("nodeList", []);
