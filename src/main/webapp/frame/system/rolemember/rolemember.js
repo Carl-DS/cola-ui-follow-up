@@ -5,7 +5,7 @@
     cola(function (model) {
         model.describe("roles", {
             provider: {
-                url: "/service/frame/role/",
+                url: "./service/frame/role/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var contain = model.get("contain");
@@ -23,7 +23,7 @@
         // 声明角色成员用户的EntityList
         model.describe("roleUsers", {
             provider: {
-                url: "/service/frame/user/roleusers/",
+                url: "./service/frame/user/roleusers/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var roleId = cola.widget("roleTable").get("currentItem").get("id");
@@ -37,7 +37,7 @@
         // 待选择的用户
         model.describe("users", {
             provider: {
-                url: "/service/frame/user/",
+                url: "./service/frame/user/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var contain = model.get("contain");
@@ -54,7 +54,7 @@
         // 声明角色成员岗位的EntityList
         model.describe("rolePositions", {
             provider: {
-                url: "/service/frame/position/rolepositions/",
+                url: "./service/frame/position/rolepositions/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var roleId = cola.widget("roleTable").get("currentItem").get("id");
@@ -68,7 +68,7 @@
         // 待选择的岗位
         model.describe("positions", {
             provider: {
-                url: "/service/frame/position/",
+                url: "./service/frame/position/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var contain = model.get("contain");
@@ -85,7 +85,7 @@
         // 声明角色成员部门的EntityList
         model.describe("roleDepts", {
             provider: {
-                url: "service/frame/dept/roledepts/",
+                url: "./service/frame/dept/roledepts/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var roleId = cola.widget("roleTable").get("currentItem").get("id");
@@ -99,7 +99,7 @@
         // 待选择的部门
         model.describe("depts", {
             provider: {
-                url: "service/frame/dept/depts"
+                url: "./service/frame/dept/depts"
             }
         });
         // 声明已选择的岗位的EntityList
@@ -108,7 +108,7 @@
         // 声明角色成员群组的EntityList
         model.describe("roleGroups", {
             provider: {
-                url: "service/frame/group/rolegroups/",
+                url: "./service/frame/group/rolegroups/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var roleId = cola.widget("roleTable").get("currentItem").get("id");
@@ -122,7 +122,7 @@
         // 待选择的群组
         model.describe("groups", {
             provider: {
-                url: "/service/frame/group/",
+                url: "./service/frame/group/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var contain = model.get("contain");

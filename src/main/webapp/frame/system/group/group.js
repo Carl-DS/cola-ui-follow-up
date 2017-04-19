@@ -17,7 +17,7 @@
         model.describe("groups", {
             dataType: "Group",
             provider: {
-                url: "/service/frame/group/",
+                url: "./service/frame/group/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var contain = model.get("contain");
@@ -36,7 +36,7 @@
         // 待选择的用户
         model.describe("users", {
             provider: {
-                url: "/service/frame/user/",
+                url: "./service/frame/user/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var contain = model.get("contain");
@@ -50,7 +50,7 @@
         // 声明群组成员用户的EntityList
         model.describe("groupUsers", {
             provider: {
-                url: "/service/frame/user/groupusers/",
+                url: "./service/frame/user/groupusers/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var groupId = cola.widget("groupTable").get("currentItem").get("id");
@@ -67,7 +67,7 @@
         // 待选择的岗位
         model.describe("positions", {
             provider: {
-                url: "/service/frame/position/",
+                url: "./service/frame/position/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var contain = model.get("contain");
@@ -81,7 +81,7 @@
         // 声明群组成员岗位的EntityList
         model.describe("groupPositions", {
             provider: {
-                url: "/service/frame/position/grouppositions/",
+                url: "./service/frame/position/grouppositions/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var groupId = cola.widget("groupTable").get("currentItem").get("id");
@@ -98,13 +98,13 @@
         // 待选择的部门
         model.describe("depts", {
             provider: {
-                url: "service/frame/dept/depts"
+                url: "./service/frame/dept/depts"
             }
         });
         // 声明群组成员部门的EntityList
         model.describe("groupDepts", {
             provider: {
-                url: "service/frame/dept/groupdepts/",
+                url: "./service/frame/dept/groupdepts/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var groupId = cola.widget("groupTable").get("currentItem").get("id");

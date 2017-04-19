@@ -1,21 +1,43 @@
 package com.colaui.example.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 
 /**
  * Created by carl.li on 2017/3/3.
  */
 @Entity
-@Table(name = "COLA_URL_COMPONENT")
-public class ColaUrlComponent {
-    private String id;
-    private String authorityType;
-    private String roleId;
-    private String urlId;
-    private String componentId;
+@Table(name="COLA_URL_COMPONENT")
+public class ColaUrlComponent implements java.io.Serializable{
+    private static final long serialVersionUID = 1784126739852822273L;
 
     @Id
-    @Column(name = "ID_")
+    @Column(name="ID_",length=60)
+    private String id;
+
+    @Column(name="URL_ID_",length=60)
+    private String urlId;
+
+    @Column(name="ROLE_ID_",length=60)
+    private String roleId;
+
+    @Column(name="AUTHORITY_TYPE_",length=10,nullable=false)
+    @Enumerated(EnumType.STRING)
+    private AuthorityType authorityType;
+
+    @ManyToOne(cascade=CascadeType.ALL,targetEntity=ColaComponent.class,fetch=FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
+    @JoinColumn(name="COMPONENT_ID_")
+    private ColaComponent component;
+
+    //@Column(name="COMPONENT_ID_",length=60)
+    //private String componentId;
+
+    @Transient
+    private ColaUrl url;
+
     public String getId() {
         return id;
     }
@@ -24,16 +46,13 @@ public class ColaUrlComponent {
         this.id = id;
     }
 
-    @Column(name = "AUTHORITY_TYPE_")
-    public String getAuthorityType() {
-        return authorityType;
+    public String getUrlId() {
+        return urlId;
     }
 
-    public void setAuthorityType(String authorityType) {
-        this.authorityType = authorityType;
+    public void setUrlId(String urlId) {
+        this.urlId = urlId;
     }
-
-    @Column(name = "ROLE_ID_")
     public String getRoleId() {
         return roleId;
     }
@@ -42,22 +61,27 @@ public class ColaUrlComponent {
         this.roleId = roleId;
     }
 
-    @Column(name = "URL_ID_")
-    public String getUrlId() {
-        return urlId;
+    public AuthorityType getAuthorityType() {
+        return authorityType;
     }
 
-    public void setUrlId(String urlId) {
-        this.urlId = urlId;
+    public void setAuthorityType(AuthorityType authorityType) {
+        this.authorityType = authorityType;
     }
 
-    @Column(name = "COMPONENT_ID_")
-    public String getComponentId() {
-        return componentId;
+    public ColaComponent getComponent() {
+        return component;
     }
 
-    public void setComponentId(String componentId) {
-        this.componentId = componentId;
+    public void setComponent(ColaComponent component) {
+        this.component = component;
     }
 
+    public ColaUrl getUrl() {
+        return url;
+    }
+
+    public void setUrl(ColaUrl url) {
+        this.url = url;
+    }
 }

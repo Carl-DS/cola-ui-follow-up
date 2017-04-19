@@ -8,7 +8,7 @@
             properties: {
                 products: {
                     provider: {
-                        url: "/service/product/?categoryId={{@id}}",
+                        url: "./service/product/?categoryId={{@id}}",
                         pageSize: 5
                     }
                 }

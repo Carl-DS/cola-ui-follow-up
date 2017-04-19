@@ -18,7 +18,7 @@
         model.describe("messageTemplates", {
             dataType: "MessageTemplate",
             provider: {
-                url: "/service/frame/messageTemplate/",
+                url: "./service/frame/messageTemplate/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     debugger;

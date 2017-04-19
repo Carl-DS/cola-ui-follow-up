@@ -24,8 +24,8 @@ public class ColaComponentServiceImpl implements ColaComponentService {
     public Page<ColaComponent> getPage(int pageSize, int pageNo, String contain) {
         Criteria criteria = componentDao.createCriteria();
         if (StringUtils.isNotEmpty(contain)) {
-            Criterion lastRest= Restrictions.like("lastName", contain, MatchMode.ANYWHERE);
-            Criterion firstRest= Restrictions.like("firstName", contain, MatchMode.ANYWHERE);
+            Criterion lastRest = Restrictions.like("lastName", contain, MatchMode.ANYWHERE);
+            Criterion firstRest = Restrictions.like("firstName", contain, MatchMode.ANYWHERE);
             criteria.add(Restrictions.or(lastRest, firstRest));
         }
         return componentDao.getPage(pageSize, pageNo, criteria);
@@ -53,7 +53,7 @@ public class ColaComponentServiceImpl implements ColaComponentService {
 
     @Override
     public Map<String, Boolean> getComponentAuth(String url, String componentId) {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("url", url);
         params.put("componentId", componentId);
         Map<String, Boolean> rs = componentDao.getComponentAuth(params);

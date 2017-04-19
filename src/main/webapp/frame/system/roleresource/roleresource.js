@@ -17,7 +17,7 @@
         });*/
         model.describe("roles", {
             provider: {
-                url: "/service/frame/role/",
+                url: "./service/frame/role/",
                 pageSize: 10,
                 beforeSend: function (self, arg) {
                     var contain = model.get("contain");

@@ -7,13 +7,10 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +24,8 @@ import java.util.Map;
 public class ColaComponentController {
     protected static final Logger logger = LoggerFactory.getLogger(ColaComponentController.class);
 
+    @Autowired
+    private ColaComponentService componentService;
 
     private static String[] removeTagNames = "script,link".split(",");
 
@@ -53,7 +52,7 @@ public class ColaComponentController {
             }
             for (Element element : document.body().getAllElements()) {
                 if (element.hasAttr("id")) {
-                    Map<String, Boolean> auth = getComponentAuth(url, element.attr("id"));
+                    Map<String, Boolean> auth = componentService.getComponentAuth(url, element.attr("id"));
                     element.attr("visible", auth.get("visible") + "");
                     element.attr("editable", auth.get("editable") + "");
                 }
@@ -72,11 +71,10 @@ public class ColaComponentController {
      * @return [{"id":"SystemDropDown","visible":true,"disabled":true},{"id":"urlTree","visible":false}]
      * @throws IOException
      */
-    @RequestMapping(value = "/auth", method = RequestMethod.GET)
-    @SuppressWarnings("unchecked")
-    public List<Map<String, Object>> loadAuth(@RequestParam(required = false) Map<String, Object> params,
+    @RequestMapping(value = "/auth", method = RequestMethod.POST)
+    public List<Map<String, Object>> loadAuth(@RequestBody(required = false) Map<String, Object> params,
                                               HttpServletRequest request) throws IOException {
-        List<Map<String, Object>> ucObjAuths = new ArrayList<Map<String, Object>>();
+        List<Map<String, Object>> ucObjAuths = new ArrayList<>();
         if (params == null) {
             return ucObjAuths;
         }
@@ -88,14 +86,14 @@ public class ColaComponentController {
         List<String> ucIds = getUrlComponents(path);
         for (String ucId : ucIds) {
             if (ids != null && ids.size() > 0) { // 权限管理的页面有传递组件id
-                ucAuth = new HashMap<String, Object>();
+                ucAuth = new HashMap<>();
                 if (ids.contains(ucId)) {
                     ucAuth.put("id", ucId);
                     ucAuth.putAll(checkComponentAuth(url, ucId));
                     ucObjAuths.add(ucAuth);
                 }
             } else {
-                ucAuth = new HashMap<String, Object>();
+                ucAuth = new HashMap<>();
                 ucAuth.put("id", ucId);
                 ucAuth.putAll(checkComponentAuth(url, ucId));
                 ucObjAuths.add(ucAuth);
@@ -105,8 +103,8 @@ public class ColaComponentController {
     }
 
     private List<String> getUrlComponents(String url) {
-        List<String> ucIds = new ArrayList<String>();
-        /*File file = new File(url);
+        List<String> ucIds = new ArrayList<>();
+        File file = new File(url);
         if (!file.exists()) {
             return ucIds;
         }
@@ -121,24 +119,16 @@ public class ColaComponentController {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
         return ucIds;
     }
 
-    @Resource
-    private ColaComponentService componentService;
-
-    private Map<String, Boolean> getComponentAuth(String url, String componentId) {
-        Map<String, Boolean> authMap = componentService.getComponentAuth(url, componentId);
-        return authMap;
-    }
 
 
     private Map<String, Boolean> checkComponentAuth(String url, String componentId) {
-        //读或写均未授权时，默认组件无权限
-        Map<String, Boolean> authMap = new HashMap<String, Boolean>();
-        authMap = getComponentAuth(url, componentId);
-        boolean editable = authMap.get("editable"), visible = authMap.get("visible");
+        Map<String, Boolean> authMap = componentService.getComponentAuth(url, componentId);
+        boolean editable = authMap.get("editable");
+        boolean visible = authMap.get("visible");
         if (editable) {
             authMap.put("disabled", false);
         } else {

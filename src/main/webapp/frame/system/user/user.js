@@ -11,7 +11,7 @@
                         func: function (value, callback) {
                             debugger;
                             $.ajax({
-                                url: "/service/frame/user/check",
+                                url: "./service/frame/user/check",
                                 data: {username:value},
                                 success: function(message) {
                                     debugger;
@@ -72,7 +72,7 @@
         model.describe("users", {
             dataType: "User",
             provider: {
-                url: "/service/frame/user/",
+                url: "./service/frame/user/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     debugger;
@@ -228,12 +228,12 @@
         });
 
 
-        var url="/frame/system/user/user.html";
-        var data={
-            url:url,
+        var url="./frame/system/user/user.html";
+        var params={
+            url: url,
             ids:['containInput', 'searchBtn', 'addLayerBtn']
         };
         /*  如果ids为空，则设置页面中所有具有id组件的权限,默认无权限；推荐传入url参数 */
-        App.resetComponentAuth(data);
+        App.resetComponentAuth(params);
     });
 }).call(this);

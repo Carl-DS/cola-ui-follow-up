@@ -34,7 +34,7 @@ jdbc.driver = com.mysql.jdbc.Driver
 ```
 
 > 启动服务
-* 配置服务方式: jetty/tomcat, 设置context path 为`/`
+* 配置服务方式: jetty/tomcat, 设置context path 为`/cola-ui-follow-up`
 * maven方式: `mvn jetty:run` ; `mvn tomcat7:run`
 
 > 初始化数据
@@ -44,4 +44,4 @@ jdbc.driver = com.mysql.jdbc.Driver
 
 > 浏览器访问
 
-http://localhost:8080/
+http://localhost:8080/cola-ui-follow-up/

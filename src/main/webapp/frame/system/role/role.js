@@ -14,7 +14,7 @@
         model.describe("roles", {
             dataType: "Role",
             provider: {
-                url: "/service/frame/role/",
+                url: "./service/frame/role/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     debugger;
@@ -128,5 +128,12 @@
             }
         });
 
+        var url="/frame/system/role/role.html";
+        var params={
+            url: url,
+            ids:[]
+        };
+        /*  如果ids为空，则设置页面中所有具有id组件的权限,默认无权限；推荐传入url参数 */
+        App.resetComponentAuth(params);
     });
 }).call(this);

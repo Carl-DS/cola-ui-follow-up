@@ -13,7 +13,7 @@
         }
       },
       provider: {
-        url: "/service/product/?categoryId=1",
+        url: "./service/product/?categoryId=1",
         pageSize: 5
       }
     });

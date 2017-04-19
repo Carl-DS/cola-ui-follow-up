@@ -2,10 +2,14 @@ package com.colaui.system.dao;
 
 import com.colaui.example.model.AuthorityType;
 import com.colaui.example.model.ColaComponent;
+import com.colaui.example.model.ColaUrl;
 import com.colaui.example.model.ColaUrlComponent;
 import com.colaui.hibernate.HibernateDao;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.Subqueries;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -17,21 +21,24 @@ import java.util.Map;
 public class ColaComponentDao extends HibernateDao<ColaComponent, Long> {
     public Map<String, Boolean> getComponentAuth(Map<String, String> params) {
         Map<String, Boolean> authMap = new HashMap<String, Boolean>();
-        boolean editable = false, visible = true;
-        //String companyId = ContextHolder.getLoginUser().getCompanyId();
-        //String companyId = "bstek";
+        boolean editable = false, visible = false;
+        String companyId = "bstek";
         String url = params.get("url");
         String componentId = params.get("componentId");
         if (StringUtils.hasText(url) && StringUtils.hasText(componentId)) {
-            Criteria criteria = this.getSession().createCriteria(ColaUrlComponent.class);
-            criteria.add(Restrictions.eq("componentId", componentId));
-
-            List<ColaUrlComponent> ucList = criteria.list();
+            Criteria c1 = this.getSession().createCriteria(ColaUrlComponent.class);
+            DetachedCriteria dc1 = DetachedCriteria.forClass(ColaUrl.class);
+            dc1.add(Restrictions.eq("path", url)).add(Restrictions.eq("companyId", companyId)).setProjection(Projections.property("id"));
+            DetachedCriteria dc2 = DetachedCriteria.forClass(ColaComponent.class);
+            dc2.add(Restrictions.eq("componentId", componentId)).setProjection(Projections.property("id"));
+            c1.add(Subqueries.propertyIn("urlId", dc1));
+            c1.add(Subqueries.propertyIn("component.id", dc2));
+            List<ColaUrlComponent> ucList = c1.list();
             if (ucList != null && ucList.size() > 0) {
                 for (ColaUrlComponent uc : ucList) {
-                    if (uc.getAuthorityType().equals(AuthorityType.read.toString())) {
+                    if (uc.getAuthorityType().equals(AuthorityType.read)) {
                         visible = true;
-                    } else if (uc.getAuthorityType().equals(AuthorityType.write.toString())) {
+                    } else if (uc.getAuthorityType().equals(AuthorityType.write)) {
                         editable = true;
                     }
                 }

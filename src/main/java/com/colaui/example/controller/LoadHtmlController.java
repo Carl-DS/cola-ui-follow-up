@@ -111,23 +111,23 @@ public class LoadHtmlController {
     }
 
     private List<String> getUrlComponents(String url) {
-        List<String> ucIds = new ArrayList<String>();
-        File file = new File(url);
-        if (!file.exists()) {
-            return ucIds;
-        }
-        Document document;
-        try {
-            document = Jsoup.parse(file, "utf-8");
-            Element body = document.body();
-            for (Element element : body.getAllElements()) {
-                if (element.hasAttr("id")) {
-                    ucIds.add(element.attr("id"));
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        List<String> ucIds = new ArrayList<>();
+        //File file = new File(url);
+        //if (!file.exists()) {
+        //    return ucIds;
+        //}
+        //Document document;
+        //try {
+        //    document = Jsoup.parse(file, "utf-8");
+        //    Element body = document.body();
+        //    for (Element element : body.getAllElements()) {
+        //        if (element.hasAttr("id")) {
+        //            ucIds.add(element.attr("id"));
+        //        }
+        //    }
+        //} catch (IOException e) {
+        //    e.printStackTrace();
+        //}
         return ucIds;
     }
 

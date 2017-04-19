@@ -1,12 +1,13 @@
 package com.colaui.system.controller;
 
 import com.colaui.example.model.ColaUrlComponent;
-import com.colaui.system.service.ColaUrlComponentService;
 import com.colaui.provider.Page;
+import com.colaui.system.service.ColaUrlComponentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/frame/urlcomponent")
@@ -21,8 +22,12 @@ public class ColaUrlComponentController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    public void save(@RequestBody ColaUrlComponent urlcomponent) {
-        urlcomponentService.save(urlcomponent);
+    public void saveRoleUrlComponents(@RequestBody List<Map<String, Object>> urlComponents) {
+        if (urlComponents == null || urlComponents.size() < 1) {
+            return;
+        } else {
+            urlcomponentService.saveRoleUrlComponents(urlComponents);
+        }
     }
 
     @RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)

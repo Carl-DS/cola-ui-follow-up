@@ -45,7 +45,7 @@
           icon: "icon alarm"
       },
       "workbench": {
-          path: "/example/echarts/website_visit.html",
+          path: "./example/echarts/website_visit.html",
           type: "subWindow",
           label: "我的工作台",
           closeable: false,
@@ -173,26 +173,31 @@
       }
     },
     resetComponentAuth: function (params) {
-        $.ajax("./service/frame/component/auth", {data: params}).success(function (result) {
+        debugger;
+        $.ajax("./service/frame/component/auth", {
+          type: "POST",
+          data: JSON.stringify(params),
+          contentType: "application/json; charset=utf-8"
+        }).success(function (result) {
           debugger;
-            if (result) {
-                for (var i = 0; i < result.length; i++) {
-                    var auth = result[i];
-                    if (!auth.visible) {
-                        $("#" + auth.id).css('display', 'none');
-                        continue;
-                    }
-                    var widget = cola.widget(auth.id);
-                    if (widget) {
-                        var type = widget.constructor.CLASS_NAME;
-                        if (type == 'button') {
-                            widget.set('disabled', auth.disabled);
-                        } else if (type.indexOf("input") >= 0) {
-                            widget.set('readOnly', auth.disabled);
-                        }
-                    }
-                }
-            }
+          if (result) {
+              for (var i = 0; i < result.length; i++) {
+                  var auth = result[i];
+                  if (!auth.visible) {
+                      $("#" + auth.id).css('display', 'none');
+                      continue;
+                  }
+                  var widget = cola.widget(auth.id);
+                  if (widget) {
+                      var type = widget.constructor.CLASS_NAME;
+                      if (type == 'button') {
+                          widget.set('disabled', auth.disabled);
+                      } else if (type.indexOf("input") >= 0) {
+                          widget.set('readOnly', auth.disabled);
+                      }
+                  }
+              }
+          }
         });
     }
   };

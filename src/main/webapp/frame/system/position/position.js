@@ -14,7 +14,7 @@
         model.describe("positions", {
             dataType: "Position",
             provider: {
-                url: "/service/frame/position/",
+                url: "./service/frame/position/",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     debugger;

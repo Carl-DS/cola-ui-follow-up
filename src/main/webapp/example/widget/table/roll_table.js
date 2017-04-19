@@ -23,7 +23,7 @@
                 }
             },
             provider: {
-                url: "/service/area/",
+                url: "./service/area/",
                 pageSize: 20
             }
         });
