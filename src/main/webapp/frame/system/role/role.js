@@ -128,7 +128,7 @@
             }
         });
 
-        var url="/frame/system/role/role.html";
+        var url="./frame/system/role/role.html";
         var params={
             url: url,
             ids:[]

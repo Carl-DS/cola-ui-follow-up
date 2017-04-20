@@ -61,14 +61,14 @@ public class ColaUserController {
         return colaUserService.find(from, limit);
     }
 
-    @RequestMapping(value = "/groupusers/", method = RequestMethod.GET)
+    @RequestMapping(value = "/groupusers", method = RequestMethod.GET)
     public Page<ColaUser> groupUsers(@RequestParam int pageSize,
                                      @RequestParam int pageNo,
                                      @RequestParam String groupId) {
         return colaUserService.groupUsers(pageSize, pageNo, groupId);
     }
 
-    @RequestMapping(value = "/roleusers/", method = RequestMethod.GET)
+    @RequestMapping(value = "/roleusers", method = RequestMethod.GET)
     public Page<ColaUser> roleUsers(@RequestParam int pageSize,
                                      @RequestParam int pageNo,
                                      @RequestParam String roleId) {

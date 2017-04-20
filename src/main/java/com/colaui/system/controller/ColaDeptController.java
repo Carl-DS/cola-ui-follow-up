@@ -26,14 +26,14 @@ public class ColaDeptController {
         return deptService.getPage(pageSize, pageNo, contain);
     }
 
-    @RequestMapping(value = "/groupdepts/", method = RequestMethod.GET)
+    @RequestMapping(value = "/groupdepts", method = RequestMethod.GET)
     public Page<ColaDept> groupDepts(@RequestParam int pageSize,
                                      @RequestParam int pageNo,
                                      @RequestParam(required=false) String groupId) {
         return deptService.groupDepts(pageSize, pageNo, groupId);
     }
 
-    @RequestMapping(value = "/roledepts/", method = RequestMethod.GET)
+    @RequestMapping(value = "/roledepts", method = RequestMethod.GET)
     public Page<ColaDept> roleDepts(@RequestParam int pageSize,
                                      @RequestParam int pageNo,
                                      @RequestParam(required=false) String roleId) {

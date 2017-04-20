@@ -50,7 +50,7 @@
         // 声明群组成员用户的EntityList
         model.describe("groupUsers", {
             provider: {
-                url: "./service/frame/user/groupusers/",
+                url: "./service/frame/user/groupusers",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var groupId = cola.widget("groupTable").get("currentItem").get("id");
@@ -81,7 +81,7 @@
         // 声明群组成员岗位的EntityList
         model.describe("groupPositions", {
             provider: {
-                url: "./service/frame/position/grouppositions/",
+                url: "./service/frame/position/grouppositions",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var groupId = cola.widget("groupTable").get("currentItem").get("id");
@@ -104,7 +104,7 @@
         // 声明群组成员部门的EntityList
         model.describe("groupDepts", {
             provider: {
-                url: "./service/frame/dept/groupdepts/",
+                url: "./service/frame/dept/groupdepts",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var groupId = cola.widget("groupTable").get("currentItem").get("id");

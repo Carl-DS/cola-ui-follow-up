@@ -20,7 +20,7 @@ public class ColaGroupController {
         return groupService.getPage(pageSize, pageNo, contain);
     }
 
-    @RequestMapping(value = "/rolegroups/", method = RequestMethod.GET)
+    @RequestMapping(value = "/rolegroups", method = RequestMethod.GET)
     public Page<ColaGroup> roleGroups(@RequestParam int pageSize,
                                       @RequestParam int pageNo,
                                       @RequestParam(required=false) String roleId) {

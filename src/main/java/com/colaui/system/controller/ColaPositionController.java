@@ -31,14 +31,14 @@ public class ColaPositionController {
         return positionService.getPage(pageSize, pageNo, containDecode);
     }
 
-    @RequestMapping(value = "/grouppositions/", method = RequestMethod.GET)
+    @RequestMapping(value = "/grouppositions", method = RequestMethod.GET)
     public Page<ColaPosition> groupPositions(@RequestParam int pageSize,
                                              @RequestParam int pageNo,
                                              @RequestParam(required=false) String groupId) {
         return positionService.groupPositions(pageSize, pageNo, groupId);
     }
 
-    @RequestMapping(value = "/rolepositions/", method = RequestMethod.GET)
+    @RequestMapping(value = "/rolepositions", method = RequestMethod.GET)
     public Page<ColaPosition> rolePositions(@RequestParam int pageSize,
                                              @RequestParam int pageNo,
                                              @RequestParam(required=false) String roleId) {

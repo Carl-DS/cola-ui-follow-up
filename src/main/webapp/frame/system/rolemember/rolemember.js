@@ -23,7 +23,7 @@
         // 声明角色成员用户的EntityList
         model.describe("roleUsers", {
             provider: {
-                url: "./service/frame/user/roleusers/",
+                url: "./service/frame/user/roleusers",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var roleId = cola.widget("roleTable").get("currentItem").get("id");
@@ -54,7 +54,7 @@
         // 声明角色成员岗位的EntityList
         model.describe("rolePositions", {
             provider: {
-                url: "./service/frame/position/rolepositions/",
+                url: "./service/frame/position/rolepositions",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var roleId = cola.widget("roleTable").get("currentItem").get("id");
@@ -85,7 +85,7 @@
         // 声明角色成员部门的EntityList
         model.describe("roleDepts", {
             provider: {
-                url: "./service/frame/dept/roledepts/",
+                url: "./service/frame/dept/roledepts",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var roleId = cola.widget("roleTable").get("currentItem").get("id");
@@ -108,7 +108,7 @@
         // 声明角色成员群组的EntityList
         model.describe("roleGroups", {
             provider: {
-                url: "./service/frame/group/rolegroups/",
+                url: "./service/frame/group/rolegroups",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var roleId = cola.widget("roleTable").get("currentItem").get("id");
