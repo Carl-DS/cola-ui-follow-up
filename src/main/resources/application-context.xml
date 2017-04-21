@@ -127,4 +127,6 @@
 			expression="execution(* com.colaui.*.service.impl.*ServiceImpl.*(..))" />
 		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="transactionPointcut" />
 	</aop:config>
+
+	<import resource="application-shiro.xml" />
 </beans>
