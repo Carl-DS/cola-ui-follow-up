@@ -15,10 +15,6 @@
     <link rel="stylesheet" type="text/css" href="./frame/account/login.css">
   </head>
   <body>
-    <script type="text/javascript">
-      NProgress.configure({showSpinner: false, minimum: 0.3})
-      NProgress.start();
-    </script>
     <div class="v-box account-page">
       <div class="box ui menu secondary attached page-header">
         <div class="item logo header"><img src="./resources/images/logo.png" class="ui mini image"><span>Cola-UI Client Framework</span></div>
@@ -26,27 +22,27 @@
       <div class="flex-box">
         <div>
           <div id="containerSignIn" c-widget="segment;" class="ui segment">
-            <div id="formSignIn" c-widget="form" class="ui form">
+            <c-form id="formSignIn" class="ui form">
               <h2>用户登录</h2>
               <div class="field">
-                <div c-widget="input; placeholder:用户名; postOnInput:true; bind:userName" class="large"></div>
+                <c-input placeholder="用户名" postOnInput="true" bind="userName" class="large fluid"></c-input>
               </div>
               <div class="field">
-                <div c-widget="input; placeholder:密码;inputType:password; postOnInput:true; bind:password" class="large"></div>
+                <c-input placeholder="密码" inputType="password" postOnInput="true" bind="password" class="large fluid"></c-input>
               </div>
               <div class="two fields">
                 <div class="field">
-                  <div c-widget="Checkbox; label:记住我; bind:cacheInfo"></div>
+                  <c-checkbox label="记住我" bind="cacheInfo"></c-checkbox>
                 </div>
-                <div class="field"><a href="./frame/account/forgot-password.html" class="float-right">找回密码</a></div>
+                <div class="field" style="line-height: 5px;"><a href="./frame/account/forgot-password.html" tabindex="0" class="float-right">找回密码</a></div>
               </div>
               <div class="field">
-                <div c-widget="Button; caption:登录; click:signIn" tabindex="0" class="large fluid circular submit-btn"></div>
+                <c-button caption="登录" click="signIn" tabindex="0" class="large fluid circular submit-btn"></c-button>
               </div>
               <div class="field">
                 <div class="ui message error"></div>
               </div>
-            </div>
+            </c-form>
           </div>
         </div>
       </div>
