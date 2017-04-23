@@ -22,13 +22,13 @@
       <div class="flex-box">
         <div>
           <div id="containerSignIn" c-widget="segment;" class="ui segment">
-            <c-form id="formSignIn" class="ui form">
+            <form action="service/frame/account/login" method="POST" id="formSignIn" class="ui form">
               <h2>用户登录</h2>
               <div class="field">
-                <c-input placeholder="用户名" postOnInput="true" bind="userName" class="large fluid"></c-input>
+                <c-input placeholder="用户名" postOnInput="true" name="username" class="large fluid"></c-input>
               </div>
               <div class="field">
-                <c-input placeholder="密码" inputType="password" postOnInput="true" bind="password" class="large fluid"></c-input>
+                <c-input placeholder="密码" inputType="password" postOnInput="true" name="password" class="large fluid"></c-input>
               </div>
               <div class="two fields">
                 <div class="field">
@@ -37,12 +37,12 @@
                 <div class="field" style="line-height: 5px;"><a href="./frame/account/forgot-password.html" tabindex="0" class="float-right">找回密码</a></div>
               </div>
               <div class="field">
-                <c-button caption="登录" click="signIn" tabindex="0" class="large fluid circular submit-btn"></c-button>
+                <c-input value="登录" inputType="submit" tabindex="0" class="large fluid circular submit-btn"></c-input>
               </div>
               <div class="field">
                 <div class="ui message error"></div>
               </div>
-            </c-form>
+            </form>
           </div>
         </div>
       </div>

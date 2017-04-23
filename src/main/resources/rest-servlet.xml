@@ -12,8 +12,13 @@
 
 	<!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
 	<context:component-scan base-package="com.colaui.example.controller,com.colaui.system.controller" />
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/"></property>
+		<property name="suffix" value=".html"></property>
+	</bean>
 	<!-- 配置注解驱动 -->
 	<mvc:annotation-driven />
+	<mvc:default-servlet-handler/>
 	
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 	<property name="messageConverters">

@@ -34,3 +34,10 @@
 .account-page > .flex-box > div > .ui.segment .ui.form .submit-btn {
   margin-top: 1em;
 }
+.account-page > .flex-box > div > .ui.segment .ui.form .submit-btn > input {
+  text-align: center;
+}
+.account-page > .flex-box > div > .ui.segment .ui.form .submit-btn > input:hover {
+  border-color: #00ACED;
+}
+

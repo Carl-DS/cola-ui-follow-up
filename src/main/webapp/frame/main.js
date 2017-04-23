@@ -171,8 +171,8 @@
         return $.ajax({
           type: "POST",
           url: App.prop("service.logout")
-        }).done(function(result) {
-          if (result.type) {
+        }).success(function(result) {
+          if (result) {
             return window.location.reload();
           }
         }).fail(function() {

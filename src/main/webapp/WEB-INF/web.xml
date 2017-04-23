@@ -5,7 +5,7 @@
 
 	<display-name>ColaUIFollowUp-SSH</display-name>
 	<welcome-file-list>
-		<welcome-file>/frame/main.html</welcome-file>
+		<welcome-file>frame/account/login.html</welcome-file>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 	<!-- 启用spring监听 -->
