@@ -12,37 +12,22 @@
     <link rel="stylesheet" type="text/css" href="./resources/cola-ui/semantic.css">
     <link rel="stylesheet" type="text/css" href="./resources/cola-ui/cola.css">
     <link rel="stylesheet" type="text/css" href="./common/common.css">
-    <link rel="stylesheet" type="text/css" href="./frame/account/login.css">
+    <link rel="stylesheet" type="text/css" href="./frame/error.css">
   </head>
   <body>
-    <div class="v-box account-page">
+    <div class="v-box error-page">
       <div class="box ui menu secondary attached page-header">
         <div class="item logo header"><img src="./resources/images/logo.png" class="ui mini image"><span>Cola-UI Client Framework</span></div>
       </div>
       <div class="flex-box">
         <div>
-          <div id="containerSignIn" c-widget="segment;" class="ui segment">
-            <form action="service/frame/account/login" method="POST" id="formSignIn" class="ui form">
-              <h2>用户登录</h2>
-              <div class="field">
-                <c-input placeholder="用户名" postOnInput="true" name="username" class="large fluid"></c-input>
-              </div>
-              <div class="field">
-                <c-input placeholder="密码" inputType="password" postOnInput="true" name="password" class="large fluid"></c-input>
-              </div>
-              <div class="two fields">
-                <div class="field">
-                  <c-checkbox label="记住我" bind="cacheInfo"></c-checkbox>
-                </div>
-                <div class="field" style="line-height: 5px;"><a href="./frame/account/forgot-password.html" tabindex="0" class="float-right">找回密码</a></div>
-              </div>
-              <div class="field">
-                <c-input value="登录" inputType="submit" tabindex="0" class="large fluid circular submit-btn"></c-input>
-              </div>
-              <div class="field">
-                <div class="ui message error"></div>
-              </div>
-            </form>
+          <div class="error-info ui segment basic" style="width: 55em;">
+            <strong class="error-code">Unauthorized</strong>
+            <p>抱歉！您没有权限访问该页面。（unauthorized, sorry.）</p>
+            <div class="go-home"><a c-href="home"><span c-bind="timer"></span><span>跳转至首页</span></a></div>
+            <div id="timeProgress" class="ui bottom attached teal progress">
+              <div class="bar"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -54,5 +39,5 @@
   <script src="./resources/cola-ui/semantic.js"></script>
   <script src="./resources/cola-ui/cola.js" charset="UTF-8"></script>
   <script src="./common/common.js"></script>
-  <script src="./frame/account/login.js"></script>
+  <script src="./frame/error.js"></script>
 </html>

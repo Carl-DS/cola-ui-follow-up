@@ -140,7 +140,7 @@ public class ColaComponentController {
     public String getRootPath() {
         String classPath = this.getClass().getClassLoader().getResource("/").getPath();
         String rootPath = "";
-        //windows下
+        // windows下
         if ("\\".equals(File.separator)) {
             rootPath = classPath.substring(1, classPath.indexOf("/WEB-INF/classes"));
             rootPath = rootPath.replace("/", "\\");
