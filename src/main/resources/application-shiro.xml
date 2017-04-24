@@ -15,14 +15,12 @@
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="cacheManager" ref="cacheManager"/>
         <property name="authenticator" ref="authenticator"></property>
-
         <property name="realms">
             <list>
                 <ref bean="jdbcRealm"/>
                 <ref bean="secondRealm"/>
             </list>
         </property>
-
         <!--<property name="rememberMeManager.cookie.maxAge" value="10"></property>-->
     </bean>
 
