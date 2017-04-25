@@ -78,6 +78,12 @@
                 textProperty: "productName",
                 items: "{{product in products}}",
                 bind: "productId"
+            },
+            calendar: {
+                refreshCellDom: function (self,arg) {
+                    debugger;
+                    console.log(new XDate(arg.date).toString("yyyy-MM-dd"))
+                }
             }
         });
 
