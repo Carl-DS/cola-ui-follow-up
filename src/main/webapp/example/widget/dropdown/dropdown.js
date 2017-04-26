@@ -83,6 +83,36 @@
                 refreshCellDom: function (self,arg) {
                     debugger;
                     console.log(new XDate(arg.date).toString("yyyy-MM-dd"))
+                },
+                monthChange: function(self, arg) {
+                    var calendar, month;
+                    month = arg.month + 1;
+                    calendar = self;
+                    if (month < 10) {
+                        month = arg.year + "0" + month;
+                    } else {
+                        month = "" + arg.year + month;
+                    }
+                    $(".month-view").addClass("loading");
+                    return setTimeout(function() {
+                        return $.get("./service/CM/todoMonthList/:userId?month=" + month).done(function(result) {
+                            var date, i, len, todo, tody;
+                            tody = model.set("today.date");
+                            currentMonthData = result;
+                            for (i = 0, len = result.length; i < len; i++) {
+                                todo = result[i];
+                                date = new Date((todo.date.substr(0, 4)) + "-" + (todo.date.substr(4, 2)) + "-" + (todo.date.substr(6, 2)));
+                                calendar.getDateCellDom(date).addClass("highlight todo");
+                                if (todo.date === tody) {
+                                    model.set("today.message", "今日有" + todo.todoCount + "项事件备忘");
+                                }
+                            }
+                            $(".month-view").removeClass("loading");
+                        });
+                    }, 10);
+                },
+                yearChange: function (self, arg) {
+
                 }
             }
         });
