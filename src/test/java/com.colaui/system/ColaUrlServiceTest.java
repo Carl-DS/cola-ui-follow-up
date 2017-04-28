@@ -1,6 +1,6 @@
 package com.colaui.system;
 
-import com.colaui.example.model.ColaUrl;
+import com.colaui.system.model.ColaUrl;
 import com.colaui.system.service.ColaUrlService;
 import org.junit.After;
 import org.junit.Before;
@@ -17,19 +17,18 @@ import java.util.Map;
  * Created by Carl on 2017/3/10.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:application-context.xml", "classpath*:rest-servlet.xml"})
+@ContextConfiguration(locations = {"classpath*:spring-context.xml", "classpath*:spring-mvc-rest.xml"})
 public class ColaUrlServiceTest {
     @Autowired
     private ColaUrlService colaUrlService;
 
     @Before
     public void setUp() throws Exception {
-        ColaUrl url = new ColaUrl();
-        url.setId("S001");
-        url.setLabel("新菜单");
-        url.setCompanyId("bstek");
-        colaUrlService.saveUrl(url);
-
+        //ColaUrl url = new ColaUrl();
+        //url.setId("S001");
+        //url.setLabel("新菜单");
+        //url.setCompanyId("bstek");
+        //colaUrlService.saveUrl(url);
         System.out.println("使用SpringMVC与Junit4结合,单元测试:setUp before");
     }
 
@@ -54,7 +53,7 @@ public class ColaUrlServiceTest {
         colaUrlService.saveUrl(url);
     }
 
-    @Test
+    //@Test
     public void deleteUrl() throws Exception {
         colaUrlService.deleteUrl("S001");
     }

@@ -3,7 +3,7 @@ package com.colaui.example.service;
 import java.util.List;
 
 import com.colaui.example.model.ColaEmployee;
-import com.colaui.provider.Page;
+import com.colaui.helper.Page;
 public interface ColaEmployeeService {
 	Page<ColaEmployee> getPage(int pageSize,int pageNo,String contain);
 	void save(ColaEmployee employee);

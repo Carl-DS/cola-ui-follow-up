@@ -4,6 +4,7 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * MVC 代码生成器
+ * 该生成代码对应单个javaBean的CRUD(hibernate)
  * Created by Carl on 2017/3/23.
  */
 public class Autogeneration {
@@ -11,7 +12,7 @@ public class Autogeneration {
             "\n" +
             "import com.colaui.example.model.{0};\n" +
             "import com.colaui.system.service.{0}Service;\n" +
-            "import com.colaui.provider.Page;\n" +
+            "import com.colaui.helper.Page;\n" +
             "import org.springframework.beans.factory.annotation.Autowired;\n" +
             "import org.springframework.web.bind.annotation.*;\n" +
             "\n" +
@@ -60,7 +61,7 @@ public class Autogeneration {
             "import java.util.List;\n" +
             "\n" +
             "import com.colaui.example.model.{0};\n" +
-            "import com.colaui.provider.Page;\n" +
+            "import com.colaui.helper.Page;\n" +
             "public interface {0}Service {\n" +
             "\tPage<{0}> getPage(int pageSize,int pageNo,String contain);\n" +
             "\tvoid save({0} {1});\n" +
@@ -74,7 +75,7 @@ public class Autogeneration {
             "import com.colaui.system.dao.{0}Dao;\n" +
             "import com.colaui.example.model.{0};\n" +
             "import com.colaui.system.service.{0}Service;\n" +
-            "import com.colaui.provider.Page;\n" +
+            "import com.colaui.helper.Page;\n" +
             "import org.apache.commons.lang.StringUtils;\n" +
             "import org.hibernate.Criteria;\n" +
             "import org.hibernate.criterion.Criterion;\n" +
@@ -128,7 +129,7 @@ public class Autogeneration {
             "import org.springframework.stereotype.Repository;\n" +
             "\n" +
             "import com.colaui.example.model.{0};\n" +
-            "import com.colaui.hibernate.HibernateDao;\n" +
+            "import com.colaui.helper.hibernate.HibernateDao;\n" +
             "\n" +
             "@Repository\n" +
             "public class {0}Dao extends HibernateDao<{0}, {2}> {\n" +

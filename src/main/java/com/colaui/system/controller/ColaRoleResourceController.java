@@ -1,8 +1,8 @@
 package com.colaui.system.controller;
 
-import com.colaui.example.model.ColaRoleResource;
+import com.colaui.system.model.ColaRoleResource;
 import com.colaui.system.service.ColaRoleResourceService;
-import com.colaui.provider.Page;
+import com.colaui.helper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,6 +1,6 @@
 package com.colaui.system.service;
 
-import com.colaui.example.model.ColaUrl;
+import com.colaui.system.model.ColaUrl;
 
 import java.util.List;
 import java.util.Map;

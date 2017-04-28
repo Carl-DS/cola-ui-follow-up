@@ -1,7 +1,7 @@
 package com.colaui.system.dao;
 
-import com.colaui.example.model.ColaRoleMember;
-import com.colaui.hibernate.HibernateDao;
+import com.colaui.system.model.ColaRoleMember;
+import com.colaui.helper.hibernate.HibernateDao;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Query;

@@ -1,7 +1,7 @@
 package com.colaui.example.dao;
 
 import com.colaui.example.model.ColaAuth;
-import com.colaui.hibernate.HibernateDao;
+import com.colaui.helper.hibernate.HibernateDao;
 import org.springframework.stereotype.Repository;
 
 /**

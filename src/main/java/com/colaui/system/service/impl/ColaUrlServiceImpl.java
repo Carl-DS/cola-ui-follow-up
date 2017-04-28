@@ -1,7 +1,7 @@
 package com.colaui.system.service.impl;
 
-import com.colaui.example.model.ColaRoleResource;
-import com.colaui.example.model.ColaUrl;
+import com.colaui.system.model.ColaRoleResource;
+import com.colaui.system.model.ColaUrl;
 import com.colaui.system.dao.ColaRoleResourceDao;
 import com.colaui.system.dao.ColaUrlDao;
 import com.colaui.system.service.ColaUrlService;

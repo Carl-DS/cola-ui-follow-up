@@ -1,7 +1,7 @@
 package com.colaui.system.dao;
 
-import com.colaui.example.model.ColaRoleResource;
-import com.colaui.hibernate.HibernateDao;
+import com.colaui.system.model.ColaRoleResource;
+import com.colaui.helper.hibernate.HibernateDao;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;

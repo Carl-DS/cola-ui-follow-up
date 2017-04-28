@@ -1,7 +1,7 @@
 package com.colaui.system.service.impl;
 
-import com.colaui.example.model.ColaPosition;
-import com.colaui.provider.Page;
+import com.colaui.system.model.ColaPosition;
+import com.colaui.helper.Page;
 import com.colaui.system.dao.ColaGroupMemberDao;
 import com.colaui.system.dao.ColaPositionDao;
 import com.colaui.system.dao.ColaRoleMemberDao;

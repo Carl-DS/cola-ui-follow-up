@@ -1,7 +1,7 @@
 package com.colaui.system.service.impl;
 
-import com.colaui.example.model.ColaMessageTemplate;
-import com.colaui.provider.Page;
+import com.colaui.system.model.ColaMessageTemplate;
+import com.colaui.helper.Page;
 import com.colaui.system.dao.ColaMessageTemplateDao;
 import com.colaui.system.service.ColaMessageTemplateService;
 import org.apache.commons.lang.StringUtils;

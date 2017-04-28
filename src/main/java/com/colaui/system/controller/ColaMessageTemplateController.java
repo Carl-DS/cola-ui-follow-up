@@ -1,7 +1,7 @@
 package com.colaui.system.controller;
 
-import com.colaui.example.model.ColaMessageTemplate;
-import com.colaui.provider.Page;
+import com.colaui.system.model.ColaMessageTemplate;
+import com.colaui.helper.Page;
 import com.colaui.system.service.ColaMessageTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

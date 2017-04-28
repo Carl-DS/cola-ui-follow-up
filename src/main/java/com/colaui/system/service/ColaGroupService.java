@@ -1,7 +1,7 @@
 package com.colaui.system.service;
 
-import com.colaui.example.model.ColaGroup;
-import com.colaui.provider.Page;
+import com.colaui.system.model.ColaGroup;
+import com.colaui.helper.Page;
 
 import java.util.List;
 public interface ColaGroupService {

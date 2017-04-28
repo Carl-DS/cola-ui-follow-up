@@ -1,6 +1,6 @@
 package com.colaui.system.controller;
 
-import com.colaui.example.model.ColaUrl;
+import com.colaui.system.model.ColaUrl;
 import com.colaui.system.service.ColaUrlService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

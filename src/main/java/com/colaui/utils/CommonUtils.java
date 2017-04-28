@@ -14,14 +14,16 @@ public class CommonUtils {
 
     /**
      * 生成uuid
+     * @return 移除了 "-" 的uuid字符串
      */
     public static String uuid() {
         return UUID.randomUUID().toString().replace("-", "");
     }
 
-
     /**
      * 随机码生成器
+     * @param length 长度参数
+     * @return
      */
     public static String keyGenerator(int length) {
         if (length < 1) {

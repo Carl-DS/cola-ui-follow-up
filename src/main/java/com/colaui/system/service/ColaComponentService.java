@@ -1,7 +1,7 @@
 package com.colaui.system.service;
 
-import com.colaui.example.model.ColaComponent;
-import com.colaui.provider.Page;
+import com.colaui.system.model.ColaComponent;
+import com.colaui.helper.Page;
 
 import java.util.List;
 import java.util.Map;

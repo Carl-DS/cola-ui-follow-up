@@ -45,7 +45,7 @@
           icon: "icon alarm"
       },
       "workbench": {
-          path: "./example/echarts/website_visit.html",
+          path: "./example/echarts/cola-visit.html",
           type: "subWindow",
           label: "我的工作台",
           closeable: false,

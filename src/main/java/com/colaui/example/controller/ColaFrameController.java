@@ -1,7 +1,7 @@
 package com.colaui.example.controller;
 
-import com.colaui.example.model.ColaMessage;
-import com.colaui.example.model.ColaUser;
+import com.colaui.system.model.ColaMessage;
+import com.colaui.system.model.ColaUser;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;

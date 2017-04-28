@@ -1,7 +1,7 @@
 package com.colaui.system.service.impl;
 
-import com.colaui.example.model.ColaUrlComponent;
-import com.colaui.provider.Page;
+import com.colaui.system.model.ColaUrlComponent;
+import com.colaui.helper.Page;
 import com.colaui.system.dao.ColaComponentDao;
 import com.colaui.system.dao.ColaUrlComponentDao;
 import com.colaui.system.service.ColaUrlComponentService;
