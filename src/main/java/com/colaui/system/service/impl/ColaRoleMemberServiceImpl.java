@@ -128,6 +128,11 @@ public class ColaRoleMemberServiceImpl implements ColaRoleMemberService {
     }
 
     @Override
+    public List<ColaRoleMember> getRoleIdsByUsername(String principal) {
+        return rolememberDao.getRoleIdsByUsername(principal);
+    }
+
+    @Override
     public void saveRolePosition(String roleId, ArrayList<String> rolePositionIds) {
         ColaRoleMember rolemember = null;
         for (String rolePositionId : rolePositionIds) {

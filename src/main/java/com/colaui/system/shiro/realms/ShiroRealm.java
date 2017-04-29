@@ -45,8 +45,10 @@ public class ShiroRealm extends AuthorizingRealm {
 		Object credentials = null; //"fc1709d0a95a6be30bc5926fdb7f22f4";
 		if("admin".equals(username)){
 			credentials = "038bdaf98f2037b31f1e75b5b4c9b26e";
-		}else if("user".equals(username)){
-			credentials = "098d2c478e9c11555ce2823231e02ec1";
+		} else if("testuser".equals(username)){
+			credentials = "f8b218b8c542bd4b03af0a8a5800621e";
+		} else if("ldscode".equals(username)){
+			credentials = "75da49711a176a43984593d8810bd8e0";
 		}
 
 		//3). realmName: 当前 realm 对象的 name. 调用父类的 getName() 方法即可
@@ -62,14 +64,14 @@ public class ShiroRealm extends AuthorizingRealm {
 	public static void main(String[] args) {
 		String hashAlgorithmName = "MD5";
 		Object credentials = "123456";
-		Object salt = ByteSource.Util.bytes("user");;
+		Object salt = ByteSource.Util.bytes("ldscode");;
 		int hashIterations = 1024;
 
 		Object result = new SimpleHash(hashAlgorithmName, credentials, salt, hashIterations);
 		System.out.println(result);
 	}
 
-	//授权会被 shiro 回调的方法
+	//用于授权, 授权会被 shiro 回调的方法.
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(
 			PrincipalCollection principals) {

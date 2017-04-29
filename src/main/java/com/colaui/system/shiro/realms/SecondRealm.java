@@ -1,18 +1,13 @@
 package com.colaui.system.shiro.realms;
 
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.LockedAccountException;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthenticatingRealm;
 import org.apache.shiro.util.ByteSource;
 
 public class SecondRealm extends AuthenticatingRealm {
 
+	//用于认证的方法
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken token) throws AuthenticationException {
@@ -58,6 +53,7 @@ public class SecondRealm extends AuthenticatingRealm {
 		info = new SimpleAuthenticationInfo("secondRealmName", credentials, credentialsSalt, realmName);
 		return info;
 	}
+
 
 	public static void main(String[] args) {
 		String hashAlgorithmName = "SHA1";

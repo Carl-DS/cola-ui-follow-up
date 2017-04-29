@@ -233,7 +233,7 @@
 
   if (language) {
     document.write("<script src=\"resources/cola-ui/i18n/" + language + "/cola.js\"></script>");
-    document.write("<script src=\"resources/i18n/" + language + "/common.js\"></script>");
+    // document.write("<script src=\"resources/i18n/" + language + "/common.js\"></script>");
   }
 
   $(NProgress.done);

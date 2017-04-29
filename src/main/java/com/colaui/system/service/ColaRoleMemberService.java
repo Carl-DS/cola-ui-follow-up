@@ -42,4 +42,6 @@ public interface ColaRoleMemberService {
     void deleteByDeptId(String roleId, String deptId);
 
     void deleteByGroupId(String roleId, String groupId);
+
+    List<ColaRoleMember> getRoleIdsByUsername(String principal);
 }

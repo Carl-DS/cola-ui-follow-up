@@ -24,7 +24,7 @@
         model.describe("roleUsers", {
             provider: {
                 url: "./service/frame/user/roleusers",
-                pageSize: 2,
+                pageSize: 5,
                 beforeSend: function (self, arg) {
                     var roleId = cola.widget("roleTable").get("currentItem").get("id");
                     if (cola.defaultAction.isNotEmpty(roleId)) {

@@ -4,14 +4,10 @@ import com.colaui.system.model.ColaUrl;
 import com.colaui.system.service.ColaUrlService;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Carl on 2017/3/10.
@@ -37,10 +33,9 @@ public class ColaUrlServiceTest {
         System.out.println("使用SpringMVC与Junit4结合,单元测试:setUp after");
     }
 
-    @Test
+    //@Test
     public void getUrls() throws Exception {
-        Map<String, Object> params = new HashMap<String, Object>();
-        int result = colaUrlService.getUrls(params).size();
+        int result = colaUrlService.getUrls("bstek", null).size();
         System.out.println("ColaUrlServiceTest.getUrls:" + result);
     }
 

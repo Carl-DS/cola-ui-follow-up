@@ -1,4 +1,4 @@
-package com.colaui.example.controller;
+package com.colaui.system.controller;
 
 import com.colaui.system.model.ColaMessage;
 import com.colaui.system.model.ColaUser;
@@ -27,13 +27,12 @@ public class ColaFrameController {
             // 把用户名和密码封装为 UsernamePasswordToken 对象
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
             // rememberme
-            token.setRememberMe(true);
+            token.setRememberMe(false);
             try {
                 System.out.println("1. " + token.hashCode());
                 // 执行登录.
                 currentUser.login(token);
             }
-            // ... catch more exceptions here (maybe custom ones specific to your application?
             // 所有认证时异常的父类.
             catch (AuthenticationException ae) {
                 //unexpected condition?  error?

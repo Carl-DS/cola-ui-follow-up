@@ -62,6 +62,10 @@
 		<property name="packagesToScan" value="com.colaui.*.model" />
 	</bean>
 
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name = "dataSource" ref="dataSource" />
+	</bean>
+
 	<!-- (事务管理器)transaction manager, use JtaTransactionManager for global tx -->
 	<!--http://www.mybatis.org/spring/zh/transactions.html-->
 	<bean id="transactionManager"

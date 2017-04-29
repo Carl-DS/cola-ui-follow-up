@@ -28,10 +28,10 @@
                 },
                 complete: function () {
                     // 生成序号
-                    var serialNo = 1;
-                    model.get("roles").each(function(role){
-                        role.set("serialNo",serialNo++);
-                    });
+                    // var serialNo = 1;
+                    // model.get("roles").each(function(role){
+                    //     role.set("serialNo",serialNo++);
+                    // });
                     if (!model.get("roleId")) {
                         model.set("roleId",model.get("roles").current.get("id"));
                     }
@@ -68,6 +68,7 @@
                 });
             },
             saveUrlResource: function () {
+                debugger;
                 // 此处也可以mode.get(urls); 方式获取数据
                 var nodes = cola.widget("urlTree").getItems();
                 var checkedNode = []; // 选中的节点
@@ -103,10 +104,12 @@
                 changeCurrentItem: true,
                 highlightCurrentItem: true,
                 currentPageOnly: true, // 只显示当前页,表现在分页时是表格数据的添加还是切换
-                columns: [{
-                    caption: "序号",
-                    bind: ".serialNo"
-                },{
+                columns: [
+                // {
+                //     caption: "序号",
+                //     bind: ".serialNo"
+                // },
+                {
                     caption: "角色名",
                     bind: ".name"
                 },{
