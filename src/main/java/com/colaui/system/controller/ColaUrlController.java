@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by carl.li on 2017/3/3.
@@ -28,13 +27,16 @@ public class ColaUrlController {
     private ColaRoleMemberService colaRoleMemberService;
 
     @RequestMapping(value = "/menus", method = RequestMethod.GET)
-    public List<ColaUrl> getUrls(@RequestParam(required = false) Map<String, Object> params) {
-        log.info("getUrls()===>", params);
+    public List<ColaUrl> getUrls(@RequestParam(required = false) String companyId) {
         Subject currentUser = SecurityUtils.getSubject();
-        // 获取当前登录用户所拥有的角色
-        List<ColaRoleMember> roleIds = colaRoleMemberService.getRoleIdsByUsername((String)currentUser.getPrincipal());
-
-        return colaUrlService.getRoleUrls("bstek", roleIds.get(0).getRoleId());
+        String username = (String) currentUser.getPrincipal();
+        if (username.equals("admin")) {
+            return colaUrlService.getUrls("bstek", null);
+        } else {
+            // 获取当前登录用户所拥有的角色
+            List<ColaRoleMember> roleIds = colaRoleMemberService.getRoleIdsByUsername(username);
+            return colaUrlService.getRoleUrls("bstek", roleIds.get(0).getRoleId());
+        }
     }
 
     @RequestMapping(value = "/roleurls", method = RequestMethod.GET)
