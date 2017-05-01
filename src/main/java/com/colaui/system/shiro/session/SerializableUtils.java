@@ -1,4 +1,4 @@
-package com.colaui.utils;
+package com.colaui.system.shiro.session;
 
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.session.Session;
