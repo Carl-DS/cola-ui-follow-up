@@ -4,6 +4,7 @@ import com.colaui.system.model.ColaUrl;
 import com.colaui.system.service.ColaUrlService;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -33,7 +34,7 @@ public class ColaUrlServiceTest {
         System.out.println("使用SpringMVC与Junit4结合,单元测试:setUp after");
     }
 
-    //@Test
+    @Test
     public void getUrls() throws Exception {
         int result = colaUrlService.getUrls("bstek", null).size();
         System.out.println("ColaUrlServiceTest.getUrls:" + result);
