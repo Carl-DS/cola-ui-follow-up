@@ -1,7 +1,7 @@
 package com.colaui.system.service;
 
-import com.colaui.example.model.ColaUserDept;
-import com.colaui.provider.Page;
+import com.colaui.system.model.ColaUserDept;
+import com.colaui.helper.Page;
 
 import java.util.List;
 public interface ColaUserDeptService {

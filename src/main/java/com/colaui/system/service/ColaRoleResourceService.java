@@ -1,7 +1,7 @@
 package com.colaui.system.service;
 
-import com.colaui.example.model.ColaRoleResource;
-import com.colaui.provider.Page;
+import com.colaui.system.model.ColaRoleResource;
+import com.colaui.helper.Page;
 
 import java.util.ArrayList;
 import java.util.List;

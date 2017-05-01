@@ -113,6 +113,7 @@
                 showHeader: true,
                 currentPageOnly: true,
                 highlightCurrentItem: true,
+                changeCurrentItem: true,
                 columns: [
                     {
                         bind: ".name",

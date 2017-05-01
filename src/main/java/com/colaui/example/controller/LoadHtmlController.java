@@ -26,6 +26,12 @@ public class LoadHtmlController {
     @Autowired
     private ColaAuthService colaAuthService;
 
+    /**
+     *
+     * @param user
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/load/html/body", method = RequestMethod.GET, produces = "text/plain; charset=utf-8")
     public @ResponseBody String loadBody(@RequestParam String user, HttpServletRequest request) {
         String filePath = "/Users/Carl/workspace/IdeaProjects/cola-ui-follow-up/src/main/webapp/frame/security/auth1.html";

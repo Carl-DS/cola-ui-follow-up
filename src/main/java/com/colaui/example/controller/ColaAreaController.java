@@ -2,7 +2,7 @@ package com.colaui.example.controller;
 
 import com.colaui.example.model.ColaArea;
 import com.colaui.example.service.ColaAreaService;
-import com.colaui.provider.Page;
+import com.colaui.helper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

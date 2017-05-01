@@ -1,7 +1,7 @@
 package com.colaui.system.dao;
 
-import com.colaui.example.model.ColaRoleMember;
-import com.colaui.hibernate.HibernateDao;
+import com.colaui.helper.hibernate.HibernateDao;
+import com.colaui.system.model.ColaRoleMember;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -91,5 +91,11 @@ public class ColaRoleMemberDao extends HibernateDao<ColaRoleMember, String> {
             }
         }
         return returnIds;
+    }
+
+    public List<ColaRoleMember> getRoleIdsByUsername(String currentUsername) {
+        Criteria criteria = this.createCriteria();
+        criteria.add(Restrictions.eq("username", currentUsername));
+        return this.find(criteria);
     }
 }

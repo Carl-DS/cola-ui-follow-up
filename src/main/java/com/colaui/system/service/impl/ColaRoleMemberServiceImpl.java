@@ -1,7 +1,7 @@
 package com.colaui.system.service.impl;
 
-import com.colaui.example.model.ColaRoleMember;
-import com.colaui.provider.Page;
+import com.colaui.system.model.ColaRoleMember;
+import com.colaui.helper.Page;
 import com.colaui.system.dao.ColaRoleMemberDao;
 import com.colaui.system.service.ColaRoleMemberService;
 import com.colaui.utils.CommonUtils;
@@ -125,6 +125,11 @@ public class ColaRoleMemberServiceImpl implements ColaRoleMemberService {
     @Override
     public void deleteByGroupId(String roleId, String groupId) {
         rolememberDao.deleteByGroupId(roleId, groupId);
+    }
+
+    @Override
+    public List<ColaRoleMember> getRoleIdsByUsername(String principal) {
+        return rolememberDao.getRoleIdsByUsername(principal);
     }
 
     @Override

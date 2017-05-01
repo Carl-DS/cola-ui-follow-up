@@ -18,7 +18,7 @@
             dataType: "Role",
             provider: {
                 url: "./service/frame/role/",
-                pageSize: 2,
+                pageSize: 5,
                 beforeSend: function (self, arg) {
                     var contain = model.get("contain");
                     if (cola.defaultAction.isNotEmpty(contain)) {

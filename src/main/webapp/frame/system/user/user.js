@@ -9,12 +9,10 @@
                         async: true,
                         message: "该用户名已被使用",
                         func: function (value, callback) {
-                            debugger;
                             $.ajax({
                                 url: "./service/frame/user/check",
                                 data: {username:value},
                                 success: function(message) {
-                                    debugger;
                                     cola.callback(callback, true, message);
                                 },
                                 error: function(xhr, status, ex) {
@@ -50,18 +48,18 @@
                 password: {
                     validators: ["required", {
                         $type: "custom",
-                        message: "应为8-30位字母数字符号组合",
+                        message: "应为6-20位字母或数字组合",
                         func:function(value) {
-                            if(value && value.length>20){
-                                return true;
-                            }else{
-                                var reg = new RegExp('(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,20}');
+                            if(value){
+                                var reg = new RegExp(/^[A-Za-z0-9]{6,20}$/);
                                 var result =reg.test(value);
                                 if(result){
                                     return true;
                                 }else{
                                     return false;
                                 }
+                            } else {
+                                return false;
                             }
                         }
                     }]
@@ -73,9 +71,8 @@
             dataType: "User",
             provider: {
                 url: "./service/frame/user/",
-                pageSize: 2,
+                pageSize: 5,
                 beforeSend: function (self, arg) {
-                    debugger;
                     var contain = model.get("contain");
                     if (cola.defaultAction.isNotEmpty(contain)) {
                         // 使用encodeURI() 为了解决GET下传递中文出现的乱码
@@ -88,7 +85,6 @@
 
         model.action({
             search: function () {
-                debugger;
                 model.flush("users");
             },
             enterSearch: function () {
@@ -98,7 +94,6 @@
                 }
             },
             editUser: function (user) {
-                debugger;
                 if (user.dataType) { // 修改
                     model.set("editItem", user.toJSON());
                 } else { // 新增
@@ -113,7 +108,6 @@
                 return cola.widget("addUserSidebar").show();
             },
             deleteUser: function (user) {
-                debugger;
                 cola.confirm("确认删除吗?",{
                     title: "消息提示",
                     level: "info",
@@ -122,7 +116,6 @@
                         $.ajax("./service/frame/user/"+user.get("username")+"/", {
                             type: "DELETE",
                             success: function () {
-                                debugger;
                             }
                         })
                     }
@@ -133,7 +126,6 @@
                 return cola.widget("addUserSidebar").hide();
             },
             userSave: function () {
-                debugger;
                 var user, state, data;
                 user = model.get("editItem");
                 state = user.state;
@@ -144,7 +136,6 @@
                         type: state==="new" ? "POST" : "PUT",
                         contentType: "application/json",
                         success: function () {
-                            debugger;
                             model.flush("users");
                             model.get("editItem").setState("none");
                             cola.widget("addUserSidebar").hide();
@@ -173,14 +164,7 @@
                 showHeader: true,
                 currentPageOnly: true,
                 highlightCurrentItem: true,
-                renderHeaderCell: function(self, arg) {
-                    var caption;
-                    debugger;
-                    caption = arg.column.get("caption");
-                    if (caption === "岗位") {
-                        return $(arg.dom).parent().attr("id","positionName-header");
-                    }
-                },
+                changeCurrentItem: true,
                 columns: [
                     {
                         bind: ".username",

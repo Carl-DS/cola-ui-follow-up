@@ -1,9 +1,6 @@
 /**
  * Created by Carl on 2017/3/14.
  */
-/**
- * Created by carl.li on 2017/2/16.
- */
 (function () {
     cola(function (model) {
         // 基于准备好的dom，初始化echarts实例

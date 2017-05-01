@@ -1,7 +1,7 @@
 package com.colaui.system.dao;
 
-import com.colaui.example.model.ColaUserPosition;
-import com.colaui.hibernate.HibernateDao;
+import com.colaui.system.model.ColaUserPosition;
+import com.colaui.helper.hibernate.HibernateDao;
 import org.springframework.stereotype.Repository;
 
 /**

@@ -2,7 +2,7 @@ package com.colaui.example.controller;
 
 import com.colaui.example.model.ColaEmployee;
 import com.colaui.example.service.ColaEmployeeService;
-import com.colaui.provider.Page;
+import com.colaui.helper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

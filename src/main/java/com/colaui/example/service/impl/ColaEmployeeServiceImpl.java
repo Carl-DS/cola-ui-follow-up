@@ -3,7 +3,7 @@ package com.colaui.example.service.impl;
 import com.colaui.example.dao.ColaEmployeeDao;
 import com.colaui.example.model.ColaEmployee;
 import com.colaui.example.service.ColaEmployeeService;
-import com.colaui.provider.Page;
+import com.colaui.helper.Page;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Criterion;

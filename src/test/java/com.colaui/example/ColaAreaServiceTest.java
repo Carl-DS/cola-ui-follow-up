@@ -2,7 +2,7 @@ package com.colaui.example;
 
 import com.colaui.example.model.ColaArea;
 import com.colaui.example.service.ColaAreaService;
-import com.colaui.provider.Page;
+import com.colaui.helper.Page;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +17,7 @@ import java.util.List;
  * Created by carl.li on 2017/3/1.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:application-context.xml", "classpath*:rest-servlet.xml"})
+@ContextConfiguration(locations = {"classpath*:spring-context.xml", "classpath*:spring-mvc-rest.xml"})
 public class ColaAreaServiceTest {
 
     @Autowired
@@ -36,14 +36,14 @@ public class ColaAreaServiceTest {
     @Test
     public void getAreas() throws Exception {
         Page<ColaArea> colaAreas = colaAreaService.getAreas(5, 1);
-        System.out.println("getAreas(): "+colaAreas.get$entityCount());
+        System.out.println("getAreas(): " + colaAreas.get$entityCount());
     }
 
     @Test
     public void recursionTree() throws Exception {
         List<ColaArea> colaAreas = colaAreaService.recursionTree("1");
         //Assert.assertEquals(34,colaAreas.size());
-        System.out.println("recursionTree(): "+colaAreas.size());
+        System.out.println("recursionTree(): " + colaAreas.size());
     }
 
 }

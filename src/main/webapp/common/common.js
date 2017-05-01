@@ -45,7 +45,7 @@
           icon: "icon alarm"
       },
       "workbench": {
-          path: "./example/echarts/website_visit.html",
+          path: "./example/echarts/cola-visit.html",
           type: "subWindow",
           label: "我的工作台",
           closeable: false,
@@ -233,7 +233,7 @@
 
   if (language) {
     document.write("<script src=\"resources/cola-ui/i18n/" + language + "/cola.js\"></script>");
-    document.write("<script src=\"resources/i18n/" + language + "/common.js\"></script>");
+    // document.write("<script src=\"resources/i18n/" + language + "/common.js\"></script>");
   }
 
   $(NProgress.done);

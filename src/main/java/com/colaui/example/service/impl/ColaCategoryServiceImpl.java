@@ -3,7 +3,7 @@ package com.colaui.example.service.impl;
 import com.colaui.example.dao.ColaCategoryDao;
 import com.colaui.example.model.ColaCategory;
 import com.colaui.example.service.ColaCategoryService;
-import com.colaui.provider.Page;
+import com.colaui.helper.Page;
 import org.hibernate.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

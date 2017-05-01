@@ -1,9 +1,10 @@
 package com.colaui.system.service.impl;
 
-import com.colaui.example.model.ColaRoleResource;
-import com.colaui.example.model.ColaUrl;
+import com.colaui.system.dao.ColaRoleMemberDao;
 import com.colaui.system.dao.ColaRoleResourceDao;
 import com.colaui.system.dao.ColaUrlDao;
+import com.colaui.system.model.ColaRoleResource;
+import com.colaui.system.model.ColaUrl;
 import com.colaui.system.service.ColaUrlService;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
@@ -24,28 +25,27 @@ public class ColaUrlServiceImpl implements ColaUrlService {
     private ColaUrlDao colaUrlDao;
     @Autowired
     private ColaRoleResourceDao roleResourceDao;
+    @Autowired
+    private ColaRoleMemberDao roleMemberDao;
 
-    public List<ColaUrl> getUrls(Map<String, Object> params) {
+    public List<ColaUrl> getUrls(String companyId, String parentId) {
         Criteria criteria = colaUrlDao.createCriteria();
-        if (params != null && params.size() > 0) {
-            String companyId = (String) params.get("companyId");
-            String parentId = (String) params.get("parentId");
-            if (StringUtils.hasText(companyId)) {
-                criteria.add(Restrictions.eq("companyId", companyId));
-            }
-            if (StringUtils.hasText(parentId)) {
-                criteria.add(Restrictions.eq("parentId", parentId));
-            } else {
-                criteria.add(Restrictions.isNull("parentId"));
-                if (!StringUtils.hasText(companyId)) {
-                    criteria.add(Restrictions.eq("companyId", null));
-                }
-            }
-            Object obj = params.get("forNavigation");
-            if (obj != null) {
-                criteria.add(Restrictions.eq("forNavigation", (Boolean) obj));
+        if (StringUtils.hasText(companyId)) {
+            criteria.add(Restrictions.eq("companyId", companyId));
+        }
+        if (StringUtils.hasText(parentId)) {
+            criteria.add(Restrictions.eq("parentId", parentId));
+        } else {
+            criteria.add(Restrictions.isNull("parentId"));
+            if (!StringUtils.hasText(companyId)) {
+                criteria.add(Restrictions.eq("companyId", null));
             }
         }
+        //Object obj = params.get("forNavigation");
+        //if (obj != null) {
+        //    criteria.add(Restrictions.eq("forNavigation", (Boolean) obj));
+        //}
+
         criteria.add(Restrictions.isNull("parent"));
         criteria.addOrder(Order.asc("order"));
         return colaUrlDao.find(criteria);
@@ -60,12 +60,9 @@ public class ColaUrlServiceImpl implements ColaUrlService {
     }
 
     public List<ColaUrl> findUrlByRoleId(String roleId, String companyId, String parentId) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("companyId", "bstek");
-        params.put("roleId", roleId);
-        params.put("parentId", parentId);
-        List<ColaUrl> urls = getUrls(params);
-        List<ColaRoleResource> roleResources = roleResourceDao.getRoleUrls(params);
+        // 获取当前公司所拥有的菜单
+        List<ColaUrl> urls = getUrls("bstek", parentId);
+        List<ColaRoleResource> roleResources = roleResourceDao.getRoleUrlsByRoleId(roleId);
         List<String> roleUrls = new ArrayList<>();
         // 取出角色对应的资源id
         for (ColaRoleResource resource : roleResources) {
@@ -76,16 +73,18 @@ public class ColaUrlServiceImpl implements ColaUrlService {
     }
 
     @Override
-    public List<ColaUrl> getRoleUrls(Map<String, Object> params) {
-        params.put("companyId", "bstek");
-        List<ColaUrl> urls = getUrls(params);
-        List<ColaRoleResource> roleResources = roleResourceDao.getRoleUrls(params);
-        List<String> roleUrls = new ArrayList<>();
-        // 取出角色对应的资源id
+    public List<ColaUrl> getRoleUrls(String companyId, String roleId) {
+
+        //
+        List<ColaUrl> urls = getUrls("bstek", null);
+        // 根据roleId 获取角色对应的菜单
+        List<ColaRoleResource> roleResources = roleResourceDao.getRoleUrlsByRoleId(roleId);
+        List<String> roleUrlIds = new ArrayList<>();
+        // 取出角色对应的菜单id
         for (ColaRoleResource resource : roleResources) {
-            roleUrls.add(resource.getUrlId());
+            roleUrlIds.add(resource.getUrlId());
         }
-        checkForNavigation(urls,roleUrls);
+        checkForNavigation(urls,roleUrlIds);
         recursiveMenus(urls);
         return urls;
     }

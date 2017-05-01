@@ -1,10 +1,10 @@
 package com.colaui.system.dao;
 
-import com.colaui.example.model.AuthorityType;
-import com.colaui.example.model.ColaComponent;
-import com.colaui.example.model.ColaUrl;
-import com.colaui.example.model.ColaUrlComponent;
-import com.colaui.hibernate.HibernateDao;
+import com.colaui.system.model.AuthorityType;
+import com.colaui.system.model.ColaComponent;
+import com.colaui.system.model.ColaUrl;
+import com.colaui.system.model.ColaUrlComponent;
+import com.colaui.helper.hibernate.HibernateDao;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;

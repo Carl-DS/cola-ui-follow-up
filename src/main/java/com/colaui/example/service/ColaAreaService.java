@@ -1,7 +1,7 @@
 package com.colaui.example.service;
 
 import com.colaui.example.model.ColaArea;
-import com.colaui.provider.Page;
+import com.colaui.helper.Page;
 
 import java.util.List;
 

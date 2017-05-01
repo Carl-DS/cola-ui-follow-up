@@ -1,8 +1,8 @@
 package com.colaui.system.controller;
 
-import com.colaui.example.model.ColaUserDept;
+import com.colaui.system.model.ColaUserDept;
 import com.colaui.system.service.ColaUserDeptService;
-import com.colaui.provider.Page;
+import com.colaui.helper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

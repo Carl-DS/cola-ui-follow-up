@@ -1,14 +1,17 @@
 package com.colaui.system.controller;
 
-import com.colaui.example.model.ColaUrl;
+import com.colaui.system.model.ColaRoleMember;
+import com.colaui.system.model.ColaUrl;
+import com.colaui.system.service.ColaRoleMemberService;
 import com.colaui.system.service.ColaUrlService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by carl.li on 2017/3/3.
@@ -20,16 +23,25 @@ public class ColaUrlController {
 
     @Autowired
     private ColaUrlService colaUrlService;
+    @Autowired
+    private ColaRoleMemberService colaRoleMemberService;
 
     @RequestMapping(value = "/menus", method = RequestMethod.GET)
-    public List<ColaUrl> getUrls(@RequestParam(required = false) Map<String, Object> params) {
-        log.info("getUrls()===>", params);
-        return colaUrlService.getUrls(params);
+    public List<ColaUrl> getUrls(@RequestParam(required = false) String companyId) {
+        Subject currentUser = SecurityUtils.getSubject();
+        String username = (String) currentUser.getPrincipal();
+        if (username.equals("admin")) {
+            return colaUrlService.getUrls("bstek", null);
+        } else {
+            // 获取当前登录用户所拥有的角色
+            List<ColaRoleMember> roleIds = colaRoleMemberService.getRoleIdsByUsername(username);
+            return colaUrlService.getRoleUrls("bstek", roleIds.get(0).getRoleId());
+        }
     }
 
     @RequestMapping(value = "/roleurls", method = RequestMethod.GET)
-    public List<ColaUrl> getRoleUrls(@RequestParam(required = false) Map<String, Object> params) {
-        return colaUrlService.getRoleUrls(params);
+    public List<ColaUrl> getRoleUrls(@RequestParam(required = false) String roleId) {
+        return colaUrlService.getRoleUrls("bstek",roleId);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")

@@ -3,7 +3,7 @@ package com.colaui.example.service.impl;
 import com.colaui.example.dao.ColaAreaDao;
 import com.colaui.example.model.ColaArea;
 import com.colaui.example.service.ColaAreaService;
-import com.colaui.provider.Page;
+import com.colaui.helper.Page;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;

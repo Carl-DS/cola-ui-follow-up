@@ -1,7 +1,7 @@
 package com.colaui.system.service.impl;
 
-import com.colaui.example.model.ColaCompany;
-import com.colaui.provider.Page;
+import com.colaui.system.model.ColaCompany;
+import com.colaui.helper.Page;
 import com.colaui.system.dao.ColaCompanyDao;
 import com.colaui.system.service.ColaCompanyService;
 import org.apache.commons.lang.StringUtils;
