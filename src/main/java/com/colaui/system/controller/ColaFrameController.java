@@ -6,23 +6,23 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-@Controller
+@RestController
 @RequestMapping("/frame")
 public class ColaFrameController {
 
-    @RequestMapping("/account/login")
-    public String login(@RequestParam("username") String username,
-                        @RequestParam("password") String password){
+    @RequestMapping(value = "/account/login", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    public Map<String, Object> login(@RequestBody Map<String, Object> principal){
+        Map<String, Object> result = new HashMap<String, Object>();
+        String username = (String) principal.get("username");
+        String password = (String) principal.get("password");
         Subject currentUser = SecurityUtils.getSubject();
-
         if (!currentUser.isAuthenticated()) {
             // 把用户名和密码封装为 UsernamePasswordToken 对象
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
@@ -37,15 +37,18 @@ public class ColaFrameController {
             catch (AuthenticationException ae) {
                 //unexpected condition?  error?
                 System.out.println("登录失败: " + ae.getMessage());
-                return "redirect:/frame/account/login.html";
+                result.put("type", 0);
+                result.put("message", "登录失败");
+                return result;
             }
         }
-
-        return "redirect:/frame/main.html";
+        System.out.println("登录成功!");
+        result.put("type", 1);
+        result.put("message", "登录成功");
+        return result;
     }
 
     @RequestMapping("message/pull")
-    @ResponseBody
     public List<ColaMessage> pull() {
         List<ColaMessage> messages = new ArrayList<ColaMessage>();
         ColaMessage message = new ColaMessage();
@@ -61,7 +64,6 @@ public class ColaFrameController {
     }
 
     @RequestMapping("user/detail")
-    @ResponseBody
     public ColaUser userDetail() {
         ColaUser user = new ColaUser();
         user.setAvatar("./resources/images/avatars/alex.png");
