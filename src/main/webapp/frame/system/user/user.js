@@ -217,7 +217,6 @@
             url: url,
             ids:['containInput', 'searchBtn', 'addLayerBtn']
         };
-        /*  如果ids为空，则设置页面中所有具有id组件的权限,默认无权限；推荐传入url参数 */
         App.resetComponentAuth(params);
     });
 }).call(this);

@@ -229,11 +229,6 @@
                     }
                 }
 
-                console.log(list);
-                // var data={
-                //
-                //     urlComponents:list
-                // };
                 return $.ajax("./service/frame/urlcomponent/", {
                     data: JSON.stringify(list),
                     contentType: "application/json",
