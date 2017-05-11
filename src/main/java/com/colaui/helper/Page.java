@@ -5,7 +5,13 @@ import java.util.Iterator;
 
 
 public class Page<T> {
+	/**
+	 * 每页显示个数
+	 */
 	private int pageSize;
+	/**
+	 * 显示第几页
+	 */
 	private int pageNo;
 	private int from;
 	private int limit;

@@ -29,16 +29,15 @@ public class ColaFrameController {
             // rememberme
             token.setRememberMe(false);
             try {
-                System.out.println("1. " + token.hashCode());
                 // 执行登录.
                 currentUser.login(token);
             }
             // 所有认证时异常的父类.
             catch (AuthenticationException ae) {
                 //unexpected condition?  error?
-                System.out.println("登录失败: " + ae.getMessage());
+                System.out.println("用户名或密码错误: " + ae.getMessage());
                 result.put("type", 0);
-                result.put("message", "登录失败");
+                result.put("message", "用户名或密码错误");
                 return result;
             }
         }

@@ -85,6 +85,7 @@
                     console.log(new XDate(arg.date).toString("yyyy-MM-dd"))
                 },
                 monthChange: function(self, arg) {
+                    debugger;
                     var calendar, month;
                     month = arg.month + 1;
                     calendar = self;
@@ -112,7 +113,7 @@
                     }, 10);
                 },
                 yearChange: function (self, arg) {
-
+                    debugger;
                 }
             }
         });

@@ -49,6 +49,10 @@
                     data = arg.options.data;
                     contain = model.get("contain");
                     return data.contain = contain;
+                },
+                success: function () {
+                    debugger;
+                    model.set("employees.visible", model.get("visible"));
                 }
             }
         });
@@ -63,6 +67,7 @@
                 }
             },
             search: function () {
+                model.set("visible", true);
                 return model.flush("employees");
             },
             enterSearch: function () {
@@ -168,10 +173,12 @@
                         caption: "Title"
                     }, {
                         bind: ".titleOfCourtesy",
-                        caption: "Title Of Courtesy"
+                        caption: "Title Of Courtesy",
+                        visible: "true"
                     }, {
                         bind: ".sex",
-                        caption: "Sex"
+                        caption: "Sex",
+                        visible: "{{employees.visible}}"
                     }, {
                         bind: "formatDate(employee.birthDate, 'yyyy-MM-dd')",
                         caption: "Birthday"
