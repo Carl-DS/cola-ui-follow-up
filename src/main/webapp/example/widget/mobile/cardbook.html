@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta charset="UTF-8">
+    <title>Cola-UI 客户端框架</title>
+    <base href="/cola-ui-follow-up/">
+    <link rel="stylesheet" type="text/css" href="./resources/nprogress/nprogress.css">
+    <script src="./resources/nprogress/nprogress.js"></script>
+    <link rel="stylesheet" type="text/css" href="./resources/cola-ui/semantic.css">
+    <link rel="stylesheet" type="text/css" href="./resources/cola-ui/cola.css">
+    <link rel="stylesheet" type="text/css" href="./common/common.css">
+
+</head>
+<body>
+
+<container>
+    <c-buttongroup class="attached">
+        <c-button caption="传统业务" click="changeCard" state="active" userData="0"></c-button>
+        <c-button caption="创新业务" click="changeCard" userData="1"></c-button>
+    </c-buttongroup>
+    <c-cardbook id="card-book-demo" height="300">
+        <item class="active">传统业务</item>
+        <item>创新业务</item>
+    </c-cardbook>
+</container>
+
+
+<script src="./resources/jquery/jquery-2.1.3.js"></script>
+<script src="./resources/jquery/jquery.cookie.js"></script>
+<script src="./resources/cola-ui/3rd.js"></script>
+<script src="./resources/cola-ui/semantic.js"></script>
+<script src="./resources/cola-ui/cola.js"></script>
+<script src="./common/common.js"></script>
+<script src="./example/widget/mobile/cardbook.js"></script>
+</body>
+</html>

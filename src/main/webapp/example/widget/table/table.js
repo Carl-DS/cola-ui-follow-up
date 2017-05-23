@@ -26,6 +26,7 @@
       productTable: {
         $type: "table",
         showHeader: true,
+        showFooter: true,
         bind: "item in products",
         highlightCurrentItem: true,
         currentPageOnly: true,
@@ -99,6 +100,7 @@
             setTable = new cola.Table({
                 $type: "table",
                 showHeader: true,
+                showFooter: true,
                 bind: "item in products",
                 highlightCurrentItem: true,
                 currentPageOnly: true,
