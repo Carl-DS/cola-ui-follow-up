@@ -23,6 +23,7 @@ public class ShiroRealm extends AuthorizingRealm {
     @Autowired
     private ColaUserService colaUserService;
 
+    //用于认证的方法
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(
             AuthenticationToken token) throws AuthenticationException {
@@ -95,7 +96,6 @@ public class ShiroRealm extends AuthorizingRealm {
 
         //3. 创建 SimpleAuthorizationInfo, 并设置其 reles 属性.
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roles);
-
         //4. 返回 SimpleAuthorizationInfo 对象.
         return info;
     }
