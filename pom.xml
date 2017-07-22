@@ -29,7 +29,8 @@
 
         <!--项目工程环境变量 start-->
         <war-name>cola-ui-follow-up</war-name>
-        <jdk.version>1.7</jdk.version>
+        <!--java版本-->
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!--项目工程环境变量 end-->
 
@@ -221,8 +222,8 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
-                        <source>${jdk.version}</source>
-                        <target>${jdk.version}</target>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
                         <encoding>${project.build.sourceEncoding}</encoding>
                         <showWarnings>true</showWarnings>
                     </configuration>
