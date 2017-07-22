@@ -43,8 +43,8 @@ public class SwaggerConfig {
     // api接口作者相关信息
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("cola-ui-follow-up RESTful APIs")
-                .termsOfServiceUrl("https://github.com/carl-ds")
+                .title("COLA-UI-FOLLOW-UP RESTful APIs")
+                .termsOfServiceUrl("https://github.com/carl-ds/cola-ui-follow-up")
                 .contact(new Contact("Carl.Li", "https://github.com/carl-ds", "ldscode@163.com"))
                 .version("1.0.0")
                 .build();
