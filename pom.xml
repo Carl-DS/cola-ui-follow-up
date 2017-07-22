@@ -30,7 +30,7 @@
         <!--项目工程环境变量 start-->
         <war-name>cola-ui-follow-up</war-name>
         <!--java版本-->
-        <java.version>1.8</java.version>
+        <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!--项目工程环境变量 end-->
 
