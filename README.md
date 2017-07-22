@@ -37,3 +37,6 @@ http://localhost:8080/cola-ui-follow-up
 
 http://localhost:8080/cola-ui-follow-up/service/swagger-ui.html
 
+![](https://github.com/Carl-DS/cola-ui-follow-up/blob/followcola/src/main/webapp/resources/images/swagger.png)
+
+
