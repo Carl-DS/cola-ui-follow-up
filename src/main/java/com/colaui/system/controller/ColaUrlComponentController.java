@@ -12,16 +12,18 @@ import java.util.Map;
 @RestController
 @RequestMapping("/frame/urlcomponent")
 public class ColaUrlComponentController {
+
     @Autowired
     private ColaUrlComponentService urlcomponentService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping
     public Page<ColaUrlComponent> paging(@RequestParam int pageSize,
-                                         @RequestParam int pageNo, @RequestParam(required=false) String contain) {
+                                         @RequestParam int pageNo,
+                                         @RequestParam(required = false) String contain) {
         return urlcomponentService.getPage(pageSize, pageNo, contain);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @PostMapping
     public void saveRoleUrlComponents(@RequestBody List<Map<String, Object>> urlComponents) {
         if (urlComponents == null || urlComponents.size() < 1) {
             return;
@@ -30,22 +32,22 @@ public class ColaUrlComponentController {
         }
     }
 
-    @RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)
+    @DeleteMapping("/{id}/")
     public void delete(@PathVariable("id") long id) {
         urlcomponentService.delete(id);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
+    @PutMapping
     public void update(@RequestBody ColaUrlComponent urlcomponent) {
         urlcomponentService.update(urlcomponent);
     }
 
-    @RequestMapping(value = "/{id}/", method = RequestMethod.GET)
+    @GetMapping("/{id}")
     public ColaUrlComponent find(@PathVariable("id") long id) {
         return urlcomponentService.find(id);
     }
 
-    @RequestMapping(value = "/{from}/{limit}", method = RequestMethod.GET)
+    @GetMapping("/{from}/{limit}")
     public List<ColaUrlComponent> find(@PathVariable("from") int from,
                                        @PathVariable("limit") int limit) {
         return urlcomponentService.find(from, limit);

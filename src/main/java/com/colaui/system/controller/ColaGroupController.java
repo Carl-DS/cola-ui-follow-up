@@ -11,43 +11,45 @@ import java.util.List;
 @RestController
 @RequestMapping("/frame/group")
 public class ColaGroupController {
+
     @Autowired
     private ColaGroupService groupService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping
     public Page<ColaGroup> paging(@RequestParam int pageSize,
-                                  @RequestParam int pageNo, @RequestParam(required=false) String contain) {
+                                  @RequestParam int pageNo,
+                                  @RequestParam(required = false) String contain) {
         return groupService.getPage(pageSize, pageNo, contain);
     }
 
-    @RequestMapping(value = "/rolegroups", method = RequestMethod.GET)
+    @GetMapping("/rolegroups")
     public Page<ColaGroup> roleGroups(@RequestParam int pageSize,
                                       @RequestParam int pageNo,
-                                      @RequestParam(required=false) String roleId) {
+                                      @RequestParam(required = false) String roleId) {
         return groupService.roleGroups(pageSize, pageNo, roleId);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @PostMapping
     public void save(@RequestBody ColaGroup group) {
         groupService.save(group);
     }
 
-    @RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)
+    @DeleteMapping("/{id}/")
     public void delete(@PathVariable("id") String id) {
         groupService.delete(id);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
+    @PutMapping
     public void update(@RequestBody ColaGroup group) {
         groupService.update(group);
     }
 
-    @RequestMapping(value = "/{id}/", method = RequestMethod.GET)
+    @GetMapping("/{id}/")
     public ColaGroup find(@PathVariable("id") String id) {
         return groupService.find(id);
     }
 
-    @RequestMapping(value = "/{from}/{limit}", method = RequestMethod.GET)
+    @GetMapping("/{from}/{limit}")
     public List<ColaGroup> find(@PathVariable("from") int from,
                                 @PathVariable("limit") int limit) {
         return groupService.find(from, limit);

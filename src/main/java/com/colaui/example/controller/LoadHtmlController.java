@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("cola")
+@RequestMapping("/cola")
 public class LoadHtmlController {
 
     private static String[] removeTagNames = "script,link".split(",");
@@ -27,13 +27,12 @@ public class LoadHtmlController {
     private ColaAuthService colaAuthService;
 
     /**
-     *
      * @param user
      * @param request
      * @return
      */
-    @RequestMapping(value = "/load/html/body", method = RequestMethod.GET, produces = "text/plain; charset=utf-8")
-    public @ResponseBody String loadBody(@RequestParam String user, HttpServletRequest request) {
+    @GetMapping("/load/html/body")
+    public String loadBody(@RequestParam String user, HttpServletRequest request) {
         String filePath = "/Users/Carl/workspace/IdeaProjects/cola-ui-follow-up/src/main/webapp/frame/security/auth1.html";
         File file = new File(filePath);
         Document document;
@@ -47,7 +46,7 @@ public class LoadHtmlController {
             }
             for (Element element : document.body().getAllElements()) {
                 if (element.hasAttr("id")) {
-                    Map<String, Boolean> auth = getComponentAuth(user,element.attr("id"));
+                    Map<String, Boolean> auth = getComponentAuth(user, element.attr("id"));
                     if (null != auth && auth.size() > 0) {
                         element.attr("visible", auth.get("visible") + "");
                         element.attr("editable", auth.get("editable") + "");
@@ -75,6 +74,7 @@ public class LoadHtmlController {
         }
         return authMap;
     }
+
     /**
      * /service/frame/component/auth?url=/frame/url/urls.html
      * url visible:false表示不可见，disabled为true表示只读
@@ -82,7 +82,7 @@ public class LoadHtmlController {
      * @return [{"id":"SystemDropDown","visible":true,"disabled":true},{"id":"urlTree","visible":false}]
      * @throws IOException
      */
-    @RequestMapping(value = "/auth", method = RequestMethod.GET)
+    @GetMapping("/auth")
     public List<Map<String, Object>> loadAuth(@RequestParam(required = false) Map<String, Object> param,
                                               HttpServletRequest request) throws IOException {
         String url = (String) param.get("url");
@@ -103,7 +103,7 @@ public class LoadHtmlController {
             authMap = new HashMap<String, Boolean>();
             ucAuth.put("id", ucId);
             ucIdStr = user + ucId;
-            for(ColaAuth colaAuth:auths) {
+            for (ColaAuth colaAuth : auths) {
                 if (ucIdStr.equals(colaAuth.getId())) {
                     authMap.put("disabled", colaAuth.getDisabled());
                     authMap.put("editable", colaAuth.getEditable());
@@ -137,11 +137,11 @@ public class LoadHtmlController {
         return ucIds;
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    public void saveAuth(@RequestBody ArrayList<Map<String,Object>> colaAuths) throws IOException {
+    @PostMapping("/saveAuth")
+    public void saveAuth(@RequestBody ArrayList<Map<String, Object>> colaAuths) throws IOException {
         ColaAuth auth = null;
         boolean editable = false;
-        for (Map<String, Object> colaAuth:colaAuths) {
+        for (Map<String, Object> colaAuth : colaAuths) {
             auth = new ColaAuth();
             editable = (Boolean) colaAuth.get("editable");
             auth.setId((String) colaAuth.get("id"));

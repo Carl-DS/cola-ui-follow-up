@@ -17,7 +17,7 @@ import java.util.List;
  * Created by carl.li on 2017/3/3.
  */
 @RestController
-@RequestMapping("frame/url")
+@RequestMapping("/frame/url")
 public class ColaUrlController {
     private static final Logger log = LoggerFactory.getLogger(ColaUrlController.class);
 
@@ -26,7 +26,7 @@ public class ColaUrlController {
     @Autowired
     private ColaRoleMemberService colaRoleMemberService;
 
-    @RequestMapping(value = "/menus", method = RequestMethod.GET)
+    @GetMapping("/menus")
     public List<ColaUrl> getUrls(@RequestParam(required = false) String companyId) {
         Subject currentUser = SecurityUtils.getSubject();
         String username = (String) currentUser.getPrincipal();
@@ -39,22 +39,22 @@ public class ColaUrlController {
         }
     }
 
-    @RequestMapping(value = "/roleurls", method = RequestMethod.GET)
+    @GetMapping("/roleurls")
     public List<ColaUrl> getRoleUrls(@RequestParam(required = false) String roleId) {
-        return colaUrlService.getRoleUrls("bstek",roleId);
+        return colaUrlService.getRoleUrls("bstek", roleId);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @PostMapping
     public void saveUrl(@RequestBody ColaUrl url) {
         colaUrlService.saveUrl(url);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping("/{id}")
     public void deleteUrl(@PathVariable String id) {
         colaUrlService.deleteUrl(id);
     }
 
-    @RequestMapping(value = "/resource/{roleId}", method = RequestMethod.GET)
+    @GetMapping("/resource/{roleId}")
     public List<ColaUrl> findUrlByRoleId(@PathVariable("roleId") String roleId,
                                          @RequestParam(required = false) String companyId,
                                          @RequestParam(required = false) String parentId) {

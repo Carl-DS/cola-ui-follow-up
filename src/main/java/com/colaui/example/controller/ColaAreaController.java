@@ -14,16 +14,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/area")
 public class ColaAreaController {
+
     @Autowired
     private ColaAreaService colaAreaService;
 
-    @GetMapping(value = "")
+    @GetMapping
     public Page<ColaArea> getAreas(@RequestParam int pageSize, @RequestParam int pageNo) {
         return colaAreaService.getAreas(pageSize, pageNo);
     }
 
-    @GetMapping(value = "/recursion")
+    @GetMapping("/recursion")
     public List<ColaArea> recursionTree(@RequestParam String parentId) {
-        return  colaAreaService.recursionTree(parentId);
+        return colaAreaService.recursionTree(parentId);
     }
 }

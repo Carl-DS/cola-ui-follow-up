@@ -14,12 +14,12 @@ import java.util.List;
  * Created by carl.li on 2017/3/3.
  */
 @RestController
-@RequestMapping("frame/user")
+@RequestMapping("/frame/user")
 public class ColaUserController {
     @Autowired
     private ColaUserService colaUserService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping
     public Page<ColaUser> paging(@RequestParam int pageSize,
                                  @RequestParam int pageNo,
                                  @RequestParam(required = false) String contain) {
@@ -35,47 +35,47 @@ public class ColaUserController {
         return colaUserService.getPage(pageSize, pageNo, containDecode);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @PostMapping
     public void save(@RequestBody ColaUser colaUser) {
         colaUserService.save(colaUser);
     }
 
-    @RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") String id) {
         colaUserService.delete(id);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
+    @PutMapping
     public void update(@RequestBody ColaUser colaUser) {
         colaUserService.update(colaUser);
     }
 
-    @RequestMapping(value = "/{id}/", method = RequestMethod.GET)
+    @GetMapping("/{id}")
     public ColaUser find(@PathVariable("id") String id) {
         return colaUserService.find(id);
     }
 
-    @RequestMapping(value = "/{from}/{limit}", method = RequestMethod.GET)
+    @GetMapping("/{from}/{limit}")
     public List<ColaUser> find(@PathVariable("from") int from,
                                @PathVariable("limit") int limit) {
         return colaUserService.find(from, limit);
     }
 
-    @RequestMapping(value = "/groupusers", method = RequestMethod.GET)
+    @GetMapping("/groupusers")
     public Page<ColaUser> groupUsers(@RequestParam int pageSize,
                                      @RequestParam int pageNo,
                                      @RequestParam String groupId) {
         return colaUserService.groupUsers(pageSize, pageNo, groupId);
     }
 
-    @RequestMapping(value = "/roleusers", method = RequestMethod.GET)
+    @GetMapping("/roleusers")
     public Page<ColaUser> roleUsers(@RequestParam int pageSize,
-                                     @RequestParam int pageNo,
-                                     @RequestParam String roleId) {
+                                    @RequestParam int pageNo,
+                                    @RequestParam String roleId) {
         return colaUserService.roleUsers(pageSize, pageNo, roleId);
     }
 
-    @RequestMapping(value="/check", method = RequestMethod.GET)
+    @GetMapping("/check")
     public boolean check(@RequestParam String username) {
         return colaUserService.check(username);
     }

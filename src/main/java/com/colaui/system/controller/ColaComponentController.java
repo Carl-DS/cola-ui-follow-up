@@ -19,8 +19,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController()
-@RequestMapping("frame/component")
+@RestController
+@RequestMapping("/frame/component")
 public class ColaComponentController {
     protected static final Logger logger = LoggerFactory.getLogger(ColaComponentController.class);
 
@@ -29,7 +29,7 @@ public class ColaComponentController {
 
     private static String[] removeTagNames = "script,link".split(",");
 
-    @RequestMapping(value = "/load", method = RequestMethod.GET, produces = "text/plain; charset=utf-8")
+    @GetMapping("/load")
     public String loadBody(@RequestParam String url, HttpServletRequest request) throws IOException {
         String html = "";
         if (!StringUtils.hasText(url)) {
@@ -71,7 +71,7 @@ public class ColaComponentController {
      * @return [{"id":"SystemDropDown","visible":true,"disabled":true},{"id":"urlTree","visible":false}]
      * @throws IOException
      */
-    @RequestMapping(value = "/auth", method = RequestMethod.POST)
+    @PostMapping("/auth")
     public List<Map<String, Object>> loadAuth(@RequestBody(required = false) Map<String, Object> params,
                                               HttpServletRequest request) throws IOException {
         List<Map<String, Object>> ucObjAuths = new ArrayList<>();
@@ -122,7 +122,6 @@ public class ColaComponentController {
         }
         return ucIds;
     }
-
 
 
     private Map<String, Boolean> checkComponentAuth(String url, String componentId) {

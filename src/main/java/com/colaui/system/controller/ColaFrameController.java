@@ -17,7 +17,7 @@ import java.util.Map;
 @RequestMapping("/frame")
 public class ColaFrameController {
 
-    @RequestMapping(value = "/account/login", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @PostMapping("/account/login")
     public Map<String, Object> login(@RequestBody Map<String, Object> principal){
         Map<String, Object> result = new HashMap<String, Object>();
         String username = (String) principal.get("username");
@@ -47,7 +47,7 @@ public class ColaFrameController {
         return result;
     }
 
-    @RequestMapping("message/pull")
+    @GetMapping("message/pull")
     public List<ColaMessage> pull() {
         List<ColaMessage> messages = new ArrayList<ColaMessage>();
         ColaMessage message = new ColaMessage();
@@ -62,7 +62,7 @@ public class ColaFrameController {
         return messages;
     }
 
-    @RequestMapping("user/detail")
+    @GetMapping("user/detail")
     public ColaUser userDetail() {
         ColaUser user = new ColaUser();
         user.setAvatar("./resources/images/avatars/alex.png");

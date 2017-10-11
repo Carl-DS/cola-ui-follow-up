@@ -9,40 +9,42 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("employee")
+@RequestMapping("/employee")
 public class ColaEmployeeController {
-	@Autowired
-	private ColaEmployeeService employeeService;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public Page<ColaEmployee> paging(@RequestParam int pageSize,
-			@RequestParam int pageNo, @RequestParam(required=false) String contain) {
-		return employeeService.getPage(pageSize, pageNo, contain);
-	}
+    @Autowired
+    private ColaEmployeeService employeeService;
 
-	@RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-	public void save(@RequestBody ColaEmployee employee) {
-		employeeService.save(employee);
-	}
+    @GetMapping
+    public Page<ColaEmployee> paging(@RequestParam int pageSize,
+                                     @RequestParam int pageNo, 
+                                     @RequestParam(required = false) String contain) {
+        return employeeService.getPage(pageSize, pageNo, contain);
+    }
 
-	@RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)
-	public void delete(@PathVariable("id") long id) {
-		employeeService.delete(id);
-	}
+    @PostMapping
+    public void save(@RequestBody ColaEmployee employee) {
+        employeeService.save(employee);
+    }
 
-	@RequestMapping(value = "/", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
-	public void update(@RequestBody ColaEmployee employee) {
-		employeeService.update(employee);
-	}
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") long id) {
+        employeeService.delete(id);
+    }
 
-	@RequestMapping(value = "/{id}/", method = RequestMethod.GET)
-	public ColaEmployee find(@PathVariable("id") long id) {
-		return employeeService.find(id);
-	}
+    @PutMapping
+    public void update(@RequestBody ColaEmployee employee) {
+        employeeService.update(employee);
+    }
 
-	@RequestMapping(value = "/{from}/{limit}", method = RequestMethod.GET)
-	public List<ColaEmployee> find(@PathVariable("from") int from,
-			@PathVariable("limit") int limit) {
-		return employeeService.find(from, limit);
-	}
+    @GetMapping("/{id}")
+    public ColaEmployee find(@PathVariable("id") long id) {
+        return employeeService.find(id);
+    }
+
+    @GetMapping("/{from}/{limit}")
+    public List<ColaEmployee> find(@PathVariable("from") int from,
+                                   @PathVariable("limit") int limit) {
+        return employeeService.find(from, limit);
+    }
 }

@@ -13,12 +13,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/frame/position")
 public class ColaPositionController {
+
     @Autowired
     private ColaPositionService positionService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping
     public Page<ColaPosition> paging(@RequestParam int pageSize,
-                                     @RequestParam int pageNo, @RequestParam(required=false) String contain) {
+                                     @RequestParam int pageNo,
+                                     @RequestParam(required = false) String contain) {
         String containDecode = null;
         if (null != contain) {
             try {
@@ -31,41 +33,41 @@ public class ColaPositionController {
         return positionService.getPage(pageSize, pageNo, containDecode);
     }
 
-    @RequestMapping(value = "/grouppositions", method = RequestMethod.GET)
+    @GetMapping("/grouppositions")
     public Page<ColaPosition> groupPositions(@RequestParam int pageSize,
                                              @RequestParam int pageNo,
-                                             @RequestParam(required=false) String groupId) {
+                                             @RequestParam(required = false) String groupId) {
         return positionService.groupPositions(pageSize, pageNo, groupId);
     }
 
-    @RequestMapping(value = "/rolepositions", method = RequestMethod.GET)
+    @GetMapping("/rolepositions")
     public Page<ColaPosition> rolePositions(@RequestParam int pageSize,
-                                             @RequestParam int pageNo,
-                                             @RequestParam(required=false) String roleId) {
+                                            @RequestParam int pageNo,
+                                            @RequestParam(required = false) String roleId) {
         return positionService.rolePositions(pageSize, pageNo, roleId);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @PostMapping
     public void save(@RequestBody ColaPosition position) {
         positionService.save(position);
     }
 
-    @RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") long id) {
         positionService.delete(id);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
+    @PutMapping
     public void update(@RequestBody ColaPosition position) {
         positionService.update(position);
     }
 
-    @RequestMapping(value = "/{id}/", method = RequestMethod.GET)
+    @GetMapping("/{id}")
     public ColaPosition find(@PathVariable("id") long id) {
         return positionService.find(id);
     }
 
-    @RequestMapping(value = "/{from}/{limit}", method = RequestMethod.GET)
+    @GetMapping("/{from}/{limit}")
     public List<ColaPosition> find(@PathVariable("from") int from,
                                    @PathVariable("limit") int limit) {
         return positionService.find(from, limit);

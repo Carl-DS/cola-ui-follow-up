@@ -13,12 +13,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/frame/messageTemplate")
 public class ColaMessageTemplateController {
+
     @Autowired
     private ColaMessageTemplateService messageTemplateService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping
     public Page<ColaMessageTemplate> paging(@RequestParam int pageSize,
-                                            @RequestParam int pageNo, @RequestParam(required=false) String contain) {
+                                            @RequestParam int pageNo,
+                                            @RequestParam(required = false) String contain) {
         String containDecode = null;
         if (null != contain) {
             try {
@@ -31,27 +33,27 @@ public class ColaMessageTemplateController {
         return messageTemplateService.getPage(pageSize, pageNo, containDecode);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @PostMapping
     public void save(@RequestBody ColaMessageTemplate messagetemplate) {
         messageTemplateService.save(messagetemplate);
     }
 
-    @RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") String id) {
         messageTemplateService.delete(id);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
+    @PutMapping
     public void update(@RequestBody ColaMessageTemplate messagetemplate) {
         messageTemplateService.update(messagetemplate);
     }
 
-    @RequestMapping(value = "/{id}/", method = RequestMethod.GET)
+    @GetMapping("/{id}")
     public ColaMessageTemplate find(@PathVariable("id") String id) {
         return messageTemplateService.find(id);
     }
 
-    @RequestMapping(value = "/{from}/{limit}", method = RequestMethod.GET)
+    @GetMapping("/{from}/{limit}")
     public List<ColaMessageTemplate> find(@PathVariable("from") int from,
                                           @PathVariable("limit") int limit) {
         return messageTemplateService.find(from, limit);

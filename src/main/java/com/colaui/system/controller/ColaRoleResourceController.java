@@ -13,17 +13,18 @@ import java.util.Map;
 @RestController
 @RequestMapping("/frame/roleresource")
 public class ColaRoleResourceController {
+
     @Autowired
     private ColaRoleResourceService roleresourceService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping
     public Page<ColaRoleResource> paging(@RequestParam int pageSize,
                                          @RequestParam int pageNo,
-                                         @RequestParam(required=false) String contain) {
+                                         @RequestParam(required = false) String contain) {
         return roleresourceService.getPage(pageSize, pageNo, contain);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @PostMapping
     public void save(@RequestBody Map<String, Object> params) {
         String roleId = (String) params.get("roleId");
         ArrayList<String> urlIds = (ArrayList<String>) params.get("urlIds");
@@ -31,22 +32,22 @@ public class ColaRoleResourceController {
         roleresourceService.saveOrDelete(roleId, urlIds, excludeUrlIds);
     }
 
-    @RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") String id) {
         roleresourceService.delete(id);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
+    @PutMapping
     public void update(@RequestBody ColaRoleResource roleresource) {
         roleresourceService.update(roleresource);
     }
 
-    @RequestMapping(value = "/{id}/", method = RequestMethod.GET)
+    @GetMapping("/{id}")
     public ColaRoleResource find(@PathVariable("id") String id) {
         return roleresourceService.find(id);
     }
 
-    @RequestMapping(value = "/{from}/{limit}", method = RequestMethod.GET)
+    @GetMapping("/{from}/{limit}")
     public List<ColaRoleResource> find(@PathVariable("from") int from,
                                        @PathVariable("limit") int limit) {
         return roleresourceService.find(from, limit);

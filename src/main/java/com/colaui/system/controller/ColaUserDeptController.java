@@ -11,36 +11,38 @@ import java.util.List;
 @RestController
 @RequestMapping("/frame/userdept")
 public class ColaUserDeptController {
+
     @Autowired
     private ColaUserDeptService userdeptService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping
     public Page<ColaUserDept> paging(@RequestParam int pageSize,
-                                     @RequestParam int pageNo, @RequestParam(required=false) String contain) {
+                                     @RequestParam int pageNo,
+                                     @RequestParam(required = false) String contain) {
         return userdeptService.getPage(pageSize, pageNo, contain);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @PostMapping
     public void save(@RequestBody ColaUserDept userdept) {
         userdeptService.save(userdept);
     }
 
-    @RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") long id) {
         userdeptService.delete(id);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
+    @PutMapping
     public void update(@RequestBody ColaUserDept userdept) {
         userdeptService.update(userdept);
     }
 
-    @RequestMapping(value = "/{id}/", method = RequestMethod.GET)
+    @GetMapping("/{id}")
     public ColaUserDept find(@PathVariable("id") long id) {
         return userdeptService.find(id);
     }
 
-    @RequestMapping(value = "/{from}/{limit}", method = RequestMethod.GET)
+    @GetMapping("/{from}/{limit}")
     public List<ColaUserDept> find(@PathVariable("from") int from,
                                    @PathVariable("limit") int limit) {
         return userdeptService.find(from, limit);

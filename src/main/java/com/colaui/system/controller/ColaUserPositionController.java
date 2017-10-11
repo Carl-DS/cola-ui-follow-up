@@ -11,36 +11,38 @@ import java.util.List;
 @RestController
 @RequestMapping("/frame/userposition")
 public class ColaUserPositionController {
+
     @Autowired
     private ColaUserPositionService userpositionService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping
     public Page<ColaUserPosition> paging(@RequestParam int pageSize,
-                                         @RequestParam int pageNo, @RequestParam(required=false) String contain) {
+                                         @RequestParam int pageNo,
+                                         @RequestParam(required = false) String contain) {
         return userpositionService.getPage(pageSize, pageNo, contain);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @PostMapping
     public void save(@RequestBody ColaUserPosition userposition) {
         userpositionService.save(userposition);
     }
 
-    @RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") long id) {
         userpositionService.delete(id);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
+    @PutMapping
     public void update(@RequestBody ColaUserPosition userposition) {
         userpositionService.update(userposition);
     }
 
-    @RequestMapping(value = "/{id}/", method = RequestMethod.GET)
+    @GetMapping("/{id}")
     public ColaUserPosition find(@PathVariable("id") long id) {
         return userpositionService.find(id);
     }
 
-    @RequestMapping(value = "/{from}/{limit}", method = RequestMethod.GET)
+    @GetMapping("/{from}/{limit}")
     public List<ColaUserPosition> find(@PathVariable("from") int from,
                                        @PathVariable("limit") int limit) {
         return userpositionService.find(from, limit);

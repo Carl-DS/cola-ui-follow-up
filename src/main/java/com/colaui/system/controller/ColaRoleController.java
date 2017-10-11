@@ -11,14 +11,16 @@ import java.net.URLDecoder;
 import java.util.List;
 
 @RestController
-@RequestMapping("frame/role")
+@RequestMapping("/frame/role")
 public class ColaRoleController {
+
     @Autowired
     private ColaRoleService roleService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping
     public Page<ColaRole> paging(@RequestParam int pageSize,
-                                 @RequestParam int pageNo, @RequestParam(required=false) String contain) {
+                                 @RequestParam int pageNo,
+                                 @RequestParam(required = false) String contain) {
         String containDecode = null;
         if (null != contain) {
             try {
@@ -31,27 +33,27 @@ public class ColaRoleController {
         return roleService.getPage(pageSize, pageNo, containDecode);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @PostMapping
     public void save(@RequestBody ColaRole role) {
         roleService.save(role);
     }
 
-    @RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") String id) {
         roleService.delete(id);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
+    @PutMapping
     public void update(@RequestBody ColaRole role) {
         roleService.update(role);
     }
 
-    @RequestMapping(value = "/{id}/", method = RequestMethod.GET)
+    @GetMapping("/{id}")
     public ColaRole find(@PathVariable("id") String id) {
         return roleService.find(id);
     }
 
-    @RequestMapping(value = "/{from}/{limit}", method = RequestMethod.GET)
+    @GetMapping("/{from}/{limit}")
     public List<ColaRole> find(@PathVariable("from") int from,
                                @PathVariable("limit") int limit) {
         return roleService.find(from, limit);
