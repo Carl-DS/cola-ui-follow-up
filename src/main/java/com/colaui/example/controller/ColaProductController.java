@@ -28,13 +28,12 @@ public class ColaProductController {
 		productService.save(product);
 	}
 
-	@DeleteMapping("/{id}/")
+	@DeleteMapping("/{id}")
 	public void delete(@PathVariable("id") long id) {
-		System.out.println("Fetching & Deleting ColaEmployee with id " + id);
 		 productService.delete(id);
 	}
 
-	@PostMapping
+	@PutMapping
 	public void update(@RequestBody ColaProduct product) {
 		productService.update(product);
 	}

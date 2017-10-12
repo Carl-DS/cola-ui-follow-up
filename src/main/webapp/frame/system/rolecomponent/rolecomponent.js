@@ -17,7 +17,7 @@
         model.describe("roles", {
             dataType: "Role",
             provider: {
-                url: "./service/frame/role/",
+                url: "./service/frame/role",
                 pageSize: 5,
                 beforeSend: function (self, arg) {
                     var contain = model.get("contain");
@@ -229,7 +229,7 @@
                     }
                 }
 
-                return $.ajax("./service/frame/urlcomponent/", {
+                return $.ajax("./service/frame/urlcomponent", {
                     data: JSON.stringify(list),
                     contentType: "application/json",
                     type: "POST",

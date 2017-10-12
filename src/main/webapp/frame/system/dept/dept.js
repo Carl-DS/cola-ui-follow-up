@@ -89,7 +89,6 @@
                 }
             },
             remove : function(dept) {
-                debugger;
                 var currentEditItem = model.get("currentEditItem");
                 var nodes = currentEditItem.get("depts", "sync");
                 cola.confirm("您确定要删除当前记录吗？", {
@@ -99,7 +98,7 @@
                         } else {
                             if (dept.state === "new")
                                 return dept.remove();
-                            $.ajax("./service/frame/dept/"+ dept.get("id"), {
+                            $.ajax("./service/frame/dept"+ dept.get("id"), {
                                 type : "DELETE",
                                 success : function() {
                                     dept.remove();
@@ -120,7 +119,7 @@
                 dept = model.get("currentEditItem").toJSON();
                 delete dept.depts;
                 if (!model.get("currentEditItem").validate()) return;
-                $.ajax("./service/frame/dept/", {
+                $.ajax("./service/frame/dept", {
                     type: "POST",
                     data: JSON.stringify(dept),
                     contentType: "application/json; charset=utf-8",

@@ -14,7 +14,7 @@
         model.describe("positions", {
             dataType: "Position",
             provider: {
-                url: "./service/frame/position/",
+                url: "./service/frame/position",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     debugger;
@@ -65,7 +65,7 @@
                     level: "info",
                     onApprove: function () { // 确认时触发的回调
                         position.remove();
-                        $.ajax("./service/frame/position/"+position.get("id")+"/", {
+                        $.ajax("./service/frame/position/"+position.get("id"), {
                             type: "DELETE",
                             success: function () {
                                 debugger;
@@ -85,7 +85,7 @@
                 state = position.state;
                 if (position.validate()) {
                     data = position.toJSON();
-                    return $.ajax("./service/frame/position/", {
+                    return $.ajax("./service/frame/position", {
                         data: JSON.stringify(data),
                         type: state==="new" ? "POST" : "PUT",
                         contentType: "application/json",

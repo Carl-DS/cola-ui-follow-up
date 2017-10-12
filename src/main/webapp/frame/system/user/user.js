@@ -70,7 +70,7 @@
         model.describe("users", {
             dataType: "User",
             provider: {
-                url: "./service/frame/user/",
+                url: "./service/frame/user",
                 pageSize: 5,
                 beforeSend: function (self, arg) {
                     var contain = model.get("contain");
@@ -113,7 +113,7 @@
                     level: "info",
                     onApprove: function () { // 确认时触发的回调
                         user.remove();
-                        $.ajax("./service/frame/user/"+user.get("username")+"/", {
+                        $.ajax("./service/frame/user/"+user.get("username"), {
                             type: "DELETE",
                             success: function () {
                             }
@@ -131,7 +131,7 @@
                 state = user.state;
                 if (user.validate()) {
                     data = user.toJSON();
-                    return $.ajax("./service/frame/user/", {
+                    return $.ajax("./service/frame/user", {
                         data: JSON.stringify(data),
                         type: state==="new" ? "POST" : "PUT",
                         contentType: "application/json",

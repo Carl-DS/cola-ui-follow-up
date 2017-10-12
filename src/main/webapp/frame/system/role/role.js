@@ -14,7 +14,7 @@
         model.describe("roles", {
             dataType: "Role",
             provider: {
-                url: "./service/frame/role/",
+                url: "./service/frame/role",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     debugger;
@@ -65,7 +65,7 @@
                     level: "info",
                     onApprove: function () { // 确认时触发的回调
                         role.remove();
-                        $.ajax("./service/frame/role/"+role.get("id")+"/", {
+                        $.ajax("./service/frame/role/"+role.get("id"), {
                             type: "DELETE",
                             success: function () {
                                 debugger;
@@ -85,7 +85,7 @@
                 state = role.state;
                 if (role.validate()) {
                     data = role.toJSON();
-                    return $.ajax("./service/frame/role/", {
+                    return $.ajax("./service/frame/role", {
                         data: JSON.stringify(data),
                         type: state==="new" ? "POST" : "PUT",
                         contentType: "application/json",

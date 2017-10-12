@@ -17,7 +17,7 @@
         });*/
         model.describe("roles", {
             provider: {
-                url: "./service/frame/role/",
+                url: "./service/frame/role",
                 pageSize: 10,
                 beforeSend: function (self, arg) {
                     var contain = model.get("contain");
@@ -82,7 +82,7 @@
                 });
                 var data = model.get("roleResource").toJSON();
                 if (checkedNode.length > 0) {
-                    $.ajax("./service/frame/roleresource/", {
+                    $.ajax("./service/frame/roleresource", {
                         type: "POST",
                         data: JSON.stringify(data),
                         contentType: "application/json; charset=utf-8",

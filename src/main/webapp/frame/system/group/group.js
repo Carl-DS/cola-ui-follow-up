@@ -17,7 +17,7 @@
         model.describe("groups", {
             dataType: "Group",
             provider: {
-                url: "./service/frame/group/",
+                url: "./service/frame/group",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var contain = model.get("contain");
@@ -36,7 +36,7 @@
         // 待选择的用户
         model.describe("users", {
             provider: {
-                url: "./service/frame/user/",
+                url: "./service/frame/user",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var contain = model.get("contain");
@@ -67,7 +67,7 @@
         // 待选择的岗位
         model.describe("positions", {
             provider: {
-                url: "./service/frame/position/",
+                url: "./service/frame/position",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var contain = model.get("contain");
@@ -142,7 +142,7 @@
                     title: "消息提示",
                     level: "info",
                     onApprove: function () { // 确认时触发的回调
-                        $.ajax("./service/frame/group/"+group.get("id")+"/", {
+                        $.ajax("./service/frame/group"+group.get("id")+"/", {
                             type: "DELETE",
                             success: function () {
                                 group.remove();
@@ -157,7 +157,7 @@
                 state = group.state;
                 if (group.validate()) {
                     data = group.toJSON();
-                    return $.ajax("./service/frame/group/", {
+                    return $.ajax("./service/frame/group", {
                         data: JSON.stringify(data),
                         type: state==="new" ? "POST" : "PUT",
                         contentType: "application/json",
@@ -194,7 +194,7 @@
             deleteUser: function(model) {
                 var data = model.toJSON();
                 data.groupId = cola.widget("groupTable").get("currentItem").get("id");
-                $.ajax("./service/frame/groupmember/user/", {
+                $.ajax("./service/frame/groupmember/user", {
                     type: "GET",
                     data: {"groupId": data.groupId, "username": data.username},
                     contentType: "application/json; charset=utf-8",
@@ -206,7 +206,7 @@
             deletePosition: function(model) {
                 var data = model.toJSON();
                 data.groupId = cola.widget("groupTable").get("currentItem").get("id");
-                $.ajax("./service/frame/groupmember/position/", {
+                $.ajax("./service/frame/groupmember/position", {
                     type: "GET",
                     data: {"groupId": data.groupId, "positionId": data.id},
                     contentType: "application/json; charset=utf-8",
@@ -218,7 +218,7 @@
             deleteDept: function(model) {
                 var data = model.toJSON();
                 data.groupId = cola.widget("groupTable").get("currentItem").get("id");
-                $.ajax("./service/frame/groupmember/dept/", {
+                $.ajax("./service/frame/groupmember/dept", {
                     type: "GET",
                     data: {"groupId": data.groupId, "deptId": data.id},
                     contentType: "application/json; charset=utf-8",
@@ -231,7 +231,7 @@
                 var currentUser = cola.widget("userTable").get("currentItem");
                 var groupId = cola.widget("groupTable").get("currentItem").get("id");
                 var username = currentUser.get("username");
-                $.ajax("./service/frame/groupmember/checksame/user/", {
+                $.ajax("./service/frame/groupmember/checksame/user", {
                     type: "GET",
                     data: {"groupId": groupId, "username": username},
                     contentType: "application/json; charset=utf-8",
@@ -249,7 +249,7 @@
                 var groupId = cola.widget("groupTable").get("currentItem").get("id");
                 var currentPosition = cola.widget("positionTable").get("currentItem");
                 var positionId = currentPosition.get("id");
-                $.ajax("./service/frame/groupmember/checksame/position/", {
+                $.ajax("./service/frame/groupmember/checksame/position", {
                     type: "GET",
                     data: {"groupId": groupId, "positionId": positionId},
                     contentType: "application/json; charset=utf-8",
@@ -267,7 +267,7 @@
                 var groupId = cola.widget("groupTable").get("currentItem").get("id");
                 var currentDept = cola.widget("deptTable").get("currentItem");
                 var deptId = currentDept.get("id");
-                $.ajax("./service/frame/groupmember/checksame/dept/", {
+                $.ajax("./service/frame/groupmember/checksame/dept", {
                     type: "GET",
                     data: {"groupId": groupId, "deptId": deptId},
                     contentType: "application/json; charset=utf-8",
@@ -301,7 +301,7 @@
                 }
                 var currentGroupId = cola.widget("groupTable").get("currentItem").get("id");
                 var data = {"groupId":currentGroupId,"groupUserIds":groupUserIds};
-                $.ajax("./service/frame/groupmember/user/", {
+                $.ajax("./service/frame/groupmember/user", {
                     type: "POST",
                     data: JSON.stringify(data),
                     contentType: "application/json; charset=utf-8",
@@ -321,7 +321,7 @@
                 }
                 var currentGroupId = cola.widget("groupTable").get("currentItem").get("id");
                 var data = {"groupId":currentGroupId,"groupPositionIds":groupPositionIds};
-                $.ajax("./service/frame/groupmember/position/", {
+                $.ajax("./service/frame/groupmember/position", {
                     type: "POST",
                     data: JSON.stringify(data),
                     contentType: "application/json; charset=utf-8",
@@ -342,7 +342,7 @@
                 }
                 var currentGroupId = cola.widget("groupTable").get("currentItem").get("id");
                 var data = {"groupId":currentGroupId,"groupDeptIds":groupDeptIds};
-                $.ajax("./service/frame/groupmember/dept/", {
+                $.ajax("./service/frame/groupmember/dept", {
                     type: "POST",
                     data: JSON.stringify(data),
                     contentType: "application/json; charset=utf-8",
@@ -553,7 +553,7 @@
                                 });
                             }
                             if (!isSame) {
-                                $.ajax("./service/frame/groupmember/checksame/dept/", {
+                                $.ajax("./service/frame/groupmember/checksame/dept", {
                                     type: "GET",
                                     data: {"groupId": groupId, "deptId": deptId},
                                     contentType: "application/json; charset=utf-8",

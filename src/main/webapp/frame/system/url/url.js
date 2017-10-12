@@ -145,7 +145,7 @@
                 url = model.get("currentEditItem").toJSON();
                 delete url.menus;
                 if (!model.get("currentEditItem").validate()) return;
-                $.ajax("./service/frame/url/", {
+                $.ajax("./service/frame/url", {
                     type: "POST",
                     data: JSON.stringify(url),
                     contentType: "application/json; charset=utf-8",

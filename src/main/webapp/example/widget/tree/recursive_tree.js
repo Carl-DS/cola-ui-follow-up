@@ -9,7 +9,7 @@ cola(function (model) {
             areas: {
                 dataType: "Area",
                 provider: {
-                    url: "./service/area/recursion/?parentId={{@id}}"
+                    url: "./service/area/recursion?parentId={{@id}}"
                 }
             }
         }
@@ -17,7 +17,7 @@ cola(function (model) {
     model.describe("areas",{
         dataType: "Area",
         provider: {
-            url: "./service/area/recursion/?parentId=-1"
+            url: "./service/area/recursion?parentId=-1"
         }
     });
 

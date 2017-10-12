@@ -35,7 +35,7 @@
                 products: {
                     dataType: "Product",
                     provider: {
-                        url: "./service/product/",
+                        url: "./service/product",
                         pageSize: 5,
                         beforeSend: function (self, arg) {
                             arg.options.data.categoryId = arg.model.get("categories.id");
@@ -51,7 +51,7 @@
         model.describe("categories", {
             dataType: "Category",
             provider: {
-                url: "./service/category/",
+                url: "./service/category",
                 pageSize: 5
             }
         });
@@ -82,7 +82,7 @@
                 result = product.validate();
                 if (result) {
                     data = product.toJSON();
-                    return $.ajax("./service/product/", {
+                    return $.ajax("./service/product", {
                         data: JSON.stringify(data),
                         type: data.id ? "PUT" : "POST",
                         contentType: "application/json",
@@ -103,7 +103,7 @@
                 result = category.validate();
                 if (result) {
                     data = category.toJSON();
-                    return $.ajax("./service/category/", {
+                    return $.ajax("./service/category", {
                         data: JSON.stringify(data),
                         type: data.id ? "PUT" : "POST",
                         contentType: "application/json",

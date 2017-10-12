@@ -8,7 +8,7 @@
             properties: {
                 products: {
                     provider: {
-                        url: "./service/product/?categoryId={{@id}}",
+                        url: "./service/product?categoryId={{@id}}",
                         pageSize: 5
                     }
                 }
@@ -20,7 +20,7 @@
                 powers: {
                     dataType: "Power",
                     provider: {
-                        url: "./service/category/",
+                        url: "./service/category",
                         pageSize: 20
                     }
                 }
@@ -30,7 +30,7 @@
         model.describe("roles", {
             dataType: "Role",
             provider: {
-                url: "./service/employee/",
+                url: "./service/employee",
                 pageSize: 20,
                 complete: function () {
                     // 生成序号

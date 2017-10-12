@@ -18,7 +18,7 @@
         model.describe("messageTemplates", {
             dataType: "MessageTemplate",
             provider: {
-                url: "./service/frame/messageTemplate/",
+                url: "./service/frame/messageTemplate",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     debugger;
@@ -69,7 +69,7 @@
                     level: "info",
                     onApprove: function () { // 确认时触发的回调
                         messageTemplate.remove();
-                        $.ajax("./service/frame/messageTemplate/"+messageTemplate.get("id")+"/", {
+                        $.ajax("./service/frame/messageTemplate/"+messageTemplate.get("id"), {
                             type: "DELETE",
                             success: function () {
                                 debugger;
@@ -89,7 +89,7 @@
                 state = messageTemplate.state;
                 if (messageTemplate.validate()) {
                     data = messageTemplate.toJSON();
-                    return $.ajax("./service/frame/messageTemplate/", {
+                    return $.ajax("./service/frame/messageTemplate", {
                         data: JSON.stringify(data),
                         type: state==="new" ? "POST" : "PUT",
                         contentType: "application/json",

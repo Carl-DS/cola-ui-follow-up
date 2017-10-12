@@ -42,7 +42,7 @@
                 }
             },
             provider: {
-                url: "./service/employee/",
+                url: "./service/employee",
                 pageSize: 4,
                 beforeSend: function (self, arg) {
                     var contain, data;
@@ -96,7 +96,7 @@
                 if (validate) {
                     id = editItem.get("id");
                     data = editItem.toJSON();
-                    return $.ajax("./service/employee/", {
+                    return $.ajax("./service/employee", {
                         data: JSON.stringify(data),
                         type: data.id ? "PUT" : "POST",
                         contentType: "application/json",

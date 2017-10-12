@@ -5,14 +5,14 @@
     cola(function (model) {
         model.describe("categories", {
             provider: {
-                url: "./service/category/",
+                url: "./service/category",
                 pageSize: 5
             }
         });
 
         model.describe("products", {
             provider: {
-                url: "./service/product/",
+                url: "./service/product",
                 pageSize: 5,
                 beforeSend: function(self, arg) {
                     arg.options.data.categoryId = model.get("categoryId")||1;

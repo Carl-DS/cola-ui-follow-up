@@ -139,6 +139,13 @@
             <version>${mysql.connector.version}</version>
         </dependency>
 
+        <!--Hutool是一个工具包-->
+        <dependency>
+            <groupId>com.xiaoleilu</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+
         <!-- Servlet+JSP -->
         <dependency>
             <groupId>javax.servlet</groupId>

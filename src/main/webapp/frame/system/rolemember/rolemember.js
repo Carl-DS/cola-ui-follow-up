@@ -5,7 +5,7 @@
     cola(function (model) {
         model.describe("roles", {
             provider: {
-                url: "./service/frame/role/",
+                url: "./service/frame/role",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var contain = model.get("contain");
@@ -37,7 +37,7 @@
         // 待选择的用户
         model.describe("users", {
             provider: {
-                url: "./service/frame/user/",
+                url: "./service/frame/user",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var contain = model.get("contain");
@@ -68,7 +68,7 @@
         // 待选择的岗位
         model.describe("positions", {
             provider: {
-                url: "./service/frame/position/",
+                url: "./service/frame/position",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var contain = model.get("contain");
@@ -122,7 +122,7 @@
         // 待选择的群组
         model.describe("groups", {
             provider: {
-                url: "./service/frame/group/",
+                url: "./service/frame/group",
                 pageSize: 2,
                 beforeSend: function (self, arg) {
                     var contain = model.get("contain");
@@ -181,7 +181,7 @@
             deleteUser: function(model) {
                 var data = model.toJSON();
                 data.roleId = cola.widget("roleTable").get("currentItem").get("id");
-                $.ajax("./service/frame/rolemember/user/", {
+                $.ajax("./service/frame/rolemember/user", {
                     type: "GET",
                     data: {"roleId": data.roleId, "username": data.username},
                     contentType: "application/json; charset=utf-8",
@@ -193,7 +193,7 @@
             deletePosition: function(model) {
                 var data = model.toJSON();
                 data.roleId = cola.widget("roleTable").get("currentItem").get("id");
-                $.ajax("./service/frame/rolemember/position/", {
+                $.ajax("./service/frame/rolemember/position", {
                     type: "GET",
                     data: {"roleId": data.roleId, "positionId": data.id},
                     contentType: "application/json; charset=utf-8",
@@ -205,7 +205,7 @@
             deleteDept: function(model) {
                 var data = model.toJSON();
                 data.roleId = cola.widget("roleTable").get("currentItem").get("id");
-                $.ajax("./service/frame/rolemember/dept/", {
+                $.ajax("./service/frame/rolemember/dept", {
                     type: "GET",
                     data: {"roleId": data.roleId, "deptId": data.id},
                     contentType: "application/json; charset=utf-8",
@@ -217,7 +217,7 @@
             deleteGroup: function(model) {
                 var data = model.toJSON();
                 data.roleId = cola.widget("roleTable").get("currentItem").get("id");
-                $.ajax("./service/frame/rolemember/group/", {
+                $.ajax("./service/frame/rolemember/group", {
                     type: "GET",
                     data: {"roleId": data.roleId, "groupId": data.id},
                     contentType: "application/json; charset=utf-8",
@@ -230,7 +230,7 @@
                 var roleId = cola.widget("roleTable").get("currentItem").get("id");
                 var currentUser = cola.widget("userTable").get("currentItem");
                 var username = currentUser.get("username");
-                $.ajax("./service/frame/rolemember/checksame/user/", {
+                $.ajax("./service/frame/rolemember/checksame/user", {
                     type: "GET",
                     data: {"roleId": roleId, "username": username},
                     contentType: "application/json; charset=utf-8",
@@ -248,7 +248,7 @@
                 var roleId = cola.widget("roleTable").get("currentItem").get("id");
                 var currentPosition = cola.widget("positionTable").get("currentItem");
                 var positionId = currentPosition.get("id");
-                $.ajax("./service/frame/rolemember/checksame/position/", {
+                $.ajax("./service/frame/rolemember/checksame/position", {
                     type: "GET",
                     data: {"roleId": roleId, "positionId": positionId},
                     contentType: "application/json; charset=utf-8",
@@ -266,7 +266,7 @@
                 var roleId = cola.widget("roleTable").get("currentItem").get("id");
                 var currentDept = cola.widget("deptTable").get("currentItem");
                 var deptId = currentDept.get("id");
-                $.ajax("./service/frame/rolemember/checksame/dept/", {
+                $.ajax("./service/frame/rolemember/checksame/dept", {
                     type: "GET",
                     data: {"roleId": roleId, "deptId": deptId},
                     contentType: "application/json; charset=utf-8",
@@ -284,7 +284,7 @@
                 var roleId = cola.widget("roleTable").get("currentItem").get("id");
                 var currentGroup = cola.widget("groupTable").get("currentItem");
                 var groupId = currentGroup.get("id");
-                $.ajax("./service/frame/rolemember/checksame/group/", {
+                $.ajax("./service/frame/rolemember/checksame/group", {
                     type: "GET",
                     data: {"roleId": roleId, "groupId": groupId},
                     contentType: "application/json; charset=utf-8",
@@ -324,7 +324,7 @@
                 }
                 var currentRoleId = cola.widget("roleTable").get("currentItem").get("id");
                 var data = {"roleId":currentRoleId,"roleUserIds":roleUserIds};
-                $.ajax("./service/frame/rolemember/user/", {
+                $.ajax("./service/frame/rolemember/user", {
                     type: "POST",
                     data: JSON.stringify(data),
                     contentType: "application/json; charset=utf-8",
@@ -344,7 +344,7 @@
                 }
                 var currentRoleId = cola.widget("roleTable").get("currentItem").get("id");
                 var data = {"roleId":currentRoleId,"rolePositionIds":rolePositionIds};
-                $.ajax("./service/frame/rolemember/position/", {
+                $.ajax("./service/frame/rolemember/position", {
                     type: "POST",
                     data: JSON.stringify(data),
                     contentType: "application/json; charset=utf-8",
@@ -364,7 +364,7 @@
                 }
                 var currentRoleId = cola.widget("roleTable").get("currentItem").get("id");
                 var data = {"roleId":currentRoleId,"roleDeptIds":roleDeptIds};
-                $.ajax("./service/frame/rolemember/dept/", {
+                $.ajax("./service/frame/rolemember/dept", {
                     type: "POST",
                     data: JSON.stringify(data),
                     contentType: "application/json; charset=utf-8",
@@ -385,7 +385,7 @@
                 }
                 var currentRoleId = cola.widget("roleTable").get("currentItem").get("id");
                 var data = {"roleId":currentRoleId,"roleGroupIds":roleGroupIds};
-                $.ajax("./service/frame/rolemember/group/", {
+                $.ajax("./service/frame/rolemember/group", {
                     type: "POST",
                     data: JSON.stringify(data),
                     contentType: "application/json; charset=utf-8",
@@ -591,7 +591,7 @@
                                 });
                             }
                             if (!isSame) {
-                                $.ajax("./service/frame/rolemember/checksame/dept/", {
+                                $.ajax("./service/frame/rolemember/checksame/dept", {
                                     type: "GET",
                                     data: {"roleId": roleId, "deptId": deptId},
                                     contentType: "application/json; charset=utf-8",

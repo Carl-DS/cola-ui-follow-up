@@ -38,7 +38,7 @@
                 products: {
                     dataType: "Product",
                     provider: {
-                        url: "/service/product/?categoryId={{@id}}",
+                        url: "/service/product?categoryId={{@id}}",
                         pageSize: 5
                     }
                 }
@@ -47,7 +47,7 @@
         model.describe("categories", {
             dataType: "Category",
             provider: {
-                url: "/service/category/",
+                url: "/service/category",
                 pageSize: 5
             }
         });
