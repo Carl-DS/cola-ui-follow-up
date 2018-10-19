@@ -11,14 +11,14 @@
 
     <properties>
         <!--架包变量 start-->
-        <springframework.version>4.3.11.RELEASE</springframework.version>
+        <springframework.version>[4.3.18,)</springframework.version>
         <hibernate.version>4.3.6.Final</hibernate.version>
         <mysql.connector.version>5.1.31</mysql.connector.version>
         <shiro.version>1.3.2</shiro.version>
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
         <javax.servlet.jsp-api.version>2.3.1</javax.servlet.jsp-api.version>
         <ehcache-core.version>2.4.3</ehcache-core.version>
-        <jackson.version>2.5.3</jackson.version>
+        <jackson.version>[2.8.11.1,)</jackson.version>
         <fastjson.version>1.2.24</fastjson.version>
         <jsonp.version>1.8.3</jsonp.version>
         <commons-lang.version>2.6</commons-lang.version>
